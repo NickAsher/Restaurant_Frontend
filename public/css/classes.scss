@@ -1,0 +1,144 @@
+$list-background-color : #222 ;
+$list-text-color : #fff ;
+$list-sub-background-color: #282828 ;
+
+#list_div{
+  padding: 0;
+}
+
+
+
+
+.nav-pills-lightblue{
+
+  > li > a {
+    color: #1CA8DD;
+  }
+
+  .nav-link.active {
+    background-color: #1CA8DD;
+  }
+
+
+}
+
+
+
+
+.list-yolo{
+  list-style-type: none;
+  background-color: $list-background-color;
+  padding: 0;
+  margin: 0;
+
+
+  > li > a{
+    transition:padding-left 0.5s ease-out ; -webkit-transition: padding-left 0.5s ; // for safari
+    background-color: $list-background-color;
+    color:$list-text-color ;
+    padding: 15px 0 15px 15px;
+    font-size: 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  > li > a:hover{
+    background-color: #111;
+    color:$list-text-color ;
+    padding: 15px 0 15px 25px;
+    font-size: 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  > li > .active {
+    background-color: #000;
+    color: palegoldenrod;
+  }
+
+  > li > .active-sub {
+    //background-color: #1e1e1e;
+      color: palegoldenrod;
+
+  }
+
+
+
+  .list-yolo-sub{
+    list-style-type: none;
+    background-color: $list-sub-background-color;
+    padding: 0;
+    margin: 0;
+
+
+
+    > li > a{
+      transition:padding-left 0.5s ease-out ; -webkit-transition: padding-left 0.5s ; // for safari
+      background-color: $list-sub-background-color;
+      color:$list-text-color ;
+      padding: 10px 0 10px 30px;
+      font-size: 14px;
+      text-decoration: none;
+      display: block;
+    }
+
+    > li > a:hover{
+      background-color: #111;
+      color:$list-text-color ;
+      padding: 10px 0 10px 40px;
+      font-size: 14px;
+      text-decoration: none;
+      display: block;
+
+    }
+
+    > li > .active {
+      background-color: #000;
+        color: palegoldenrod;
+
+    }
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+.link-black{
+  color : #444;
+
+  &:hover{
+    text-decoration: none;
+    color : #000;
+  }
+
+}
+
+
+.table-center-yolo{
+  th,tr{
+    padding: 10px ;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+}
+
+
+.btn-long {
+  padding-left: 100px ;
+  padding-right: 100px;
+}

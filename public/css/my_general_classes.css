@@ -1,0 +1,38 @@
+
+/*.sidebar {*/
+    /*position: fixed;*/
+    /*top: 0;*/
+    /*bottom: 0;*/
+    /*z-index: 100;*/
+    /*overflow-y: scroll;*/
+/*}*/
+
+
+.navbar-space{
+    margin-left: 50px;
+    margin-right: 50px;
+
+}
+
+.navbar-height-big{
+
+}
+
+.ytext-heading{
+    color: #555555;
+    color: #1CA8DD;
+
+
+}
+
+
+.nav-pills-lightblue > li > a {
+    color: #1CA8DD; }
+.nav-pills-lightblue .nav-link.active {
+    background-color: #1CA8DD; }
+
+
+.bg-white{
+    background-color: #fff;  }
+.bg-grey{
+    background-color: #eee;  }

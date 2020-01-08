@@ -1,0 +1,75 @@
+#list_div {
+  padding: 0; }
+
+.nav-pills-lightblue > li > a {
+  color: #1CA8DD; }
+.nav-pills-lightblue .nav-link.active {
+  background-color: #1CA8DD; }
+
+.list-yolo {
+  list-style-type: none;
+  background-color: #222;
+  padding: 0;
+  margin: 0; }
+  .list-yolo > li > a {
+    transition: padding-left 0.5s ease-out;
+    -webkit-transition: padding-left 0.5s;
+    background-color: #222;
+    color: #fff;
+    padding: 15px 0 15px 15px;
+    font-size: 16px;
+    text-decoration: none;
+    display: block; }
+  .list-yolo > li > a:hover {
+    background-color: #111;
+    color: #fff;
+    padding: 15px 0 15px 25px;
+    font-size: 16px;
+    text-decoration: none;
+    display: block; }
+  .list-yolo > li > .active {
+    background-color: #000;
+    color: palegoldenrod; }
+  .list-yolo > li > .active-sub {
+    color: palegoldenrod; }
+  .list-yolo .list-yolo-sub {
+    list-style-type: none;
+    background-color: #282828;
+    padding: 0;
+    margin: 0; }
+    .list-yolo .list-yolo-sub > li > a {
+      transition: padding-left 0.5s ease-out;
+      -webkit-transition: padding-left 0.5s;
+      background-color: #282828;
+      color: #fff;
+      padding: 10px 0 10px 30px;
+      font-size: 14px;
+      text-decoration: none;
+      display: block; }
+    .list-yolo .list-yolo-sub > li > a:hover {
+      background-color: #111;
+      color: #fff;
+      padding: 10px 0 10px 40px;
+      font-size: 14px;
+      text-decoration: none;
+      display: block; }
+    .list-yolo .list-yolo-sub > li > .active {
+      background-color: #000;
+      color: palegoldenrod; }
+
+.link-black {
+  color: #444; }
+  .link-black:hover {
+    text-decoration: none;
+    color: #000; }
+
+.table-center-yolo th, .table-center-yolo tr {
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle; }
+
+.btn-long {
+  padding-left: 100px;
+  padding-right: 100px; }
+
+/*# sourceMappingURL=classes.css.map */

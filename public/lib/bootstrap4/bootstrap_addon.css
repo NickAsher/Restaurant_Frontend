@@ -1,0 +1,17 @@
+.td-link, .tr-link, .addon-link{
+    cursor:pointer
+}
+
+.bg-black{
+    background-color: #000;  }
+.bg-whitegrey{
+    background-color: #fcfcfc;  }
+.bg-white{
+    background-color: #fff;  }
+.bg-grey{
+    background-color: #eee;  }
+
+
+.card-wrapper{
+    margin: 16px;
+}
