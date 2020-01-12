@@ -3,7 +3,7 @@ const Constants = require('../utils/Constants') ;
 
 const getAllBlogs = async (req, res)=>{
   try{
-    let requestData =   await request(Constants.API_ROOTH_PATH_NEW + "/blogs")
+    let requestData =   await request(Constants.API_ROOTH_PATH_NEW + "/blogs") ;
     if(requestData['status'] == false){
       throw new Error(requestData["error_msg"]) ;
     }

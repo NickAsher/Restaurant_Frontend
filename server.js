@@ -9,6 +9,7 @@ const controllerBlogs = require('./controllers/blogs') ;
 const controllerGallery = require('./controllers/gallery') ;
 const controllerInfo = require('./controllers/info') ;
 const controllerHome = require('./controllers/home') ;
+const controllerMenu = require('./controllers/menu') ;
 
 const app = express() ;
 app.set('view engine', 'hbs') ;
@@ -17,6 +18,9 @@ hbs.registerPartials(path.join(__dirname, "./views/includes/")) ;
 app.use(express.static("public"));
 
 app.get('/', controllerHome.getHomePage) ;
+app.post('/', controllerHome.postHomePage) ;
+
+app.get('/menu', controllerMenu.getMenu) ;
 
 app.get('/blogs', controllerBlogs.getAllBlogs) ;
 app.get('/blogs/:blogId', controllerBlogs.getSpecificBlog) ;
