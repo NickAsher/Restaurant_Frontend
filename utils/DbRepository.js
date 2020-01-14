@@ -26,7 +26,7 @@ exports.getAllMenuCategories = async ()=>{
 exports.getSingleMenuCategory = async (categoryId)=>{
   try{
     let dbData = await dbConnection.execute(
-        `SELECT * FROM \`menu_meta_category_table\` WHERE \`category_id\` = ${categoryId} `) ;
+        `SELECT * FROM menu_meta_category_table WHERE category_id = ${categoryId} `) ;
     return {
       status : true,
       data : dbData['0'],
@@ -120,7 +120,12 @@ exports.getSingleAddonGroup = async (addonGroupRelId)=>{
 exports.getAllAddonItemsInAddonGroup = async (addonGroupRelId)=>{
   try{
     let dbData = await dbConnection.execute(
-        `SELECT * FROM menu_addons_table WHERE item_addon_group_rel_id = '${addonGroupRelId}' ORDER BY item_sr_no ASC `) ;
+        "SELECT * FROM `menu_meta_rel_size_addons_table`, `menu_addons_table` " +
+        "WHERE `menu_meta_rel_size_addons_table`.`addon_id` = `menu_addons_table`.`item_id`  " +
+        "AND `addon_size_active` = 'yes' AND `item_is_active` = 'yes' " +
+        "AND `menu_addons_table`.`item_addon_group_rel_id` = '" + addonGroupRelId  +
+        "' ORDER BY `item_sr_no` ASC " );
+
     return {
       status : true,
       data : dbData['0'],
@@ -134,6 +139,43 @@ exports.getAllAddonItemsInAddonGroup = async (addonGroupRelId)=>{
   }
 
 } ;
+
+exports.getAddonDataInCategory = async (categoryId)=>{
+  try{
+    let categoryAddonGroupData = await dbConnection.execute(
+        `SELECT * FROM menu_meta_addongroups_table WHERE category_id = '${categoryId}' ORDER BY addon_group_sr_no ASC `) ;
+    categoryAddonGroupData = categoryAddonGroupData['0'] ;
+
+
+    for(let i=0;i<categoryAddonGroupData.length; i++){
+      let addonItemData = await this.getAllAddonItemsInAddonGroup(categoryAddonGroupData[i]['rel_id']) ;
+      addonItemData = addonItemData['data'] ;
+
+      addonItemData = addonItemData.reduce((result, currentObj)=>{
+        if(result[currentObj['addon_id']] == null){
+          result[currentObj['addon_id']] = [];
+        }
+        result[currentObj['addon_id']].push(currentObj);
+        return result ;
+      }, {}) ;
+
+      categoryAddonGroupData[i]['addon_items_data'] = Object.values(addonItemData) ; // only keep the values of a key:value object and values are stored in an array structure
+    }
+
+    return {
+      status : true,
+      data : categoryAddonGroupData,
+    } ;
+
+  }catch (e) {
+    return {
+      status : false,
+      data : e,
+    } ;
+  }
+} ;
+
+
 
 
 
@@ -214,11 +256,12 @@ exports.getAllMenuItemsInSubCategory = async (subcategoryId)=>{
 
 } ;
 
-//TODO change this method implementation as it uses more fields
-exports.getSingleMenuItem = async (itemId)=>{
+exports.getSingleMenuItem = async (categoryId, itemId)=>{
   try{
     let dbData = await dbConnection.execute(
-        `SELECT * FROM menu_items_table WHERE item_id = '${itemId}'  `) ;
+        `SELECT * FROM menu_items_table, menu_meta_category_table 
+         WHERE menu_items_table.item_id = '${itemId}' AND menu_meta_category_table.category_id = ${categoryId} `
+    ) ;
     return {
       status : true,
       data : dbData['0'],
@@ -231,6 +274,26 @@ exports.getSingleMenuItem = async (itemId)=>{
     } ;
   }
 
+} ;
+
+exports.getSingleMenuItem_PriceData = async (categoryId, itemId)=>{
+  try{
+    let dbData = await dbConnection.execute(
+        `SELECT * FROM menu_meta_rel_size_items_table, menu_meta_size_table 
+         WHERE menu_meta_rel_size_items_table.item_id = '${itemId}'
+         AND menu_meta_rel_size_items_table.size_id = menu_meta_size_table.size_id`
+    ) ;
+    return {
+      status : true,
+      data : dbData['0'],
+    } ;
+
+  }catch (e) {
+    return {
+      status : false,
+      data : e,
+    } ;
+  }
 } ;
 
 exports.getAllMenuItems_SeperatedByCategory2 = async (itemId)=>{
@@ -281,3 +344,5 @@ exports.getAllMenuItems_SeperatedByCategory = async ()=>{
   }
 
 } ;
+
+

@@ -21,6 +21,8 @@ app.get('/', controllerHome.getHomePage) ;
 app.post('/', controllerHome.postHomePage) ;
 
 app.get('/menu', controllerMenu.getMenu) ;
+app.get('/item/:categoryId/:itemId', controllerMenu.getMenuDetail) ;
+app.get('/item2/:categoryId/:itemId', controllerMenu.getMenuDetail2) ;
 
 app.get('/blogs', controllerBlogs.getAllBlogs) ;
 app.get('/blogs/:blogId', controllerBlogs.getSpecificBlog) ;
