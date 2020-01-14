@@ -15,6 +15,9 @@ const app = express() ;
 app.set('view engine', 'hbs') ;
 app.set('views', path.join(__dirname, "./views")) ;
 hbs.registerPartials(path.join(__dirname, "./views/includes/")) ;
+hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
+  return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+});
 app.use(express.static("public"));
 
 app.get('/', controllerHome.getHomePage) ;

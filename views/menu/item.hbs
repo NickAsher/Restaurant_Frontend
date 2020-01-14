@@ -80,11 +80,11 @@
                                     <div>
                                         Choose Type : <br>
                                         {{#each sizeData}}
-                                            {{#if size_is_default}}
+                                            {{#ifEquals size_is_default "true"}}
                                                 <input type='radio' name='item_size_id' value='{{size_id}}' checked='checked'> {{size_name}} ({{item_price}})
                                             {{else}}
                                                 <input type='radio' name='item_size_id' value='{{size_id}}'> {{size_name}} ({{item_price}})
-                                            {{/if}}
+                                            {{/ifEquals}}
                                         {{/each}}
                                     </div>
 
@@ -103,7 +103,13 @@
                                     <div>
                                         <input type='hidden' name='__addongroup_id_{{rel_id}}[]'  >
                                         {{#each addon_items_data}}
-                                            <input type='{{../addon_group_type}}' name='__addongroup_id_{{../rel_id}}[]' value='{{0.item_id}}'  > {{0.item_name}} ($AddonItemPriceString)  <br>
+                                            {{#ifEquals 0.item_is_default "true"}}
+                                                <input type='{{../addon_group_type}}' name='__addongroup_id_{{../rel_id}}[]' value='{{0.item_id}}' checked="checked" > {{0.item_name}} ( {{#each this}} {{addon_price}} {{/each}} )  <br>
+                                            {{else}}
+                                                <input type='{{../addon_group_type}}' name='__addongroup_id_{{../rel_id}}[]' value='{{0.item_id}}'  > {{0.item_name}} ( {{#each this}} {{addon_price}} {{/each}} )  <br>
+
+                                            {{/ifEquals}}
+
                                         {{/each}}
                                     </div>
                                 {{/each}}

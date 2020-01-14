@@ -202,7 +202,7 @@ exports.getSingleAddonItem = async (categoryId, addonItemId)=>{
 exports.getAllSizesInCategory = async (categoryId)=>{
   try{
     let dbData = await dbConnection.execute(
-        `SELECT * FROM menu_meta_size_table WHERE size_category_id = '${categoryId}' ORDER BY size_sr_no ASC `) ;
+        `SELECT * FROM menu_meta_size_table WHERE size_category_id = '${categoryId}' AND size_is_active = 'yes' ORDER BY size_sr_no ASC `) ;
     return {
       status : true,
       data : dbData['0'],
@@ -281,7 +281,8 @@ exports.getSingleMenuItem_PriceData = async (categoryId, itemId)=>{
     let dbData = await dbConnection.execute(
         `SELECT * FROM menu_meta_rel_size_items_table, menu_meta_size_table 
          WHERE menu_meta_rel_size_items_table.item_id = '${itemId}'
-         AND menu_meta_rel_size_items_table.size_id = menu_meta_size_table.size_id`
+         AND menu_meta_rel_size_items_table.size_id = menu_meta_size_table.size_id
+         AND item_size_active = 'yes' `
     ) ;
     return {
       status : true,
