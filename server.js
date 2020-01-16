@@ -3,7 +3,8 @@ const path = require('path') ;
 const hbs = require('hbs') ;
 const dbConnection = require('./utils/database') ;
 const Constants = require('./utils/Constants') ;
-const rp = require('request-promise') ;
+const bodyParser = require('body-parser');
+const cookieParser = require("cookie-parser") ;
 
 const controllerBlogs = require('./controllers/blogs') ;
 const controllerGallery = require('./controllers/gallery') ;
@@ -14,18 +15,26 @@ const controllerMenu = require('./controllers/menu') ;
 const app = express() ;
 app.set('view engine', 'hbs') ;
 app.set('views', path.join(__dirname, "./views")) ;
+
 hbs.registerPartials(path.join(__dirname, "./views/includes/")) ;
 hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
   return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
 });
+
 app.use(express.static("public"));
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+app.use(cookieParser()) ;
+
+
 
 app.get('/', controllerHome.getHomePage) ;
 app.post('/', controllerHome.postHomePage) ;
 
 app.get('/menu', controllerMenu.getMenu) ;
 app.get('/item/:categoryId/:itemId', controllerMenu.getMenuDetail) ;
-app.get('/item2/:categoryId/:itemId', controllerMenu.getMenuDetail2) ;
+app.post('/menu', controllerMenu.postMenu) ;
+app.all('/cart', controllerMenu.getCart) ;
 
 app.get('/blogs', controllerBlogs.getAllBlogs) ;
 app.get('/blogs/:blogId', controllerBlogs.getSpecificBlog) ;

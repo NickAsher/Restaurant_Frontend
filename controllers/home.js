@@ -1,6 +1,9 @@
 const request = require('request-promise') ;
 const Constants = require('../utils/Constants') ;
 const cookie = require('cookie') ;
+
+
+
 exports.getHomePage = (req, res)=>{
   try{
     res.render('home/login.hbs', {
@@ -16,10 +19,10 @@ exports.getHomePage = (req, res)=>{
 
 exports.postHomePage = (req, res)=>{
   try{
-    res.setHeader('Set-Cookie', cookie.serialize('logged_in', true, {
-      httpOnly : true,
-      maxAge: 60 * 60 * 24 * 7 // 1 week
-    })) ;
+    res.cookie('logged_in', true, {httpOnly : true, maxAge : 60*60*24*7 }) ;
+    res.cookie('cart', '[]', {httpOnly : true, maxAge : 60*60*24*7 }) ;
+    res.cookie('total_items', 0, {httpOnly : true, maxAge : 60*60*24*7 }) ;
+
     res.redirect('/menu') ;
   }catch (e) {
     res.send(e) ;
