@@ -58,8 +58,7 @@ app.get('/', (req, res)=>{
 app.get('/blogs', controllerBlogs.getAllBlogs) ;
 app.get('/blog/:blogId', controllerBlogs.getSingleBlog) ;
 
-app.get('/gallery', controllerGallery.getAllGalleryItems2) ;
-// app.get('/gallery/:galleryItemId', controllerGallery.getSpecificGalleryItem) ;
+app.get('/gallery', controllerGallery.getAllGalleryItems) ;
 
 app.listen(3000, ()=>{
     console.log("The server is listening on port 3000") ;
