@@ -3,6 +3,45 @@ const dbConnection  = require('./database') ;
 const _ = require('lodash') ;
 
 
+
+exports.getAllBlogs = async ()=>{
+  try{
+    let dbData = await dbConnection.execute(
+        "SELECT `blog_id`, `blog_creation_date`, `blog_title`, `blog_display_image` FROM  `blogs_table`  ORDER BY `blog_creation_date` DESC"
+    ) ;
+    return {
+      status : true,
+      data : dbData['0']
+    } ;
+  }catch (e) {
+    return {
+      status : false,
+      data : e,
+    } ;
+  }
+} ;
+
+
+exports.getSingleBlog = async (blogId)=>{
+  try{
+    let dbData = await dbConnection.execute(
+        `SELECT * FROM  blogs_table WHERE blog_id =  ${blogId} `
+    ) ;
+    return {
+      status : true,
+      data : dbData['0']
+    } ;
+  }catch (e) {
+    return {
+      status : false,
+      data : e,
+    } ;
+  }
+} ;
+
+
+
+
 exports.getAllMenuCategories = async ()=>{
   try{
     let dbData = await dbConnection.execute(

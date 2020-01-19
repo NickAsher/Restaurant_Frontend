@@ -15,6 +15,8 @@ const controllerMenu = require('./controllers/menu') ;
 const app = express() ;
 app.set('view engine', 'hbs') ;
 app.set('views', path.join(__dirname, "./views")) ;
+// app.set('views', path.join(__dirname, "./public2")) ;
+
 
 hbs.registerPartials(path.join(__dirname, "./views/includes/")) ;
 hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
@@ -44,6 +46,12 @@ app.get('/gallery/:galleryItemId', controllerGallery.getSpecificGalleryItem) ;
 
 app.get('/about', controllerInfo.getAboutUsData) ;
 app.get('/contact', controllerInfo.getContactUsData) ;
+
+
+
+
+
+
 
 app.listen(3000, ()=>{
     console.log("The server is listening on port 3000") ;

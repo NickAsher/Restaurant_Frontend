@@ -1,7 +1,8 @@
 const request = require('request-promise') ;
 const Constants = require('../utils/Constants') ;
+const dbRepository = require('../utils/DbRepository') ;
 
-const getAllBlogs = async (req, res)=>{
+exports.getAllBlogs = async (req, res)=>{
   try{
     let requestData =   await request(Constants.API_ROOTH_PATH_NEW + "/blogs") ;
     if(requestData['status'] == false){
@@ -20,7 +21,7 @@ const getAllBlogs = async (req, res)=>{
   }
 };
 
-const getSpecificBlog = async (req, res)=>{
+exports.getSpecificBlog = async (req, res)=>{
   try{
     let blogId = req.params.blogId ;
 
@@ -45,8 +46,38 @@ const getSpecificBlog = async (req, res)=>{
 } ;
 
 
-module.exports = {
-  getAllBlogs,
-  getSpecificBlog,
 
+exports.getAllBlogs2 = async (req, res)=>{
+  try{
+
+    let blogsData = await dbRepository.getAllBlogs() ;
+    if(blogsData['status'] === false){
+      throw new Error(blogsData) ;
+    }
+    res.render('blogs_all.hbs', {
+      IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
+      IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
+      blogsData : blogsData['data']
+    }) ;
+  }catch (e) {
+    res.send(e) ;
+  }
 } ;
+
+exports.getSingleBlog = async (req, res)=>{
+  try{
+    let blogData = await dbRepository.getSingleBlog(req.params.blogId) ;
+    if(blogData['status'] === false){
+      throw new Error(blogData) ;
+    }
+    res.render('blog_single.hbs', {
+      IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
+      IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
+      blogData : blogData['data']['0'],
+    }) ;
+  }catch (e) {
+    res.send(e) ;
+  }
+} ;
+
+

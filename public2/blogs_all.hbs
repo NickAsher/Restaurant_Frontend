@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from themes.suelo.pl/soup/blog.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Jan 2020 07:06:40 GMT -->
+<head>
+
+<!-- Meta -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- Title -->
+<title>Soup - Restaurant with Online Ordering System Template</title>
+
+<!-- Favicons -->
+<link rel="shortcut icon" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/favicon_60x60.png">
+<link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicon_76x76.png">
+<link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicon_120x120.png">
+<link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicon_152x152.png">
+
+<!-- CSS Plugins -->
+<link rel="stylesheet" href="assets/plugins/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="assets/plugins/slick-carousel/slick/slick.css" />
+<link rel="stylesheet" href="assets/plugins/animate.css/animate.min.css" />
+<link rel="stylesheet" href="assets/plugins/animsition/dist/css/animsition.min.css" />
+
+<!-- CSS Icons -->
+<link rel="stylesheet" href="assets/css/themify-icons.css" />
+<link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css" />
+
+<!-- CSS Theme -->
+<link id="theme" rel="stylesheet" href="assets/css/themes/theme-beige.min.css" />
+
+</head>
+
+<body>
+
+<!-- Body Wrapper -->
+<div id="body-wrapper" class="animsition">
+
+    {{>header_light}}
+
+    <!-- Content -->
+    <div id="content">
+
+        <!-- Page Title -->
+        <div class="page-title bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 push-lg-4">
+                        <h1 class="mb-0">Blog</h1>
+                        <h4 class="text-muted mb-0">Some informations about our restaurant</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page Content -->
+        <div class="page-content bg-light">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 push-lg-1">
+                        <!-- Post / Item -->
+                        {{#each blogsData}}
+                            <article class="post post-wide animated" data-animation="fadeIn">
+                                <div class="post-image"><img src="{{@root.IMAGE_BACKENDFRONT_LINK_PATH}}{{blog_display_image}}" alt=""></div>
+                                <div class="post-content">
+                                    <ul class="post-meta">
+                                        <li>April 16, 2018</li>
+                                        <li>by Rafique Gagneja</li>
+                                    </ul>
+                                    <h4><a href="/blog/{{blog_id}}">{{blog_title}}</a></h4>
+                                    <p>Nulla leo lectus, commodo porttitor lacus a, placerat facilisis ligula.</p>
+                                </div>
+                            </article>
+
+                        {{/each}}
+
+
+                        <!-- Pagination -->
+                        <nav aria-label="Page navigation" class="mt-5">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <i class="ti-arrow-left"></i>
+                                        <span class="sr-only">Previous</span>
+                                  </a>
+                                </li>
+                                <li class="page-item"><a class="page-link active" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <i class="ti-arrow-right"></i>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        {{>footer_new}}
+
+    </div>
+    <!-- Content / End -->
+
+    {{>cart_new}}
+
+    {{>panel_mobile}}
+
+    <!-- Body Overlay -->
+    <div id="body-overlay"></div>
+
+</div>
+
+{{>modal_product}}
+
+<!-- JS Plugins -->
+<script src="assets/plugins/jquery/dist/jquery.min.js"></script>
+<script src="assets/plugins/tether/dist/js/tether.min.js"></script>
+<script src="assets/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="assets/plugins/slick-carousel/slick/slick.min.js"></script>
+<script src="assets/plugins/jquery.appear/jquery.appear.js"></script>
+<script src="assets/plugins/jquery.scrollto/jquery.scrollTo.min.js"></script>
+<script src="assets/plugins/jquery.localscroll/jquery.localScroll.min.js"></script>
+<script src="assets/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="assets/plugins/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.min.js"></script>
+<script src="assets/plugins/twitter-fetcher/js/twitterFetcher_min.js"></script>
+<script src="assets/plugins/skrollr/dist/skrollr.min.js"></script>
+<script src="assets/plugins/animsition/dist/js/animsition.min.js"></script>
+
+<!-- JS Core -->
+<script src="assets/js/core.js"></script>
+
+<!-- JS Stylewsitcher -->
+<script src="styleswitcher/styleswitcher.js"></script>
+
+</body>
+
+
+<!-- Mirrored from themes.suelo.pl/soup/blog.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Jan 2020 07:06:41 GMT -->
+</html>
