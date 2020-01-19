@@ -42,21 +42,46 @@
     <!-- Content -->
     <div id="content" class="bg-light">
 
-        <!-- Post / Single -->
-        <article class="post single">
-            <div class="post-image bg-parallax"><img src="{{IMAGE_BACKENDFRONT_LINK_PATH}}{{blogData.blog_display_image}}" alt=""></div>
-            <div class="container container-md">
-                <div class="post-content">
-                    <ul class="post-meta">
-                        <li>24 July, 2016</li>
-                        <li>by Rafique Gagneja</li>
-                    </ul>
-                    <h1 class="post-title">{{blogData.blog_title}}</h1>
-                    <hr>
-                    {{{blogData.blog_content}}}
+        <!-- Page Title -->
+        <div class="page-title border-top dark bg-dark">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 push-lg-4">
+                        <h1 class="mb-0">Gallery</h1>
+                        <h4 class="text-muted mb-0">Some informations about our restaurant</h4>
+                    </div>
                 </div>
             </div>
-        </article>
+        </div>
+
+        <!-- Section -->
+        <section id="gallery" class="section section-gallery cover">
+
+            <!-- Gallery Carousel -->
+            <div class="gallery-carousel inner-controls">
+                {{#each galleryData}}
+                    <div class="slide">
+                        <div class="bg-image bg-parallax">
+                            <img src="{{@root.IMAGE_BACKENDFRONT_LINK_PATH}}{{gallery_item_image_name}}" alt="">
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+
+            <!-- Gallery Carousel Nav -->
+            <div class="gallery-nav">
+                {{#each galleryData}}
+                    <img src="{{@root.IMAGE_BACKENDFRONT_LINK_PATH}}{{gallery_item_image_name}}" alt="">
+                {{/each}}
+            </div>
+
+
+
+            <div class="set-fullscreen">
+                <a href="#gallery"><i class="ti ti-fullscreen"></i></a>
+            </div>
+
+        </section>
 
         {{>footer_new}}
 

@@ -1,9 +1,10 @@
 const request = require('request-promise') ;
 const Constants = require('../utils/Constants') ;
+const dbRepository = require('../utils/DbRepository') ;
 
 
 
-const getAllGalleryItems = async (req, res)=>{
+exports.getAllGalleryItems = async (req, res)=>{
   try{
     let requestData =   await request(Constants.API_ROOTH_PATH_NEW + "/gallery")
     if(requestData['status'] == false){
@@ -22,8 +23,25 @@ const getAllGalleryItems = async (req, res)=>{
   }
 };
 
+exports.getAllGalleryItems2 = async (req, res)=>{
+  try{
+    let galleryData = await dbRepository.getAllGalleryItems() ;
+    if(galleryData['status'] == false){
+      throw new Error(galleryData) ;
+    }
+    res.render('gallery.hbs', {
+      IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
+      IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
+      galleryData: galleryData['data']
+    }) ;
+  }catch (e) {
+    res.send(e) ;
+  }
 
-const getSpecificGalleryItem = async (req, res)=>{
+} ;
+
+
+exports.getSpecificGalleryItem = async (req, res)=>{
   try{
     let galleryItemId = req.params.galleryItemId ;
 
@@ -48,8 +66,3 @@ const getSpecificGalleryItem = async (req, res)=>{
 } ;
 
 
-module.exports = {
-  getAllGalleryItems,
-  getSpecificGalleryItem,
-
-} ;

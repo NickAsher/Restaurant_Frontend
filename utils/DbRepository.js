@@ -40,7 +40,22 @@ exports.getSingleBlog = async (blogId)=>{
 } ;
 
 
-
+exports.getAllGalleryItems = async ()=>{
+  try{
+    let dbData = await dbConnection.execute(
+        `SELECT * FROM gallery_table ORDER BY gallery_item_sr_no ASC `
+    ) ;
+    return {
+      status : true,
+      data : dbData['0']
+    } ;
+  }catch (e) {
+    return {
+      status : false,
+      data : e,
+    } ;
+  }
+} ;
 
 exports.getAllMenuCategories = async ()=>{
   try{
