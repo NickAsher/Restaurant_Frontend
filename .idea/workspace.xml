@@ -2,15 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1620cee4-64a5-406e-9fc4-7b203dfbc357" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/public2/gallery.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public2/assets/css/themes/theme-beige.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public2/assets/plugins/bootstrap/dist/css/bootstrap-grid.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public2/assets/plugins/bootstrap/dist/css/bootstrap-reboot.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public2/assets/plugins/bootstrap/dist/css/bootstrap_addon.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public2/assets/plugins/bootstrap/dist/js/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public2/assets/plugins/bootstrap/dist/js/bootstrap_addon.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public2/menu.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/blogs.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/blogs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/gallery.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/gallery.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/blog_single.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/public2/blog_single.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/blogs_all.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/public2/blogs_all.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/index-video.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/public2/index-video.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/menu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public2/assets/css/themes/theme-beige.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public2/assets/css/themes/theme-beige.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public2/views/includes/header_light.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/public2/views/includes/header_light.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public2/views/includes/header_new.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/public2/views/includes/header_new.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server2.js" beforeDir="false" afterPath="$PROJECT_DIR$/server2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/DbRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/DbRepository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/menu/menu.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/menu/menu.hbs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,35 +32,38 @@
       <file leaf-file-name="server2.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server2.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-792">
-              <caret line="12" column="14" lean-forward="true" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+            <state relative-caret-position="424">
+              <caret line="62" column="39" selection-start-line="62" selection-start-column="39" selection-end-line="62" selection-end-column="39" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="blogs.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/blogs.js">
+      <file leaf-file-name="menu.hbs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public2/menu.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+            <state relative-caret-position="312">
+              <caret line="100" column="140" selection-start-line="100" selection-start-column="140" selection-end-line="100" selection-end-column="140" />
+              <folding>
+                <element signature="n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gallery.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/gallery.js">
+      <file leaf-file-name="menu.hbs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/menu/menu.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-144">
-              <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+            <state relative-caret-position="312">
+              <caret line="85" column="81" selection-start-line="85" selection-start-column="68" selection-end-line="85" selection-end-column="81" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DbRepository.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/utils/DbRepository.js">
+      <file leaf-file-name="menu.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/menu.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="45" column="70" selection-start-line="45" selection-start-column="70" selection-end-line="45" selection-end-column="70" />
+            <state relative-caret-position="216">
+              <caret line="12" column="16" lean-forward="true" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -66,6 +74,8 @@
     <findStrings>
       <find>.</find>
       <find>+</find>
+      <find>body</find>
+      <find>menu-sample</find>
     </findStrings>
     <replaceStrings>
       <replace>+</replace>
@@ -97,12 +107,10 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/utils/database.js" />
         <option value="D:/dump/The Witcher - Season 1 (2019) [1080p]/abcd.html" />
-        <option value="$PROJECT_DIR$/views/menu/menu.hbs" />
         <option value="$PROJECT_DIR$/views/menu/itemDetail.hbs" />
         <option value="$PROJECT_DIR$/controllers/home.js" />
         <option value="$PROJECT_DIR$/views/menu/item.hbs" />
         <option value="$PROJECT_DIR$/views/includes/header.hbs" />
-        <option value="$PROJECT_DIR$/controllers/menu.js" />
         <option value="$PROJECT_DIR$/public2/views/includes/header.hbs" />
         <option value="$PROJECT_DIR$/public2/views/includes/modal_product.hbs" />
         <option value="$PROJECT_DIR$/public2/views/includes/panel_mobile.hbs" />
@@ -110,16 +118,21 @@
         <option value="$PROJECT_DIR$/public2/blogs_single2.hbs" />
         <option value="$PROJECT_DIR$/public2/views/includes/footer_new.hbs" />
         <option value="$PROJECT_DIR$/server.js" />
-        <option value="$PROJECT_DIR$/public2/views/includes/header_new.hbs" />
-        <option value="$PROJECT_DIR$/public2/views/includes/header_light.hbs" />
         <option value="$PROJECT_DIR$/controllers/blogs.js" />
         <option value="$PROJECT_DIR$/utils/DbRepository.js" />
-        <option value="$PROJECT_DIR$/server2.js" />
-        <option value="$PROJECT_DIR$/controllers/gallery.js" />
         <option value="$PROJECT_DIR$/public2/gallery.hbs" />
         <option value="$PROJECT_DIR$/public2/blog_single.hbs" />
         <option value="$PROJECT_DIR$/public2/blogs_all.hbs" />
         <option value="$PROJECT_DIR$/public2/index-video.hbs" />
+        <option value="$PROJECT_DIR$/controllers/gallery.js" />
+        <option value="$PROJECT_DIR$/public2/views/includes/header_light.hbs" />
+        <option value="$PROJECT_DIR$/public2/views/includes/header_new.hbs" />
+        <option value="$PROJECT_DIR$/public2/assets/css/themes/theme-beige.min.css" />
+        <option value="$PROJECT_DIR$/views/menu/menu.hbs" />
+        <option value="$PROJECT_DIR$/public2/assets/css/themes/theme-beige.css" />
+        <option value="$PROJECT_DIR$/controllers/menu.js" />
+        <option value="$PROJECT_DIR$/server2.js" />
+        <option value="$PROJECT_DIR$/public2/menu.hbs" />
       </list>
     </option>
   </component>
@@ -155,6 +168,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -183,39 +197,31 @@
               <item name="2_RestaurantFrontend" type="462c0819:PsiDirectoryNode" />
               <item name="public2" type="462c0819:PsiDirectoryNode" />
               <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="2_RestaurantFrontend" type="b2602c69:ProjectViewProjectNode" />
               <item name="2_RestaurantFrontend" type="462c0819:PsiDirectoryNode" />
               <item name="public2" type="462c0819:PsiDirectoryNode" />
               <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-              <item name="themes" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
+              <item name="photos" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="2_RestaurantFrontend" type="b2602c69:ProjectViewProjectNode" />
               <item name="2_RestaurantFrontend" type="462c0819:PsiDirectoryNode" />
-              <item name="public2" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="2_RestaurantFrontend" type="b2602c69:ProjectViewProjectNode" />
               <item name="2_RestaurantFrontend" type="462c0819:PsiDirectoryNode" />
-              <item name="public2" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="includes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="2_RestaurantFrontend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="2_RestaurantFrontend" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="menu" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -234,19 +240,19 @@
     <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Javascript\RestaurantProject\2_RestaurantFrontend\public2\assets\plugins\bootstrap\dist\css" />
+      <recent name="D:\Javascript\RestaurantProject\2_RestaurantFrontend\public2\assets\plugins\bootstrap\dist\js" />
+      <recent name="D:\Javascript\RestaurantProject\2_RestaurantFrontend\public2\assets\css\themes" />
+      <recent name="D:\Javascript\RestaurantProject\2_RestaurantFrontend\public2" />
+      <recent name="D:\Javascript\RestaurantProject\2_RestaurantFrontend\public2\views" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Javascript\RestaurantProject\2_RestaurantFrontend\public2" />
       <recent name="D:\Javascript\RestaurantProject\2_RestaurantFrontend\public2\assets" />
       <recent name="D:\Javascript\3_RestaurantFrontend\utils" />
       <recent name="D:\Javascript\3_RestaurantFrontend\views\blogs" />
       <recent name="D:\Javascript\3_RestaurantFrontend\public" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Javascript\RestaurantProject\2_RestaurantFrontend\public2" />
-      <recent name="D:\Javascript\RestaurantProject\2_RestaurantFrontend\public2\views" />
-      <recent name="D:\Javascript\RestaurantProject\2_RestaurantFrontend" />
-      <recent name="D:\Javascript\RestaurantProject\2_RestaurantFrontend\public\css" />
-      <recent name="D:\Javascript\RestaurantProject\2_RestaurantFrontend\views\menu" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -289,34 +295,35 @@
       <workItem from="1578990068564" duration="15868000" />
       <workItem from="1579106492325" duration="8742000" />
       <workItem from="1579217274455" duration="1193000" />
-      <workItem from="1579326805609" duration="17498000" />
+      <workItem from="1579326805609" duration="18052000" />
+      <workItem from="1579749702198" duration="11437000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="95914000" />
+    <option name="totallyTimeSpent" value="107905000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18138552" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2247488" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3282532" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.20398593" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.20398593" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.25087926" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.25087926" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3282532" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -326,53 +333,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/views/includes/sidebar.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-768">
-          <caret line="59" column="39" selection-start-line="59" selection-start-column="39" selection-end-line="59" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/video-page.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../.eslintrc" />
-    <entry file="file://$PROJECT_DIR$/utils/Constants.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="15" column="3" lean-forward="true" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/order.js" />
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/info.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="502">
-          <caret line="36" column="54" selection-start-line="36" selection-start-column="54" selection-end-line="36" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/home/login.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="53" column="55" selection-start-line="53" selection-start-column="55" selection-end-line="53" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/database.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="3" column="21" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../1_Api/routes/blogs.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="24">
@@ -456,13 +416,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/menu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="2" column="55" lean-forward="true" selection-start-line="2" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/includes/header.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="430">
@@ -470,20 +423,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/menu/menu.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public2/views/includes/header.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-938">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/public2/views/includes/header.hbs" />
     <entry file="file://$PROJECT_DIR$/views/gallery/gallery.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="744">
@@ -495,9 +435,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="24">
           <caret line="126" column="6" selection-start-line="126" selection-start-column="6" selection-end-line="126" selection-end-column="6" />
-          <folding>
-            <element signature="n#div#0;n#!!top" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -505,9 +442,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="24">
           <caret line="17" column="6" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
-          <folding>
-            <element signature="n#nav#0;n#!!top" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -515,19 +449,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="24">
           <caret line="68" column="6" selection-start-line="68" selection-start-column="6" selection-end-line="68" selection-end-column="6" />
-          <folding>
-            <element signature="n#div#0;n#!!top" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public2/blogs_single2.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="568">
-          <caret line="122" lean-forward="true" selection-start-line="122" selection-end-line="122" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/public2/blogs_single2.hbs" />
     <entry file="file://$PROJECT_DIR$/public2/views/includes/footer_new.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -556,41 +481,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public2/views/includes/header_new.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public2/views/includes/header_light.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="17" column="38" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/gallery.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-144">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/blogs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-792">
-          <caret line="12" column="14" lean-forward="true" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public2/blog_single.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2400">
@@ -598,29 +488,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public2/blogs_all.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="144" selection-start-line="144" selection-end-line="144" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public2/index-video.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="579" selection-start-line="579" selection-end-line="579" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public2/assets/img/favicon_60x60.png">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public2/assets/css/themes/theme-beige.min.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-12312">
-          <caret column="35468" selection-start-column="35468" selection-end-column="35468" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public2/assets/css/themify-icons.css">
       <provider selected="true" editor-type-id="text-editor">
@@ -632,20 +501,147 @@
         <state relative-caret-position="-192" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/gallery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="598">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public2/blogs_all.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3456">
+          <caret line="144" selection-start-line="144" selection-end-line="144" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public2/views/includes/header_light.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="20" column="42" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public2/views/includes/header_new.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="11" column="42" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public2/gallery.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2304">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="1298">
+          <caret line="99" column="9" selection-start-line="99" selection-end-line="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public2/assets/css/themes/theme-beige.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-288">
+          <caret column="454" selection-start-column="454" selection-end-column="454" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public2/assets/js/prettify.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4656">
+          <caret line="136" column="5" selection-start-line="136" selection-start-column="5" selection-end-line="136" selection-end-column="5" />
           <folding>
-            <element signature="n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public2/index-video.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="117" column="18" selection-start-line="117" selection-start-column="18" selection-end-line="117" selection-end-column="18" />
+          <folding>
+            <element signature="n#section#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public2/assets/plugins/jquery/dist/jquery.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public2/assets/plugins/bootstrap/dist/js/bootstrap.min.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public2/assets/plugins/bootstrap/dist/css/bootstrap.min.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public2/assets/js/core.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-10656">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/blogs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public2/assets/css/themes/theme-beige.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="1373" column="24" selection-start-line="1373" selection-start-column="24" selection-end-line="1373" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public2/assets/img/photos/menu-sample-pizza.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public2/assets/img/photos/menu-title-pizza.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/utils/DbRepository.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="45" column="70" selection-start-line="45" selection-start-column="70" selection-end-line="45" selection-end-column="70" />
+        <state relative-caret-position="165">
+          <caret line="374" selection-start-line="374" selection-end-line="374" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="62" column="39" selection-start-line="62" selection-start-column="39" selection-end-line="62" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/menu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="16" lean-forward="true" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/menu/menu.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="85" column="81" selection-start-line="85" selection-start-column="68" selection-end-line="85" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public2/menu.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="100" column="140" selection-start-line="100" selection-start-column="140" selection-end-line="100" selection-end-column="140" />
+          <folding>
+            <element signature="n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+          </folding>
         </state>
       </provider>
     </entry>

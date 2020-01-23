@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Meta -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Title -->
+    <title>Soup - Restaurant with Online Ordering System Template</title>
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="assets/img/favicon.png">
+    <link rel="apple-touch-icon" href="assets/img/favicon_60x60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicon_76x76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicon_120x120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicon_152x152.png">
+
+    <!-- CSS Plugins -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/plugins/slick-carousel/slick/slick.css" />
+    <link rel="stylesheet" href="assets/plugins/animate.css/animate.min.css" />
+    <link rel="stylesheet" href="assets/plugins/animsition/dist/css/animsition.min.css" />
+
+    <!-- CSS Icons -->
+    <link rel="stylesheet" href="assets/css/themify-icons.css" />
+    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css" />
+
+    <!-- CSS Theme -->
+    <link id="theme" rel="stylesheet" href="assets/css/themes/theme-beige.css" />
+
+</head>
+
+<body>
+
+<!-- Body Wrapper -->
+<div id="body-wrapper" class="animsition">
+
+    {{>header_light}}
+
+    <!-- Content -->
+    <div id="content">
+
+        <!-- Page Title -->
+        <div class="page-title bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 push-lg-4">
+                        <h1 class="mb-0">Menu Grid</h1>
+                        <h4 class="text-muted mb-0">Some informations about our restaurant</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="menu-sample-carousel carousel inner-controls nav" role="tablist" data-slick='{
+                "dots": true,
+                "slidesToShow": 3,
+                "slidesToScroll": 1,
+                "infinite": true,
+                "responsive": [
+                    {
+                        "breakpoint": 991,
+                        "settings": {
+                            "slidesToShow": 2,
+                            "slidesToScroll": 1
+                        }
+                    },
+                    {
+                        "breakpoint": 690,
+                        "settings": {
+                            "slidesToShow": 1,
+                            "slidesToScroll": 1
+                        }
+                    }
+                ]
+            }'>
+
+
+            {{#each menuData}}
+                <div class="menu-sample" >
+                    <a href="#yolo-{{category_name}}" class="nav-item {{#if @first}}active{{/if}}" data-toggle="tab">
+                        <img src="{{@root.IMAGE_BACKENDFRONT_LINK_PATH}}{{category_image}}" alt="" class="image">
+                        <h3 class="title">{{category_name}}</h3>
+                    </a>
+                </div>
+            {{/each}}
+
+
+        </div>
+        <br>
+
+
+
+        <div id="yoloMenuContent" class="col-md-10 push-md-1 tab-content menu-category">
+
+            {{#each menuData}}
+                <div id="yolo-{{category_name}}" class="tab-pane fade menu-category-content padded collapse show {{#if @first}}active{{/if}}">
+                    <div class="row gutters-sm">
+                    {{#each items}}
+
+                        <div class="col-lg-4 col-6">
+                            <!-- Menu Item -->
+                            <div class="menu-item menu-grid-item">
+                                <img class="mb-4" src="{{@root.IMAGE_BACKENDFRONT_LINK_PATH}}{{item_image_name}}" alt="">
+                                <h6 class="mb-0">{{item_name}}</h6>
+                                <span class="text-muted text-sm">Beef, cheese, potato, onion, fries</span>
+                                <div class="row align-items-center mt-4">
+                                    <div class="col-sm-6"><span class="text-md mr-4"><span class="text-muted">from</span> $9.00</span></div>
+                                    <div class="col-sm-6 text-sm-right mt-2 mt-sm-0"><button class="btn btn-outline-secondary btn-sm" data-target="#productModal" data-toggle="modal"><span>Add to cart</span></button></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    {{/each}}
+
+
+
+
+                    </div>
+                </div>
+            {{/each}}
+
+
+
+
+        </div>
+                <!--</div></div></div>-->
+
+
+
+
+
+        <!-- Page Content -->
+        <div class="page-content">
+
+        </div>
+
+        {{>footer_new}}
+
+    </div>
+    <!-- Content / End -->
+
+    {{>cart_new}}
+    {{>panel_mobile}}
+
+    <!-- Body Overlay -->
+    <div id="body-overlay"></div>
+
+</div>
+
+{{>modal_product}}
+
+
+<!-- JS Plugins -->
+<script src="assets/plugins/jquery/dist/jquery.min.js"></script>
+<script src="assets/plugins/tether/dist/js/tether.min.js"></script>
+<script src="assets/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="assets/plugins/slick-carousel/slick/slick.min.js"></script>
+<script src="assets/plugins/jquery.appear/jquery.appear.js"></script>
+<script src="assets/plugins/jquery.scrollto/jquery.scrollTo.min.js"></script>
+<script src="assets/plugins/jquery.localscroll/jquery.localScroll.min.js"></script>
+<script src="assets/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="assets/plugins/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.min.js"></script>
+<script src="assets/plugins/twitter-fetcher/js/twitterFetcher_min.js"></script>
+<script src="assets/plugins/skrollr/dist/skrollr.min.js"></script>
+<script src="assets/plugins/animsition/dist/js/animsition.min.js"></script>
+
+<!-- JS Core -->
+<script src="assets/js/core.js"></script>
+
+<!-- JS Stylewsitcher -->
+<script src="styleswitcher/styleswitcher.js"></script>
+
+
+<script type="text/javascript" >
+    /**
+     * This code is needed as the active class is not removed from the nav item
+     */
+    $(".nav-item").click(function() {
+        $(".nav-item").removeClass('active');
+    });
+</script>
+
+</body>
+
+
+<!-- Mirrored from themes.suelo.pl/soup/menu-grid-collapse.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Jan 2020 07:06:40 GMT -->
+</html>

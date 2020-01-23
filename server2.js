@@ -60,6 +60,9 @@ app.get('/blog/:blogId', controllerBlogs.getSingleBlog) ;
 
 app.get('/gallery', controllerGallery.getAllGalleryItems) ;
 
+app.get('/menu', controllerMenu.getMenu) ;
+
+
 app.listen(3000, ()=>{
     console.log("The server is listening on port 3000") ;
 }) ;

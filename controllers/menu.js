@@ -10,7 +10,7 @@ exports.getMenu = async (req, res)=>{
   try{
     let menuData = await dbRepository.getAllMenuItems_SeperatedByCategory() ;
 
-    res.render('menu/menu.hbs', {
+    res.render('menu.hbs', {
       IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
       IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
       TOTAL_CART_ITEMS : req.cookies.total_items,
