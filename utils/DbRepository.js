@@ -57,6 +57,67 @@ exports.getAllGalleryItems = async ()=>{
   }
 } ;
 
+
+exports.getContactData = async ()=>{
+  try {
+    let dbData = await dbConnection.execute(
+        `SELECT * FROM info_contact_table WHERE restaurant_id = 1`
+    ) ;
+    return {
+      status : true,
+      // the first 0 is for the because database data is sent in an array and is the 0th item,
+      // the second is because even if we are getting one row, its still sent in an array form.
+      // Its weird i know
+      data : dbData['0']['0']
+    } ;
+  }catch (e) {
+    return {
+      status : false,
+      data : e,
+    } ;
+  }
+} ;
+
+exports.getSocialData = async ()=>{
+  try {
+    let dbData = await dbConnection.execute(
+        `SELECT * FROM info_social_table`
+    ) ;
+    return {
+      status : true,
+      // the first 0 is for the because database data is sent in an array and is the 0th item,
+      // the second is because even if we are getting one row, its still sent in an array form.
+      // Its weird i know
+      data : dbData['0']['0']
+    } ;
+  }catch (e) {
+    return {
+      status : false,
+      data : e,
+    } ;
+  }
+} ;
+
+exports.getAboutData = async ()=>{
+  try {
+    let dbData = await dbConnection.execute(
+        `SELECT * FROM info_about_table WHERE restaurant_id = 1`
+    ) ;
+    return {
+      status : true,
+      data : dbData['0']
+    } ;
+  }catch (e) {
+    return {
+      status : false,
+      data : e,
+    } ;
+  }
+} ;
+
+
+
+
 exports.getAllMenuCategories = async ()=>{
   try{
     let dbData = await dbConnection.execute(

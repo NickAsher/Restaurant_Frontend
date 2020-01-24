@@ -1,8 +1,9 @@
 const request = require('request-promise') ;
 const Constants = require('../utils/Constants') ;
+const dbRepository = require('../utils/DbRepository') ;
 
 
-const getContactUsData = async (req, res)=>{
+exports.getContactUsData = async (req, res)=>{
   try{
     let requestData =   await request(Constants.API_ROOTH_PATH_NEW + "/contact")
     if(requestData['status'] == false){
@@ -30,9 +31,29 @@ const getContactUsData = async (req, res)=>{
   }
 } ;
 
+exports.getContactUsData2 = async (req, res)=>{
+  try{
+    let contactData = await dbRepository.getContactData() ;
+    if(contactData['status'] == false){
+      throw contactData ;
+    }
+
+    res.render('contact.hbs', {
+      IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
+      IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
+      TOTAL_CART_ITEMS : req.cookies.total_items,
+      contactData : contactData['data'],
+      socialInfo : JSON.parse(contactData['data']['social_info'])
+    }) ;
+
+  }catch (e) {
+    res.send(e) ;
+  }
+} ;
 
 
-const getAboutUsData = async (req, res)=>{
+
+exports.getAboutUsData = async (req, res)=>{
   try{
     let requestData =   await request(Constants.API_ROOTH_PATH_NEW + "/about")
     if(requestData['status'] == false){
@@ -55,7 +76,3 @@ const getAboutUsData = async (req, res)=>{
   }
 } ;
 
-module.exports = {
-  getAboutUsData,
-  getContactUsData
-} ;

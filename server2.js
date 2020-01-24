@@ -41,10 +41,6 @@ app.use(cookieParser()) ;
 // app.all('/cart', controllerMenu.getCart) ;
 
 
-
-// app.get('/gallery', controllerGallery.getAllGalleryItems) ;
-// app.get('/gallery/:galleryItemId', controllerGallery.getSpecificGalleryItem) ;
-//
 // app.get('/about', controllerInfo.getAboutUsData) ;
 // app.get('/contact', controllerInfo.getContactUsData) ;
 
@@ -59,6 +55,7 @@ app.get('/blogs', controllerBlogs.getAllBlogs) ;
 app.get('/blog/:blogId', controllerBlogs.getSingleBlog) ;
 
 app.get('/gallery', controllerGallery.getAllGalleryItems) ;
+app.get('/contact', controllerInfo.getContactUsData2) ;
 
 app.get('/menu', controllerMenu.getMenu) ;
 
