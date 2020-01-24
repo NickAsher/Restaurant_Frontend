@@ -117,6 +117,25 @@ exports.getAboutData = async ()=>{
 
 
 
+exports.getOfferSpecialData = async ()=>{
+  try {
+    let dbData = await dbConnection.execute(
+        `SELECT * FROM offer_special_table ORDER BY sr_no ASC `
+    ) ;
+    return {
+      status : true,
+      data : dbData['0']
+    } ;
+  }catch (e) {
+    return {
+      status : false,
+      data : e,
+    } ;
+  }
+} ;
+
+
+
 
 exports.getAllMenuCategories = async ()=>{
   try{

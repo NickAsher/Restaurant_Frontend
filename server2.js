@@ -11,6 +11,7 @@ const controllerGallery = require('./controllers/gallery') ;
 const controllerInfo = require('./controllers/info') ;
 const controllerHome = require('./controllers/home') ;
 const controllerMenu = require('./controllers/menu') ;
+const dbRepository = require('./utils/DbRepository') ;
 
 const app = express() ;
 app.set('view engine', 'hbs') ;
@@ -51,13 +52,30 @@ app.get('/', (req, res)=>{
   res.render('index-video.hbs') ;
 }) ;
 
+app.get('/menu', controllerMenu.getMenu) ;
+
+
 app.get('/blogs', controllerBlogs.getAllBlogs) ;
 app.get('/blog/:blogId', controllerBlogs.getSingleBlog) ;
 
 app.get('/gallery', controllerGallery.getAllGalleryItems) ;
 app.get('/contact', controllerInfo.getContactUsData2) ;
 
-app.get('/menu', controllerMenu.getMenu) ;
+
+app.get('/about', (req, res)=>{
+  res.render('about.hbs') ;
+}) ;
+
+app.get('/specials', async (req, res)=>{
+  let offersData = await dbRepository.getOfferSpecialData() ;
+
+  res.render('offers.hbs', {
+    IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
+    IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
+    offersData : offersData['data']
+  }) ;
+}) ;
+
 
 
 app.listen(3000, ()=>{
