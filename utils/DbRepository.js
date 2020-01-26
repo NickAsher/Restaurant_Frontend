@@ -105,7 +105,7 @@ exports.getAboutData = async ()=>{
     ) ;
     return {
       status : true,
-      data : dbData['0']
+      data : dbData['0']['0']
     } ;
   }catch (e) {
     return {

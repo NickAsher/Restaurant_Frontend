@@ -1,119 +1,71 @@
-<!-- Modal / Product -->
-<div class="modal fade" id="productModal" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header modal-header-lg dark bg-dark">
-                <div class="bg-image"><img src="assets/img/photos/modal-add.jpg" alt=""></div>
-                <h4 class="modal-title">Specify your dish</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="ti-close"></i></button>
-            </div>
-            <div class="modal-product-details">
-                <div class="row align-items-center">
-                    <div class="col-9">
-                        <h6 class="mb-0">Boscaiola Pasta</h6>
-                        <span class="text-muted">Pasta, Cheese, Tomatoes, Olives</span>
-                    </div>
-                    <div class="col-3 text-lg text-right">$9.00</div>
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+        <div class="modal-header modal-header-lg dark bg-dark">
+            <div class="bg-image"><img src="/assets/img/photos/modal-add.jpg" alt=""></div>
+            <h4 class="modal-title">Specify your dish</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="ti-close"></i></button>
+        </div>
+
+        <div class="modal-product-details">
+            <div class="row align-items-center">
+                <div class="col-9">
+                    <h6 class="mb-0">{{itemData.item_name}}</h6>
+                    <span class="text-muted">{{itemData.item_description}}</span>
                 </div>
+                <div class="col-3 text-lg text-right">${{sizeData.0.item_price}}</div>
             </div>
+        </div>
+
+        <form action="/menu" method="post">
             <div class="modal-body panel-details-container">
-                <!-- Panel Details / Size -->
-                <div class="panel-details">
-                    <h5 class="panel-details-title">
-                        <label class="custom-control custom-radio">
-                            <input name="radio_title_size" type="radio" class="custom-control-input">
-                            <span class="custom-control-indicator"></span>
-                        </label>
-                        <a href="#panelDetailsSize" data-toggle="collapse">Size</a>
-                    </h5>
-                    <div id="panelDetailsSize" class="collapse show">
-                        <div class="panel-details-content">
-                            <div class="form-group">
-                                <label class="custom-control custom-radio">
-                                    <input name="radio_size" type="radio" class="custom-control-input" checked>
-                                    <span class="custom-control-indicator"></span>
-                                    <span class="custom-control-description">Small - 100g ($9.99)</span>
-                                </label>
-                            </div>
-                            <div class="form-group">
-                                <label class="custom-control custom-radio">
-                                    <input name="radio_size" type="radio" class="custom-control-input">
-                                    <span class="custom-control-indicator"></span>
-                                    <span class="custom-control-description">Medium - 200g ($14.99)</span>
-                                </label>
-                            </div>
-                            <div class="form-group">
-                                <label class="custom-control custom-radio">
-                                    <input name="radio_size" type="radio" class="custom-control-input">
-                                    <span class="custom-control-indicator"></span>
-                                    <span class="custom-control-description">Large - 350g ($21.99)</span>
-                                </label>
+                {{#if multipleSizes}}
+                    <div class="panel-details">
+                        <h5 class="panel-details-title">
+                            <a href="#panelDetailsSize" data-toggle="collapse">Size</a>
+                        </h5>
+                        <div id="panelDetailsSize" class="collapse show">
+                            <div class="panel-details-content">
+                                {{#each sizeData}}
+                                <div class="form-group">
+                                    <label class="custom-control custom-radio">
+                                        <input name="post_SizeId" type="radio" value='{{size_id}}' {{#ifEquals size_is_default "true"}}checked="checked"{{/ifEquals}}>
+                                        {{size_name}} - ${{item_price}}
+                                    </label>
+                                </div>
+                                {{/each}}
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- Panel Details / Additions -->
+                {{/if}}
+
+                {{#each addonData}}
                 <div class="panel-details">
                     <h5 class="panel-details-title">
-                        <label class="custom-control custom-radio">
-                            <input name="radio_title_additions" type="radio" class="custom-control-input">
-                            <span class="custom-control-indicator"></span>
-                        </label>
-                        <a href="#panelDetailsAdditions" data-toggle="collapse">Additions</a>
+                        <a href="#addonGroup_{{rel_id}}" data-toggle="collapse">Choose {{addon_group_display_name}}</a>
                     </h5>
-                    <div id="panelDetailsAdditions" class="collapse">
+                    <div id="addonGroup_{{rel_id}}" class="collapse">
                         <div class="panel-details-content">
                             <div class="row">
+                                {{#each addon_items_data}}
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input">
-                                            <span class="custom-control-indicator"></span>
-                                            <span class="custom-control-description">Tomato ($1.29)</span>
-                                        </label>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input">
-                                            <span class="custom-control-indicator"></span>
-                                            <span class="custom-control-description">Ham ($1.29)</span>
-                                        </label>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input">
-                                            <span class="custom-control-indicator"></span>
-                                            <span class="custom-control-description">Chicken ($1.29)</span>
+                                        <label class="custom-control">
+                                            <input type="{{../addon_group_type}}" name='__addongroup_id_{{../rel_id}}[]' value='{{0.item_id}}' {{#ifEquals 0.item_is_default "true"}}checked="checked"{{/ifEquals}}>
+                                            {{0.item_name}} - {{0.addon_price}}
+                                            <!--( {{#each this}} {{addon_price}} {{/each}} )-->
                                         </label>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input">
-                                            <span class="custom-control-indicator"></span>
-                                            <span class="custom-control-description">Cheese($1.29)</span>
-                                        </label>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input">
-                                            <span class="custom-control-indicator"></span>
-                                            <span class="custom-control-description">Bacon ($1.29)</span>
-                                        </label>
-                                    </div>
-                                </div>
+                                {{/each}}
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Panel Details / Other -->
+                {{/each}}
+
                 <div class="panel-details">
                     <h5 class="panel-details-title">
-                        <label class="custom-control custom-radio">
-                            <input name="radio_title_other" type="radio" class="custom-control-input">
-                            <span class="custom-control-indicator"></span>
-                        </label>
                         <a href="#panelDetailsOther" data-toggle="collapse">Other</a>
                     </h5>
                     <div id="panelDetailsOther" class="collapse">
@@ -121,7 +73,11 @@
                     </div>
                 </div>
             </div>
-            <button type="button" class="modal-btn btn btn-secondary btn-block btn-lg" data-dismiss="modal"><span>Add to Cart</span></button>
-        </div>
+
+            <input type="hidden" value="1" name="post_ItemQuantity" >
+            <input type="hidden" value="{{itemData.item_id}}" name="post_ItemId">
+            <input type="hidden" value="{{itemData.category_id}}" name="post_CategoryId">
+            <button type="submit" class="modal-btn btn btn-secondary btn-block btn-lg"><span>Add to Cart</span></button>
+        </form>
     </div>
 </div>

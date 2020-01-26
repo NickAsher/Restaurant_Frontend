@@ -5,6 +5,7 @@ const dbConnection = require('./utils/database') ;
 const Constants = require('./utils/Constants') ;
 const bodyParser = require('body-parser');
 const cookieParser = require("cookie-parser") ;
+const fs = require('fs') ;
 
 const controllerBlogs = require('./controllers/blogs') ;
 const controllerGallery = require('./controllers/gallery') ;
@@ -52,8 +53,58 @@ app.get('/', (req, res)=>{
   res.render('index-video.hbs') ;
 }) ;
 
-app.get('/menu', controllerMenu.getMenu) ;
+app.get('/clear', (req, res)=>{
+  res.cookie('logged_in', true, {httpOnly : true, maxAge : 60*60*24*7 }) ;
+  res.cookie('cart', '[]', {httpOnly : true, maxAge : 60*60*24*7 }) ;
+  res.cookie('total_items', 0, {httpOnly : true, maxAge : 60*60*24*7 }) ;
 
+  res.redirect('/menu') ;
+}) ;
+
+app.get('/menu', controllerMenu.getMenu) ;
+app.post('/menu', controllerMenu.postMenu) ;
+
+app.all('/item/:categoryId/:itemId', async (req, res)=>{
+
+  let categoryId = req.params.categoryId ;
+  let itemId = req.params.itemId ;
+
+  let itemData = await dbRepository.getSingleMenuItem(categoryId, itemId) ;
+  let sizeData = await dbRepository.getSingleMenuItem_PriceData(categoryId, itemId) ;
+  let addonData = await dbRepository.getAddonDataInCategory(categoryId) ;
+
+  res.render('views/includes/modal_product.hbs', {
+    IMAGE_FRONTEND_LINK_PATH: Constants.IMAGE_FRONTEND_LINK_PATH,
+    IMAGE_BACKENDFRONT_LINK_PATH: Constants.IMAGE_BACKENDFRONT_LINK_PATH,
+    TOTAL_CART_ITEMS: req.cookies.total_items,
+    itemData: itemData['data']['0'],
+    sizeData: sizeData['data'],
+    multipleSizes: sizeData['data'].length > 1,
+    addonData: addonData['data'],
+  }) ;
+
+}) ;
+
+app.all('/item2', async (req, res)=>{
+
+  let categoryId = '1' ;
+  let itemId = '41001' ;
+
+  let itemData = await dbRepository.getSingleMenuItem(categoryId, itemId) ;
+  let sizeData = await dbRepository.getSingleMenuItem_PriceData(categoryId, itemId) ;
+  let addonData = await dbRepository.getAddonDataInCategory(categoryId) ;
+
+  res.send({
+    IMAGE_FRONTEND_LINK_PATH: Constants.IMAGE_FRONTEND_LINK_PATH,
+    IMAGE_BACKENDFRONT_LINK_PATH: Constants.IMAGE_BACKENDFRONT_LINK_PATH,
+    TOTAL_CART_ITEMS: req.cookies.total_items,
+    itemData: itemData['data']['0'],
+    sizeData: sizeData['data'],
+    multipleSizes: sizeData['data'].length > 1,
+    addonData: addonData['data'],
+  }) ;
+
+}) ;
 
 app.get('/blogs', controllerBlogs.getAllBlogs) ;
 app.get('/blog/:blogId', controllerBlogs.getSingleBlog) ;
@@ -62,8 +113,14 @@ app.get('/gallery', controllerGallery.getAllGalleryItems) ;
 app.get('/contact', controllerInfo.getContactUsData2) ;
 
 
-app.get('/about', (req, res)=>{
-  res.render('about.hbs') ;
+app.get('/about', async (req, res)=>{
+  let aboutData = await dbRepository.getAboutData() ;
+
+  res.render('about.hbs', {
+    IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
+    IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
+    aboutData : aboutData['data']
+  }) ;
 }) ;
 
 app.get('/specials', async (req, res)=>{

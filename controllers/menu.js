@@ -22,6 +22,24 @@ exports.getMenu = async (req, res)=>{
   }
 };
 
+exports.getMenuOld = async (req, res)=>{
+
+
+  try{
+    let menuData = await dbRepository.getAllMenuItems_SeperatedByCategory() ;
+
+    res.render('menu/menu.hbs', {
+      IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
+      IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
+      TOTAL_CART_ITEMS : req.cookies.total_items,
+      menuData : menuData['data'],
+    }) ;
+
+  }catch (e) {
+    res.send(e) ;
+  }
+};
+
 
 exports.getMenuDetail = async(req, res)=>{
   try{
@@ -33,6 +51,29 @@ exports.getMenuDetail = async(req, res)=>{
     let addonData = await dbRepository.getAddonDataInCategory(categoryId) ;
 
     res.render('menu/item.hbs', {
+      IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
+      IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
+      TOTAL_CART_ITEMS : req.cookies.total_items,
+      itemData : itemData['data']['0'],
+      sizeData : sizeData['data'] ,
+      multipleSizes : sizeData['data'].length > 1,
+      addonData : addonData['data'],
+    }) ;
+  } catch (e) {
+    res.send(e) ;
+  }
+} ;
+
+exports.getMenuDetail2 = async(req, res)=>{
+  try{
+    let categoryId = req.params.categoryId ;
+    let itemId = req.params.itemId ;
+
+    let itemData = await dbRepository.getSingleMenuItem(categoryId, itemId) ;
+    let sizeData = await dbRepository.getSingleMenuItem_PriceData(categoryId, itemId) ;
+    let addonData = await dbRepository.getAddonDataInCategory(categoryId) ;
+
+    res.send({
       IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
       IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
       TOTAL_CART_ITEMS : req.cookies.total_items,
@@ -58,6 +99,9 @@ exports.postMenu = async (req, res)=>{
     let categoryId = req.body.post_CategoryId ;
     let addonData = [] ;
     let addonGroupData = await dbRepository.getAllAddonGroupsInCategory(categoryId) ;
+    if(addonGroupData['status' == false]){
+      throw addonGroupData ;
+    }
     addonGroupData = addonGroupData['data'];
     addonGroupData.forEach((obj)=>{
       let addonGroupId = obj['rel_id'] ;
@@ -83,11 +127,14 @@ exports.postMenu = async (req, res)=>{
     totalItems = totalItems + parseInt(itemQuantity) ;
     res.cookie('total_items', totalItems) ;
 
-
+  // res.send({data : "kar diti processing"}) ;
     res.redirect('/menu') ;
 
   }catch (e) {
-    res.send(e) ;
+    res.send({
+      e,
+      "mera_error" : "Beta ji koi to error hai"
+    }) ;
     // return this.getMenu(req, res) ;
   }
 

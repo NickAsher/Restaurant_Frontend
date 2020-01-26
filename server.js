@@ -33,16 +33,16 @@ app.use(cookieParser()) ;
 app.get('/', controllerHome.getHomePage) ;
 app.post('/', controllerHome.postHomePage) ;
 
-app.get('/menu', controllerMenu.getMenu) ;
+app.get('/menu', controllerMenu.getMenuOld) ;
 app.get('/item/:categoryId/:itemId', controllerMenu.getMenuDetail) ;
 app.post('/menu', controllerMenu.postMenu) ;
 app.all('/cart', controllerMenu.getCart) ;
 
-app.get('/blogs', controllerBlogs.getAllBlogs) ;
-app.get('/blogs/:blogId', controllerBlogs.getSpecificBlog) ;
+// app.get('/blogs', controllerBlogs.getAllBlogs) ;
+// app.get('/blogs/:blogId', controllerBlogs.getSpecificBlog) ;
 
-app.get('/gallery', controllerGallery.getAllGalleryItems) ;
-app.get('/gallery/:galleryItemId', controllerGallery.getSpecificGalleryItem) ;
+// app.get('/gallery', controllerGallery.getAllGalleryItems) ;
+// app.get('/gallery/:galleryItemId', controllerGallery.getSpecificGalleryItem) ;
 
 app.get('/about', controllerInfo.getAboutUsData) ;
 app.get('/contact', controllerInfo.getContactUsData) ;
