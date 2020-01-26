@@ -50,7 +50,9 @@ app.use(cookieParser()) ;
 
 
 app.get('/', (req, res)=>{
-  res.render('index-video.hbs') ;
+  res.render('index-video.hbs', {
+    TOTAL_CART_ITEMS : req.cookies.total_items,
+  }) ;
 }) ;
 
 app.get('/clear', (req, res)=>{
@@ -106,6 +108,8 @@ app.all('/item2', async (req, res)=>{
 
 }) ;
 
+app.get('/cart', controllerMenu.getCart) ;
+
 app.get('/blogs', controllerBlogs.getAllBlogs) ;
 app.get('/blog/:blogId', controllerBlogs.getSingleBlog) ;
 
@@ -119,6 +123,7 @@ app.get('/about', async (req, res)=>{
   res.render('about.hbs', {
     IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
     IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
+    TOTAL_CART_ITEMS : req.cookies.total_items,
     aboutData : aboutData['data']
   }) ;
 }) ;
@@ -129,6 +134,7 @@ app.get('/specials', async (req, res)=>{
   res.render('offers.hbs', {
     IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
     IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
+    TOTAL_CART_ITEMS : req.cookies.total_items,
     offersData : offersData['data']
   }) ;
 }) ;

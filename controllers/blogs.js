@@ -13,6 +13,7 @@ exports.getAllBlogs = async (req, res)=>{
     res.render('blogs_all.hbs', {
       IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
       IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
+      TOTAL_CART_ITEMS : req.cookies.total_items,
       blogsData : blogsData['data']
     }) ;
   }catch (e) {
@@ -29,6 +30,7 @@ exports.getSingleBlog = async (req, res)=>{
     res.render('blog_single.hbs', {
       IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
       IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
+      TOTAL_CART_ITEMS : req.cookies.total_items,
       blogData : blogData['data']['0'],
     }) ;
   }catch (e) {

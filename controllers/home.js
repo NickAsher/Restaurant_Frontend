@@ -11,6 +11,7 @@ exports.getHomePage = (req, res)=>{
       VIDEO_FRONTEND_LINK_PATH : Constants.VIDEO_FRONTEND_LINK_PATH,
       IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH
 
+
     }) ;
   }catch (e) {
     res.send(e) ;

@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <form action="/menu" method="post">
+        <form action="/menu" method="post" accept-charset="utf-8">
             <div class="modal-body panel-details-container">
                 {{#if multipleSizes}}
                     <div class="panel-details">
@@ -29,7 +29,8 @@
                                 {{#each sizeData}}
                                 <div class="form-group">
                                     <label class="custom-control custom-radio">
-                                        <input name="post_SizeId" type="radio" value='{{size_id}}' {{#ifEquals size_is_default "true"}}checked="checked"{{/ifEquals}}>
+                                        <!--Remember in a JSON object string, there must double quotes inside not single quotes -->
+                                        <input name="post_SizeData" type="radio" value='{"id":"{{size_id}}","name":"{{size_name}}", "price":"{{item_price}}" }' {{#ifEquals size_is_default "true"}}checked="checked"{{/ifEquals}}>
                                         {{size_name}} - ${{item_price}}
                                     </label>
                                 </div>
@@ -51,7 +52,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label class="custom-control">
-                                            <input type="{{../addon_group_type}}" name='__addongroup_id_{{../rel_id}}[]' value='{{0.item_id}}' {{#ifEquals 0.item_is_default "true"}}checked="checked"{{/ifEquals}}>
+                                            <input type="{{../addon_group_type}}" name='__addongroup_id_{{../rel_id}}[]' value='{"name":"{{0.item_name}}", "id":{{0.item_id}}, "price": [ {{#each this}} {"sizeId" : "{{size_id}}", "price": "{{addon_price}}" } {{#if @last}} {{else}}, {{/if}} {{/each}} ]}' {{#ifEquals 0.item_is_default "true"}}checked="checked"{{/ifEquals}}>
                                             {{0.item_name}} - {{0.addon_price}}
                                             <!--( {{#each this}} {{addon_price}} {{/each}} )-->
                                         </label>
@@ -75,9 +76,12 @@
             </div>
 
             <input type="hidden" value="1" name="post_ItemQuantity" >
+            <input type="hidden" value="{{itemData.item_name}}" name="post_ItemName">
+
             <input type="hidden" value="{{itemData.item_id}}" name="post_ItemId">
             <input type="hidden" value="{{itemData.category_id}}" name="post_CategoryId">
             <button type="submit" class="modal-btn btn btn-secondary btn-block btn-lg"><span>Add to Cart</span></button>
+
         </form>
     </div>
 </div>

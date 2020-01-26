@@ -15,6 +15,7 @@ exports.getAllGalleryItems = async (req, res)=>{
     res.render('gallery.hbs', {
       IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
       IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
+      TOTAL_CART_ITEMS : req.cookies.total_items,
       galleryData: galleryData['data']
     }) ;
   }catch (e) {
