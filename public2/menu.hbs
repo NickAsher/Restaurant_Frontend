@@ -151,7 +151,12 @@
     </div>
     <!-- Content / End -->
 
-    {{>cart_new}}
+    <div id="panel-cart">
+        <div class="panel-cart-container">
+            {{>cart_new}}
+        </div>
+    </div>
+
     {{>panel_mobile}}
 
     <!-- Body Overlay -->
@@ -208,11 +213,22 @@
         });
     }) ;
 
+    $("#Button_OpenCart").click(function() {
+
+        console.log("making request on /cart" );
+
+        fetch('/cart').then(function(response) {
+            response.text().then(function(text) {
+                $("#panel-cart").html(text) ;
+
+            });
+        });
+    }) ;
+
 
 </script>
 
 </body>
 
 
-<!-- Mirrored from themes.suelo.pl/soup/menu-grid-collapse.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Jan 2020 07:06:40 GMT -->
 </html>

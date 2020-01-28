@@ -59,6 +59,7 @@ app.get('/clear', (req, res)=>{
   res.cookie('logged_in', true, {httpOnly : true, maxAge : 60*60*24*7 }) ;
   res.cookie('cart', '[]', {httpOnly : true, maxAge : 60*60*24*7 }) ;
   res.cookie('total_items', 0, {httpOnly : true, maxAge : 60*60*24*7 }) ;
+  res.cookie('total_price', 0, {httpOnly : true, maxAge : 60*60*24*7 }) ;
 
   res.redirect('/menu') ;
 }) ;
@@ -71,6 +72,7 @@ app.all('/item/:categoryId/:itemId', controllerMenu.getItem_ModalProduct) ;
 app.get('/cart', (req, res)=>{
   try{
     let cartData = JSON.parse(req.cookies.cart) ;
+    let totalPrice = 0 ;
     let newCartData = [] ;
 
     cartData.forEach((cartItem)=>{
@@ -92,7 +94,7 @@ app.get('/cart', (req, res)=>{
         DescriptionString += " \n " ;
       }) ;
       DescriptionString = DescriptionString.slice(0, -3);
-
+      totalPrice += basePrice ;
       newCartData.push({
         name : cartItem.itemName,
         basePrice,
@@ -100,17 +102,18 @@ app.get('/cart', (req, res)=>{
       }) ;
     });
 
-    res.send({
-      newCartData,
-      cartData,
-    }) ;
-
-    // res.render('views/includes/cart_new.hbs', {
-    //   IMAGE_FRONTEND_LINK_PATH: Constants.IMAGE_FRONTEND_LINK_PATH,
-    //   IMAGE_BACKENDFRONT_LINK_PATH: Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-    //   TOTAL_CART_ITEMS: req.cookies.total_items,
-    //   cartData: cartData,
+    // res.send({
+    //   newCartData,
+    //   cartData,
     // }) ;
+
+    res.render('views/includes/cart_new.hbs', {
+      IMAGE_FRONTEND_LINK_PATH: Constants.IMAGE_FRONTEND_LINK_PATH,
+      IMAGE_BACKENDFRONT_LINK_PATH: Constants.IMAGE_BACKENDFRONT_LINK_PATH,
+      TOTAL_CART_ITEMS: req.cookies.total_items,
+      cartData: newCartData,
+      totalPrice
+    }) ;
 
   }catch (e) {
     res.send({
@@ -152,8 +155,6 @@ app.get('/specials', async (req, res)=>{
     offersData : offersData['data']
   }) ;
 }) ;
-
-
 
 app.listen(3000, ()=>{
     console.log("The server is listening on port 3000") ;
