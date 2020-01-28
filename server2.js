@@ -65,50 +65,64 @@ app.get('/clear', (req, res)=>{
 
 app.get('/menu', controllerMenu.getMenu) ;
 app.post('/menu', controllerMenu.postMenu) ;
+app.all('/item/:categoryId/:itemId', controllerMenu.getItem_ModalProduct) ;
 
-app.all('/item/:categoryId/:itemId', async (req, res)=>{
 
-  let categoryId = req.params.categoryId ;
-  let itemId = req.params.itemId ;
+app.get('/cart', (req, res)=>{
+  try{
+    let cartData = JSON.parse(req.cookies.cart) ;
+    let newCartData = [] ;
 
-  let itemData = await dbRepository.getSingleMenuItem(categoryId, itemId) ;
-  let sizeData = await dbRepository.getSingleMenuItem_PriceData(categoryId, itemId) ;
-  let addonData = await dbRepository.getAddonDataInCategory(categoryId) ;
+    cartData.forEach((cartItem)=>{
+      let basePrice = parseFloat(cartItem.itemSizeData.price) ;
+      let sizeId = cartItem.itemSizeData.id ;
+      let DescriptionString = `Size : ${cartItem.itemSizeData.name} \n ` ;
 
-  res.render('views/includes/modal_product.hbs', {
-    IMAGE_FRONTEND_LINK_PATH: Constants.IMAGE_FRONTEND_LINK_PATH,
-    IMAGE_BACKENDFRONT_LINK_PATH: Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-    TOTAL_CART_ITEMS: req.cookies.total_items,
-    itemData: itemData['data']['0'],
-    sizeData: sizeData['data'],
-    multipleSizes: sizeData['data'].length > 1,
-    addonData: addonData['data'],
-  }) ;
+      cartItem.addonData.forEach((addonGroupData)=>{
+        DescriptionString += `${addonGroupData.addongroupName} : ` ;
+        addonGroupData.addon_items_array.forEach((addonItem)=>{
+          DescriptionString += `${addonItem.name}, ` ;
+          addonItem.price.forEach((addonItemSizePriceData)=>{
+            if(addonItemSizePriceData.sizeId == sizeId){
+              basePrice += parseFloat(addonItemSizePriceData.price) ;
+            }
+          }) ;
+        }) ;
+        DescriptionString = DescriptionString.slice(0, -2);
+        DescriptionString += " \n " ;
+      }) ;
+      DescriptionString = DescriptionString.slice(0, -3);
 
+      newCartData.push({
+        name : cartItem.itemName,
+        basePrice,
+        DescriptionString
+      }) ;
+    });
+
+    res.send({
+      newCartData,
+      cartData,
+    }) ;
+
+    // res.render('views/includes/cart_new.hbs', {
+    //   IMAGE_FRONTEND_LINK_PATH: Constants.IMAGE_FRONTEND_LINK_PATH,
+    //   IMAGE_BACKENDFRONT_LINK_PATH: Constants.IMAGE_BACKENDFRONT_LINK_PATH,
+    //   TOTAL_CART_ITEMS: req.cookies.total_items,
+    //   cartData: cartData,
+    // }) ;
+
+  }catch (e) {
+    res.send({
+      e : e.message,
+      msg : "Beta ji koi to error hai"
+    }) ;
+  }
 }) ;
 
-app.all('/item2', async (req, res)=>{
+app.all('/item2/:categoryId/:itemId', controllerMenu.getMenuDetail_DataOnly) ;
 
-  let categoryId = '1' ;
-  let itemId = '41001' ;
-
-  let itemData = await dbRepository.getSingleMenuItem(categoryId, itemId) ;
-  let sizeData = await dbRepository.getSingleMenuItem_PriceData(categoryId, itemId) ;
-  let addonData = await dbRepository.getAddonDataInCategory(categoryId) ;
-
-  res.send({
-    IMAGE_FRONTEND_LINK_PATH: Constants.IMAGE_FRONTEND_LINK_PATH,
-    IMAGE_BACKENDFRONT_LINK_PATH: Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-    TOTAL_CART_ITEMS: req.cookies.total_items,
-    itemData: itemData['data']['0'],
-    sizeData: sizeData['data'],
-    multipleSizes: sizeData['data'].length > 1,
-    addonData: addonData['data'],
-  }) ;
-
-}) ;
-
-app.get('/cart', controllerMenu.getCart) ;
+app.get('/carty', controllerMenu.getCart) ;
 
 app.get('/blogs', controllerBlogs.getAllBlogs) ;
 app.get('/blog/:blogId', controllerBlogs.getSingleBlog) ;

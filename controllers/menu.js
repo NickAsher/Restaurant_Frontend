@@ -18,7 +18,10 @@ exports.getMenu = async (req, res)=>{
     }) ;
 
   }catch (e) {
-    res.send(e) ;
+    res.send({
+      e : e.message,
+      msg : "Beta ji koi to error hai"
+    }) ;
   }
 };
 
@@ -86,11 +89,43 @@ exports.postMenu = async (req, res)=>{
 
   }catch (e) {
     res.send({
-      e,
-      "mera_error" : "Beta ji koi to error hai"
+      e : e.message,
+      msg : "Beta ji koi to error hai",
+      body : req.body,
     }) ;
     // return this.getMenu(req, res) ;
   }
+
+} ;
+
+
+
+exports.getItem_ModalProduct = async (req, res)=>{
+  try {
+    let categoryId = req.params.categoryId;
+    let itemId = req.params.itemId;
+
+    let itemData = await dbRepository.getSingleMenuItem(categoryId, itemId);
+    if(itemData['status'] == false) {throw itemData ;}
+    let sizeData = await dbRepository.getSingleMenuItem_PriceData(categoryId, itemId);
+    if(sizeData['status'] == false) {throw sizeData ;}
+    let addonData = await dbRepository.getAddonDataInCategory(categoryId);
+    if(addonData['status'] == false) {throw addonData ;}
+
+    res.render('views/includes/modal_product.hbs', {
+      IMAGE_FRONTEND_LINK_PATH: Constants.IMAGE_FRONTEND_LINK_PATH,
+      IMAGE_BACKENDFRONT_LINK_PATH: Constants.IMAGE_BACKENDFRONT_LINK_PATH,
+      TOTAL_CART_ITEMS: req.cookies.total_items,
+      itemData: itemData['data']['0'],
+      sizeData: sizeData['data'],
+      multipleSizes: sizeData['data'].length > 1,
+      addonData: addonData['data'],
+    });
+  }catch (e) {
+    res.send({
+      e : e.message,
+      msg : "Beta ji koi to error hai"
+    }) ;  }
 
 } ;
 
@@ -164,7 +199,10 @@ exports.getMenuOld = async (req, res)=>{
     }) ;
 
   }catch (e) {
-    res.send(e) ;
+    res.send({
+      e : e.message,
+      msg : "Beta ji koi to error hai"
+    }) ;
   }
 };
 
@@ -188,14 +226,17 @@ exports.getMenuDetailOld = async(req, res)=>{
       addonData : addonData['data'],
     }) ;
   } catch (e) {
-    res.send(e) ;
+    res.send({
+      e : e.message,
+      msg : "Beta ji koi to error hai"
+    }) ;
   }
 } ;
 
 exports.getMenuDetail_DataOnly = async(req, res)=>{
   try{
-    let categoryId = req.params.categoryId ;
-    let itemId = req.params.itemId ;
+    let categoryId = req.params.categoryId || '1' ;
+    let itemId = req.params.itemId || '41001' ;
 
     let itemData = await dbRepository.getSingleMenuItem(categoryId, itemId) ;
     let sizeData = await dbRepository.getSingleMenuItem_PriceData(categoryId, itemId) ;
@@ -211,7 +252,10 @@ exports.getMenuDetail_DataOnly = async(req, res)=>{
       addonData : addonData['data'],
     }) ;
   } catch (e) {
-    res.send(e) ;
+    res.send({
+      e : e.message,
+      msg : "Beta ji koi to error hai"
+    }) ;
   }
 } ;
 
@@ -222,7 +266,10 @@ exports.getCart = async (req, res)=>{
       cart : JSON.parse(req.cookies.cart),
     }) ;
   }catch (e) {
-    res.send(e) ;
+    res.send({
+      e : e.message,
+      msg : "Beta ji koi to error hai"
+    }) ;
   }
 } ;
 

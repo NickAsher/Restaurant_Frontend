@@ -38,6 +38,10 @@
                             </div>
                         </div>
                     </div>
+
+                {{else}}
+                    <input name="post_SizeData" type="hidden" value='{"id":"{{sizeData.0.size_id}}","name":"{{sizeData.0.size_name}}", "price":"{{sizeData.0.item_price}}" }' >
+
                 {{/if}}
 
                 {{#each addonData}}
