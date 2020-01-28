@@ -5,8 +5,6 @@ const dbRepository = require('../utils/DbRepository') ;
 
 
 exports.getMenu = async (req, res)=>{
-
-
   try{
     let menuData = await dbRepository.getAllMenuItems_SeperatedByCategory() ;
 
@@ -128,12 +126,64 @@ exports.getItem_ModalProduct = async (req, res)=>{
 
 } ;
 
+exports.getCart = async (req, res)=>{
+  try{
+    let cartData = JSON.parse(req.cookies.cart) ;
+    let totalPrice = 0 ;
+    let newCartData = [] ;
+
+    cartData.forEach((cartItem)=>{
+      let basePrice = parseFloat(cartItem.itemSizeData.price) ;
+      let sizeId = cartItem.itemSizeData.id ;
+      let descriptionString = `Size : ${cartItem.itemSizeData.name} <br> ` ;
+
+      cartItem.addonData.forEach((addonGroupData)=>{
+        descriptionString += `${addonGroupData.addongroupName} : ` ;
+        addonGroupData.addon_items_array.forEach((addonItem)=>{
+          descriptionString += `${addonItem.name}, ` ;
+          addonItem.price.forEach((addonItemSizePriceData)=>{
+            if(addonItemSizePriceData.sizeId == sizeId){
+              basePrice += parseFloat(addonItemSizePriceData.price) ;
+            }
+          }) ;
+        }) ;
+        descriptionString = descriptionString.slice(0, -2);
+        descriptionString += " <br> " ;
+      }) ;
+      descriptionString = descriptionString.slice(0, -5);
+      totalPrice += basePrice ;
+      newCartData.push({
+        name : cartItem.itemName,
+        basePrice,
+        descriptionString
+      }) ;
+    });
+
+    // res.send({
+    //   newCartData,
+    //   cartData,
+    // }) ;
+
+    res.render('views/includes/cart_new.hbs', {
+      IMAGE_FRONTEND_LINK_PATH: Constants.IMAGE_FRONTEND_LINK_PATH,
+      IMAGE_BACKENDFRONT_LINK_PATH: Constants.IMAGE_BACKENDFRONT_LINK_PATH,
+      TOTAL_CART_ITEMS: req.cookies.total_items,
+      cartData: newCartData,
+      totalPrice
+    }) ;
+
+  }catch (e) {
+    res.send({
+      e : e.message,
+      msg : "Beta ji koi to error hai"
+    }) ;
+  }
+} ;
 
 
 
 
-
-exports.getMenuDetail_DataOnly = async(req, res)=>{
+exports.getItemDetail_DataOnly = async(req, res)=>{
   try{
     let categoryId = req.params.categoryId || '1' ;
     let itemId = req.params.itemId || '41001' ;
@@ -159,7 +209,7 @@ exports.getMenuDetail_DataOnly = async(req, res)=>{
   }
 } ;
 
-exports.getCart = async (req, res)=>{
+exports.getCart_DataOnly = async (req, res)=>{
   try{
     res.send({
       total_items : req.cookies.total_items,

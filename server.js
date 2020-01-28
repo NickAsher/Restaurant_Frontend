@@ -36,7 +36,7 @@ app.post('/', controllerHome.postHomePage) ;
 app.get('/menu', controllerMenu.getMenuOld) ;
 app.get('/item/:categoryId/:itemId', controllerMenu.getMenuDetail) ;
 app.post('/menu', controllerMenu.postMenu) ;
-app.all('/cart', controllerMenu.getCart) ;
+app.all('/cart', controllerMenu.getCart_DataOnly) ;
 
 // app.get('/blogs', controllerBlogs.getAllBlogs) ;
 // app.get('/blogs/:blogId', controllerBlogs.getSpecificBlog) ;
