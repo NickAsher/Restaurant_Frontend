@@ -17,7 +17,7 @@ const dbRepository = require('./utils/DbRepository') ;
 const app = express() ;
 app.set('view engine', 'hbs') ;
 // app.set('views', path.join(__dirname, "./views")) ;
-app.set('views', path.join(__dirname, "./public2")) ;
+app.set('views', path.join(__dirname, "./public2/views")) ;
 
 
 // hbs.registerPartials(path.join(__dirname, "./views/includes/")) ;
@@ -31,21 +31,6 @@ app.use(express.static("public2"));
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.use(cookieParser()) ;
-
-
-
-// app.get('/', controllerHome.getHomePage) ;
-// app.post('/', controllerHome.postHomePage) ;
-//
-// app.get('/menu', controllerMenu.getMenu) ;
-// app.get('/item/:categoryId/:itemId', controllerMenu.getMenuDetail) ;
-// app.post('/menu', controllerMenu.postMenu) ;
-// app.all('/cart', controllerMenu.getCart_DataOnly) ;
-
-
-// app.get('/about', controllerInfo.getAboutUsData) ;
-// app.get('/contact', controllerInfo.getContactUsData) ;
-
 
 
 

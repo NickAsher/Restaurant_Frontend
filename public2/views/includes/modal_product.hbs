@@ -13,7 +13,10 @@
                     <h6 class="mb-0">{{itemData.item_name}}</h6>
                     <span class="text-muted">{{itemData.item_description}}</span>
                 </div>
-                <div class="col-3 text-lg text-right">${{sizeData.0.item_price}}</div>
+                {{#if multipleSizes}}
+                {{else}}
+                    <div class="col-3 text-lg text-right"><span class="money-currency">{{sizeData.0.item_price}}</span> </div>
+                {{/if}}
             </div>
         </div>
 
@@ -31,7 +34,7 @@
                                     <label class="custom-control custom-radio">
                                         <!--Remember in a JSON object string, there must double quotes inside not single quotes -->
                                         <input name="post_SizeData" type="radio" value='{"id":"{{size_id}}","name":"{{size_name}}", "price":"{{item_price}}" }' {{#ifEquals size_is_default "true"}}checked="checked"{{/ifEquals}}>
-                                        {{size_name}} - ${{item_price}}
+                                        {{size_name}} - <span class="money-currency">{{item_price}}</span>
                                     </label>
                                 </div>
                                 {{/each}}
@@ -57,7 +60,7 @@
                                     <div class="form-group">
                                         <label class="custom-control">
                                             <input type="{{../addon_group_type}}" name='__addongroup_id_{{../rel_id}}[]' value='{"name":"{{0.item_name}}", "id":{{0.item_id}}, "price": [ {{#each this}} {"sizeId" : "{{size_id}}", "price": "{{addon_price}}" } {{#if @last}} {{else}}, {{/if}} {{/each}} ]}' {{#ifEquals 0.item_is_default "true"}}checked="checked"{{/ifEquals}}>
-                                            {{0.item_name}} - {{0.addon_price}}
+                                            {{0.item_name}}-<span class="money-currency">{{0.addon_price}}</span>
                                             <!--( {{#each this}} {{addon_price}} {{/each}} )-->
                                         </label>
                                     </div>

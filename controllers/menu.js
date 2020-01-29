@@ -86,7 +86,7 @@ exports.postMenu = async (req, res)=>{
 
   }catch (e) {
     res.send({
-      e : e.message,
+      e : e.toString(),
       msg : "Beta ji koi to error hai",
       body : req.body,
     }) ;

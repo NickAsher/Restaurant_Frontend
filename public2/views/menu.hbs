@@ -58,6 +58,7 @@
 
 
 
+
         <div class="menu-sample-carousel carousel inner-controls nav" role="tablist" data-slick='{
                 "dots": true,
                 "slidesToShow": 3,
@@ -111,7 +112,7 @@
                                 <h6 class="mb-0">{{item_name}}</h6>
                                 <span class="text-muted text-sm">{{item_description}}</span>
                                 <div class="row align-items-center mt-4">
-                                    <div class="col-sm-6"><span class="text-md mr-4"><span class="text-muted">from</span> $9.00</span></div>
+                                    <div class="col-sm-6"><span class="text-md mr-4"><span class="text-muted">from </span> <span class="money-currency">9.00</span> </span></div>
                                     <div class="col-sm-6 text-sm-right mt-2 mt-sm-0">
                                         <button class="btn btn-outline-secondary btn-sm myCartButton" data-target="#productModal" data-toggle="modal" data-category-id="{{../category_id}}" data-item-id="{{item_id}}">
                                             <span>Add to cart</span>
@@ -191,13 +192,29 @@
 <!--<script src="styleswitcher/styleswitcher.js"></script>-->
 
 
-<script type="text/javascript" >
+<script >
     /**
      * This code is needed as the active class is not removed from the nav item
      */
     $(".nav-item").click(function() {
         $(".nav-item").removeClass('active');
     });
+
+    function formatCurrency() {
+        const formatter = new Intl.NumberFormat('en-IN',{
+            style: 'currency',
+            currency: 'INR',
+            minimumFractionDigits: 2,
+            maximumFractionDigits:3
+        }) ;
+
+        $('.money-currency').each(function(index, element){
+            $(element).text(formatter.format(element.innerHTML)) ;
+            $(element).removeClass("money-currency") ;
+        }) ;
+    }
+
+    formatCurrency() ;
 
 
     $(".myCartButton").click(function() {
@@ -208,6 +225,8 @@
         fetch('/item/' + categoryId + '/' + itemId).then(function(response) {
             response.text().then(function(text) {
               $("#productModal").html(text) ;
+              formatCurrency() ;
+
 
             });
         });
@@ -220,10 +239,16 @@
         fetch('/cart').then(function(response) {
             response.text().then(function(text) {
                 $("#panel-cart").html(text) ;
+                formatCurrency() ;
 
             });
         });
     }) ;
+
+
+
+
+
 
 
 </script>

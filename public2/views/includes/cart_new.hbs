@@ -1,4 +1,3 @@
-<!-- Panel Cart -->
 <!--<div id="panel-cart">-->
     <div class="panel-cart-container">
         <div class="panel-cart-title">
@@ -16,7 +15,7 @@
                             <span class="name"><a href="#productModal" data-toggle="modal">{{name}}</a></span>
                             <span class="caption text-muted">{{{descriptionString}}}</span>
                         </td>
-                        <td class="price">${{basePrice}}</td>
+                        <td class="price"><span class="money-currency">{{basePrice}}</span> </td>
                         <td class="actions">
                             <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
                             <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
@@ -37,7 +36,7 @@
                         <span class="name"><a href="#productModal" data-toggle="modal">Extra Burger</a></span>
                         <span class="caption text-muted">Small (200g)</span>
                     </td>
-                    <td class="price text-success">$0.00</td>
+                    <td class="price text-success"><span class="money-currency">0.00</span></td>
                     <td class="actions">
                         <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
                         <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
@@ -48,7 +47,7 @@
                     <td class="title">
                         <span class="name">Weekend 20% OFF</span>
                     </td>
-                    <td class="price text-success">-$8.22</td>
+                    <td class="price text-success">-<span class="money-currency">8.22</span></td>
                     <td class="actions"></td>
                 </tr>
 
@@ -56,16 +55,16 @@
             <div class="cart-summary">
                 <div class="row">
                     <div class="col-7 text-right text-muted">Order total:</div>
-                    <div class="col-5"><strong>${{totalPrice}}</strong></div>
+                    <div class="col-5"><strong><span class="money-currency">{{totalPrice}}</span></strong></div>
                 </div>
                 <div class="row">
                     <div class="col-7 text-right text-muted">Devliery:</div>
-                    <div class="col-5"><strong>$3.99</strong></div>
+                    <div class="col-5"><strong><span class="money-currency">3.99</span></strong></div>
                 </div>
                 <hr class="hr-sm">
                 <div class="row text-lg">
                     <div class="col-7 text-right text-muted">Total:</div>
-                    <div class="col-5"><strong>${{totalPrice}}</strong></div>
+                    <div class="col-5"><strong><span class="money-currency">{{totalPrice}}</span></strong></div>
                 </div>
             </div>
         </div>
