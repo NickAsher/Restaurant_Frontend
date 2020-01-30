@@ -30,8 +30,8 @@ app.use(cookieParser()) ;
 
 
 
-app.get('/', controllerHome.getHomePage) ;
-app.post('/', controllerHome.postHomePage) ;
+app.get('/', controllerHome.getHomePage_old) ;
+app.post('/', controllerHome.postHomePage_old) ;
 
 app.get('/menu', controllerMenu.getMenuOld) ;
 app.get('/item/:categoryId/:itemId', controllerMenu.getMenuDetail) ;
@@ -44,8 +44,8 @@ app.all('/cart', controllerMenu.getCart_DataOnly) ;
 // app.get('/gallery', controllerGallery.getAllGalleryItems) ;
 // app.get('/gallery/:galleryItemId', controllerGallery.getSpecificGalleryItem) ;
 
-app.get('/about', controllerInfo.getAboutUsData) ;
-app.get('/contact', controllerInfo.getContactUsData) ;
+app.get('/about', controllerInfo.getAboutUsData_Old) ;
+app.get('/contact', controllerInfo.getContactUsData_Old) ;
 
 
 

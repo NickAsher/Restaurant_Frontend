@@ -63,16 +63,20 @@
     </div>
 
     <div></div>
-    {{>cart_new}}
+
+    <div id="panel-cart">
+        <div class="panel-cart-container">
+            {{>cart_new}}
+        </div>
+    </div>
 
     {{>panel_mobile}}
 
-    <!-- Body Overlay -->
+    <!-- Body Overlay : used to darken the rest of layout when cart is opened -->
     <div id="body-overlay"></div>
 
 </div>
 
-{{>modal_product}}
 
 
 <!-- JS Plugins -->
@@ -92,6 +96,8 @@
 <!-- JS Core -->
 <script src="/assets/js/core.js"></script>
 
+<!-- Changes in javascript made by me-->
+<script src="/assets/js/myPersonal.js"></script>
 
 </body>
 

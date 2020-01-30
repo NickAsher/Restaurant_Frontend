@@ -34,11 +34,7 @@ app.use(cookieParser()) ;
 
 
 
-app.get('/', (req, res)=>{
-  res.render('index-video.hbs', {
-    TOTAL_CART_ITEMS : req.cookies.total_items,
-  }) ;
-}) ;
+app.get('/', controllerHome.getHomePage) ;
 
 app.get('/clear', (req, res)=>{
   res.cookie('logged_in', true, {httpOnly : true, maxAge : 60*60*24*7 }) ;
@@ -53,41 +49,18 @@ app.get('/menu', controllerMenu.getMenu) ;
 app.post('/menu', controllerMenu.postMenu) ;
 app.all('/item/:categoryId/:itemId', controllerMenu.getItem_ModalProduct) ;
 
-
-app.get('/cart', controllerMenu.getCart) ;
-
-app.all('/item2/:categoryId/:itemId', controllerMenu.getItemDetail_DataOnly) ;
-
-app.get('/carty', controllerMenu.getCart_DataOnly) ;
-
 app.get('/blogs', controllerBlogs.getAllBlogs) ;
 app.get('/blog/:blogId', controllerBlogs.getSingleBlog) ;
 
 app.get('/gallery', controllerGallery.getAllGalleryItems) ;
-app.get('/contact', controllerInfo.getContactUsData2) ;
+
+app.get('/contact', controllerInfo.getContactUsData) ;
+app.get('/about', controllerInfo.getAboutUsData) ;
+app.get('/specials', controllerInfo.getOfferSpecialsData) ;
 
 
-app.get('/about', async (req, res)=>{
-  let aboutData = await dbRepository.getAboutData() ;
-
-  res.render('about.hbs', {
-    IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
-    IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-    TOTAL_CART_ITEMS : req.cookies.total_items,
-    aboutData : aboutData['data']
-  }) ;
-}) ;
-
-app.get('/specials', async (req, res)=>{
-  let offersData = await dbRepository.getOfferSpecialData() ;
-
-  res.render('offers.hbs', {
-    IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
-    IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-    TOTAL_CART_ITEMS : req.cookies.total_items,
-    offersData : offersData['data']
-  }) ;
-}) ;
+app.all('/itemy/:categoryId/:itemId', controllerMenu.getItemDetail_DataOnly) ;
+app.get('/carty', controllerMenu.getCart_DataOnly) ;
 
 app.listen(3000, ()=>{
     console.log("The server is listening on port 3000") ;

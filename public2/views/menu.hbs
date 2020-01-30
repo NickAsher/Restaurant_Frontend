@@ -114,7 +114,7 @@
                                 <div class="row align-items-center mt-4">
                                     <div class="col-sm-6"><span class="text-md mr-4"><span class="text-muted">from </span> <span class="money-currency">9.00</span> </span></div>
                                     <div class="col-sm-6 text-sm-right mt-2 mt-sm-0">
-                                        <button class="btn btn-outline-secondary btn-sm myCartButton" data-target="#productModal" data-toggle="modal" data-category-id="{{../category_id}}" data-item-id="{{item_id}}">
+                                        <button class="btn btn-outline-secondary btn-sm itemDetail" data-target="#productModal" data-toggle="modal" data-category-id="{{../category_id}}" data-item-id="{{item_id}}">
                                             <span>Add to cart</span>
                                         </button>
                                     </div>
@@ -160,7 +160,7 @@
 
     {{>panel_mobile}}
 
-    <!-- Body Overlay -->
+    <!-- Body Overlay : used to darken the rest of layout when cart is opened -->
     <div id="body-overlay"></div>
 
 </div>
@@ -188,8 +188,8 @@
 <!-- JS Core -->
 <script src="/assets/js/core.js"></script>
 
-<!-- JS Stylewsitcher -->
-<!--<script src="styleswitcher/styleswitcher.js"></script>-->
+<!-- Changes in javascript made by me-->
+<script src="/assets/js/myPersonal.js"></script>
 
 
 <script >
@@ -200,24 +200,10 @@
         $(".nav-item").removeClass('active');
     });
 
-    function formatCurrency() {
-        const formatter = new Intl.NumberFormat('en-IN',{
-            style: 'currency',
-            currency: 'INR',
-            minimumFractionDigits: 2,
-            maximumFractionDigits:3
-        }) ;
-
-        $('.money-currency').each(function(index, element){
-            $(element).text(formatter.format(element.innerHTML)) ;
-            $(element).removeClass("money-currency") ;
-        }) ;
-    }
-
-    formatCurrency() ;
 
 
-    $(".myCartButton").click(function() {
+
+    $(".itemDetail").click(function() {
       var itemId = $(this).attr("data-item-id") ;
       var categoryId = $(this).attr("data-category-id") ;
         console.log("making request on item2/" + categoryId + "/" + itemId);
@@ -232,18 +218,7 @@
         });
     }) ;
 
-    $("#Button_OpenCart").click(function() {
 
-        console.log("making request on /cart" );
-
-        fetch('/cart').then(function(response) {
-            response.text().then(function(text) {
-                $("#panel-cart").html(text) ;
-                formatCurrency() ;
-
-            });
-        });
-    }) ;
 
 
 

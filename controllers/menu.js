@@ -1,23 +1,29 @@
 const request = require('request-promise') ;
 const Constants = require('../utils/Constants') ;
 const dbRepository = require('../utils/DbRepository') ;
-
+const parseUtils = require('../utils/parse') ;
 
 
 exports.getMenu = async (req, res)=>{
   try{
     let menuData = await dbRepository.getAllMenuItems_SeperatedByCategory() ;
+    if(menuData.status == false){throw menuData ;}
+
+    let parsedCartData = parseUtils.getCart_Parsed(req.cookies.cart) ;
+    if(parsedCartData.status == false){throw parsedCartData ;}
 
     res.render('menu.hbs', {
       IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
       IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
       TOTAL_CART_ITEMS : req.cookies.total_items,
       menuData : menuData['data'],
+      cartData : parsedCartData.cartData,
+      totalPrice : parsedCartData.totalPrice,
     }) ;
 
   }catch (e) {
     res.send({
-      e : e.message,
+      e : e.toString(),
       msg : "Beta ji koi to error hai"
     }) ;
   }
@@ -109,7 +115,7 @@ exports.getItem_ModalProduct = async (req, res)=>{
     let addonData = await dbRepository.getAddonDataInCategory(categoryId);
     if(addonData['status'] == false) {throw addonData ;}
 
-    res.render('views/includes/modal_product.hbs', {
+    res.render('./includes/modal_product.hbs', {
       IMAGE_FRONTEND_LINK_PATH: Constants.IMAGE_FRONTEND_LINK_PATH,
       IMAGE_BACKENDFRONT_LINK_PATH: Constants.IMAGE_BACKENDFRONT_LINK_PATH,
       TOTAL_CART_ITEMS: req.cookies.total_items,
@@ -120,64 +126,10 @@ exports.getItem_ModalProduct = async (req, res)=>{
     });
   }catch (e) {
     res.send({
-      e : e.message,
+      e : e.toString(),
       msg : "Beta ji koi to error hai"
     }) ;  }
 
-} ;
-
-exports.getCart = async (req, res)=>{
-  try{
-    let cartData = JSON.parse(req.cookies.cart) ;
-    let totalPrice = 0 ;
-    let newCartData = [] ;
-
-    cartData.forEach((cartItem)=>{
-      let basePrice = parseFloat(cartItem.itemSizeData.price) ;
-      let sizeId = cartItem.itemSizeData.id ;
-      let descriptionString = `Size : ${cartItem.itemSizeData.name} <br> ` ;
-
-      cartItem.addonData.forEach((addonGroupData)=>{
-        descriptionString += `${addonGroupData.addongroupName} : ` ;
-        addonGroupData.addon_items_array.forEach((addonItem)=>{
-          descriptionString += `${addonItem.name}, ` ;
-          addonItem.price.forEach((addonItemSizePriceData)=>{
-            if(addonItemSizePriceData.sizeId == sizeId){
-              basePrice += parseFloat(addonItemSizePriceData.price) ;
-            }
-          }) ;
-        }) ;
-        descriptionString = descriptionString.slice(0, -2);
-        descriptionString += " <br> " ;
-      }) ;
-      descriptionString = descriptionString.slice(0, -5);
-      totalPrice += basePrice ;
-      newCartData.push({
-        name : cartItem.itemName,
-        basePrice,
-        descriptionString
-      }) ;
-    });
-
-    // res.send({
-    //   newCartData,
-    //   cartData,
-    // }) ;
-
-    res.render('views/includes/cart_new.hbs', {
-      IMAGE_FRONTEND_LINK_PATH: Constants.IMAGE_FRONTEND_LINK_PATH,
-      IMAGE_BACKENDFRONT_LINK_PATH: Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-      TOTAL_CART_ITEMS: req.cookies.total_items,
-      cartData: newCartData,
-      totalPrice
-    }) ;
-
-  }catch (e) {
-    res.send({
-      e : e.message,
-      msg : "Beta ji koi to error hai"
-    }) ;
-  }
 } ;
 
 
@@ -203,7 +155,7 @@ exports.getItemDetail_DataOnly = async(req, res)=>{
     }) ;
   } catch (e) {
     res.send({
-      e : e.message,
+      e : e.toString(),
       msg : "Beta ji koi to error hai"
     }) ;
   }
@@ -218,7 +170,7 @@ exports.getCart_DataOnly = async (req, res)=>{
   }catch (e) {
     res.send({
       "cart" : req.cookies.cart,
-      e : e.message,
+      e : e.toString(),
       msg : "Beta ji kyu to error hai",
 
   }) ;
