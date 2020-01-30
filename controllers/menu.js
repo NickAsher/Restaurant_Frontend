@@ -15,7 +15,7 @@ exports.getMenu = async (req, res)=>{
     res.render('menu.hbs', {
       IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
       IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-      TOTAL_CART_ITEMS : req.cookies.total_items,
+      TOTAL_CART_ITEMS : req.cookies.total_items || '0',
       menuData : menuData['data'],
       cartData : parsedCartData.cartData,
       totalPrice : parsedCartData.totalPrice,
@@ -23,7 +23,7 @@ exports.getMenu = async (req, res)=>{
 
   }catch (e) {
     res.send({
-      e : e.toString(),
+      e : e.message,
       msg : "Beta ji koi to error hai"
     }) ;
   }
@@ -118,7 +118,7 @@ exports.getItem_ModalProduct = async (req, res)=>{
     res.render('./includes/modal_product.hbs', {
       IMAGE_FRONTEND_LINK_PATH: Constants.IMAGE_FRONTEND_LINK_PATH,
       IMAGE_BACKENDFRONT_LINK_PATH: Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-      TOTAL_CART_ITEMS: req.cookies.total_items,
+      TOTAL_CART_ITEMS: req.cookies.total_items || '0',
       itemData: itemData['data']['0'],
       sizeData: sizeData['data'],
       multipleSizes: sizeData['data'].length > 1,
@@ -126,7 +126,7 @@ exports.getItem_ModalProduct = async (req, res)=>{
     });
   }catch (e) {
     res.send({
-      e : e.toString(),
+      e : e.message,
       msg : "Beta ji koi to error hai"
     }) ;  }
 
@@ -147,7 +147,7 @@ exports.getItemDetail_DataOnly = async(req, res)=>{
     res.send({
       IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
       IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-      TOTAL_CART_ITEMS : req.cookies.total_items,
+      TOTAL_CART_ITEMS : req.cookies.total_items || '0',
       itemData : itemData['data']['0'],
       sizeData : sizeData['data'] ,
       multipleSizes : sizeData['data'].length > 1,
@@ -164,8 +164,8 @@ exports.getItemDetail_DataOnly = async(req, res)=>{
 exports.getCart_DataOnly = async (req, res)=>{
   try{
     res.send({
-      total_items : req.cookies.total_items,
-      cart : JSON.parse(req.cookies.cart),
+      total_items : req.cookies.total_items || '0',
+      cart : JSON.parse(req.cookies.cart || '[]') ,
     }) ;
   }catch (e) {
     res.send({

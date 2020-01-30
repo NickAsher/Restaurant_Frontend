@@ -34,6 +34,19 @@ app.use(cookieParser()) ;
 
 
 
+app.use((req, res, next)=>{
+  // check if client has the cookie
+  if (req.cookies.cart === undefined) {
+    res.cookie('logged_in', true, {httpOnly : true, maxAge : 60*60*24*7 }) ;
+    res.cookie('cart', '[]', {httpOnly : true, maxAge : 60*60*24*7 }) ;
+    res.cookie('total_items', 0, {httpOnly : true, maxAge : 60*60*24*7 }) ;
+    res.cookie('total_price', 0, {httpOnly : true, maxAge : 60*60*24*7 }) ;
+    console.log("cookies have been set") ;
+  }
+  next();
+});
+
+
 app.get('/', controllerHome.getHomePage) ;
 
 app.get('/clear', (req, res)=>{

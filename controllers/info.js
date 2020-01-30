@@ -17,7 +17,7 @@ exports.getContactUsData = async (req, res)=>{
     res.render('contact.hbs', {
       IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
       IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-      TOTAL_CART_ITEMS : req.cookies.total_items,
+      TOTAL_CART_ITEMS : req.cookies.total_items || '0',
       contactData : contactData['data'],
       socialInfo : JSON.parse(contactData['data']['social_info']),
       cartData : parsedCartData.cartData,
@@ -40,7 +40,7 @@ exports.getAboutUsData = async (req, res)=>{
     res.render('about.hbs', {
       IMAGE_FRONTEND_LINK_PATH: Constants.IMAGE_FRONTEND_LINK_PATH,
       IMAGE_BACKENDFRONT_LINK_PATH: Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-      TOTAL_CART_ITEMS: req.cookies.total_items,
+      TOTAL_CART_ITEMS: req.cookies.total_items || '0',
       aboutData: aboutData['data'],
       cartData : parsedCartData.cartData,
       totalPrice : parsedCartData.totalPrice,
@@ -64,7 +64,7 @@ exports.getOfferSpecialsData = async (req, res)=>{
     res.render('offers.hbs', {
       IMAGE_FRONTEND_LINK_PATH: Constants.IMAGE_FRONTEND_LINK_PATH,
       IMAGE_BACKENDFRONT_LINK_PATH: Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-      TOTAL_CART_ITEMS: req.cookies.total_items,
+      TOTAL_CART_ITEMS: req.cookies.total_items || '0',
       offersData: offersData['data'],
       cartData : parsedCartData.cartData,
       totalPrice : parsedCartData.totalPrice,
@@ -90,7 +90,7 @@ exports.getAboutUsData_Old = async (req, res)=>{
     res.render('info/about_us.hbs', {
       IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
       IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-      TOTAL_CART_ITEMS : req.cookies.total_items,
+      TOTAL_CART_ITEMS : req.cookies.total_items || '0',
       ABOUT_US_IMAGE : Constants.IMAGE_BACKENDFRONT_LINK_PATH + aboutUsData['about_us_image'],
       ABOUT_US_CONTENT1 : aboutUsData['about_us1'],
       ABOUT_US_CONTENT2: aboutUsData['about_us2']

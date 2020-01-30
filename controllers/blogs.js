@@ -17,7 +17,7 @@ exports.getAllBlogs = async (req, res)=>{
     res.render('blogs_all.hbs', {
       IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
       IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-      TOTAL_CART_ITEMS : req.cookies.total_items,
+      TOTAL_CART_ITEMS : req.cookies.total_items || '0',
       blogsData : blogsData['data'],
       cartData : parsedCartData.cartData,
       totalPrice : parsedCartData.totalPrice,
@@ -38,7 +38,7 @@ exports.getSingleBlog = async (req, res)=>{
     res.render('blog_single.hbs', {
       IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
       IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-      TOTAL_CART_ITEMS : req.cookies.total_items,
+      TOTAL_CART_ITEMS : req.cookies.total_items || '0',
       blogData : blogData['data']['0'],
       cartData : parsedCartData.cartData,
       totalPrice : parsedCartData.totalPrice,

@@ -13,7 +13,7 @@ exports.getHomePage = async (req, res)=>{
     if(parsedCartData.status == false){throw parsedCartData ;}
 
     res.render('index-video.hbs', {
-      TOTAL_CART_ITEMS : req.cookies.total_items,
+      TOTAL_CART_ITEMS : req.cookies.total_items || '0',
       cartData : parsedCartData.cartData,
       totalPrice : parsedCartData.totalPrice,
     }) ;

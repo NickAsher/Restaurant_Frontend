@@ -1,6 +1,6 @@
 exports.getCart_Parsed = (stringCartData)=>{
   try{
-    let cartData = JSON.parse(stringCartData) ;
+    let cartData = JSON.parse(stringCartData|| '[]') ;
     let totalPrice = 0 ;
     let newCartData = [] ;
 
