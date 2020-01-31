@@ -13,7 +13,7 @@ const controllerInfo = require('./controllers/info') ;
 const controllerHome = require('./controllers/home') ;
 const controllerMenu = require('./controllers/menu') ;
 const dbRepository = require('./utils/DbRepository') ;
-
+const parseUtils = require('./utils/parse') ;
 const app = express() ;
 app.set('view engine', 'hbs') ;
 // app.set('views', path.join(__dirname, "./views")) ;

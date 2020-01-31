@@ -18,12 +18,12 @@ body {
 	overflow-x: hidden;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	margin: 0 30px 30px
+	margin: 0 0 0
 }
 
 @media only screen and (max-width: 1199px) {
 	body {
-		margin: 0 15px 15px
+		margin: 0 0 0
 	}
 }
 
