@@ -4326,90 +4326,90 @@ label {
 	margin-right: 1em
 }
 
-.custom-radio .custom-control-input+.custom-control-indicator {
-	top: 0.1em;
-	font-weight: 400;
-	font-family: "Oswald", sans-serif;
-	width: 1.3em;
-	height: 1.3em;
-	margin-right: 0.5rem;
-	-webkit-border-radius: 50%;
-	-moz-border-radius: 50%;
-	-ms-border-radius: 50%;
-	-o-border-radius: 50%;
-	border-radius: 50%;
-	border: 2px solid #e0e0e0;
-	background-color: #fff
-}
+/*.custom-radio .custom-control-input+.custom-control-indicator {*/
+	/*top: 0.1em;*/
+	/*font-weight: 400;*/
+	/*font-family: "Oswald", sans-serif;*/
+	/*width: 1.3em;*/
+	/*height: 1.3em;*/
+	/*margin-right: 0.5rem;*/
+	/*-webkit-border-radius: 50%;*/
+	/*-moz-border-radius: 50%;*/
+	/*-ms-border-radius: 50%;*/
+	/*-o-border-radius: 50%;*/
+	/*border-radius: 50%;*/
+	/*border: 2px solid #e0e0e0;*/
+	/*background-color: #fff*/
+/*}*/
 
-.custom-radio .custom-control-input+.custom-control-indicator>svg {
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 100%;
-	width: 100%
-}
+/*.custom-radio .custom-control-input+.custom-control-indicator>svg {*/
+	/*position: absolute;*/
+	/*top: 0;*/
+	/*left: 0;*/
+	/*height: 100%;*/
+	/*width: 100%*/
+/*}*/
 
-.custom-radio .custom-control-input+.custom-control-indicator>svg>path {
-	stroke: #ddae71;
-	-webkit-transition: all .25s ease-out;
-	-moz-transition: all .25s ease-out;
-	-o-transition: all .25s ease-out;
-	transition: all 0.25s ease-out
-}
+/*.custom-radio .custom-control-input+.custom-control-indicator>svg>path {*/
+	/*stroke: #ddae71;*/
+	/*-webkit-transition: all .25s ease-out;*/
+	/*-moz-transition: all .25s ease-out;*/
+	/*-o-transition: all .25s ease-out;*/
+	/*transition: all 0.25s ease-out*/
+/*}*/
 
-.custom-radio .custom-control-input:checked+.custom-control-indicator>svg>path {
-	stroke-dashoffset: 0
-}
+/*.custom-radio .custom-control-input:checked+.custom-control-indicator>svg>path {*/
+	/*stroke-dashoffset: 0*/
+/*}*/
 
-.custom-radio .custom-control-input:focus+.custom-control-indicator {
-	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
-	box-shadow: none;
-	border-color: #cacaca
-}
+/*.custom-radio .custom-control-input:focus+.custom-control-indicator {*/
+	/*-webkit-box-shadow: none;*/
+	/*-moz-box-shadow: none;*/
+	/*box-shadow: none;*/
+	/*border-color: #cacaca*/
+/*}*/
 
-.custom-checkbox .custom-control-input+.custom-control-indicator {
-	top: 0.1em;
-	font-weight: 400;
-	font-family: "Oswald", sans-serif;
-	width: 1.3em;
-	height: 1.3em;
-	margin-right: 0.5rem;
-	-webkit-border-radius: 0;
-	-moz-border-radius: 0;
-	-ms-border-radius: 0;
-	-o-border-radius: 0;
-	border-radius: 0;
-	border: 2px solid #e0e0e0;
-	background-color: #fff
-}
+/*.custom-checkbox .custom-control-input+.custom-control-indicator {*/
+	/*top: 0.1em;*/
+	/*font-weight: 400;*/
+	/*font-family: "Oswald", sans-serif;*/
+	/*width: 1.3em;*/
+	/*height: 1.3em;*/
+	/*margin-right: 0.5rem;*/
+	/*-webkit-border-radius: 0;*/
+	/*-moz-border-radius: 0;*/
+	/*-ms-border-radius: 0;*/
+	/*-o-border-radius: 0;*/
+	/*border-radius: 0;*/
+	/*border: 2px solid #e0e0e0;*/
+	/*background-color: #fff*/
+/*}*/
 
-.custom-checkbox .custom-control-input+.custom-control-indicator>svg {
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 100%;
-	width: 100%
-}
+/*.custom-checkbox .custom-control-input+.custom-control-indicator>svg {*/
+	/*position: absolute;*/
+	/*top: 0;*/
+	/*left: 0;*/
+	/*height: 100%;*/
+	/*width: 100%*/
+/*}*/
 
-.custom-checkbox .custom-control-input+.custom-control-indicator>svg>path {
-	stroke: #ddae71;
-	-webkit-transition: all .25s ease-out;
-	-moz-transition: all .25s ease-out;
-	-o-transition: all .25s ease-out;
-	transition: all 0.25s ease-out
-}
+/*.custom-checkbox .custom-control-input+.custom-control-indicator>svg>path {*/
+	/*stroke: #ddae71;*/
+	/*-webkit-transition: all .25s ease-out;*/
+	/*-moz-transition: all .25s ease-out;*/
+	/*-o-transition: all .25s ease-out;*/
+	/*transition: all 0.25s ease-out*/
+/*}*/
 
-.custom-checkbox .custom-control-input:checked+.custom-control-indicator>svg>path {
-	stroke-dashoffset: 0
-}
+/*.custom-checkbox .custom-control-input:checked+.custom-control-indicator>svg>path {*/
+	/*stroke-dashoffset: 0*/
+/*}*/
 
-.custom-checkbox .custom-control-input:focus+.custom-control-indicator {
-	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
-	box-shadow: none
-}
+/*.custom-checkbox .custom-control-input:focus+.custom-control-indicator {*/
+	/*-webkit-box-shadow: none;*/
+	/*-moz-box-shadow: none;*/
+	/*box-shadow: none*/
+/*}*/
 
 .icon {
 	position: relative;

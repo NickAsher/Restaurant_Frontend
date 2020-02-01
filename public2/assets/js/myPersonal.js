@@ -13,16 +13,3 @@ function formatCurrency() {
 }
 
 formatCurrency() ;
-
-// $("#Button_OpenCart").click(function() {
-//
-//     console.log("making request on /cart" );
-//
-//     fetch('/cart').then(function(response) {
-//         response.text().then(function(text) {
-//             $("#panel-cart").html(text) ;
-//             formatCurrency() ;
-//
-//         });
-//     });
-// }) ;

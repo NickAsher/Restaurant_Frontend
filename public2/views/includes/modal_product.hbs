@@ -22,6 +22,12 @@
 
         <form action="/menu" method="post" accept-charset="utf-8">
             <div class="modal-body panel-details-container">
+                <style>
+
+
+
+                </style>
+
                 {{#if multipleSizes}}
                     <div class="panel-details">
                         <h5 class="panel-details-title">
@@ -33,8 +39,10 @@
                                 <div class="form-group">
                                     <label class="custom-control custom-radio">
                                         <!--Remember in a JSON object string, there must double quotes inside not single quotes -->
-                                        <input name="post_SizeData" data-size-id="{{size_id}}" data-multiple-sizes="true" type="radio" value='{"id":"{{size_id}}","name":"{{size_name}}", "price":"{{item_price}}" }' {{#ifEquals size_is_default "true"}}checked="checked"{{/ifEquals}}>
-                                        {{size_name}} - <span class="money-currency">{{item_price}}</span>
+                                        <input name="post_SizeData" class="form-check-input" data-size-id="{{size_id}}" data-multiple-sizes="true" type="radio" value='{"id":"{{size_id}}","name":"{{size_name}}", "price":"{{item_price}}" }' {{#ifEquals size_is_default "true"}}checked="checked"{{/ifEquals}}>
+                                        <span class="myForm-input" >{{size_name}}&nbsp;
+                                            <span class="money-currency">{{item_price}}</span>
+                                        </span>
                                     </label>
                                 </div>
                                 {{/each}}
@@ -59,11 +67,14 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label class="custom-control">
-                                            <input type="{{../addon_group_type}}" name='__addongroup_id_{{../rel_id}}[]' value='{"name":"{{0.item_name}}", "id":{{0.item_id}}, "price": [ {{#each this}} {"sizeId" : "{{size_id}}", "price": "{{addon_price}}" } {{#if @last}} {{else}}, {{/if}} {{/each}} ]}' {{#ifEquals 0.item_is_default "true"}}checked="checked"{{/ifEquals}}>
-                                            {{0.item_name}}-
-                                            {{#each this}}
-                                                <span class="money-currency myAddonItem text-hide" data-size-id="{{size_id}}">{{addon_price}}</span>
-                                            {{/each}}
+                                            <input type="{{../addon_group_type}}" class="form-check-input" name='__addongroup_id_{{../rel_id}}[]' value='{"name":"{{0.item_name}}", "id":{{0.item_id}}, "price": [ {{#each this}} {"sizeId" : "{{size_id}}", "price": "{{addon_price}}" } {{#if @last}} {{else}}, {{/if}} {{/each}} ]}' {{#ifEquals 0.item_is_default "true"}}checked="checked"{{/ifEquals}}>
+
+                                            <span class="myForm-input">
+                                                {{0.item_name}} &nbsp;
+                                                {{#each this}}
+                                                    <span class="money-currency myAddonItem text-hide" data-size-id="{{size_id}}">{{addon_price}}</span>
+                                                {{/each}}
+                                            </span>
                                         </label>
                                     </div>
                                 </div>

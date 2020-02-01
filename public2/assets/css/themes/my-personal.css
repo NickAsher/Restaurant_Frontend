@@ -37,3 +37,8 @@
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
+
+/* applies the beige colour to checked form input in menu*/
+input:checked+span.myForm-input{
+    color : #ddae71; !important;
+}
