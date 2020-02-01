@@ -39,6 +39,6 @@
 }
 
 /* applies the beige colour to checked form input in menu*/
-input:checked+span.myForm-input{
+input:checked~span.myForm-input{
     color : #ddae71; !important;
 }

@@ -22,11 +22,6 @@
 
         <form action="/menu" method="post" accept-charset="utf-8">
             <div class="modal-body panel-details-container">
-                <style>
-
-
-
-                </style>
 
                 {{#if multipleSizes}}
                     <div class="panel-details">
@@ -68,13 +63,12 @@
                                     <div class="form-group">
                                         <label class="custom-control">
                                             <input type="{{../addon_group_type}}" class="form-check-input" name='__addongroup_id_{{../rel_id}}[]' value='{"name":"{{0.item_name}}", "id":{{0.item_id}}, "price": [ {{#each this}} {"sizeId" : "{{size_id}}", "price": "{{addon_price}}" } {{#if @last}} {{else}}, {{/if}} {{/each}} ]}' {{#ifEquals 0.item_is_default "true"}}checked="checked"{{/ifEquals}}>
-
                                             <span class="myForm-input">
-                                                {{0.item_name}} &nbsp;
-                                                {{#each this}}
-                                                    <span class="money-currency myAddonItem text-hide" data-size-id="{{size_id}}">{{addon_price}}</span>
-                                                {{/each}}
+                                                {{0.item_name}}&nbsp;
                                             </span>
+                                            {{#each this}}
+                                                <span class="myForm-input money-currency myAddonItem text-hide" data-size-id="{{size_id}}">{{addon_price}}</span>
+                                            {{/each}}
                                         </label>
                                     </div>
                                 </div>
