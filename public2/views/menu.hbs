@@ -198,6 +198,61 @@
     });
 
 
+    function showCorrectAddonItemPrice_bySize(){
+      /* So the way this function works is like this.
+       * All the addonItems have the class myAddonItem,
+       * and by default their prices are hidden by using a class "text-hide"
+       * So to make an addonItem show its price, we remove the class "text-hide" from it
+       *
+       * Also, all the addonItems have a data attribute called 'data-size-id' which stores the sizeId in it.
+       * So if we want to only show prices of addonItems with a specific sizeId,
+       * we simply select those and remove the class "text-hide" from those elements
+       *
+       * Also in the input 'post_SizeData', the attr 'data-multiple-sizes' is 'true' if we have multiple sizes
+       * and 'false' if we have a single size
+       *
+       * So firstly we check if we have multiple sizes or not
+       * If not, we simply remove the class "text-hide" from all addonItems
+       */
+
+        if($('[name="post_SizeData"]').attr('data-multiple-sizes') == 'false'){
+            $(".myAddonItem").each(function (index, element) {
+                $(element).removeClass('text-hide') ;
+            }) ;
+            return ;
+        }
+
+      /* So now we have multiple sizes, Which also means we have a default selected size Id
+       * So remove the class "text-hide" from all those elements which have  [data-size-id = defaultSelectedSizeId]
+       * Thus making thier price visible
+       *
+       * This same thing is done, when the radio button of a size is clicked
+       * We obtain the newly selected sizeId  "selectedSizeId"
+       * all the addonItems are hidden by adding the class "text-hide"
+       * Then those addonItems which have [data-size-id = selectedSizeId], their text is shown by removing the class 'text-hide'
+       */
+
+        let defaultSelectedSizeId = $('[name="post_SizeData"]:checked').attr('data-size-id') ;
+        $(".myAddonItem[data-size-id=" + defaultSelectedSizeId + "]").each(function (index, element) {
+            $(element).removeClass('text-hide') ;
+        }) ;
+
+        $('[name="post_SizeData"]').click(function () {
+        $('.myAddonItem').addClass('text-hide') ;
+            let selectedSizeId = $(this).attr('data-size-id') ;
+            console.log("Selected size is " + selectedSizeId) ;
+            $(".myAddonItem[data-size-id=" + selectedSizeId+ "]").each(function (index, element) {
+              // console.log(element) ;
+                $(element).removeClass('text-hide') ;
+            }) ;
+        }) ;
+
+    }
+
+
+
+
+
 
 
     $(".itemDetail").click(function() {
@@ -210,10 +265,14 @@
               $("#productModal").html(text) ;
               formatCurrency() ;
 
+              showCorrectAddonItemPrice_bySize()
 
             });
         });
     }) ;
+
+
+
 
 
 
