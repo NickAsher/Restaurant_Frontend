@@ -62,7 +62,7 @@ app.get('/menu', controllerMenu.getMenu) ;
 app.post('/menu', controllerMenu.postMenu) ;
 app.all('/item/:categoryId/:itemId', controllerMenu.getItem_ModalProduct) ;
 
-app.get('/blogs', controllerBlogs.getAllBlogs) ;
+app.get('/blogs', controllerBlogs.getAllBlogs_Paginated) ;
 app.get('/blog/:blogId', controllerBlogs.getSingleBlog) ;
 
 app.get('/gallery', controllerGallery.getAllGalleryItems) ;

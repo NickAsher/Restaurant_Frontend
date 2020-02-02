@@ -21,6 +21,27 @@ exports.getAllBlogs = async ()=>{
   }
 } ;
 
+exports.getBlogs_Paginated = async (pageNo, totalItemsPerPage)=>{
+  try{
+    let limit = totalItemsPerPage ;
+    let offset = (pageNo-1)*totalItemsPerPage ;
+
+    let dbData = await dbConnection.execute(
+      `SELECT blog_id, blog_creation_date, blog_title, blog_display_image 
+        FROM  blogs_table ORDER BY blog_creation_date DESC LIMIT ${limit} OFFSET ${offset} `
+    ) ;
+    return {
+      status : true,
+      data : dbData['0']
+    } ;
+  }catch (e) {
+    return {
+      status : false,
+      data : e,
+    } ;
+  }
+} ;
+
 
 exports.getSingleBlog = async (blogId)=>{
   try{

@@ -42,3 +42,35 @@
 input:checked~span.myForm-input{
     color : #ddae71; !important;
 }
+
+
+
+.pagination > li > a
+{
+    background-color: white;
+    color: #ddae71;
+}
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover
+{
+    color: #ccae71;
+    background-color: #eee;
+    border-color: #ddd;
+}
+
+.pagination > .active > a
+{
+    color: white;
+    background-color: #ddae71 !Important;
+    border: solid 1px #ddae71 !Important;
+}
+
+.pagination > .active > a:hover
+{
+    background-color: #ddae71 !Important;
+    border: solid 1px #ddae71;
+}
+

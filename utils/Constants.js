@@ -7,6 +7,7 @@ const API_ROOT_PATH = "http://localhost:8080/RestaurantApi/apis/" ;
 const API_ROOTH_PATH_NEW = "http://localhost:3001" ;
 
 
+
 module.exports = {
   IMAGE_FRONTEND_LINK_PATH,
   VIDEO_FRONTEND_LINK_PATH,

@@ -1,18 +1,27 @@
 const request = require('request-promise') ;
+const fs = require('fs') ;
 const Constants = require('../utils/Constants') ;
 const dbRepository = require('../utils/DbRepository') ;
 const parseUtils = require('../utils/parse') ;
+const Paginator = require('../utils/Paginator') ;
 
 
-exports.getAllBlogs = async (req, res)=>{
+
+exports.getAllBlogs_Paginated = async (req, res)=>{
   try{
 
-    let blogsData = await dbRepository.getAllBlogs() ;
+    let dbHelper = JSON.parse(fs.readFileSync(__dirname + '/../utils/dbHelper.json')) ;
+
+    let totalNoOfItems = dbHelper.total_blog_items ;
+    let itemsPerPage  = 10 ;
+    let myPaginator = new Paginator(totalNoOfItems, itemsPerPage, req.query.page) ;
+    let parsedPaginatorHtml = myPaginator.getPaginatedHTML("") ;
+
+    let blogsData = await dbRepository.getBlogs_Paginated(myPaginator.getPageNo(), itemsPerPage) ;
     if(blogsData['status'] === false){throw blogsData ;}
 
     let parsedCartData = parseUtils.getCart_Parsed(req.cookies.cart) ;
     if(parsedCartData.status == false){throw parsedCartData ;}
-
 
     res.render('blogs_all.hbs', {
       IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
@@ -21,11 +30,17 @@ exports.getAllBlogs = async (req, res)=>{
       blogsData : blogsData['data'],
       cartData : parsedCartData.cartData,
       totalPrice : parsedCartData.totalPrice,
+      parsedPaginatorHtml,
     }) ;
   }catch (e) {
-    res.send(e) ;
+    res.send({
+      e : e.message
+    }) ;
   }
 } ;
+
+
+
 
 exports.getSingleBlog = async (req, res)=>{
   try{
