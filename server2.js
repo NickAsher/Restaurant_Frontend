@@ -55,11 +55,20 @@ app.get('/clear', (req, res)=>{
   res.cookie('total_items', 0, {httpOnly : true, maxAge : 60*60*24*7 }) ;
   res.cookie('total_price', 0, {httpOnly : true, maxAge : 60*60*24*7 }) ;
 
-  res.redirect('/menu') ;
+  res.send(`
+    <script>
+        localStorage.removeItem('cart') ;
+        localStorage.removeItem('total_items') ;
+        localStorage.removeItem('total_items_price') ;
+        
+        window.location.href= '/menu' ;
+    </script>
+  `);
 }) ;
 
+
+
 app.get('/menu', controllerMenu.getMenu) ;
-app.post('/menu', controllerMenu.postMenu) ;
 app.all('/item/:categoryId/:itemId', controllerMenu.getItem_ModalProduct) ;
 
 app.get('/blogs', controllerBlogs.getAllBlogs_Paginated) ;
@@ -73,7 +82,6 @@ app.get('/specials', controllerInfo.getOfferSpecialsData) ;
 
 
 app.all('/itemy/:categoryId/:itemId', controllerMenu.getItemDetail_DataOnly) ;
-app.get('/carty', controllerMenu.getCart_DataOnly) ;
 
 app.listen(3000, ()=>{
     console.log("The server is listening on port 3000") ;

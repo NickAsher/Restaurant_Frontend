@@ -9,13 +9,8 @@ const parseUtils = require('../utils/parse') ;
 
 exports.getHomePage = async (req, res)=>{
   try{
-    let parsedCartData = parseUtils.getCart_Parsed(req.cookies.cart) ;
-    if(parsedCartData.status == false){throw parsedCartData ;}
 
     res.render('index-video.hbs', {
-      TOTAL_CART_ITEMS : req.cookies.total_items || '0',
-      cartData : parsedCartData.cartData,
-      totalPrice : parsedCartData.totalPrice,
     }) ;
   }catch (e) {
     res.send({

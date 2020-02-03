@@ -5,30 +5,7 @@
             <button class="close" data-toggle="panel-cart"><i class="ti ti-close"></i></button>
         </div>
         <div class="panel-cart-content">
-            <table class="table-cart">
-
-
-                {{#each cartData}}
-
-                    <tr>
-                        <td class="title">
-                            <span class="name"><a href="#productModal" data-toggle="modal">{{name}}</a></span>
-                            <span class="caption text-muted">{{{descriptionString}}}</span>
-                        </td>
-                        <td class="price"><span class="money-currency">{{basePrice}}</span> </td>
-                        <td class="actions">
-                            <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
-                            <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
-                        </td>
-                    </tr>
-
-                {{/each}}
-
-
-
-
-
-
+            <table id="cartTable" class="table-cart">
 
 
                 <tr>
@@ -55,16 +32,20 @@
             <div class="cart-summary">
                 <div class="row">
                     <div class="col-7 text-right text-muted">Order total:</div>
-                    <div class="col-5"><strong><span class="money-currency">{{totalPrice}}</span></strong></div>
+                    <div class="col-5"><strong><span id="totalItemsPrice_BeforeExtraCharges" class="money-currency">{{totalPrice}}</span></strong></div>
                 </div>
                 <div class="row">
-                    <div class="col-7 text-right text-muted">Devliery:</div>
-                    <div class="col-5"><strong><span class="money-currency">3.99</span></strong></div>
+                    <div class="col-7 text-right text-muted">GST:</div>
+                    <div class="col-5">
+                        <strong>
+                        <span id="totalTax"  data-tax-percentage="18" class="money-currency"></span>
+                        </strong>
+                    </div>
                 </div>
                 <hr class="hr-sm">
                 <div class="row text-lg">
                     <div class="col-7 text-right text-muted">Total:</div>
-                    <div class="col-5"><strong><span class="money-currency">{{totalPrice}}</span></strong></div>
+                    <div class="col-5"><strong><span id="totalItemsPrice_AfterExtraCharges" class="money-currency money-currency">{{totalPrice}}</span></strong></div>
                 </div>
             </div>
         </div>

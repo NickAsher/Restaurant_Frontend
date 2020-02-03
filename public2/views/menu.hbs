@@ -54,6 +54,7 @@
                     <div class="col-lg-8 push-lg-4 col-8 push-3">
                         <h1 class="mb-0">Our Menu</h1>
                         <h4 class="text-muted mb-0"></h4>
+                        <!--<button id="addToCart" data-size-id="123">hola</button>-->
                     </div>
                 </div>
             </div>
@@ -114,14 +115,6 @@
                                 <img href="/item/{{../category_id}}/{{item_id}}" class="mb-4" src="{{@root.IMAGE_BACKENDFRONT_LINK_PATH}}{{item_image_name}}" alt="">
                                 <h6 class="mb-0">{{item_name}}</h6>
                                 <span class="text-muted text-sm">{{item_description}}</span>
-                                <!--<div class="row align-items-center mt-4">-->
-                                    <!--<div class="col-sm-6"><span class="text-md mr-4"><span class="text-muted">from </span> <span class="money-currency">9.00</span> </span></div>-->
-                                    <!--<div class="col-sm-6 text-sm-right mt-2 mt-sm-0">-->
-                                        <!--<button class="btn btn-outline-secondary btn-sm" >-->
-                                            <!--<span>Add to cart</span>-->
-                                        <!--</button>-->
-                                    <!--</div>-->
-                                <!--</div>-->
                             </div>
                         </div>
 
@@ -190,6 +183,8 @@
 <!-- Changes in javascript made by me-->
 <script src="/assets/js/myPersonal.js"></script>
 
+<script src="/assets/js/cart.js"></script>
+
 
 <script >
     /**
@@ -201,7 +196,9 @@
 
 
     function showCorrectAddonItemPrice_bySize(){
-      /* So the way this function works is like this.
+      /* This function changes the price of addonItems when the size of menuItem is changed
+       *
+       * So the way this function works is like this.
        * All the addonItems have the class myAddonItem,
        * and by default their prices are hidden by using a class "text-hide"
        * So to make an addonItem show its price, we remove the class "text-hide" from it
@@ -252,9 +249,109 @@
     }
 
 
+    var groupBy = function (arr, criteria) {
+        return arr.reduce(function (obj, item) {
+
+            // Check if the criteria is a function to run on the item or a property of it
+            var key = typeof criteria === 'function' ? criteria(item) : item[criteria];
+
+            // If the key doesn't exist yet, create it
+            if (!obj.hasOwnProperty(key)) {
+                obj[key] = [];
+            }
+
+            // Push the value to the object
+            obj[key].push(item);
+
+            // Return the object to the next item in the loop
+            return obj;
+
+        }, {});
+    };
 
 
 
+
+
+  function addCartItemToLocalStorage (){
+
+    try {
+      let itemId = $('input[name=post_ItemId]').val() ;
+      let itemName = $('input[name=post_ItemName]').val() ;
+      let itemQuantity = $('input[name=post_ItemQuantity]').val() ;
+      let categoryId = $('input[name=post_CategoryId]').val() ;
+
+      let itemSizeData, addonData =[] ;
+      if($('input[name=post_SizeData]:checked').attr('data-multiple-sizes')==true){
+        // this is done because for a hidden input size,
+        // the type is not really radio but rather hidden, so :checked returns undefined
+        itemSizeData = JSON.parse($('input[name=post_SizeData]:checked').val());
+      }else{
+        itemSizeData = JSON.parse($('input[name=post_SizeData]').val());
+      }
+      let itemPrice = parseFloat(itemSizeData.price) ;
+
+      $('.addonGroupData:checked').each((index, element)=>{
+        let priceData = JSON.parse($(element).val()) ;
+        let addonPrice ;
+        priceData.forEach(function (e){
+          if(e['sizeId'] == itemSizeData.id){
+              addonPrice = e['price'] ;
+              itemPrice += parseFloat(addonPrice) ;
+          }
+        }) ;
+
+        let addonItemData = {
+          addonGroupId : $(element).attr('data-addongroup-id'),
+          addonGroupName : $(element).attr('data-addongroup-name'),
+          addon_item_data: {
+            name : $(element).attr('data-addonitem-name'),
+            id : $(element).attr('data-addonitem-id'),
+            price : addonPrice
+            }
+        } ;
+
+        addonData.push(addonItemData)
+      }) ;
+
+
+      // Changing the way addonItems are stored, i.e. grouping the addonItems of an addonGroup
+      addonData = groupBy(addonData, "addonGroupName") ;
+      addonData = Object.keys(addonData).map((index)=>addonData[index]) ;
+
+      addonData = addonData.map((value, key)=>{
+        return {
+          addonGroupId : value[0].addonGroupId,
+          addonGroupName : value[0].addonGroupName,
+          addon_items_array : value.map((val)=>val.addon_item_data)
+        }
+      }) ;
+
+      // console.log(addonData) ;
+
+        let itemData = {
+          categoryId,
+          itemId,
+          itemName,
+          itemQuantity,
+          itemSizeData,
+          addonData,
+          itemPrice
+        } ;
+
+      let cartData = localStorage.getItem('cart') || '[]' ;
+      cartData = JSON.parse(cartData) ;
+      cartData.push(itemData) ;
+      localStorage.setItem('cart', JSON.stringify(cartData)) ;
+      localStorage.setItem('total_items', parseInt(localStorage.total_items)+1 ) ;
+      localStorage.setItem('total_items_price', parseFloat(localStorage.total_items_price) + itemPrice ) ;
+
+    }catch (e) {
+        console.log(e.message) ;
+    }
+
+
+    }
 
 
     $(".itemDetail").click(function() {
@@ -267,7 +364,11 @@
               $("#productModal").html(text) ;
               formatCurrency() ;
 
-              showCorrectAddonItemPrice_bySize()
+              showCorrectAddonItemPrice_bySize() ;
+                $('#addToCart').click(()=>{
+                    addCartItemToLocalStorage() ;
+                    refreshNoOfItemsInCart() ;
+                }) ;
 
             });
         });
@@ -284,7 +385,22 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
+
 
 </body>
 

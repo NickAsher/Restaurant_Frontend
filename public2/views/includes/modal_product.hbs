@@ -20,7 +20,7 @@
             </div>
         </div>
 
-        <form action="/menu" method="post" accept-charset="utf-8">
+        <!--<form action="/menu" method="post" accept-charset="utf-8">-->
             <div class="modal-body panel-details-container">
 
                 {{#if multipleSizes}}
@@ -46,8 +46,7 @@
                     </div>
 
                 {{else}}
-                    <input name="post_SizeData" data-size-id="{{sizeData.0.size_id}}" data-multiple-sizes="false" type="hidden" value='{"id":"{{sizeData.0.size_id}}","name":"{{sizeData.0.size_name}}", "price":"{{sizeData.0.item_price}}" }' >
-
+                    <input name="post_SizeData" checked="checked" data-size-id="{{sizeData.0.size_id}}" data-multiple-sizes="false" type="hidden" value='{"id":"{{sizeData.0.size_id}}","name":"{{sizeData.0.size_name}}", "price":"{{sizeData.0.item_price}}" }' >
                 {{/if}}
 
                 {{#each addonData}}
@@ -62,7 +61,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label class="custom-control">
-                                            <input type="{{../addon_group_type}}" class="form-check-input" name='__addongroup_id_{{../rel_id}}[]' value='{"name":"{{0.item_name}}", "id":{{0.item_id}}, "price": [ {{#each this}} {"sizeId" : "{{size_id}}", "price": "{{addon_price}}" } {{#if @last}} {{else}}, {{/if}} {{/each}} ]}' {{#ifEquals 0.item_is_default "true"}}checked="checked"{{/ifEquals}}>
+                                            <input type="{{../addon_group_type}}" class="form-check-input addonGroupData" data-addongroup-id="{{../rel_id}}" data-addongroup-name="{{../addon_group_display_name}}" name='addonData_{{../rel_id}}'  data-addonitem-name="{{0.item_name}}" data-addonitem-id="{{0.item_id}}" value='[ {{#each this}} {"sizeId" : "{{size_id}}", "price": "{{addon_price}}" } {{#if @last}} {{else}}, {{/if}}  {{/each}} ]' {{#ifEquals 0.item_is_default "true"}}checked="checked"{{/ifEquals}}>
                                             <span class="myForm-input">
                                                 {{0.item_name}}&nbsp;
                                             </span>
@@ -94,8 +93,8 @@
 
             <input type="hidden" value="{{itemData.item_id}}" name="post_ItemId">
             <input type="hidden" value="{{itemData.category_id}}" name="post_CategoryId">
-            <button type="submit" class="modal-btn btn btn-secondary btn-block btn-lg"><span>Add to Cart</span></button>
-
-        </form>
+        <button id="addToCart" class="modal-btn btn btn-secondary btn-block btn-lg" data-dismiss="modal"><span>Add to Cart</span></button>
+            <!--<button type="submit" class="modal-btn btn btn-secondary btn-block btn-lg"><span>Add to Cart</span></button>-->
+        <!--</form>-->
     </div>
 </div>
