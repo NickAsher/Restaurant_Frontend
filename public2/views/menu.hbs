@@ -282,12 +282,14 @@
       let categoryId = $('input[name=post_CategoryId]').val() ;
 
       let itemSizeData, addonData =[] ;
-      if($('input[name=post_SizeData]:checked').attr('data-multiple-sizes')==true){
+      if($('input[name=post_SizeData]:checked').attr('data-multiple-sizes')=='true'){
         // this is done because for a hidden input size,
         // the type is not really radio but rather hidden, so :checked returns undefined
         itemSizeData = JSON.parse($('input[name=post_SizeData]:checked').val());
       }else{
         itemSizeData = JSON.parse($('input[name=post_SizeData]').val());
+          console.log("getting the val from single sizes") ;
+
       }
       let itemPrice = parseFloat(itemSizeData.price) ;
 
@@ -370,9 +372,16 @@
                     refreshNoOfItemsInCart() ;
                 }) ;
 
+
+
             });
         });
+
+
     }) ;
+
+
+
 
 
 

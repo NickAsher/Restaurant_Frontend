@@ -27,11 +27,13 @@ let getParsedCartItem = (cartItem)=>{
   }
 } ;
 
-$('#Button_OpenCart').click(function () {
+
+
+let renderCart = ()=>{
   let cartItems = JSON.parse(localStorage.getItem('cart')) ;
   $('#cartTable').html("") ;
   cartItems.forEach(function(element, index){
-    let parsedElement = getParsedCartItem(element) ;
+    let parsedElement = getParsedCartItem(element, index) ;
 
 
     $('#cartTable').append(`
@@ -43,8 +45,7 @@ $('#Button_OpenCart').click(function () {
                 </td>
                 <td class="price"><span class="money-currency">${parsedElement.itemPrice}</span> </td>
                 <td class="actions">
-                    <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
-                    <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
+                    <i data-index="${index}" class="cartItemDelete ti ti-trash" style="cursor: pointer"></i>
                 </td>
             </tr>
 
@@ -66,4 +67,27 @@ $('#Button_OpenCart').click(function () {
 
 
   formatCurrency() ;
+} ;
+
+
+$('#Button_OpenCart').click(function () {
+  renderCart() ;
+
+  $(".cartItemDelete").click(function (){
+    // this function deleted the cart item from the local storage
+    let itemIndex = $(this).attr('data-index') ;
+    let cartItems = JSON.parse(localStorage.getItem('cart')) ;
+    let removedItem = cartItems.splice(itemIndex, 1) ; // this is an array of 1 removed object
+    localStorage.setItem('cart', JSON.stringify(cartItems)) ;
+    localStorage.setItem('total_items', parseInt(localStorage.total_items) -1) ;
+    localStorage.setItem('total_items_price', ""+parseFloat(localStorage.getItem('total_items_price')) - parseFloat(removedItem[0].itemPrice) ) ;
+
+    $('#totalCartItems').html(localStorage.total_items) ;
+    // renderCart() ;
+    $('#Button_OpenCart').trigger('click') ; // this is to close the cart dialog
+  }) ;
 }) ;
+
+
+
+
