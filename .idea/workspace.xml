@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1620cee4-64a5-406e-9fc4-7b203dfbc357" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/public2/assets/plugins/toastr/toastr.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public2/assets/plugins/toastr/toastr.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public2/views/includes/head_css.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/info.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/info.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/css/themes/my-personal.css" beforeDir="false" afterPath="$PROJECT_DIR$/public2/assets/css/themes/my-personal.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/views/menu.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/public2/views/menu.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public2/assets/js/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/public2/assets/js/cart.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,11 +16,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="menu.hbs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="menu.hbs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public2/views/menu.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
+            <state relative-caret-position="-3168">
               <caret line="60" selection-start-line="60" selection-end-line="60" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cart_new.hbs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public2/views/includes/cart_new.hbs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cart.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public2/assets/js/cart.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="271">
+              <caret line="47" column="99" selection-start-line="47" selection-start-column="99" selection-end-line="47" selection-end-column="99" />
             </state>
           </provider>
         </entry>
@@ -106,7 +118,6 @@
         <option value="$PROJECT_DIR$/controllers/gallery.js" />
         <option value="$PROJECT_DIR$/public2/views/includes/header_light.hbs" />
         <option value="$PROJECT_DIR$/public2/views/includes/header_new.hbs" />
-        <option value="$PROJECT_DIR$/public2/assets/js/cart.js" />
         <option value="$PROJECT_DIR$/controllers/info.js" />
         <option value="$PROJECT_DIR$/public2/views/menu2.hbs" />
         <option value="$PROJECT_DIR$/public2/views/includes/head_css.hbs" />
@@ -116,6 +127,7 @@
         <option value="$PROJECT_DIR$/controllers/menu.js" />
         <option value="$PROJECT_DIR$/server2.js" />
         <option value="$PROJECT_DIR$/public2/views/menu.hbs" />
+        <option value="$PROJECT_DIR$/public2/assets/js/cart.js" />
       </list>
     </option>
   </component>
@@ -342,12 +354,12 @@
       <workItem from="1580729999026" duration="3171000" />
       <workItem from="1580756822131" duration="12313000" />
       <workItem from="1580808784387" duration="3093000" />
-      <workItem from="1580904246654" duration="10784000" />
+      <workItem from="1580904246654" duration="11044000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="271464000" />
+    <option name="totallyTimeSpent" value="271724000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1431" height="772" extended-state="6" />
@@ -358,9 +370,9 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.19314642" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.24299066" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.24299066" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.15109034" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.15109034" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -572,13 +584,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public2/views/includes/cart_new.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-119">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public2/assets/js/myPersonal.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="278">
@@ -588,20 +593,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public2/assets/plugins/jquery/dist/jquery.min.js">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public2/views/includes/modal_product.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-93">
-          <caret line="44" column="30" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public2/assets/js/cart.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="43" column="12" selection-start-line="43" selection-start-column="12" selection-end-line="43" selection-end-column="12" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public2/assets/plugins/bootstrap/dist/js/bootstrap_addon.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -695,10 +686,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public2/views/includes/modal_product.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="44" column="30" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public2/views/menu.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
+        <state relative-caret-position="-3168">
           <caret line="60" selection-start-line="60" selection-end-line="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public2/views/includes/cart_new.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public2/assets/js/cart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="47" column="99" selection-start-line="47" selection-start-column="99" selection-end-line="47" selection-end-column="99" />
         </state>
       </provider>
     </entry>

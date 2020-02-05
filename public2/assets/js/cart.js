@@ -45,7 +45,7 @@ let renderCart = ()=>{
                 </td>
                 <td class="price"><span class="money-currency">${parsedElement.itemPrice}</span> </td>
                 <td class="actions">
-                    <i data-index="${index}" class="cartItemDelete ti ti-trash" style="cursor: pointer"></i>
+                    <i data-index="${index}" class="cartItemDelete ti ti-trash" style="color: darkred; cursor: pointer"></i>
                 </td>
             </tr>
 
@@ -85,6 +85,7 @@ $('#Button_OpenCart').click(function () {
     $('#totalCartItems').html(localStorage.total_items) ;
     // renderCart() ;
     $('#Button_OpenCart').trigger('click') ; // this is to close the cart dialog
+    makeToast('info', "Item removed from cart") ;
   }) ;
 }) ;
 
