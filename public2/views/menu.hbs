@@ -18,10 +18,12 @@
     <link rel="apple-touch-icon" sizes="152x152" href="/assets/img/favicon_152x152.png">
 
     <!-- CSS Plugins -->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" >-->
     <link rel="stylesheet" href="/assets/plugins/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/assets/plugins/slick-carousel/slick/slick.css" />
     <link rel="stylesheet" href="/assets/plugins/animate.css/animate.min.css" />
     <link rel="stylesheet" href="/assets/plugins/animsition/dist/css/animsition.min.css" />
+    <link rel="stylesheet" href="/assets/plugins/toastr/toastr.min.css" />
 
     <!-- CSS Icons -->
     <link rel="stylesheet" href="/assets/css/themify-icons.css" />
@@ -34,15 +36,19 @@
 
 
 
-
 </head>
 
 <body>
+
+
+
 
 <!-- Body Wrapper -->
 <div id="body-wrapper" class="animsition">
 
     {{>header_light}}
+
+
 
     <!-- Content -->
     <div id="content">
@@ -50,15 +56,13 @@
         <!-- Page Title -->
         <div class="page-title bg-light">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 push-lg-4 col-8 push-3">
-                        <h1 class="mb-0">Our Menu</h1>
-                        <h4 class="text-muted mb-0"></h4>
-                        <!--<button id="addToCart" data-size-id="123">hola</button>-->
-                    </div>
+                <div class="row justify-content-center">
+                    <h1 class="mb-0" style="">Our Menu</h1>
                 </div>
             </div>
         </div>
+
+
 
 
 
@@ -132,7 +136,6 @@
 
 
         </div>
-                <!--</div></div></div>-->
 
 
 
@@ -153,7 +156,9 @@
     {{>panel_mobile}}
 
     <!-- Body Overlay : used to darken the rest of layout when cart is opened -->
-    <div id="body-overlay"></div>
+    <div id="body-overlay">
+
+    </div>
 
 </div>
 
@@ -166,6 +171,7 @@
 <!-- JS Plugins -->
 <script src="/assets/plugins/jquery/dist/jquery.min.js"></script>
 <script src="/assets/plugins/tether/dist/js/tether.min.js"></script>
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>-->
 <script src="/assets/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="/assets/plugins/slick-carousel/slick/slick.min.js"></script>
 <script src="/assets/plugins/jquery.appear/jquery.appear.js"></script>
@@ -176,6 +182,7 @@
 <script src="/assets/plugins/twitter-fetcher/js/twitterFetcher_min.js"></script>
 <script src="/assets/plugins/skrollr/dist/skrollr.min.js"></script>
 <script src="/assets/plugins/animsition/dist/js/animsition.min.js"></script>
+<script src="/assets/plugins/toastr/toastr.min.js" ></script>
 
 <!-- JS Core -->
 <script src="/assets/js/core.js"></script>
@@ -344,6 +351,8 @@
       let cartData = localStorage.getItem('cart') || '[]' ;
       cartData = JSON.parse(cartData) ;
       cartData.push(itemData) ;
+
+
       localStorage.setItem('cart', JSON.stringify(cartData)) ;
       localStorage.setItem('total_items', parseInt(localStorage.total_items)+1 ) ;
       localStorage.setItem('total_items_price', parseFloat(localStorage.total_items_price) + itemPrice ) ;
@@ -370,6 +379,8 @@
                 $('#addToCart').click(()=>{
                     addCartItemToLocalStorage() ;
                     refreshNoOfItemsInCart() ;
+                    // showAddtoCartNotification() ;
+                    makeToast("info", "Item successfully added to cart") ;
                 }) ;
 
 
@@ -380,30 +391,27 @@
 
     }) ;
 
+    function makeToast(toastStyle, toastMessage) {
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        } ;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        toastr[toastStyle](toastMessage) ;
+    }
 
 
 

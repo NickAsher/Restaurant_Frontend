@@ -74,3 +74,24 @@ input:checked~span.myForm-input{
     border: solid 1px #ddae71;
 }
 
+#toast-container > .toast {
+    background-image: none !important;  /*removes the default icon of the toastr colour*/
+    background: #F5F5DC !important;     /*removes the default icon of the toastr colour*/
+    color: #000;                        /* Changes the colour of text inside toastr */
+}
+
+#toast-container > .toast:before {       /* Changes the toastr icon to a font awesome icon*/
+    position: relative;
+    font-family: FontAwesome;
+    font-size: 24px;
+    line-height: 18px;
+    float: left;
+    margin-left: -1em;
+    color: #000;                         /* Colour of the font-awesome icon */
+    padding-right: 0.5em;
+    margin-right: 0.5em;
+    content: "\f07a";                   /* This is the unicode id of shopping-cart icon in font-awesome*/
+}
+
+
+

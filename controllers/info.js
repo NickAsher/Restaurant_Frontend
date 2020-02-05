@@ -27,8 +27,6 @@ exports.getAboutUsData = async (req, res)=>{
     let aboutData = await dbRepository.getAboutData();
     if(aboutData.status == false){throw aboutData ;}
 
-    let parsedCartData = parseUtils.getCart_Parsed(req.cookies.cart) ;
-    if(parsedCartData.status == false){throw parsedCartData ;}
 
     res.render('about.hbs', {
       IMAGE_FRONTEND_LINK_PATH: Constants.IMAGE_FRONTEND_LINK_PATH,
