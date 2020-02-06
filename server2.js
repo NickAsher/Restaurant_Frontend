@@ -71,6 +71,14 @@ app.get('/clear', (req, res)=>{
 app.get('/menu', controllerMenu.getMenu) ;
 app.all('/item/:categoryId/:itemId', controllerMenu.getItem_ModalProduct) ;
 
+app.get('/checkout', async (req, res)=>{
+
+  res.render('checkout.hbs', {
+    IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
+    IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
+  }) ;
+}) ;
+
 app.get('/blogs', controllerBlogs.getAllBlogs_Paginated) ;
 app.get('/blog/:blogId', controllerBlogs.getSingleBlog) ;
 
