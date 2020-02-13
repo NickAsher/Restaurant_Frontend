@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Meta -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Title -->
+    <title>Soup - Restaurant with Online Ordering System Template</title>
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="/assets/img/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/img/favicon_60x60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/favicon_76x76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/img/favicon_120x120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/img/favicon_152x152.png">
+
+    <!-- CSS Plugins -->
+    <link rel="stylesheet" href="/assets/plugins/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/plugins/slick-carousel/slick/slick.css" />
+    <link rel="stylesheet" href="/assets/plugins/animate.css/animate.min.css" />
+    <link rel="stylesheet" href="/assets/plugins/animsition/dist/css/animsition.min.css" />
+    <link rel="stylesheet" href="/assets/plugins/toastr/toastr.min.css" />
+
+    <!-- CSS Icons -->
+    <link rel="stylesheet" href="/assets/css/themify-icons.css" />
+    <link rel="stylesheet" href="/assets/plugins/font-awesome/css/font-awesome.min.css" />
+
+    <!-- CSS Theme -->
+    <link id="theme" rel="stylesheet" href="/assets/css/themes/theme-beige.css" />
+    <link id="theme" rel="stylesheet" href="/assets/css/themes/my-personal.css" />
+
+
+</head>
+
+<body class="header-absolute">
+
+<!-- Body Wrapper -->
+<div id="body-wrapper" class="animsition">
+
+
+    <div id="content ">
+        <section class="section ">
+
+            <div class="fullscreen-bg bg-dark dark">
+                <video loop muted autoplay  class="bg-video-mine" style="opacity: 0.3">
+                    <source src='/assets/videos/home.mp4'  type="video/mp4">
+                </video>
+            </div>
+
+            <div class="row">
+                <div class="col-md-5"></div>
+                <div class="col-md-2" >
+                    <div class="card" >
+                    <div class="card-block">
+                    <img src='/assets/img/logo-horizontal-dark.png'  class="img-fluid">
+                    </div>
+                    </div>
+                </div>
+                <div class="col-md-5"></div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-6 push-3">
+                    <div class="card ">
+                        <div class="card-block">
+
+                            <form  action="/signup" method="post"  >
+
+                                <div class="form-group row">
+                                    <div class="col-6">
+                                        <input name="post_Firstname" class="form-control" type="text" id="input-firstname" placeholder="Firstname">
+                                    </div>
+                                    <div class="col-6">
+                                        <input name="post_Lastname" class="form-control" type="text" id="input-lastname" placeholder="Lastname" >
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <input name="post_Email" class="form-control" type="email" id="input-email" >
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <input name="post_Password" class="form-control" type="password" id="input-password" placeholder="password" >
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <input name="post_PasswordAgain" class="form-control" type="password" id="input-password-3" placeholder="Retype your password" >
+                                    </div>
+                                </div>
+                                <br>
+
+                                <div class="row">
+                                    <input  class="push-4 col-md-4 btn btn-info" type="submit" value="Sign up">
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--These br tags are added so that when we click on some other page, the scroll up animation works correctly -->
+            <!-- Try Removing these br tags and then go from home page to about page and you will see -->
+            <br><br><br><br><br><br><br><br><br><br>
+
+        </section>
+    </div>
+    {{>cart_new}}
+
+    {{>panel_mobile}}
+
+    <!-- Body Overlay : used to darken the rest of layout when cart is opened -->
+    <div id="body-overlay"></div>
+
+</div>
+
+
+<!-- JS Plugins -->
+<script src="/assets/plugins/jquery/dist/jquery.min.js"></script>
+<script src="/assets/plugins/tether/dist/js/tether.min.js"></script>
+<script src="/assets/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/assets/plugins/slick-carousel/slick/slick.min.js"></script>
+<script src="/assets/plugins/jquery.appear/jquery.appear.js"></script>
+<script src="/assets/plugins/jquery.scrollto/jquery.scrollTo.min.js"></script>
+<script src="/assets/plugins/jquery.localscroll/jquery.localScroll.min.js"></script>
+<script src="/assets/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="/assets/plugins/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.min.js"></script>
+<script src="/assets/plugins/twitter-fetcher/js/twitterFetcher_min.js"></script>
+<script src="/assets/plugins/skrollr/dist/skrollr.min.js"></script>
+<script src="/assets/plugins/animsition/dist/js/animsition.min.js"></script>
+<script src="/assets/plugins/toastr/toastr.min.js" ></script>
+
+<!-- JS Core -->
+<script src="/assets/js/core.js"></script>
+
+<!-- Changes in javascript made by me-->
+<script src="/assets/js/myPersonal.js"></script>
+<script src="/assets/js/cart.js"></script>
+
+</body>
+
+
+</html>

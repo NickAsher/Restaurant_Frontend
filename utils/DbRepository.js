@@ -156,7 +156,26 @@ exports.getOfferSpecialData = async ()=>{
 } ;
 
 
+// --------------------------------------------------------- User Data
+exports.getCount_EmailId = async(userEmailId)=>{
+  try{
+    let dbData = await dbConnection.execute(
+      `SELECT COUNT(*) AS total FROM  users_table_new WHERE email = :email`, {
+         email : userEmailId
+      });
 
+    return {
+      status : true,
+      data : dbData['0']['0']
+    } ;
+
+  }catch (e) {
+    return {
+      status : false,
+      data : e.toString()
+    } ;
+  }
+} ;
 
 exports.getAllMenuCategories = async ()=>{
   try{
