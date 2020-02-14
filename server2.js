@@ -7,12 +7,14 @@ const bodyParser = require('body-parser');
 const cookieParser = require("cookie-parser") ;
 const fs = require('fs') ;
 const bcrypt = require('bcrypt') ;
+const session = require('express-session') ;
 
 const controllerBlogs = require('./controllers/blogs') ;
 const controllerGallery = require('./controllers/gallery') ;
 const controllerInfo = require('./controllers/info') ;
 const controllerHome = require('./controllers/home') ;
 const controllerMenu = require('./controllers/menu') ;
+const controllerAuth = require('./controllers/auth') ;
 const dbRepository = require('./utils/DbRepository') ;
 const parseUtils = require('./utils/parse') ;
 const app = express() ;
@@ -32,23 +34,26 @@ app.use(express.static("public2"));
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.use(cookieParser()) ;
-
-
+app.use(session({
+  secret : "this is my secret", //key use to sign session data(only sign, not encrypt)
+  resave : false, // don't resave session if it isn't changed
+  saveUninitialized : false, //don't save an empty session
+  name : 'my_session_id', //name for the cookie that stores session id
+  cookie : {
+    maxAge: 1000 * 60 * 60 * 2,
+    sameSite :true,
+    secure :false // use it when using https
+  }
+})) ;
 
 app.use((req, res, next)=>{
-  // check if client has the cookie
-  if (req.cookies.cart === undefined) {
-    res.cookie('logged_in', true, {httpOnly : true, maxAge : 60*60*24*7 }) ;
-    res.cookie('cart', '[]', {httpOnly : true, maxAge : 60*60*24*7 }) ;
-    res.cookie('total_items', 0, {httpOnly : true, maxAge : 60*60*24*7 }) ;
-    res.cookie('total_price', 0, {httpOnly : true, maxAge : 60*60*24*7 }) ;
-    console.log("cookies have been set") ;
-  }
-  next();
-});
+  console.log(`[${req.method} ${req.originalUrl} ], [user  : ${req.session.userId} ]`) ;
+  next() ;
+}) ;
 
 
-app.get('/', controllerHome.getHomePage) ;
+
+
 
 app.get('/clear', (req, res)=>{
   res.cookie('logged_in', true, {httpOnly : true, maxAge : 60*60*24*7 }) ;
@@ -69,6 +74,8 @@ app.get('/clear', (req, res)=>{
 
 
 
+app.get('/', controllerHome.getHomePage) ;
+
 app.get('/menu', controllerMenu.getMenu) ;
 app.all('/item/:categoryId/:itemId', controllerMenu.getItem_ModalProduct) ;
 
@@ -77,6 +84,7 @@ app.get('/checkout', async (req, res)=>{
   res.render('checkout.hbs', {
     IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
     IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
+    signedIn : req.session.loggedIn,
   }) ;
 }) ;
 
@@ -90,79 +98,11 @@ app.get('/specials', controllerInfo.getOfferSpecialsData) ;
 
 app.all('/itemy/:categoryId/:itemId', controllerMenu.getItemDetail_DataOnly) ;
 
-app.get('/login', async(req, res)=>{
-  try{
-    res.render('login.hbs', {
-      IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
-      IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-      VIDEO_FRONTEND_LINK_PATH : Constants.VIDEO_FRONTEND_LINK_PATH,
-
-    }) ;
-  }catch (e) {
-    res.send({
-      e,
-      yolo : "Beta ji koi to error hai"
-    }) ;
-  }
-}) ;
-
-
-app.post('/login', async (req, res)=>{
-
-}) ;
-
-
-app.get('/signup', async (req, res)=>{
-  res.render('signup.hbs', {
-    IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
-    IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-    VIDEO_FRONTEND_LINK_PATH : Constants.VIDEO_FRONTEND_LINK_PATH,
-  }) ;
-}) ;
-
-app.post('/signup', async (req,res)=>{
-  try {
-    let firstname = req.body.post_Firstname;
-    let lastname = req.body.post_Lastname;
-    let email = req.body.post_Email;
-    let password = req.body.post_Password;
-    let passwordAgain = req.body.post_PasswordAgain ;
-    // TODO backend form validation here
-
-    if(password != passwordAgain){
-      throw "Two passwords are not equal" ;
-    }
-
-    let countData = await dbRepository.getCount_EmailId(email) ;
-    if(countData.status == false){throw countData ;}
-    if(countData.data.total != 0){
-      throw "There already exists a user with email id, data is " + countData.data.total ;
-    }
-
-    let password_hash = await bcrypt.hash(password, 8);
-    let dbData = await dbConnection.execute(`
-    INSERT INTO users_table_new (email, password_hash, firstname, lastname) VALUES (:email, :password_hash, :firstname, :lastname) `, {
-      email,
-      password_hash,
-      firstname,
-      lastname
-    }) ;
-
-    res.send({
-      msg : "new user is added",
-      dbData
-    });
-  }catch (e) {
-    res.send({
-      e,
-      e_message : e.message,
-      e_toString : e.toString(),
-      e_toString2 : e.toString,
-      yo : "Beta ji koi error hai"
-    }) ;
-  }
-
-}) ;
+app.get('/login', controllerAuth.getLoginPage) ;
+app.post('/login', controllerAuth.postLoginPage) ;
+app.get('/signup', controllerAuth.getSignUpPage) ;
+app.post('/signup', controllerAuth.postSignUpPage) ;
+app.get('/signout', controllerAuth.signOut) ;
 
 
 

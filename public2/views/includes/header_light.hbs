@@ -24,10 +24,21 @@
                         <li><a href="/contact">Contact</a></li>
                     </ul>
                 </nav>
-                <div class="module left">
-                    <a href="/menu" class="btn btn-outline-secondary"><span>Order</span></a>
-                </div>
+
+                {{#if signedIn}}
+                    <!--Show sign out-->
+                    <div class="module left" >
+                        <a href="/signout" class="btn btn-outline-secondary"><span>Sign Out</span></a>
+                    </div>
+                {{else}}
+                    <div class="module left" >
+                        <a href="/login" class="btn btn-outline-secondary"><span>Sign In</span></a>
+                    </div>
+                {{/if}}
             </div>
+
+
+
             <div class="col-md-2">
                 <a id="Button_OpenCart" href="#" class="module module-cart right" data-toggle="panel-cart">
                     <span class="cart-value2">CART</span>

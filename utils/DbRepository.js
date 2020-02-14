@@ -157,6 +157,24 @@ exports.getOfferSpecialData = async ()=>{
 
 
 // --------------------------------------------------------- User Data
+exports.getUser_ByEmail = async(userEmailId)=>{
+  try{
+    let dbData = await dbConnection.execute(`
+    SELECT * FROM users_table_new WHERE email = :userEmailId `, {
+      userEmailId
+    }) ;
+    return {
+      status : true,
+      data : dbData['0']
+    } ;
+  }catch (e) {
+    return {
+      status : false,
+      data : e.toString()
+    } ;
+  }
+} ;
+
 exports.getCount_EmailId = async(userEmailId)=>{
   try{
     let dbData = await dbConnection.execute(

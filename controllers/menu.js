@@ -11,6 +11,7 @@ exports.getMenu = async (req, res)=>{
     res.render('menu.hbs', {
       IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
       IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
+      signedIn : req.session.loggedIn,
       menuData : menuData['data'],
     }) ;
 
@@ -39,6 +40,7 @@ exports.getItem_ModalProduct = async (req, res)=>{
     res.render('./includes/modal_product.hbs', {
       IMAGE_FRONTEND_LINK_PATH: Constants.IMAGE_FRONTEND_LINK_PATH,
       IMAGE_BACKENDFRONT_LINK_PATH: Constants.IMAGE_BACKENDFRONT_LINK_PATH,
+      signedIn : req.session.loggedIn,
       itemData: itemData['data']['0'],
       sizeData: sizeData['data'],
       multipleSizes: sizeData['data'].length > 1,
@@ -67,6 +69,7 @@ exports.getItemDetail_DataOnly = async(req, res)=>{
     res.send({
       IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
       IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
+      signedIn : req.session.loggedIn,
       itemData : itemData['data']['0'],
       sizeData : sizeData['data'] ,
       multipleSizes : sizeData['data'].length > 1,

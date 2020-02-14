@@ -11,6 +11,7 @@ exports.getHomePage = async (req, res)=>{
   try{
 
     res.render('index-video.hbs', {
+      signedIn : req.session.loggedIn,
     }) ;
   }catch (e) {
     res.send({
@@ -27,7 +28,8 @@ exports.getHomePage_old = (req, res)=>{
     res.render('home/login.hbs', {
       IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
       VIDEO_FRONTEND_LINK_PATH : Constants.VIDEO_FRONTEND_LINK_PATH,
-      IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH
+      IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
+      signedIn : req.session.loggedIn,
 
 
     }) ;
