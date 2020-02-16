@@ -25,16 +25,17 @@
                     </ul>
                 </nav>
 
-                {{#if signedIn}}
-                    <!--Show sign out-->
-                    <div class="module left" >
-                        <a href="/signout" class="btn btn-outline-secondary"><span>Sign Out</span></a>
-                    </div>
-                {{else}}
-                    <div class="module left" >
+                <div class="module" >
+                    {{#if signedIn}}
+                        <!--Show sign out-->
+                        <a href="/signout" class="btn btn-outline-secondary" {{#if googleSignIn}} onclick="googleSignOut()" {{/if}}>
+                            <span>Sign Out</span>
+                        </a>
+                    {{else}}
                         <a href="/login" class="btn btn-outline-secondary"><span>Sign In</span></a>
-                    </div>
-                {{/if}}
+                    {{/if}}
+                </div>
+
             </div>
 
 

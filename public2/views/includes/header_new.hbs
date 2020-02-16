@@ -16,16 +16,16 @@
                         <li><a href="/contact">Contact</a></li>
                     </ul>
                 </nav>
+                <div class="module" >
                 {{#if signedIn}}
                     <!--Show sign out-->
-                    <div class="module" >
-                        <a href="/signout" class="btn btn-outline-secondary"><span>Sign Out</span></a>
-                    </div>
+                    <a href="/signout" class="btn btn-outline-secondary" {{#if googleSignIn}} onclick="googleSignOut()" {{/if}}>
+                        <span>Sign Out</span>
+                    </a>
                 {{else}}
-                    <div class="module" >
                         <a href="/login" class="btn btn-outline-secondary"><span>Sign In</span></a>
-                    </div>
                 {{/if}}
+                </div>
 
             </div>
             <div class="col-md-2 push-md-2">

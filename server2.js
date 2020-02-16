@@ -84,7 +84,7 @@ app.get('/checkout', async (req, res)=>{
   res.render('checkout.hbs', {
     IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
     IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-    signedIn : req.session.loggedIn,
+    signedIn : req.session.isLoggedIn,
   }) ;
 }) ;
 
@@ -103,6 +103,7 @@ app.post('/login', controllerAuth.postLoginPage) ;
 app.get('/signup', controllerAuth.getSignUpPage) ;
 app.post('/signup', controllerAuth.postSignUpPage) ;
 app.get('/signout', controllerAuth.signOut) ;
+app.post('/signup/google', controllerAuth.postSignUp_Google) ;
 
 
 

@@ -14,7 +14,7 @@ exports.getAllGalleryItems = async (req, res)=>{
     res.render('gallery.hbs', {
       IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
       IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-      signedIn : req.session.loggedIn,
+      signedIn : req.session.isLoggedIn,
       galleryData: galleryData['data'],
     }) ;
   }catch (e) {
