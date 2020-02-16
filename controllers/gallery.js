@@ -15,6 +15,7 @@ exports.getAllGalleryItems = async (req, res)=>{
       IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
       IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
       signedIn : req.session.isLoggedIn,
+      googleSignIn : req.session.oauth_provider == "google",
       galleryData: galleryData['data'],
     }) ;
   }catch (e) {

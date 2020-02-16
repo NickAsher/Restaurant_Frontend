@@ -19,7 +19,7 @@
                 <div class="module" >
                 {{#if signedIn}}
                     <!--Show sign out-->
-                    <a href="/signout" class="btn btn-outline-secondary" {{#if googleSignIn}} onclick="googleSignOut()" {{/if}}>
+                    <a href="/signout" class="btn btn-outline-secondary" {{#if googleSignIn}} onclick="return googleSignOut();" {{/if}}>
                         <span>Sign Out</span>
                     </a>
                 {{else}}

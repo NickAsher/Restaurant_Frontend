@@ -14,6 +14,7 @@ exports.getContactUsData = async (req, res)=>{
       IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
       IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
       signedIn : req.session.isLoggedIn,
+      googleSignIn : req.session.oauth_provider == "google",
       contactData : contactData['data'],
       socialInfo : JSON.parse(contactData['data']['social_info']),
     }) ;
@@ -33,6 +34,7 @@ exports.getAboutUsData = async (req, res)=>{
       IMAGE_FRONTEND_LINK_PATH: Constants.IMAGE_FRONTEND_LINK_PATH,
       IMAGE_BACKENDFRONT_LINK_PATH: Constants.IMAGE_BACKENDFRONT_LINK_PATH,
       signedIn : req.session.isLoggedIn,
+      googleSignIn : req.session.oauth_provider == "google",
       aboutData: aboutData['data'],
     });
   }catch (e) {
@@ -52,6 +54,7 @@ exports.getOfferSpecialsData = async (req, res)=>{
       IMAGE_FRONTEND_LINK_PATH: Constants.IMAGE_FRONTEND_LINK_PATH,
       IMAGE_BACKENDFRONT_LINK_PATH: Constants.IMAGE_BACKENDFRONT_LINK_PATH,
       signedIn : req.session.isLoggedIn,
+      googleSignIn : req.session.oauth_provider == "google",
       offersData: offersData['data'],
     });
   }catch (e) {
