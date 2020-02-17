@@ -144,6 +144,36 @@
 <script src="/assets/js/cart.js"></script>
 
 <script>
+
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '126236152092833',
+            status : false,  // stops auto login
+            cookie     : true,
+            xfbml      : true,
+            version    : 'v6.0'
+        });
+    };
+
+    function googleSignOut() {
+        try{
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+                return true ;
+            }) ;
+        }catch(err) {
+            console.log("Error") ;
+            console.log(err) ;
+            return false ;
+        }
+    }
+
+
+
+
+
+
     function onSignIn(googleUser) {
         console.log("signed in google") ;
         var id_token = googleUser.getAuthResponse().id_token;

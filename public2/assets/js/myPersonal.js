@@ -48,7 +48,7 @@ function makeToast(toastStyle, toastMessage) {
     "onclick": null,
     "showDuration": "300",
     "hideDuration": "1000",
-    "timeOut": "5000",
+    "timeOut": "2000",
     "extendedTimeOut": "1000",
     "showEasing": "swing",
     "hideEasing": "linear",
@@ -62,28 +62,5 @@ function makeToast(toastStyle, toastMessage) {
 refreshNoOfItemsInCart() ;
 
 
-function googleSignOut() {
-  try{
-  var auth2 = gapi.auth2.getAuthInstance();
-  auth2.signOut().then(function () {
-     console.log('User signed out.');
-     return true ;
-  }) ;
-  }catch(err) {
-    console.log("Error") ;
-    console.log(err) ;
-    return false ;
-  }
-}
 
-
-
-window.fbAsyncInit = function() {
-  FB.init({
-    appId      : '126236152092833',
-    cookie     : true,
-    xfbml      : true,
-    version    : 'v6.0'
-  });
-};
 

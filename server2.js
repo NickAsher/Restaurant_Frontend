@@ -72,14 +72,32 @@ app.get('/clear', (req, res)=>{
   `);
 }) ;
 
+const authRedirectHome = (req, res, next)=>{
+  if(req.session.isLoggedIn == true){
+    res.redirect('/') ;
+    //TODO show message that you are already logged in
+  }else{
+    next() ;
+  }
+} ;
+
+const authRedirectLogin = (req, res, next)=>{
+  if(req.session.isLoggedIn != true){
+    res.redirect('/login');
+    //TODO show message that you need to be logged in
+  }else{
+    next();
+  }
+} ;
 
 
 app.get('/', controllerHome.getHomePage) ;
 
 app.get('/menu', controllerMenu.getMenu) ;
 app.all('/item/:categoryId/:itemId', controllerMenu.getItem_ModalProduct) ;
+app.all('/itemy/:categoryId/:itemId', controllerMenu.getItemDetail_DataOnly) ;
 
-app.get('/checkout', async (req, res)=>{
+app.get('/checkout', authRedirectLogin, async (req, res)=>{
 
   res.render('checkout.hbs', {
     IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
@@ -95,12 +113,9 @@ app.get('/contact', controllerInfo.getContactUsData) ;
 app.get('/about', controllerInfo.getAboutUsData) ;
 app.get('/specials', controllerInfo.getOfferSpecialsData) ;
 
-
-app.all('/itemy/:categoryId/:itemId', controllerMenu.getItemDetail_DataOnly) ;
-
-app.get('/login', controllerAuth.getLoginPage) ;
-app.post('/login', controllerAuth.postLoginPage) ;
-app.get('/signup', controllerAuth.getSignUpPage) ;
+app.get('/login', authRedirectHome, controllerAuth.getLoginPage) ;
+app.post('/login', authRedirectHome,  controllerAuth.postLoginPage) ;
+app.get('/signup', authRedirectHome, controllerAuth.getSignUpPage) ;
 app.post('/signup', controllerAuth.postSignUpPage) ;
 app.get('/signout', controllerAuth.signOut) ;
 app.post('/signup/google', controllerAuth.postSignUp_Google) ;
