@@ -68,7 +68,7 @@
                                     <div class="g-signin2"  data-longtitle="true" data-onsuccess="onSignIn"></div>
                                 </div>
                                 <div class="col-md-6">
-                                    <img class="img-fluid" src="/assets/img/btn_apple.png" style="height: 35px;">
+                                    <div class="fb-login-button" data-width="" data-size="large" data-button-type="login_with" data-auto-logout-link="true" data-use-continue-as="true" data-scope="public_profile,email" data-onlogin="onFacebookLogin();"></div>
                                 </div>
                             </div>
                             <br>
@@ -94,6 +94,9 @@
 
                                 <div class="row">
                                     <input  class="push-4 col-md-4 btn btn-primary" type="submit" value="Sign In">
+                                </div>
+
+                                <div id="status">
                                 </div>
                             </form>
                         </div>
@@ -132,7 +135,7 @@
 <script src="/assets/plugins/toastr/toastr.min.js" ></script>
 
 <script src="https://apis.google.com/js/platform.js" async defer></script>
-
+<script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
 <!-- JS Core -->
 <script src="/assets/js/core.js"></script>
 
@@ -162,6 +165,82 @@
         }) ;
 
     }
+
+
+
+
+  function onFacebookLogin() {
+    FB.getLoginStatus(function(response) {
+      // The current login status of the person.
+      // console.log(response);
+      if (response.status === 'connected') {
+        // Logged into your webpage and Facebook.
+        // we need to make another request to get the email and name,
+        // as faceboook only sends the id after login success
+        FB.api('/me', {fields: 'id,first_name, last_name, email'}, function(profileInfo) {
+          if(profileInfo.error){
+            // Error in getting profile info
+            showError(profileInfo.error, "Error in getting FB Profile Info") ;
+            FB.logout(function(response) {
+              console.log("Lgging out from FB bad") ;
+            });
+          }else {
+            console.log(response.authResponse.accessToken) ;
+            console.log(profileInfo) ;
+              // sending the post request
+            $.ajax({
+              url : '/signup/facebook',
+              method : "POST",
+              data : {
+                "post_idToken" : response.authResponse.accessToken,
+                "post_Email" : profileInfo.email,
+                "post_Firstname" : profileInfo.first_name,
+                "post_Lastname" : profileInfo.last_name,
+                "post_Id" : profileInfo.id
+              },
+                success : (result)=>{
+                  if(result.status ==true){
+                    console.log(result) ;
+                    //sign out the facebook user
+                      console.log("calling this code ") ;
+                    FB.logout(function(resp) {
+                      console.log(resp) ;
+                      console.log("Lgging out from FB good") ;
+                      window.location.href = "/" ;
+                    });
+                  }
+                },
+                error : (err)=> {
+                  showError(err, "Error in Sending Post Request") ;
+                  FB.logout(function(response) {
+                    console.log("Lgging out from FB bad") ;
+                  });
+                }
+              }) ;
+          }
+        });
+      } else {
+        // Not logged into your webpage or we are unable to tell.
+        showError(response, "Error in logging in") ;
+      }
+    });
+  }
+
+
+
+    function showError(errorInfo, myMmg){
+        makeToast(warn, myMmg) ;
+        console.log(myMmg);
+        console.log(errorInfo);
+    }
+
+
+
+
+
+
+
+
 
 
 

@@ -61,6 +61,10 @@ function makeToast(toastStyle, toastMessage) {
 
 refreshNoOfItemsInCart() ;
 
+
+
+
+
 function onLoad() {
   gapi.load('auth2', function () {
     gapi.auth2.init();
@@ -80,3 +84,15 @@ function googleSignOut() {
     return false ;
   }
 }
+
+
+
+window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '126236152092833',
+    cookie     : true,
+    xfbml      : true,
+    version    : 'v6.0'
+  });
+};
+

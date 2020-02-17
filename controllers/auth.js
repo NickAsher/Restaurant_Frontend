@@ -175,6 +175,7 @@ exports.postSignUp_Google = async (req, res)=>{
 
 
   }catch (e) {
+    console.log(e) ;
     res.send({
       e,
       e_message : e.message,
@@ -187,6 +188,73 @@ exports.postSignUp_Google = async (req, res)=>{
 
 
 
+} ;
+
+
+exports.postSignUp_Facebook = async (req, res)=>{
+  /* This method will be used for both logging in and signing up users through Facebook login.
+  So check if a user already exists. */
+  try {
+
+    let facebookToken = req.body.post_idToken ;
+    // no need to verify the token as it is already verified
+    // when we got the additional user info like email, name, by making an api request.
+    // So unlike google, we don't have to verify that access token is correct or not
+    let email = req.body.post_Email;
+    let firstname = req.body.post_Firstname ;
+    let lastname = req.body.post_Lastname ;
+    let facebookId = req.body.post_Id ;
+
+
+
+
+    let dbReturnData = await dbRepository.getUser_ByEmail(email);
+    if (dbReturnData.status == false) {
+      throw dbReturnData.data;
+    }
+    if (dbReturnData.data.length == 0) {
+      // new user, so add him
+
+      let dbData = await dbConnection.execute(`
+    INSERT INTO users_table_new (email, firstname, lastname, oauth_provider, oauth_id) VALUES (:email, :firstname, :lastname, :oauth_provider, :oauth_id) `, {
+        email,
+        firstname,
+        lastname,
+        oauth_provider: "facebook",
+        oauth_id: facebookId
+      });
+
+      //Initiate user session
+      req.session.isLoggedIn = true;
+      req.session.userId = dbData['0'].insertId;
+      req.session.oauth_provider = "facebook" ;
+      console.log("New user, signing up") ;
+      res.send({
+        status: true
+      });
+    } else {
+      // user already exists
+      let userData = dbReturnData.data['0']; // due the data structure
+      req.session.isLoggedIn = true ;
+      req.session.userId = userData.id ;
+      req.session.oauth_provider = "facebook" ;
+      console.log("User already exists logging in") ;
+      res.send({
+        status: true
+      });
+    }
+
+
+  }catch (e) {
+    console.log(e) ;
+    res.send({
+      e,
+      e_message : e.message,
+      e_toString : e.toString(),
+      e_toString2 : e.toString,
+      yo : "Beta ji koi error hai"
+    }) ;
+  }
 } ;
 
 exports.signOut = async(req, res)=>{

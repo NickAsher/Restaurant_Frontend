@@ -104,6 +104,7 @@ app.get('/signup', controllerAuth.getSignUpPage) ;
 app.post('/signup', controllerAuth.postSignUpPage) ;
 app.get('/signout', controllerAuth.signOut) ;
 app.post('/signup/google', controllerAuth.postSignUp_Google) ;
+app.post('/signup/facebook', controllerAuth.postSignUp_Facebook) ;
 
 
 
