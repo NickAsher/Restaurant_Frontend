@@ -42,7 +42,6 @@ exports.postLoginPage = async (req, res)=>{
 
     req.session.isLoggedIn = true ;
     req.session.userId = userData.id ;
-    req.session.oauth_provider = "none" ;
     res.redirect('/') ;
   }catch (e) {
     res.send({
@@ -99,7 +98,6 @@ exports.postSignUpPage = async (req,res)=>{
     //Initiate user session
     req.session.isLoggedIn = true ;
     req.session.userId = dbData['0'].insertId ;
-    req.session.oauth_provider = "none" ;
 
     res.send({
       msg : "new user is added",
@@ -156,7 +154,6 @@ exports.postSignUp_Google = async (req, res)=>{
       //Initiate user session
       req.session.isLoggedIn = true;
       req.session.userId = dbData['0'].insertId;
-      req.session.oauth_provider = "google" ;
       console.log("New user, signing up") ;
       res.send({
         status: true
@@ -166,7 +163,6 @@ exports.postSignUp_Google = async (req, res)=>{
       let userData = dbReturnData.data['0']; // due the data structure
       req.session.isLoggedIn = true ;
       req.session.userId = userData.id ;
-      req.session.oauth_provider = "google" ;
       console.log("User already exists logging in") ;
       res.send({
         status: true
@@ -227,7 +223,6 @@ exports.postSignUp_Facebook = async (req, res)=>{
       //Initiate user session
       req.session.isLoggedIn = true;
       req.session.userId = dbData['0'].insertId;
-      req.session.oauth_provider = "facebook" ;
       console.log("New user, signing up") ;
       res.send({
         status: true
@@ -237,7 +232,6 @@ exports.postSignUp_Facebook = async (req, res)=>{
       let userData = dbReturnData.data['0']; // due the data structure
       req.session.isLoggedIn = true ;
       req.session.userId = userData.id ;
-      req.session.oauth_provider = "facebook" ;
       console.log("User already exists logging in") ;
       res.send({
         status: true
@@ -259,11 +253,6 @@ exports.postSignUp_Facebook = async (req, res)=>{
 
 exports.signOut = async(req, res)=>{
   try{
-    if(req.session.oauth_provider == "google"){
-      // TODO sign out of google here
-    }else if(req.session.oauth_provider == "apple"){
-      // TODO sign out of apple here
-    }
 
     req.session.destroy() ;
     res.clearCookie('my_session_id') ;

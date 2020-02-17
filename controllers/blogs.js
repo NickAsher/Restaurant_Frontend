@@ -23,7 +23,6 @@ exports.getAllBlogs_Paginated = async (req, res)=>{
       IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
       IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
       signedIn : req.session.isLoggedIn,
-      googleSignIn : req.session.oauth_provider == "google",
       blogsData : blogsData['data'],
       parsedPaginatorHtml,
     }) ;
@@ -46,7 +45,6 @@ exports.getSingleBlog = async (req, res)=>{
       IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
       IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
       signedIn : req.session.isLoggedIn,
-      googleSignIn : req.session.oauth_provider == "google",
       blogData : blogData['data']['0'],
     }) ;
   }catch (e) {

@@ -12,7 +12,6 @@ exports.getMenu = async (req, res)=>{
       IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
       IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
       signedIn : req.session.isLoggedIn,
-      googleSignIn : req.session.oauth_provider == "google",
       menuData : menuData['data'],
     }) ;
 
@@ -42,7 +41,6 @@ exports.getItem_ModalProduct = async (req, res)=>{
       IMAGE_FRONTEND_LINK_PATH: Constants.IMAGE_FRONTEND_LINK_PATH,
       IMAGE_BACKENDFRONT_LINK_PATH: Constants.IMAGE_BACKENDFRONT_LINK_PATH,
       signedIn : req.session.isLoggedIn,
-      googleSignIn : req.session.oauth_provider == "google",
       itemData: itemData['data']['0'],
       sizeData: sizeData['data'],
       multipleSizes: sizeData['data'].length > 1,
@@ -72,7 +70,6 @@ exports.getItemDetail_DataOnly = async(req, res)=>{
       IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
       IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
       signedIn : req.session.isLoggedIn,
-      googleSignIn : req.session.oauth_provider == "google",
       itemData : itemData['data']['0'],
       sizeData : sizeData['data'] ,
       multipleSizes : sizeData['data'].length > 1,

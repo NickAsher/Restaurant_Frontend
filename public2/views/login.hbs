@@ -145,7 +145,7 @@
 
 <script>
     function onSignIn(googleUser) {
-
+        console.log("signed in google") ;
         var id_token = googleUser.getAuthResponse().id_token;
         $.ajax({
             url : '/signup/google',
@@ -153,6 +153,7 @@
             data : {"post_idToken" : id_token},
             success : (result)=>{
                 if(result.status ==true){
+                  googleSignOut() ;
                   window.location.href = "/" ;
                 }
             },

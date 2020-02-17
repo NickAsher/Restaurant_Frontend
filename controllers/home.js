@@ -12,7 +12,6 @@ exports.getHomePage = async (req, res)=>{
 
     res.render('index-video.hbs', {
       signedIn : req.session.isLoggedIn,
-      googleSignIn : req.session.oauth_provider == "google",
     }) ;
   }catch (e) {
     res.send({
@@ -31,7 +30,6 @@ exports.getHomePage_old = (req, res)=>{
       VIDEO_FRONTEND_LINK_PATH : Constants.VIDEO_FRONTEND_LINK_PATH,
       IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
       signedIn : req.session.isLoggedIn,
-      googleSignIn : req.session.oauth_provider == "google",
 
 
     }) ;
