@@ -80,15 +80,25 @@ const authRedirectHome = (req, res, next)=>{
     next() ;
   }
 } ;
-
-const authRedirectLogin = (req, res, next)=>{
-  if(req.session.isLoggedIn != true){
-    res.redirect('/login');
-    //TODO show message that you need to be logged in
-  }else{
-    next();
-  }
+const isAuthenticated = (redirectBack)=>{
+  /* Middleware to authenticate user on pages which need authentication
+   * @param {string} redirectBack - The page where we should come back to after authentication
+   *
+   *  this function checks if the user is authenticated using session.isLoggedIn
+   *    If they are, they simply go to their page
+   *    If not, they are redirected to login page and query ?redirect=backPage is set
+   *
+   */
+  return (req, res, next)=>{
+    if(req.session.isLoggedIn != true){
+      res.redirect(`/login?redirect=${redirectBack}`);
+      //TODO show message that you need to be logged in
+    }else{
+      next();
+    }
+  } ;
 } ;
+
 
 
 app.get('/', controllerHome.getHomePage) ;
@@ -97,7 +107,7 @@ app.get('/menu', controllerMenu.getMenu) ;
 app.all('/item/:categoryId/:itemId', controllerMenu.getItem_ModalProduct) ;
 app.all('/itemy/:categoryId/:itemId', controllerMenu.getItemDetail_DataOnly) ;
 
-app.get('/checkout', authRedirectLogin, async (req, res)=>{
+app.get('/checkout', isAuthenticated('checkout'), async (req, res)=>{
 
   res.render('checkout.hbs', {
     IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
@@ -120,8 +130,10 @@ app.post('/signup', controllerAuth.postSignUpPage) ;
 app.get('/signout', controllerAuth.signOut) ;
 app.post('/signup/google', controllerAuth.postSignUp_Google) ;
 app.post('/signup/facebook', controllerAuth.postSignUp_Facebook) ;
-
-
+app.get('/resetPassword', authRedirectHome, controllerAuth.getResetPasswordPage) ;
+app.post('/resetPassword', controllerAuth.postResetPassword) ;
+app.get('/resetPassword/:resetToken', controllerAuth.getResetPasswordTokenPage) ;
+app.post('/saveResetPassword/', controllerAuth.postResetPasswordToken) ;
 
 
 

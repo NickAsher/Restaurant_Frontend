@@ -175,6 +175,24 @@ exports.getUser_ByEmail = async(userEmailId)=>{
   }
 } ;
 
+exports.getUser_ByResetToken = async(resetToken)=>{
+  try{
+    let dbData = await dbConnection.execute(
+      `SELECT * FROM users_table_new WHERE reset_password_token = :resetToken `, {
+      resetToken
+    }) ;
+    return {
+      status : true,
+      data : dbData['0']
+    } ;
+  }catch (e) {
+    return {
+      status : false,
+      data : e.toString()
+    } ;
+  }
+} ;
+
 exports.getCount_EmailId = async(userEmailId)=>{
   try{
     let dbData = await dbConnection.execute(
@@ -187,6 +205,25 @@ exports.getCount_EmailId = async(userEmailId)=>{
       data : dbData['0']['0']
     } ;
 
+  }catch (e) {
+    return {
+      status : false,
+      data : e.toString()
+    } ;
+  }
+} ;
+
+
+exports.resetPasswordToken = async (id, resetToken)=>{
+  try{
+    let dbData = await dbConnection.execute(
+        `UPDATE users_table_new SET reset_password_token = :resetToken WHERE id = :id `, {
+          id,
+          resetToken
+        }) ;
+    return {
+      status : true,
+    } ;
   }catch (e) {
     return {
       status : false,

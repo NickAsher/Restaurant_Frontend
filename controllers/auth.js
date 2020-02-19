@@ -3,7 +3,9 @@ const Constants = require('../utils/Constants') ;
 const dbConnection = require('../utils/database') ;
 const dbRepository = require('../utils/DbRepository') ;
 const bcrypt = require('bcrypt') ;
+const crypto =  require('crypto') ;
 const {OAuth2Client} = require('google-auth-library');
+const jwt = require('jsonwebtoken') ;
 
 const CLIENT_ID = "730014109642-7rldv9agg9qp0avagkapdv9l4kocjt5e.apps.googleusercontent.com" ;
 const client = new OAuth2Client(CLIENT_ID);
@@ -257,6 +259,165 @@ exports.signOut = async(req, res)=>{
     req.session.destroy() ;
     res.clearCookie('my_session_id') ;
     res.redirect('/') ;
+  }catch (e) {
+    res.send({
+      e,
+      e_message : e.message,
+      e_toString : e.toString(),
+      e_toString2 : e.toString,
+      yo : "Beta ji koi error hai"
+    }) ;
+  }
+} ;
+
+
+
+exports.getResetPasswordPage = async (req, res)=>{
+  try {
+    res.render('reset_password.hbs', {
+      IMAGE_FRONTEND_LINK_PATH: Constants.IMAGE_FRONTEND_LINK_PATH,
+      IMAGE_BACKENDFRONT_LINK_PATH: Constants.IMAGE_BACKENDFRONT_LINK_PATH,
+      VIDEO_FRONTEND_LINK_PATH: Constants.VIDEO_FRONTEND_LINK_PATH,
+    });
+  }catch (e) {
+    res.send({
+      e,
+      e_message : e.message,
+      e_toString : e.toString(),
+      e_toString2 : e.toString,
+      yo : "Beta ji koi error hai"
+    }) ;
+  }
+} ;
+
+exports.postResetPassword = async (req, res)=>{
+  try {
+    let email = req.body.post_Email;
+    let dbReturnData = await dbRepository.getUser_ByEmail(email);
+    if (dbReturnData.status == false) {
+      throw dbReturnData.data;
+    }
+    if (dbReturnData.data.length == 0) {
+      // user does not exists. show error msg
+      res.send({
+        status: true,
+        success: "NO_USER"
+      });
+      return;
+    }
+    let userData = dbReturnData.data['0']; // due the data structure
+    let passwordHash = userData.password_hash;
+    let randomString = crypto.randomBytes(32).toString('hex');
+    let resetToken = jwt.sign({
+      email: userData.email,
+      random: randomString
+    }, passwordHash, {expiresIn:'2h'}
+    );
+
+    let dbData = await dbRepository.resetPasswordToken(userData.id, resetToken);
+    if (dbData.status == false) {
+      throw dbData.data;
+    }
+
+    // TODO send the mail here
+    res.send({
+      status: true,
+      success: "MAIL_SENT",
+      link: `http://localhost:3000/resetPassword/${resetToken}`
+    });
+
+  }catch (e) {
+    res.send({
+      e,
+      e_message : e.message,
+      e_toString : e.toString(),
+      e_toString2 : e.toString,
+      yo : "Beta ji koi error hai"
+    }) ;
+  }
+
+} ;
+
+
+exports.getResetPasswordTokenPage = async (req, res)=>{
+  try{
+    let resetToken = req.params.resetToken ;
+    let dbReturnData = await dbRepository.getUser_ByResetToken(resetToken) ;
+    if (dbReturnData.status == false) {throw dbReturnData.data;}
+    if (dbReturnData.data.length == 0) {
+      // token does not exist in db, invalid token
+      throw "invalid token" ;
+    }
+    let userData = dbReturnData.data['0'] ;// due the data structure
+
+    // will throw an error if token is not signed by password_hash
+    // or if token has expired
+    let decoded = jwt.verify(resetToken, userData.password_hash) ;
+    if(decoded.email != userData.email){
+      throw "invalid token : email is not same in token" ;
+    }
+
+    //our token is verified now, render the page
+    res.render('reset_password_token', {
+      IMAGE_FRONTEND_LINK_PATH: Constants.IMAGE_FRONTEND_LINK_PATH,
+      IMAGE_BACKENDFRONT_LINK_PATH: Constants.IMAGE_BACKENDFRONT_LINK_PATH,
+      VIDEO_FRONTEND_LINK_PATH: Constants.VIDEO_FRONTEND_LINK_PATH,
+      resetToken,
+      userId : userData.id
+    }) ;
+
+
+
+
+
+
+  }catch (e) {
+    res.send({
+      e,
+      e_message : e.message,
+      e_toString : e.toString(),
+      e_toString2 : e.toString,
+      yo : "Beta ji koi error hai"
+    }) ;
+  }
+} ;
+
+exports.postResetPasswordToken = async (req, res)=>{
+  try{
+    let resetToken = req.body.post_resetToken ;
+    let newPassword = req.body.post_newPassword ;
+    let newPasswordAgain = req.body.post_newPasswordAgain ;
+
+    if(newPassword != newPasswordAgain){throw "two passwords do not match" ;}
+
+    let dbReturnData = await dbRepository.getUser_ByResetToken(resetToken) ;
+    if (dbReturnData.status == false) {throw dbReturnData.data;}
+    if (dbReturnData.data.length == 0) {
+      // token does not exist in db, invalid token
+      throw "invalid token" ;
+    }
+    let userData = dbReturnData.data['0'] ;// due the data structure
+
+    let decoded = jwt.verify(resetToken, userData.password_hash) ;
+    if(decoded.email != userData.email){
+      throw "invalid token : email is not same in token" ;
+    }
+
+    let new_password_hash = await bcrypt.hash(newPassword, 8);
+    let dbData = await dbConnection.execute(
+        `UPDATE users_table_new SET password_hash = :new_password_hash,
+         password_dev = :newPassword, reset_password_token = '' WHERE id = :id `, {
+          new_password_hash,
+          newPassword,
+          id : userData.id
+        }) ;
+
+
+    res.send({
+      status : true,
+      SUCCESS : "PWD_CHANGED"
+    }) ;
+
   }catch (e) {
     res.send({
       e,

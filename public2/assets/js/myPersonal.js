@@ -61,6 +61,21 @@ function makeToast(toastStyle, toastMessage) {
 
 refreshNoOfItemsInCart() ;
 
+function redirectBack(defaultRedirection){
+  let searchParams = new URLSearchParams(window.location.search) ;
+  // check if there is query paramter called redirect like      https://www.rest.com?redirect=checkout
+  if(searchParams.has('redirect')){
+    window.location.href = "/" + searchParams.get('redirect') ;
+  }else{
+    window.location.href = defaultRedirection ;
+  }
+}
+
+function showError(errorInfo, myMmg){
+  makeToast('error', myMmg) ;
+  console.log(myMmg);
+  console.log(errorInfo);
+}
 
 
 

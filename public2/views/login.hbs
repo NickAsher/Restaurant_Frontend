@@ -87,7 +87,7 @@
                                         <a href="/signup">Sign Up</a>
                                     </div>
                                     <div class="col-4">
-                                        <a href="#">Forget Password</a>
+                                        <a href="/resetPassword">Forget Password</a>
                                     </div>
                                 </div>
 
@@ -106,7 +106,7 @@
             </div>
             <!--These br tags are added so that when we click on some other page, the scroll up animation works correctly -->
             <!-- Try Removing these br tags and then go from home page to about page and you will see -->
-            <br><br>
+            <br><br><br><br><br><br><br><br><br><br>
 
         </section>
     </div>
@@ -185,7 +185,7 @@
             success : (result)=>{
                 if(result.status ==true){
                   googleSignOut() ;
-                  window.location.href = "/" ;
+                  redirectBack('/')
                 }
             },
             error : (err)=> {
@@ -238,7 +238,7 @@
                                 FB.logout(function(resp) {
                                     console.log(resp) ;
                                     console.log("Lgging out from FB good") ;
-                                    window.location.href = "/" ;
+                                    redirectBack('/') ;
                                 });
                             }
                         },
@@ -261,11 +261,9 @@
 
 
 
-    function showError(errorInfo, myMmg){
-        makeToast(warn, myMmg) ;
-        console.log(myMmg);
-        console.log(errorInfo);
-    }
+
+
+
 
 
 
