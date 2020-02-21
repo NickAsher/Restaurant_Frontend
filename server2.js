@@ -51,6 +51,14 @@ app.use((req, res, next)=>{
   next() ;
 }) ;
 
+app.use((req, res, next)=>{
+  res.locals.IMAGE_FRONTEND_LINK_PATH = Constants.IMAGE_FRONTEND_LINK_PATH ;
+  res.locals.IMAGE_BACKENDFRONT_LINK_PATH = Constants.IMAGE_BACKENDFRONT_LINK_PATH ;
+  res.locals.VIDEO_FRONTEND_LINK_PATH = Constants.VIDEO_FRONTEND_LINK_PATH ;
+  res.locals.signedIn = req.session.isLoggedIn ;
+  next() ;
+}) ;
+
 
 
 
@@ -101,6 +109,8 @@ const isAuthenticated = (redirectBack)=>{
 
 
 
+
+
 app.get('/', controllerHome.getHomePage) ;
 
 app.get('/menu', controllerMenu.getMenu) ;
@@ -108,11 +118,7 @@ app.all('/item/:categoryId/:itemId', controllerMenu.getItem_ModalProduct) ;
 app.all('/itemy/:categoryId/:itemId', controllerMenu.getItemDetail_DataOnly) ;
 
 app.get('/checkout', isAuthenticated('checkout'), async (req, res)=>{
-
   res.render('checkout.hbs', {
-    IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
-    IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-    signedIn : req.session.isLoggedIn,
   }) ;
 }) ;
 

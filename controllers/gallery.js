@@ -12,9 +12,6 @@ exports.getAllGalleryItems = async (req, res)=>{
     if(galleryData['status'] == false){throw galleryData ;}
 
     res.render('gallery.hbs', {
-      IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
-      IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-      signedIn : req.session.isLoggedIn,
       galleryData: galleryData['data'],
     }) ;
   }catch (e) {

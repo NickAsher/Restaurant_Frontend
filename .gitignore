@@ -1,3 +1,5 @@
-node_modules/*
-.idea/*
-secret/*
+.idea/
+secret/
+node_modules/
+package-lock.json
+

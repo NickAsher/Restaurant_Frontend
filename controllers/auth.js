@@ -14,10 +14,6 @@ const client = new OAuth2Client(CLIENT_ID);
 exports.getLoginPage = async(req, res)=>{
   try{
     res.render('login.hbs', {
-      IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
-      IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-      VIDEO_FRONTEND_LINK_PATH : Constants.VIDEO_FRONTEND_LINK_PATH,
-
     }) ;
   }catch (e) {
     res.send({
@@ -60,9 +56,7 @@ exports.postLoginPage = async (req, res)=>{
 
 exports.getSignUpPage = async (req, res)=>{
   res.render('signup.hbs', {
-    IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
-    IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-    VIDEO_FRONTEND_LINK_PATH : Constants.VIDEO_FRONTEND_LINK_PATH,
+
   }) ;
 } ;
 
@@ -275,9 +269,7 @@ exports.signOut = async(req, res)=>{
 exports.getResetPasswordPage = async (req, res)=>{
   try {
     res.render('reset_password.hbs', {
-      IMAGE_FRONTEND_LINK_PATH: Constants.IMAGE_FRONTEND_LINK_PATH,
-      IMAGE_BACKENDFRONT_LINK_PATH: Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-      VIDEO_FRONTEND_LINK_PATH: Constants.VIDEO_FRONTEND_LINK_PATH,
+
     });
   }catch (e) {
     res.send({
@@ -359,9 +351,6 @@ exports.getResetPasswordTokenPage = async (req, res)=>{
 
     //our token is verified now, render the page
     res.render('reset_password_token', {
-      IMAGE_FRONTEND_LINK_PATH: Constants.IMAGE_FRONTEND_LINK_PATH,
-      IMAGE_BACKENDFRONT_LINK_PATH: Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-      VIDEO_FRONTEND_LINK_PATH: Constants.VIDEO_FRONTEND_LINK_PATH,
       resetToken,
       userId : userData.id
     }) ;
@@ -415,7 +404,7 @@ exports.postResetPasswordToken = async (req, res)=>{
 
     res.send({
       status : true,
-      SUCCESS : "PWD_CHANGED"
+      success : "PWD_CHANGED"
     }) ;
 
   }catch (e) {

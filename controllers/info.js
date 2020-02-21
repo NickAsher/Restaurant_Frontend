@@ -11,9 +11,6 @@ exports.getContactUsData = async (req, res)=>{
     if(contactData['status'] == false){throw contactData ;}
 
     res.render('contact.hbs', {
-      IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
-      IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-      signedIn : req.session.isLoggedIn,
       contactData : contactData['data'],
       socialInfo : JSON.parse(contactData['data']['social_info']),
     }) ;
@@ -30,9 +27,6 @@ exports.getAboutUsData = async (req, res)=>{
 
 
     res.render('about.hbs', {
-      IMAGE_FRONTEND_LINK_PATH: Constants.IMAGE_FRONTEND_LINK_PATH,
-      IMAGE_BACKENDFRONT_LINK_PATH: Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-      signedIn : req.session.isLoggedIn,
       aboutData: aboutData['data'],
     });
   }catch (e) {
@@ -49,9 +43,6 @@ exports.getOfferSpecialsData = async (req, res)=>{
     if(offersData.status == false){throw offersData ;}
 
     res.render('offers.hbs', {
-      IMAGE_FRONTEND_LINK_PATH: Constants.IMAGE_FRONTEND_LINK_PATH,
-      IMAGE_BACKENDFRONT_LINK_PATH: Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-      signedIn : req.session.isLoggedIn,
       offersData: offersData['data'],
     });
   }catch (e) {

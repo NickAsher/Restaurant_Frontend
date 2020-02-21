@@ -20,9 +20,6 @@ exports.getAllBlogs_Paginated = async (req, res)=>{
     if(blogsData['status'] === false){throw blogsData ;}
 
     res.render('blogs_all.hbs', {
-      IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
-      IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-      signedIn : req.session.isLoggedIn,
       blogsData : blogsData['data'],
       parsedPaginatorHtml,
     }) ;
@@ -42,9 +39,6 @@ exports.getSingleBlog = async (req, res)=>{
     if(blogData['status'] === false){throw blogData ;}
 
     res.render('blog_single.hbs', {
-      IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
-      IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-      signedIn : req.session.isLoggedIn,
       blogData : blogData['data']['0'],
     }) ;
   }catch (e) {

@@ -9,9 +9,6 @@ exports.getMenu = async (req, res)=>{
     if(menuData.status == false){throw menuData.data ;}
 
     res.render('menu.hbs', {
-      IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
-      IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-      signedIn : req.session.isLoggedIn,
       menuData : menuData['data'],
     }) ;
 
@@ -38,9 +35,6 @@ exports.getItem_ModalProduct = async (req, res)=>{
     if(addonData['status'] == false) {throw addonData ;}
 
     res.render('./includes/modal_product.hbs', {
-      IMAGE_FRONTEND_LINK_PATH: Constants.IMAGE_FRONTEND_LINK_PATH,
-      IMAGE_BACKENDFRONT_LINK_PATH: Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-      signedIn : req.session.isLoggedIn,
       itemData: itemData['data']['0'],
       sizeData: sizeData['data'],
       multipleSizes: sizeData['data'].length > 1,
@@ -67,9 +61,6 @@ exports.getItemDetail_DataOnly = async(req, res)=>{
     let addonData = await dbRepository.getAddonDataInCategory(categoryId) ;
 
     res.send({
-      IMAGE_FRONTEND_LINK_PATH : Constants.IMAGE_FRONTEND_LINK_PATH,
-      IMAGE_BACKENDFRONT_LINK_PATH : Constants.IMAGE_BACKENDFRONT_LINK_PATH,
-      signedIn : req.session.isLoggedIn,
       itemData : itemData['data']['0'],
       sizeData : sizeData['data'] ,
       multipleSizes : sizeData['data'].length > 1,
