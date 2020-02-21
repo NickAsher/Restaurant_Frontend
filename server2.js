@@ -8,6 +8,7 @@ const cookieParser = require("cookie-parser") ;
 const fs = require('fs') ;
 const bcrypt = require('bcrypt') ;
 const session = require('express-session') ;
+const csrf = require('csurf') ;
 
 const controllerBlogs = require('./controllers/blogs') ;
 const controllerGallery = require('./controllers/gallery') ;
@@ -17,19 +18,17 @@ const controllerMenu = require('./controllers/menu') ;
 const controllerAuth = require('./controllers/auth') ;
 const dbRepository = require('./utils/DbRepository') ;
 const parseUtils = require('./utils/parse') ;
+
+
 const app = express() ;
 app.set('view engine', 'hbs') ;
-// app.set('views', path.join(__dirname, "./views")) ;
 app.set('views', path.join(__dirname, "./public2/views")) ;
 
-
-// hbs.registerPartials(path.join(__dirname, "./views/includes/")) ;
 hbs.registerPartials(path.join(__dirname, "./public2/views/includes/")) ;
 hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
   return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
 });
 
-// app.use(express.static("public"));
 app.use(express.static("public2"));
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
@@ -45,6 +44,9 @@ app.use(session({
     secure :false // use it when using https
   }
 })) ;
+// using the default values for the csrf token.
+// can use options like csrf({ option1:val1, option2:val2 })
+app.use(csrf()) ;
 
 app.use((req, res, next)=>{
   console.log(`[${req.method} ${req.originalUrl} ], [user  : ${req.session.userId} ]`) ;
@@ -56,6 +58,7 @@ app.use((req, res, next)=>{
   res.locals.IMAGE_BACKENDFRONT_LINK_PATH = Constants.IMAGE_BACKENDFRONT_LINK_PATH ;
   res.locals.VIDEO_FRONTEND_LINK_PATH = Constants.VIDEO_FRONTEND_LINK_PATH ;
   res.locals.signedIn = req.session.isLoggedIn ;
+  res.locals._csrfToken = req.csrfToken() ; // this method will create a new csrf token and set that token in user session
   next() ;
 }) ;
 
@@ -114,8 +117,8 @@ const isAuthenticated = (redirectBack)=>{
 app.get('/', controllerHome.getHomePage) ;
 
 app.get('/menu', controllerMenu.getMenu) ;
-app.all('/item/:categoryId/:itemId', controllerMenu.getItem_ModalProduct) ;
-app.all('/itemy/:categoryId/:itemId', controllerMenu.getItemDetail_DataOnly) ;
+app.get('/item/:categoryId/:itemId', controllerMenu.getItem_ModalProduct) ;
+app.get('/itemy/:categoryId/:itemId', controllerMenu.getItemDetail_DataOnly) ;
 
 app.get('/checkout', isAuthenticated('checkout'), async (req, res)=>{
   res.render('checkout.hbs', {

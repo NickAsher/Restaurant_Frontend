@@ -81,6 +81,7 @@
                                 <br>
                                 <input name="post_Password" class="form-control" type="password" id="input-password" placeholder="Password">
                                 <br>
+                                <input type="hidden" name="_csrf" value="{{_csrfToken}}" >
                                 <div class="row">
                                     <div class="col-5"></div>
                                     <div class="col-3">
@@ -181,7 +182,10 @@
         $.ajax({
             url : '/signup/google',
             method : "POST",
-            data : {"post_idToken" : id_token},
+            data : {
+              "post_idToken" : id_token,
+              "_csrf" : "{{_csrfToken}}"
+            },
             success : (result)=>{
                 if(result.status ==true){
                   googleSignOut() ;
@@ -227,7 +231,8 @@
                             "post_Email" : profileInfo.email,
                             "post_Firstname" : profileInfo.first_name,
                             "post_Lastname" : profileInfo.last_name,
-                            "post_Id" : profileInfo.id
+                            "post_Id" : profileInfo.id,
+                            "_csrf" : "{{_csrfToken}}"
                         },
                         success : (result)=>{
                           $('#Btn_FacebookLogin').text("Logged In") ;
