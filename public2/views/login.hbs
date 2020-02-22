@@ -63,7 +63,7 @@
                     <div class="card ">
                         <div class="card-block">
 
-                            <div id="section_Login">
+                            <div id="div_SectionSignIn">
 
                                 <div class="row">
                                     <div class="col-md-6">
@@ -78,27 +78,64 @@
                                 <center><h5 class="center">or</h5></center>
 
 
-                                <input name="post_Email" class=" form-control" type="text" id="input-email" placeholder="Email" >
+                                <input name="post_Email" class=" form-control" type="text" id="input-login-email" placeholder="Email" >
                                 <br>
-                                <input name="post_Password" class="form-control" type="password" id="input-password" placeholder="Password">
+                                <input name="post_Password" class="form-control" type="password" id="input-login-password" placeholder="Password">
                                 <br>
-                                <input name="_csrf" type="hidden" id="input-csrf" value="{{_csrfToken}}" >
-
                                 <div class="row">
                                     <div class="col-5"></div>
                                     <div class="col-3">
-                                        <a href="/signup" >Sign Up</a>
+                                        <button type="button" onclick="showSection_SignUp_FromSignIn()">Sign Up</button>
                                     </div>
                                     <div class="col-4">
-                                        <a href="/resetPassword" >Forget Password</a>
+                                        <button type="button" onclick="showSection_ResetPassword_FromSignIn()">Forget Password</button>
                                     </div>
                                 </div>
-                                    <br>
+                                <br>
                                 <div class="row">
                                     <button class="push-4 col-4 btn btn-primary" type="button" onclick="normalSignIn()">Sign In</button>
                                 </div>
 
 
+                            </div>
+
+
+                            <div id="div_SectionSignUp" style="display: none">
+                                <div class="form-group row">
+                                    <div class="col-6">
+                                        <input name="post_Firstname" class="form-control" type="text" id="input-signup-firstname" placeholder="Firstname">
+                                    </div>
+                                    <div class="col-6">
+                                        <input name="post_Lastname" class="form-control" type="text" id="input-signup-lastname" placeholder="Lastname" >
+                                    </div>
+                                </div>
+                                <input name="post_Email" class="form-control" type="email" id="input-signup-email" >
+                                <input name="post_Password" class="form-control" type="password" id="input-signup-password" placeholder="password" >
+                                <input name="post_PasswordAgain" class="form-control" type="password" id="input-signup-password-again" placeholder="Retype your password" >
+                                <div class="row">
+                                    <button  class="push-4 col-md-4 btn btn-info" type="button" onclick="normalSignUp()">Sign up</button>
+                                </div>
+                            </div>
+
+
+                            <div id="div_SectionResetPassword" style="display: none">
+                                <h3>Reset Password</h3>
+                                <p>Please write yout email address in the box below</p>
+                                <input class=" form-control" type="email" id="input-reset-email" placeholder="Email" >
+                                <br>
+                                <div class="row">
+                                    <button class="push-4 col-md-4 btn btn-primary" type="button" onclick="postGeneratePasswordResetEmail()">Send Email</button>
+                                </div>
+                            </div>
+                            <div id="div_SectionResetPasswordResponse" style="display: none">
+                                <h3>Reset Password</h3>
+                                <br>
+                                <p>An email containing the instructions to reset your password has been sent to your email address
+                                    Please check your email inbox</p>
+                                <br>
+                                <div class="row">
+                                    <button class="push-4 col-md-4 btn btn-primary" type="button" onclick="returnToSignIn()">Return to Sign In</button>
+                                </div>
                             </div>
 
 
@@ -172,9 +209,9 @@
         fetch('/login', {
             method : 'POST',
             body : new URLSearchParams({
-                post_Email : $('#input-email').val(),
-                post_Password : $('#input-password').val(),
-                _csrf : $('#input-csrf').val(),
+                post_Email : $('#input-login-email').val(),
+                post_Password : $('#input-login-password').val(),
+                _csrf : "{{_csrfToken}}",
             })
         })
         .then((response)=>response.json()) // have to do this for some goddamn reason otherwise the return data is just http status codes
@@ -300,19 +337,50 @@
 
 
 
-    function postPasswordReset(){
+
+    function normalSignUp(){
+        // function for normal sign in (not google or facebook)
+        fetch('/signup', {
+            method : 'POST',
+            body : new URLSearchParams({
+                post_Firstname : $('#input-signup-firstname').val(),
+                post_Lastname : $('#input-signup-lastname').val(),
+                post_Email : $('#input-signup-email').val(),
+                post_Password : $('#input-signup-password').val(),
+                post_PasswordAgain : $('#input-signup-password-again').val(),
+                _csrf : "{{_csrfToken}}",
+            })
+        })
+        .then((response)=>response.json())
+        .then((data)=>{
+            console.log(data) ;
+            if(data.status == true){
+                window.location.href = '/' ;
+            }else{
+                //TODO good looking error msg
+                makeToast('error', "Error in loggin in, check console output") ;
+            }
+        }).catch((err)=>{
+            makeToast('error', "Error in loggin in") ;
+            console.log(err) ;
+        }) ;
+    }
+
+
+
+    function postGeneratePasswordResetEmail(){
         $.ajax({
-            url : '/resetPassword',
+            url : '/generateResetPasswordEmail',
             method : "POST",
             data : {
-                "post_Email" : $('#input-email').val(),
+                "post_Email" : $('#input-reset-email').val(),
                 "_csrf" : "{{_csrfToken}}"
             },
             success : (result)=>{
                 if(result.status ==true && result.success =="MAIL_SENT"){
                     console.log(result) ;
-                    $('#div_Response').show() ;
-                    $('#div_SendEmail').hide() ;
+                    $('#div_SectionResetPasswordResponse').show() ;
+                    $('#div_SectionResetPassword').hide() ;
 
                 }else{
                     showError(result, "Some kind of error in the mail sending") ;
@@ -323,6 +391,22 @@
                 showError(err, "Error in making the post request") ;
             }
         }) ;
+    }
+
+    function returnToSignIn(){
+        $('#div_SectionSignIn').show() ;
+        $('#div_SectionResetPasswordResponse').hide() ;
+    }
+
+    function showSection_ResetPassword_FromSignIn(){
+        $('#div_SectionResetPassword').show() ;
+        $('#div_SectionSignIn').hide() ;
+    }
+
+    function showSection_SignUp_FromSignIn(){
+        $('#div_SectionSignUp').show() ;
+        $('#div_SectionSignIn').hide() ;
+
     }
 
 

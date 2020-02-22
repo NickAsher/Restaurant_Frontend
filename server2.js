@@ -133,16 +133,14 @@ app.get('/about', controllerInfo.getAboutUsData) ;
 app.get('/specials', controllerInfo.getOfferSpecialsData) ;
 
 app.get('/login', authRedirectHome, controllerAuth.getLoginPage) ;
-app.post('/login', authRedirectHome,  controllerAuth.postLoginPage) ;
-app.get('/signup', authRedirectHome, controllerAuth.getSignUpPage) ;
+app.post('/login',  controllerAuth.postLoginPage) ;
 app.post('/signup', controllerAuth.postSignUpPage) ;
 app.get('/signout', controllerAuth.signOut) ;
 app.post('/signup/google', controllerAuth.postSignUp_Google) ;
 app.post('/signup/facebook', controllerAuth.postSignUp_Facebook) ;
-app.get('/resetPassword', authRedirectHome, controllerAuth.getResetPasswordPage) ;
-app.post('/resetPassword', controllerAuth.postResetPassword) ;
+app.post('/generateResetPasswordEmail', controllerAuth.postGeneratePasswordResetEmail) ;
 app.get('/resetPassword/:resetToken', controllerAuth.getResetPasswordTokenPage) ;
-app.post('/saveResetPassword/', controllerAuth.postResetPasswordToken) ;
+app.post('/resetPassword', controllerAuth.postResetPasswordToken) ;
 
 
 

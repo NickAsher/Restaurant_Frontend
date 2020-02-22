@@ -57,11 +57,7 @@ exports.postLoginPage = async (req, res)=>{
 
 };
 
-exports.getSignUpPage = async (req, res)=>{
-  res.render('signup.hbs', {
 
-  }) ;
-} ;
 
 
 
@@ -289,23 +285,7 @@ exports.signOut = async(req, res)=>{
 
 
 
-exports.getResetPasswordPage = async (req, res)=>{
-  try {
-    res.render('reset_password.hbs', {
-
-    });
-  }catch (e) {
-    res.send({
-      e,
-      e_message : e.message,
-      e_toString : e.toString(),
-      e_toString2 : e.toString,
-      yo : "Beta ji koi error hai"
-    }) ;
-  }
-} ;
-
-exports.postResetPassword = async (req, res)=>{
+exports.postGeneratePasswordResetEmail = async (req, res)=>{
   try {
     let email = req.body.post_Email;
     let dbReturnData = await dbRepository.getUser_ByEmail(email);
@@ -373,15 +353,10 @@ exports.getResetPasswordTokenPage = async (req, res)=>{
     }
 
     //our token is verified now, render the page
-    res.render('reset_password_token', {
+    res.render('reset_password.hbs', {
       resetToken,
       userId : userData.id
     }) ;
-
-
-
-
-
 
   }catch (e) {
     res.send({
