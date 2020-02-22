@@ -63,44 +63,53 @@
                     <div class="card ">
                         <div class="card-block">
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="g-signin2"  data-longtitle="true" data-onsuccess="onSignIn"></div>
+                            <div id="section_Login">
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="g-signin2"  data-longtitle="true" data-onsuccess="onSignIn"></div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button id="Btn_FacebookLogin" type="button" class="btn btn-secondary" onclick="facebookSignIn();">Facebook Login</button>
+                                        <!--<div class="fb-login-button" data-width="" data-size="large" data-button-type="login_with" data-auto-logout-link="true" data-use-continue-as="true" data-scope="public_profile,email" data-onlogin="onFacebookLogin();"></div>-->
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <button id="Btn_FacebookLogin" type="button" class="btn btn-secondary" onclick="facebookSignIn();">Facebook Login</button>
-                                    <!--<div class="fb-login-button" data-width="" data-size="large" data-button-type="login_with" data-auto-logout-link="true" data-use-continue-as="true" data-scope="public_profile,email" data-onlogin="onFacebookLogin();"></div>-->
-                                </div>
-                            </div>
-                            <br>
-                            <center><h5 class="center">or</h5></center>
+                                <br>
+                                <center><h5 class="center">or</h5></center>
 
 
-                            <form id="mainForm" method="post" action="#" >
                                 <input name="post_Email" class=" form-control" type="text" id="input-email" placeholder="Email" >
                                 <br>
                                 <input name="post_Password" class="form-control" type="password" id="input-password" placeholder="Password">
                                 <br>
-                                <input type="hidden" name="_csrf" value="{{_csrfToken}}" >
+                                <input name="_csrf" type="hidden" id="input-csrf" value="{{_csrfToken}}" >
+
                                 <div class="row">
                                     <div class="col-5"></div>
                                     <div class="col-3">
-                                        <a href="/signup">Sign Up</a>
+                                        <a href="/signup" >Sign Up</a>
                                     </div>
                                     <div class="col-4">
-                                        <a href="/resetPassword">Forget Password</a>
+                                        <a href="/resetPassword" >Forget Password</a>
                                     </div>
                                 </div>
-
-                                <br>
-
+                                    <br>
                                 <div class="row">
-                                    <input  class="push-4 col-md-4 btn btn-primary" type="submit" value="Sign In">
+                                    <button class="push-4 col-4 btn btn-primary" type="button" onclick="normalSignIn()">Sign In</button>
                                 </div>
 
-                                <div id="status">
-                                </div>
-                            </form>
+
+                            </div>
+
+
+
+
+
+
+
+
+
+
                         </div>
                     </div>
                 </div>
@@ -157,6 +166,32 @@
         });
     };
 
+
+    function normalSignIn(){
+        // function for normal sign in (not google or facebook)
+        fetch('/login', {
+            method : 'POST',
+            body : new URLSearchParams({
+                post_Email : $('#input-email').val(),
+                post_Password : $('#input-password').val(),
+                _csrf : $('#input-csrf').val(),
+            })
+        })
+        .then((response)=>response.json()) // have to do this for some goddamn reason otherwise the return data is just http status codes
+        .then((data)=>{
+            console.log(data) ;
+          if(data.status == true){
+            window.location.href = '/' ;
+          }else{
+            //TODO good looking error msg
+            makeToast('error', "Error in loggin in") ;
+          }
+        }).catch((err)=>{
+          // error in making post request
+
+        }) ;
+    }
+
     function googleSignOut() {
         try{
             var auth2 = gapi.auth2.getAuthInstance();
@@ -176,7 +211,7 @@
 
 
 
-    function onSignIn(googleUser) {
+    function onGoogleSignIn(googleUser) {
         console.log("signed in google") ;
         var id_token = googleUser.getAuthResponse().id_token;
         $.ajax({
@@ -265,8 +300,30 @@
 
 
 
+    function postPasswordReset(){
+        $.ajax({
+            url : '/resetPassword',
+            method : "POST",
+            data : {
+                "post_Email" : $('#input-email').val(),
+                "_csrf" : "{{_csrfToken}}"
+            },
+            success : (result)=>{
+                if(result.status ==true && result.success =="MAIL_SENT"){
+                    console.log(result) ;
+                    $('#div_Response').show() ;
+                    $('#div_SendEmail').hide() ;
 
-
+                }else{
+                    showError(result, "Some kind of error in the mail sending") ;
+                    console.log(result) ;
+                }
+            },
+            error : (err)=> {
+                showError(err, "Error in making the post request") ;
+            }
+        }) ;
+    }
 
 
 

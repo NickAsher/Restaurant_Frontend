@@ -40,7 +40,10 @@ exports.postLoginPage = async (req, res)=>{
 
     req.session.isLoggedIn = true ;
     req.session.userId = userData.id ;
-    res.redirect('/') ;
+    res.send({
+      status : true,
+      success : "USER_LOGGEDIN"
+    }) ;
   }catch (e) {
     res.send({
       e,
@@ -71,6 +74,7 @@ exports.postSignUpPage = async (req,res)=>{
     let passwordAgain = req.body.post_PasswordAgain ;
     // TODO backend form validation here
 
+
     if(password != passwordAgain){
       throw "Two passwords are not equal" ;
     }
@@ -96,12 +100,13 @@ exports.postSignUpPage = async (req,res)=>{
     req.session.userId = dbData['0'].insertId ;
 
     res.send({
-      msg : "new user is added",
-      dbData
+      status : true,
+      success : "USER_ADDED"
     });
 
   }catch (e) {
     res.send({
+      status : false,
       e,
       e_message : e.message,
       e_toString : e.toString(),
@@ -116,7 +121,6 @@ exports.postSignUp_Google = async (req, res)=>{
   /* This method will be used for both logging in and signing up users through google login.
   So check if a user already exists. */
   try {
-
     let googleToken = req.body.post_idToken ;
     const ticket = await client.verifyIdToken({
       idToken: googleToken,
@@ -138,9 +142,13 @@ exports.postSignUp_Google = async (req, res)=>{
     if (dbReturnData.data.length == 0) {
       // new user, so add him
 
+      //creating a fake password hash
+      // needed for creating password reset jwt, as we use password hash to sign jwt. So password hash cannot be empty
+      let fakePasswordHash = crypto.createHash('md5').update(`${googleId}-${email}`).digest('hex') ;
       let dbData = await dbConnection.execute(`
-    INSERT INTO users_table_new (email, firstname, lastname, oauth_provider, oauth_id) VALUES (:email, :firstname, :lastname, :oauth_provider, :oauth_id) `, {
+    INSERT INTO users_table_new (email, password_hash, firstname, lastname, oauth_provider, oauth_id) VALUES (:email, :password_hash, :firstname, :lastname, :oauth_provider, :oauth_id) `, {
         email,
+        password_hash : fakePasswordHash,
         firstname,
         lastname,
         oauth_provider: "google",
@@ -152,16 +160,21 @@ exports.postSignUp_Google = async (req, res)=>{
       req.session.userId = dbData['0'].insertId;
       console.log("New user, signing up") ;
       res.send({
-        status: true
+        status: true,
+        success : "USER_ADDED"
       });
     } else {
     // user already exists
       let userData = dbReturnData.data['0']; // due the data structure
+      if(userData.oauth_provider != 'google'){
+        throw "not a google account" ;
+      }
       req.session.isLoggedIn = true ;
       req.session.userId = userData.id ;
       console.log("User already exists logging in") ;
       res.send({
-        status: true
+        status: true,
+        success : "USER_LOGGEDIN"
       });
     }
 
@@ -207,9 +220,14 @@ exports.postSignUp_Facebook = async (req, res)=>{
     if (dbReturnData.data.length == 0) {
       // new user, so add him
 
+      //creating a fake password hash
+      // needed for creating password reset jwt, as we use password hash to sign jwt. So password hash cannot be empty
+      let fakePasswordHash = crypto.createHash('md5').update(`${facebookId}-${email}`).digest('hex')  ;
+
       let dbData = await dbConnection.execute(`
-    INSERT INTO users_table_new (email, firstname, lastname, oauth_provider, oauth_id) VALUES (:email, :firstname, :lastname, :oauth_provider, :oauth_id) `, {
+      INSERT INTO users_table_new (email, password_hash, firstname, lastname, oauth_provider, oauth_id) VALUES (:email, :password_hash, :firstname, :lastname, :oauth_provider, :oauth_id) `, {
         email,
+        password_hash : fakePasswordHash,
         firstname,
         lastname,
         oauth_provider: "facebook",
@@ -221,16 +239,21 @@ exports.postSignUp_Facebook = async (req, res)=>{
       req.session.userId = dbData['0'].insertId;
       console.log("New user, signing up") ;
       res.send({
-        status: true
+        status: true,
+        success : "USER_ADDED"
       });
     } else {
       // user already exists
       let userData = dbReturnData.data['0']; // due the data structure
+      if(userData.oauth_provider != "facebook"){
+        throw "Not a facebook account" ;
+      }
       req.session.isLoggedIn = true ;
       req.session.userId = userData.id ;
       console.log("User already exists logging in") ;
       res.send({
-        status: true
+        status: true,
+        success : "USER_LOGGEDIN"
       });
     }
 
