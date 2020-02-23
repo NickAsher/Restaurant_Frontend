@@ -2,205 +2,41 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1620cee4-64a5-406e-9fc4-7b203dfbc357" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/public/plugins/bootstrap/dist/css/bootstrap-grid.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/plugins/bootstrap/dist/css/bootstrap-grid.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/plugins/bootstrap/dist/css/bootstrap-grid.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/plugins/bootstrap/dist/css/bootstrap-reboot.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/plugins/bootstrap/dist/css/bootstrap-reboot.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/plugins/bootstrap/dist/css/bootstrap-reboot.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/plugins/bootstrap/dist/css/bootstrap.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/plugins/bootstrap/dist/css/bootstrap.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/plugins/bootstrap/dist/css/bootstrap.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/plugins/bootstrap/dist/js/bootstrap.bundle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/plugins/bootstrap/dist/js/bootstrap.bundle.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/plugins/bootstrap/dist/js/bootstrap.bundle.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/plugins/bootstrap/dist/js/bootstrap.bundle.min.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/plugins/bootstrap/dist/js/bootstrap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/plugins/bootstrap/dist/js/bootstrap.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/plugins/bootstrap/dist/js/bootstrap.min.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/classes.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/classes.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/classes.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/default_style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/itemdetail.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/my_general_classes.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/video-page.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/btn_google_signin.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/cover_photo.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/facebook.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/img_1495644782.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/profile_img.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/restaurant_logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/shopping_cart.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/twitter.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/zomato.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/lib/bootstrap4/bootstrap-grid.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/lib/bootstrap4/bootstrap-reboot.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/lib/bootstrap4/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/lib/bootstrap4/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/lib/bootstrap4/bootstrap_addon.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/lib/bootstrap4/bootstrap_addon.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/lib/font-awesome/css/font-awesome.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/lib/font-awesome/css/font-awesome.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/lib/font-awesome/fonts/FontAwesome.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/lib/font-awesome/fonts/fontawesome-webfont.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/lib/font-awesome/fonts/fontawesome-webfont.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/lib/font-awesome/fonts/fontawesome-webfont.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/lib/font-awesome/fonts/fontawesome-webfont.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/lib/font-awesome/fonts/fontawesome-webfont.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/lib/jquery/jquery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/lib/material_color/material-design-color-palette.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/lib/reset/reset.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/lib/t3/t3.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/lib/t3/t3.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/lib/t3/t3.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/videos/login_background.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/css/prettify.css" beforeDir="false" afterPath="$PROJECT_DIR$/public2/css/prettify.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/css/themes/my-personal.css" beforeDir="false" afterPath="$PROJECT_DIR$/public2/css/themes/my-personal.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/css/themes/theme-beige.css" beforeDir="false" afterPath="$PROJECT_DIR$/public2/css/themes/theme-beige.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/css/themes/theme-beige.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public2/css/themes/theme-beige.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/css/themify-icons.css" beforeDir="false" afterPath="$PROJECT_DIR$/public2/css/themify-icons.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/fonts/themify9f24.eot" beforeDir="false" afterPath="$PROJECT_DIR$/public2/fonts/themify9f24.eot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/fonts/themify9f24.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/fonts/themify9f24.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/fonts/themify9f24.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/public2/fonts/themify9f24.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/fonts/themify9f24.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public2/fonts/themify9f24.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/fonts/themifyd41d.eot" beforeDir="false" afterPath="$PROJECT_DIR$/public2/fonts/themifyd41d.eot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/avatars/avatar01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/avatars/avatar01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/avatars/avatar02.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/avatars/avatar02.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/avatars/avatar03.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/avatars/avatar03.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/avatars/avatar04.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/avatars/avatar04.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/btn_apple.png" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/btn_apple.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/btn_google.png" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/btn_google.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/docs/signup01.png" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/docs/signup01.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/docs/signup02.png" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/docs/signup02.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/docs/signup03.png" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/docs/signup03.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/docs/signup04.png" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/docs/signup04.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/favicon.png" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/favicon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/favicon_120x120.png" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/favicon_120x120.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/favicon_152x152.png" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/favicon_152x152.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/favicon_60x60.png" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/favicon_60x60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/favicon_76x76.png" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/favicon_76x76.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/gallery/gallery01-min.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/gallery/gallery01-min.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/gallery/gallery01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/gallery/gallery01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/gallery/gallery02-min.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/gallery/gallery02-min.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/gallery/gallery02.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/gallery/gallery02.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/gallery/gallery03-min.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/gallery/gallery03-min.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/gallery/gallery03.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/gallery/gallery03.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/gallery/gallery04-min.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/gallery/gallery04-min.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/gallery/gallery04.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/gallery/gallery04.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/gallery/gallery05-min.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/gallery/gallery05-min.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/gallery/gallery05.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/gallery/gallery05.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/logo-horizontal-dark.png" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/logo-horizontal-dark.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/logo-horizontal-light.png" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/logo-horizontal-light.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/logo-light.png" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/logo-light.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/bg-burger.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/bg-burger.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/bg-burger2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/bg-burger2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/bg-chef.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/bg-chef.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/bg-croissant.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/bg-croissant.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/bg-desk.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/bg-desk.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/bg-food.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/bg-food.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/bg-restaurant.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/bg-restaurant.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/bg-review.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/bg-review.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/dropdown-about.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/dropdown-about.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/dropdown-more.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/dropdown-more.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/hero-burger.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/hero-burger.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/menu-sample-burgers.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/menu-sample-burgers.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/menu-sample-dessert.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/menu-sample-dessert.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/menu-sample-drinks.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/menu-sample-drinks.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/menu-sample-pasta.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/menu-sample-pasta.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/menu-sample-pizza.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/menu-sample-pizza.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/menu-sample-sushi.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/menu-sample-sushi.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/menu-title-burgers.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/menu-title-burgers.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/menu-title-desserts.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/menu-title-desserts.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/menu-title-drinks.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/menu-title-drinks.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/menu-title-pasta.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/menu-title-pasta.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/menu-title-pizza.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/menu-title-pizza.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/menu-title-sushi.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/menu-title-sushi.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/modal-add.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/modal-add.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/modal-review.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/modal-review.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/offer-single.html" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/offer-single.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/product-single.html" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/product-single.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/service-birthday.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/service-birthday.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/service-engagement.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/service-engagement.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/service-weddings.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/service-weddings.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/slider-burger.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/slider-burger.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/slider-burger_dark.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/slider-burger_dark.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/slider-dessert.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/slider-dessert.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/slider-dessert_dark.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/slider-dessert_dark.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/slider-pasta.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/slider-pasta.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/slider-pasta_dark.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/slider-pasta_dark.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/special-burger.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/special-burger.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/special-dish.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/special-dish.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/photos/special-pizza.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/photos/special-pizza.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/posts/post01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/posts/post01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/posts/post01_lg.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/posts/post01_lg.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/posts/post02.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/posts/post02.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/posts/post03.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/posts/post03.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/posts/post04.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/posts/post04.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/posts/post05.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/posts/post05.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/products/product-burger.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/products/product-burger.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/products/product-chicken-burger.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/products/product-chicken-burger.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/products/product-chicken-wings.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/products/product-chicken-wings.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/products/product-pasta.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/products/product-pasta.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/products/product-pizza.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/products/product-pizza.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/products/product-sushi.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/products/product-sushi.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/screens/home-basic.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/screens/home-basic.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/screens/home-burgers.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/screens/home-burgers.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/screens/home-more.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/screens/home-more.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/screens/home-slider.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/screens/home-slider.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/screens/home-video.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/screens/home-video.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/img/svg/sign.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/img/svg/sign.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/js/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/public2/js/cart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/js/core.js" beforeDir="false" afterPath="$PROJECT_DIR$/public2/js/core.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/js/myPersonal.js" beforeDir="false" afterPath="$PROJECT_DIR$/public2/js/myPersonal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/js/prettify.js" beforeDir="false" afterPath="$PROJECT_DIR$/public2/js/prettify.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/plugins/animate.css/animate.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public2/plugins/animate.css/animate.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/plugins/animsition/dist/css/animsition.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public2/plugins/animsition/dist/css/animsition.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/plugins/animsition/dist/js/animsition.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public2/plugins/animsition/dist/js/animsition.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/plugins/bootstrap/dist/css/bootstrap-grid.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public2/plugins/bootstrap/dist/css/bootstrap-grid.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/plugins/bootstrap/dist/css/bootstrap-reboot.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public2/plugins/bootstrap/dist/css/bootstrap-reboot.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/plugins/bootstrap/dist/css/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public2/plugins/bootstrap/dist/css/bootstrap.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/plugins/bootstrap/dist/css/bootstrap_addon.css" beforeDir="false" afterPath="$PROJECT_DIR$/public2/plugins/bootstrap/dist/css/bootstrap_addon.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/plugins/bootstrap/dist/js/bootstrap.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public2/plugins/bootstrap/dist/js/bootstrap.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/plugins/bootstrap/dist/js/bootstrap_addon.js" beforeDir="false" afterPath="$PROJECT_DIR$/public2/plugins/bootstrap/dist/js/bootstrap_addon.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/plugins/font-awesome/css/font-awesome.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public2/plugins/font-awesome/css/font-awesome.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/plugins/font-awesome/fonts/fontawesome-webfont3e6e.eot" beforeDir="false" afterPath="$PROJECT_DIR$/public2/plugins/font-awesome/fonts/fontawesome-webfont3e6e.eot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/plugins/font-awesome/fonts/fontawesome-webfont3e6e.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public2/plugins/font-awesome/fonts/fontawesome-webfont3e6e.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/plugins/font-awesome/fonts/fontawesome-webfont3e6e.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/public2/plugins/font-awesome/fonts/fontawesome-webfont3e6e.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/plugins/font-awesome/fonts/fontawesome-webfont3e6e.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public2/plugins/font-awesome/fonts/fontawesome-webfont3e6e.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/plugins/font-awesome/fonts/fontawesome-webfont3e6e.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public2/plugins/font-awesome/fonts/fontawesome-webfont3e6e.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/plugins/font-awesome/fonts/fontawesome-webfontd41d.eot" beforeDir="false" afterPath="$PROJECT_DIR$/public2/plugins/font-awesome/fonts/fontawesome-webfontd41d.eot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/plugins/jquery-validation/dist/jquery.validate.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public2/plugins/jquery-validation/dist/jquery.validate.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/plugins/jquery.appear/jquery.appear.js" beforeDir="false" afterPath="$PROJECT_DIR$/public2/plugins/jquery.appear/jquery.appear.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/plugins/jquery.localscroll/jquery.localScroll.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public2/plugins/jquery.localscroll/jquery.localScroll.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/plugins/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public2/plugins/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/plugins/jquery.scrollto/jquery.scrollTo.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public2/plugins/jquery.scrollto/jquery.scrollTo.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/plugins/jquery/dist/jquery.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public2/plugins/jquery/dist/jquery.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/plugins/skrollr/dist/skrollr.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public2/plugins/skrollr/dist/skrollr.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/plugins/slick-carousel/slick/slick.css" beforeDir="false" afterPath="$PROJECT_DIR$/public2/plugins/slick-carousel/slick/slick.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/plugins/slick-carousel/slick/slick.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public2/plugins/slick-carousel/slick/slick.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/plugins/tether/dist/js/tether.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public2/plugins/tether/dist/js/tether.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/plugins/toastr/toastr.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public2/plugins/toastr/toastr.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/plugins/toastr/toastr.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public2/plugins/toastr/toastr.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/plugins/twitter-fetcher/js/twitterFetcher_min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public2/plugins/twitter-fetcher/js/twitterFetcher_min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/assets/videos/home.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/public2/videos/home.mp4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/views/about.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/about.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/views/blog_single.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/blog_single.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/views/blogs_all.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/blogs_all.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/views/checkout.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/checkout.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/views/contact.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/contact.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/views/gallery.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/gallery.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/views/includes/cart_new.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/includes/cart_new.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/views/includes/footer_new.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/includes/footer_new.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/views/includes/head_css.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/includes/head_css.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/views/includes/header_light.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/includes/header_light.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/views/includes/header_new.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/includes/header_new.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/views/includes/modal_product.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/includes/modal_product.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/views/includes/panel_mobile.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/includes/panel_mobile.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/views/index-video.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/index-video.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/views/login.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/login.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/views/menu.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/menu.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/views/offers.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/offers.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public2/views/reset_password.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/reset_password.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server2.js" beforeDir="false" afterPath="$PROJECT_DIR$/server2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/blogs/blogs.hbs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/blogs/specific_blog.hbs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/gallery/gallery.hbs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/gallery/specific_image.hbs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home/login.hbs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/includes/footer.hbs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/includes/header.hbs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/includes/sidebar.hbs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/info/about_us.hbs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/info/contact_us.hbs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/menu/item.hbs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/menu/menu.hbs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/plugins/bootstrap/dist/css/bootstrap-grid.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/plugins/bootstrap/dist/css/bootstrap-grid.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/plugins/bootstrap/dist/css/bootstrap-reboot.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/plugins/bootstrap/dist/css/bootstrap-reboot.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/plugins/bootstrap/dist/css/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/plugins/bootstrap/dist/css/bootstrap.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/plugins/bootstrap/dist/css/bootstrap_addon.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/plugins/bootstrap/dist/js/bootstrap.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/plugins/bootstrap/dist/js/bootstrap.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/plugins/bootstrap/dist/js/bootstrap_addon.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/about.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/about.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/blogs_all.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/blogs_all.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/checkout.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/checkout.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/contact.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/contact.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/gallery.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/gallery.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/includes/header_light.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/includes/header_light.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/includes/header_new.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/includes/header_new.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/includes/panel_mobile.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/includes/panel_mobile.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/login.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/login.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/menu.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/menu.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/offers.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/offers.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/reset_password.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/reset_password.hbs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -214,29 +50,47 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="server2.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server2.js">
+      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="498">
-              <caret line="26" column="45" selection-start-line="26" selection-start-column="45" selection-end-line="26" selection-end-column="45" />
+            <state relative-caret-position="744">
+              <caret line="31" column="30" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="blogs_all.hbs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/blogs_all.hbs">
+      <file leaf-file-name="menu.hbs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/menu.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2889">
-              <caret line="128" column="34" selection-start-line="128" selection-start-column="34" selection-end-line="128" selection-end-column="34" />
+            <state relative-caret-position="-2303">
+              <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="product-single.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public2/img/photos/product-single.html">
+      <file leaf-file-name="about.hbs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/about.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+            <state relative-caret-position="248">
+              <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="header_new.hbs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/includes/header_new.hbs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="30" column="33" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index-video.hbs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/index-video.hbs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="468">
+              <caret line="93" selection-start-line="93" selection-end-line="93" />
             </state>
           </provider>
         </entry>
@@ -269,15 +123,19 @@
       <find>cont</find>
       <find>container</find>
       <find>googleSignin</find>
-      <find />
+      <find>googleSignIn : req.session.oauth_provider == &quot;google&quot;,</find>
       <find>req.session.oauth_provider</find>
       <find>makeToast</find>
+      <find>/assets</find>
+      <find>push-</find>
     </findStrings>
     <replaceStrings>
       <replace>+</replace>
       <replace>+e.toString()</replace>
       <replace>e.toString()</replace>
       <replace>googleSignIn</replace>
+      <replace />
+      <replace>offset-</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -286,16 +144,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../.eslintrc" />
-        <option value="$PROJECT_DIR$/utils/paginator.js" />
-        <option value="$PROJECT_DIR$/utils/Constants.js" />
-        <option value="$PROJECT_DIR$/utils/dbHelper.json" />
-        <option value="$PROJECT_DIR$/utils/Paginator.js" />
-        <option value="$PROJECT_DIR$/public2/assets/css/themes/theme-beige.css" />
-        <option value="$PROJECT_DIR$/public2/views/includes/modal_product.hbs" />
-        <option value="$PROJECT_DIR$/utils/parse.js" />
-        <option value="$PROJECT_DIR$/public2/views/menu2.hbs" />
-        <option value="$PROJECT_DIR$/public2/views/includes/head_css.hbs" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.html" />
         <option value="$PROJECT_DIR$/public2/views/menu_test.hbs" />
         <option value="$PROJECT_DIR$/public2/assets/css/themes/my-personal.css" />
@@ -336,7 +184,17 @@
         <option value="$PROJECT_DIR$/controllers/checkout.js" />
         <option value="$PROJECT_DIR$/public2/views/checkout.hbs" />
         <option value="$PROJECT_DIR$/server2.js" />
+        <option value="$PROJECT_DIR$/views/includes/header_light.hbs" />
+        <option value="$PROJECT_DIR$/views/includes/panel_mobile.hbs" />
+        <option value="$PROJECT_DIR$/views/contact.hbs" />
+        <option value="$PROJECT_DIR$/views/gallery.hbs" />
+        <option value="$PROJECT_DIR$/views/login.hbs" />
+        <option value="$PROJECT_DIR$/views/offers.hbs" />
+        <option value="$PROJECT_DIR$/views/menu.hbs" />
         <option value="$PROJECT_DIR$/views/blogs_all.hbs" />
+        <option value="$PROJECT_DIR$/views/checkout.hbs" />
+        <option value="$PROJECT_DIR$/views/about.hbs" />
+        <option value="$PROJECT_DIR$/views/includes/header_new.hbs" />
       </list>
     </option>
   </component>
@@ -384,12 +242,13 @@
             <path>
               <item name="2_RestaurantFrontend" type="b2602c69:ProjectViewProjectNode" />
               <item name="2_RestaurantFrontend" type="462c0819:PsiDirectoryNode" />
-              <item name="public2" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="2_RestaurantFrontend" type="b2602c69:ProjectViewProjectNode" />
               <item name="2_RestaurantFrontend" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="includes" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -440,11 +299,11 @@
       <recent name="D:\Javascript\RestaurantProject\2_RestaurantFrontend\public2\assets" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Javascript\RestaurantProject\2_RestaurantFrontend\public\plugins\bootstrap" />
       <recent name="D:\Javascript\RestaurantProject\2_RestaurantFrontend\public2\views" />
       <recent name="C:\Work\Web\Restaurant_Frontend\public2\views" />
       <recent name="C:\Work\Web\Restaurant_Frontend\public2\assets\img" />
       <recent name="C:\Work\Web\Restaurant_Frontend\public2\assets\plugins" />
-      <recent name="D:\Javascript\RestaurantProject\2_RestaurantFrontend\public2\assets\img" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -460,7 +319,7 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="Unnamed" type="NodeJSConfigurationType" factoryName="Node.js" path-to-js-file="server2.js" working-dir="$PROJECT_DIR$" />
+    <configuration name="Unnamed" type="NodeJSConfigurationType" factoryName="Node.js" path-to-js-file="$PROJECT_DIR$/server.js" working-dir="$PROJECT_DIR$" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -526,12 +385,13 @@
       <workItem from="1582218254673" duration="163000" />
       <workItem from="1582254707304" duration="6355000" />
       <workItem from="1582347687957" duration="11046000" />
-      <workItem from="1582371949592" duration="13328000" />
+      <workItem from="1582371949592" duration="16447000" />
+      <workItem from="1582458017475" duration="2208000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="396467000" />
+    <option name="totallyTimeSpent" value="401794000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -546,13 +406,13 @@
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19989423" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19989423" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32942554" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3270809" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.19314642" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.21453694" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.21453694" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.26846424" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -572,19 +432,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/utils/Constants.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="30" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public2/img/btn_google.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public2/img/btn_apple.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils/Paginator.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-144" />
@@ -598,21 +445,15 @@
       </provider>
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.html" />
-    <entry file="file://$PROJECT_DIR$/public2/plugins/bootstrap/dist/css/bootstrap.min.css">
+    <entry file="file://$PROJECT_DIR$/public/plugins/bootstrap/dist/css/bootstrap.min.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
           <caret line="5" column="150732" selection-start-line="5" selection-start-column="150732" selection-end-line="5" selection-end-column="150732" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/lib/bootstrap4/bootstrap.min.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="5" column="150732" selection-start-line="5" selection-start-column="150732" selection-end-line="5" selection-end-column="150732" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public2/css/themes/theme-beige.css">
+    <entry file="file://$PROJECT_DIR$/public/lib/bootstrap4/bootstrap.min.css" />
+    <entry file="file://$PROJECT_DIR$/public/css/themes/theme-beige.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="143">
           <caret line="993" column="32" selection-start-line="993" selection-start-column="23" selection-end-line="993" selection-end-column="32" />
@@ -620,84 +461,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/secret/secrets.json" />
-    <entry file="file://$PROJECT_DIR$/views/includes/head_css.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="76" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/secret/google_credentials.json" />
-    <entry file="file://$PROJECT_DIR$/public/css/classes.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3105" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/includes/footer_new.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="3" column="52" selection-start-line="3" selection-start-column="52" selection-end-line="3" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/includes/panel_mobile.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="4" column="46" selection-start-line="4" selection-start-column="46" selection-end-line="4" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/classes.scss" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.json" />
-    <entry file="file://$PROJECT_DIR$/views/blog_single.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="94" selection-start-line="94" selection-end-line="94" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/contact.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="136" selection-start-line="136" selection-end-line="136" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/gallery.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="119" selection-start-line="119" selection-end-line="119" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/index-video.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="93" selection-start-line="93" selection-end-line="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/offers.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="106" selection-start-line="106" selection-end-line="106" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/includes/header_light.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="30" column="76" selection-start-line="30" selection-start-column="76" selection-end-line="30" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/includes/header_new.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="21" column="72" selection-start-line="21" selection-start-column="72" selection-end-line="21" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public2/css/themes/my-personal.css">
+    <entry file="file://$PROJECT_DIR$/public/css/themes/my-personal.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1536">
           <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
@@ -711,7 +478,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public2/js/myPersonal.js">
+    <entry file="file://$PROJECT_DIR$/public/js/myPersonal.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
           <caret line="77" column="1" selection-start-line="77" selection-start-column="1" selection-end-line="77" selection-end-column="1" />
@@ -780,13 +547,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/menu.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4869">
-          <caret line="186" selection-start-line="186" selection-end-line="186" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/mysql2/promise.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -809,14 +569,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public2/plugins/bootstrap/dist/js/bootstrap.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/public/plugins/bootstrap/dist/js/bootstrap.min.js">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/blogs.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -825,31 +579,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/login.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4278">
-          <caret line="359" column="35" selection-start-line="359" selection-start-column="35" selection-end-line="359" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/auth.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="383">
           <caret line="367" column="8" selection-start-line="361" selection-start-column="4" selection-end-line="367" selection-end-column="8" />
-          <folding>
-            <element signature="e#531#672#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/checkout.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="502">
-          <caret line="234" column="56" selection-start-line="234" selection-start-column="56" selection-end-line="234" selection-end-column="56" />
-          <folding>
-            <element signature="n#style#0;n#div#3;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#section#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -860,31 +593,134 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/about.hbs">
+    <entry file="file://$PROJECT_DIR$/public/img/photos/product-single.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="109" selection-start-line="109" selection-end-line="109" />
+        <state relative-caret-position="360">
+          <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server2.js">
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/plugins/bootstrap/dist/js/bootstrap.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/includes/panel_mobile.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="498">
-          <caret line="26" column="45" selection-start-line="26" selection-start-column="45" selection-end-line="26" selection-end-column="45" />
+        <state relative-caret-position="96">
+          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/includes/header_light.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="703">
+          <caret line="68" column="18" selection-start-line="68" selection-start-column="18" selection-end-line="68" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/Constants.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/contact.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="51" column="20" selection-start-line="51" selection-start-column="20" selection-end-line="51" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/gallery.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="52" column="20" selection-start-line="52" selection-start-column="20" selection-end-line="52" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/login.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="60" column="27" selection-start-line="60" selection-start-column="27" selection-end-line="60" selection-end-column="27" />
+          <folding>
+            <element signature="n#div#0;n#div#0;n#div#2;n#section#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="744">
+          <caret line="31" column="30" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/offers.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="53" column="21" selection-start-line="53" selection-start-column="21" selection-end-line="53" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/blogs_all.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2889">
-          <caret line="128" column="34" selection-start-line="128" selection-start-column="34" selection-end-line="128" selection-end-column="34" />
+        <state relative-caret-position="312">
+          <caret line="109" selection-start-line="109" selection-end-line="109" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public2/img/photos/product-single.html">
+    <entry file="file://$PROJECT_DIR$/views/blog_single.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+        <state relative-caret-position="2256">
+          <caret line="94" selection-start-line="94" selection-end-line="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/checkout.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-359">
+          <caret line="66" column="75" selection-start-line="66" selection-start-column="75" selection-end-line="66" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/includes/footer_new.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="3" column="52" selection-start-line="3" selection-start-column="52" selection-end-line="3" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/includes/head_css.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" column="76" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/menu.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2303">
+          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/about.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/index-video.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="93" selection-start-line="93" selection-end-line="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/includes/header_new.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="30" column="33" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
         </state>
       </provider>
     </entry>
