@@ -67,7 +67,7 @@
 
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="g-signin2"  data-longtitle="true" data-onsuccess="onSignIn"></div>
+                                        <div class="g-signin2"  data-longtitle="true" data-onsuccess="onGoogleSignIn"></div>
                                     </div>
                                     <div class="col-md-6">
                                         <button id="Btn_FacebookLogin" type="button" class="btn btn-secondary" onclick="facebookSignIn();">Facebook Login</button>
@@ -218,7 +218,7 @@
         .then((data)=>{
             console.log(data) ;
           if(data.status == true){
-            window.location.href = '/' ;
+              redirectBack('/') ;
           }else{
             //TODO good looking error msg
             makeToast('error', "Error in loggin in") ;
@@ -261,12 +261,14 @@
             success : (result)=>{
                 if(result.status ==true){
                   googleSignOut() ;
-                  redirectBack('/')
+                  redirectBack('/') ;
+                }else{
+                  console.log(result) ;
                 }
             },
             error : (err)=> {
               //TODO show error msg
-                makeToast(warn, "Error in logging in") ;
+                makeToast('error', "Error in logging in") ;
                 console.log("error");
                 console.log(err);
             }
@@ -355,7 +357,7 @@
         .then((data)=>{
             console.log(data) ;
             if(data.status == true){
-                window.location.href = '/' ;
+                redirectBack('/') ;
             }else{
                 //TODO good looking error msg
                 makeToast('error', "Error in loggin in, check console output") ;

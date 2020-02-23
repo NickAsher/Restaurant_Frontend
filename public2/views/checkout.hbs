@@ -32,6 +32,7 @@
     <!-- CSS Theme -->
     <link id="theme" rel="stylesheet" href="/assets/css/themes/theme-beige.css" />
     <link id="theme" rel="stylesheet" href="/assets/css/themes/my-personal.css" />
+    <script src="https://js.stripe.com/v3/"></script>
 
 </head>
 
@@ -69,46 +70,7 @@
 
 
                             <table id="cartTable" class="table-cart">
-                                <tr>
-                                    <td class="title">
-                                        <span class="name"><a href="#productModal" data-toggle="modal">Pizza Chicked BBQ</a></span>
-                                        <span class="caption text-muted">26”, deep-pan, thin-crust</span>
-                                    </td>
-                                    <td class="price">$9.82</td>
-                                    <td class="actions">
-                                        <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
-                                        <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="title">
-                                        <span class="name"><a href="#productModal" data-toggle="modal">Beef Burger</a></span>
-                                        <span class="caption text-muted">Large (500g)</span>
-                                    </td>
-                                    <td class="price">$9.82</td>
-                                    <td class="actions">
-                                        <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
-                                        <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="title">
-                                        <span class="name"><a href="#productModal" data-toggle="modal">Extra Burger</a></span>
-                                        <span class="caption text-muted">Small (200g)</span>
-                                    </td>
-                                    <td class="price text-success">$0.00</td>
-                                    <td class="actions">
-                                        <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
-                                        <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="title">
-                                        <span class="name">Weekend 20% OFF</span>
-                                    </td>
-                                    <td class="price text-success">-$8.22</td>
-                                    <td class="actions"></td>
-                                </tr>
+
                             </table>
                             <div class="cart-summary">
                                 <div class="row">
@@ -120,7 +82,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-7 text-right text-muted">Devliery:</div>
+                                    <div class="col-7 text-right text-muted">Delivery:</div>
                                     <div class="col-5">
                                         <strong>
                                             <span id="totalTax"  data-tax-percentage="18" class="money-currency"></span>
@@ -145,22 +107,14 @@
 
                     <div class="col-xl-8 pull-xl-4 col-lg-7 pull-lg-5">
                         <div class="bg-white p-4 p-md-5 mb-4">
-                            <h4 class="border-bottom pb-4"><i class="ti ti-user mr-3 text-primary"></i>Basic informations</h4>
+                            <h4 class="border-bottom pb-4"><i class="ti ti-user mr-3 text-primary"></i>Basic information</h4>
                             <div class="row mb-5">
                                 <div class="form-group col-sm-6">
-                                    <label>Name:</label>
+                                    <label>Firstname:</label>
                                     <input type="text" class="form-control">
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <label>Surename:</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label>Street and number:</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label>City:</label>
+                                    <label>Lastname:</label>
                                     <input type="text" class="form-control">
                                 </div>
                                 <div class="form-group col-sm-6">
@@ -175,42 +129,42 @@
 
                             <h4 class="border-bottom pb-4"><i class="ti ti-package mr-3 text-primary"></i>Delivery</h4>
                             <div class="row mb-5">
+                                <div class="form-group col-sm-12">
+                                    <label>House/Flat/Block No</label>
+                                    <input type="text" class="form-control">
+                                </div>
                                 <div class="form-group col-sm-6">
-                                    <label>Delivery time:</label>
-                                    <div class="select-container">
-                                        <select class="form-control">
-                                            <option>As fast as possible</option>
-                                            <option>In one hour</option>
-                                            <option>In two hours</option>
-                                        </select>
-                                    </div>
+                                    <label>Landmark</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label>City</label>
+                                    <input type="text" class="form-control" value="Delhi-NCR" disabled>
                                 </div>
                             </div>
 
+
                             <h4 class="border-bottom pb-4"><i class="ti ti-wallet mr-3 text-primary"></i>Payment</h4>
-                            <div class="row text-lg">
-                                <div class="col-md-4 col-sm-6 form-group">
-                                    <label class="custom-control custom-radio">
-                                        <input type="radio" name="payment_type" class="custom-control-input">
-                                        <span class="custom-control-indicator"></span>
-                                        <span class="custom-control-description">PayPal</span>
-                                    </label>
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <label>Card Number</label>
+                                    <div id="card-element-number" class="field form-control"></div>
                                 </div>
-                                <div class="col-md-4 col-sm-6 form-group">
-                                    <label class="custom-control custom-radio">
-                                        <input type="radio" name="payment_type" class="custom-control-input">
-                                        <span class="custom-control-indicator"></span>
-                                        <span class="custom-control-description">Credit Card</span>
-                                    </label>
+                                <div class="form-group col-sm-3">
+                                    <label>Expiry Date</label>
+                                    <div id="card-element-expiry" class="field form-control"></div>
                                 </div>
-                                <div class="col-md-4 col-sm-6 form-group">
-                                    <label class="custom-control custom-radio">
-                                        <input type="radio" name="payment_type" class="custom-control-input">
-                                        <span class="custom-control-indicator"></span>
-                                        <span class="custom-control-description">Cash</span>
-                                    </label>
+
+                                <div class="form-group col-sm-3">
+                                    <label>CVC</label>
+                                    <div id="card-element-cvc" class="field form-control"></div>
                                 </div>
                             </div>
+                            <div id="card-errors-number" role="alert" class="text-center" style="color: red;"><br></div>
+                            <div id="card-errors-expiry" role="alert" class="text-center" style="color: red;"><br></div>
+
+                            <!--<button id="submit" type="button" class="btn btn-outline-primary col-8 push-2  col-md-4 push-md-4">Pay</button>-->
+
                         </div>
                         <div class="text-center">
                             <button id="mySuperBtn" class="btn btn-primary btn-lg"><span>Order now!</span></button>
@@ -220,6 +174,7 @@
             </div>
 
         </section>
+
 
         {{>footer_new}}
 
@@ -250,7 +205,6 @@
 <script src="/assets/plugins/skrollr/dist/skrollr.min.js"></script>
 <script src="/assets/plugins/animsition/dist/js/animsition.min.js"></script>
 <script src="/assets/plugins/toastr/toastr.min.js" ></script>
-
 <!-- JS Core -->
 <script src="/assets/js/core.js"></script>
 
@@ -260,7 +214,57 @@
 <!--<script src="/assets/js/cart.js"></script>-->
 
 <script >
-    let getParsedCartItem = (cartItem)=>{
+
+
+    const stripe = Stripe('pk_test_FPbfGF5aEyQqsBfsPytI46qw002ouxr0PP');
+    var elements = stripe.elements();
+
+
+    function setupStripeCardElements() {
+        /* This function sets up the card divs and their validation using stripe libraary
+        */
+
+        let cardNumberElement = elements.create('cardNumber', {
+            placeholder: '16 Digit number here',
+        });
+        cardNumberElement.mount('#card-element-number');
+
+        let cardExpiryElement = elements.create('cardExpiry', {
+            placeholder: 'MM/YY',
+        });
+        cardExpiryElement.mount('#card-element-expiry');
+
+        let cardCvcElement = elements.create('cardCvc', {
+            placeholder: 'CVC',
+        });
+        cardCvcElement.mount('#card-element-cvc');
+
+        // setting errors to show
+        cardNumberElement.on('change', (result)=>{
+          if(result.error){
+              $('#card-errors-number').text(result.error.message) ;
+          }else{
+              $('#card-errors-number').html('<br>') ; //removes the error when text is changed
+          }
+        }) ;
+
+        cardExpiryElement.on('change', (result)=>{
+            if(result.error){
+                $('#card-errors-expiry').text(result.error.message) ;
+            }else{
+                $('#card-errors-expiry').html('<br>') ; //removes the error when text is changed
+            }
+        }) ;
+
+
+    }
+    setupStripeCardElements() ;
+
+    function getParsedCartItem(cartItem) {
+      /* This function parses a single cart item from an object
+       * like { id, name , size:{sizeId, sizePrice}, addonitems : {....} }
+       * to   name, price, descriptionString
+      */
         try{
             let sizeId = cartItem.itemSizeData.id ;
             let descriptionString = `Size : ${cartItem.itemSizeData.name} <br> ` ;
@@ -287,11 +291,14 @@
                 descriptionString : e,
             } ;
         }
-    } ;
+    }
 
 
 
     let renderCart = ()=>{
+      /* This functions get data from local_storage and renders the html cart table
+       *
+       */
         let cartItems = JSON.parse(localStorage.getItem('cart')) ;
         $('#cartTable').html("") ;
         cartItems.forEach(function(element, index){
@@ -337,13 +344,13 @@
 
 
     $(".cartItemDelete").click(function (){
-        // this function deleted the cart item from the local storage
+        // this function deletes the cart item from the local storage
         let itemIndex = $(this).attr('data-index') ;
         let cartItems = JSON.parse(localStorage.getItem('cart')) ;
-        let removedItem = cartItems.splice(itemIndex, 1) ; // this is an array of 1 removed object
+        let removedItem = cartItems.splice(itemIndex, 1) ; // splice(positiontoRemoveAt, noOfItemsToRemove)   returns an array of removed objects
         localStorage.setItem('cart', JSON.stringify(cartItems)) ;
         localStorage.setItem('total_items', parseInt(localStorage.total_items) -1) ;
-        localStorage.setItem('total_items_price', ""+parseFloat(localStorage.getItem('total_items_price')) - parseFloat(removedItem[0].itemPrice) ) ;
+        localStorage.setItem('total_items_price', "" + (parseFloat(localStorage.getItem('total_items_price')) - parseFloat(removedItem[0].itemPrice)) ) ;
 
         $('#totalCartItems').html(localStorage.total_items) ;
         renderCart() ;
@@ -352,32 +359,9 @@
     }) ;
 
 
-    function makeToast(toastStyle, toastMessage) {
-        toastr.options = {
-            "closeButton": false,
-            "debug": false,
-            "newestOnTop": false,
-            "progressBar": false,
-            "positionClass": "toast-top-right",
-            "preventDuplicates": true,
-            "onclick": null,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        } ;
 
-        toastr[toastStyle](toastMessage) ;
-    }
 
-    $('#mySuperBtn').click(()=>{
-        makeToast('info', "Item removed from cart") ;
 
-    }) ;
 
 
 
