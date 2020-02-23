@@ -1,0 +1,100 @@
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+        <div class="modal-header modal-header-lg dark bg-dark">
+            <div class="bg-image"><img src="/img/photos/modal-add.jpg" alt=""></div>
+            <h4 class="modal-title">Specify your dish</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="ti-close"></i></button>
+        </div>
+
+        <div class="modal-product-details">
+            <div class="row align-items-center">
+                <div class="col-9">
+                    <h6 class="mb-0">{{itemData.item_name}}</h6>
+                    <span class="text-muted">{{itemData.item_description}}</span>
+                </div>
+                {{#if multipleSizes}}
+                {{else}}
+                    <div class="col-3 text-lg text-right"><span class="money-currency">{{sizeData.0.item_price}}</span> </div>
+                {{/if}}
+            </div>
+        </div>
+
+        <!--<form action="/menu" method="post" accept-charset="utf-8">-->
+            <div class="modal-body panel-details-container">
+
+                {{#if multipleSizes}}
+                    <div class="panel-details">
+                        <h5 class="panel-details-title">
+                            <a href="#panelDetailsSize" data-toggle="collapse">Size</a>
+                        </h5>
+                        <div id="panelDetailsSize" class="collapse show">
+                            <div class="panel-details-content">
+                                {{#each sizeData}}
+                                <div class="form-group">
+                                    <label class="custom-control custom-radio">
+                                        <!--Remember in a JSON object string, there must double quotes inside not single quotes -->
+                                        <input name="post_SizeData" class="form-check-input" data-size-id="{{size_id}}" data-multiple-sizes="true" type="radio" value='{"id":"{{size_id}}","name":"{{size_name}}", "price":"{{item_price}}" }' {{#ifEquals size_is_default "true"}}checked="checked"{{/ifEquals}}>
+                                        <span class="myForm-input" >{{size_name}}&nbsp;
+                                            <span class="money-currency">{{item_price}}</span>
+                                        </span>
+                                    </label>
+                                </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
+
+                {{else}}
+                    <input name="post_SizeData" checked="checked" data-size-id="{{sizeData.0.size_id}}" data-multiple-sizes="false" type="hidden" value='{"id":"{{sizeData.0.size_id}}","name":"{{sizeData.0.size_name}}", "price":"{{sizeData.0.item_price}}" }' >
+                {{/if}}
+
+                {{#each addonData}}
+                <div class="panel-details">
+                    <h5 class="panel-details-title">
+                        <a href="#addonGroup_{{rel_id}}" data-toggle="collapse">Choose {{addon_group_display_name}}</a>
+                    </h5>
+                    <div id="addonGroup_{{rel_id}}" class="collapse">
+                        <div class="panel-details-content">
+                            <div class="row">
+                                {{#each addon_items_data}}
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="custom-control">
+                                            <input type="{{../addon_group_type}}" class="form-check-input addonGroupData" data-addongroup-id="{{../rel_id}}" data-addongroup-name="{{../addon_group_display_name}}" name='addonData_{{../rel_id}}'  data-addonitem-name="{{0.item_name}}" data-addonitem-id="{{0.item_id}}" value='[ {{#each this}} {"sizeId" : "{{size_id}}", "price": "{{addon_price}}" } {{#if @last}} {{else}}, {{/if}}  {{/each}} ]' {{#ifEquals 0.item_is_default "true"}}checked="checked"{{/ifEquals}}>
+                                            <span class="myForm-input">
+                                                {{0.item_name}}&nbsp;
+                                            </span>
+                                            {{#each this}}
+                                                <span class="myForm-input money-currency myAddonItem text-hide" data-size-id="{{size_id}}">{{addon_price}}</span>
+                                            {{/each}}
+                                        </label>
+                                    </div>
+                                </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+
+                <div class="panel-details">
+                    <h5 class="panel-details-title">
+                        <a href="#panelDetailsOther" data-toggle="collapse">Other</a>
+                    </h5>
+                    <div id="panelDetailsOther" class="collapse">
+                        <textarea cols="30" rows="4" class="form-control" placeholder="Put this any other informations..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <input type="hidden" value="1" name="post_ItemQuantity" >
+            <input type="hidden" value="{{itemData.item_name}}" name="post_ItemName">
+
+            <input type="hidden" value="{{itemData.item_id}}" name="post_ItemId">
+            <input type="hidden" value="{{itemData.category_id}}" name="post_CategoryId">
+        <button id="addToCart" class="modal-btn btn btn-secondary btn-block btn-lg" data-dismiss="modal"><span>Add to Cart</span></button>
+            <!--<button type="submit" class="modal-btn btn btn-secondary btn-block btn-lg"><span>Add to Cart</span></button>-->
+        <!--</form>-->
+    </div>
+</div>

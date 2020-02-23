@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Meta -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="google-signin-client_id" content="730014109642-7rldv9agg9qp0avagkapdv9l4kocjt5e.apps.googleusercontent.com">
+
+    <!-- Title -->
+    <title>Soup - Restaurant with Online Ordering System Template</title>
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="apple-touch-icon" href="/img/favicon_60x60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon_76x76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/img/favicon_120x120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/img/favicon_152x152.png">
+
+    <!-- CSS Plugins -->
+    <link rel="stylesheet" href="/plugins/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/plugins/slick-carousel/slick/slick.css" />
+    <link rel="stylesheet" href="/plugins/animate.css/animate.min.css" />
+    <link rel="stylesheet" href="/plugins/animsition/dist/css/animsition.min.css" />
+    <link rel="stylesheet" href="/plugins/toastr/toastr.min.css" />
+
+    <!-- CSS Icons -->
+    <link rel="stylesheet" href="/css/themify-icons.css" />
+    <link rel="stylesheet" href="/plugins/font-awesome/css/font-awesome.min.css" />
+
+    <!-- CSS Theme -->
+    <link id="theme" rel="stylesheet" href="/css/themes/theme-beige.css" />
+    <link id="theme" rel="stylesheet" href="/css/themes/my-personal.css" />
+
+
+</head>
+
+<body class="header-absolute">
+
+<!-- Body Wrapper -->
+<div id="body-wrapper" class="animsition">
+
+
+    <div id="content ">
+        <section class="section ">
+
+            <div class="fullscreen-bg bg-dark dark">
+                <video loop muted autoplay  class="bg-video-mine" style="opacity: 0.3">
+                    <source src='/videos/home.mp4'  type="video/mp4">
+                </video>
+            </div>
+
+            <div class="row">
+                <div class="push-md-4 col-md-4">
+                    <img src='/img/logo-horizontal-light.png'  class="img-fluid">
+                </div>
+            </div>
+
+            <br>
+            <div class="row">
+                <div class="col-4 push-4">
+                    <div class="card ">
+                        <div class="card-block">
+
+                            <div id="div_SectionSignIn">
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="g-signin2"  data-longtitle="true" data-onsuccess="onGoogleSignIn"></div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button id="Btn_FacebookLogin" type="button" class="btn btn-secondary" onclick="facebookSignIn();">Facebook Login</button>
+                                        <!--<div class="fb-login-button" data-width="" data-size="large" data-button-type="login_with" data-auto-logout-link="true" data-use-continue-as="true" data-scope="public_profile,email" data-onlogin="onFacebookLogin();"></div>-->
+                                    </div>
+                                </div>
+                                <br>
+                                <center><h5 class="center">or</h5></center>
+
+
+                                <input name="post_Email" class=" form-control" type="text" id="input-login-email" placeholder="Email" >
+                                <br>
+                                <input name="post_Password" class="form-control" type="password" id="input-login-password" placeholder="Password">
+                                <br>
+                                <div class="row">
+                                    <div class="col-5"></div>
+                                    <div class="col-3">
+                                        <button type="button" onclick="showSection_SignUp_FromSignIn()">Sign Up</button>
+                                    </div>
+                                    <div class="col-4">
+                                        <button type="button" onclick="showSection_ResetPassword_FromSignIn()">Forget Password</button>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <button class="push-4 col-4 btn btn-primary" type="button" onclick="normalSignIn()">Sign In</button>
+                                </div>
+
+
+                            </div>
+
+
+                            <div id="div_SectionSignUp" style="display: none">
+                                <div class="form-group row">
+                                    <div class="col-6">
+                                        <input name="post_Firstname" class="form-control" type="text" id="input-signup-firstname" placeholder="Firstname">
+                                    </div>
+                                    <div class="col-6">
+                                        <input name="post_Lastname" class="form-control" type="text" id="input-signup-lastname" placeholder="Lastname" >
+                                    </div>
+                                </div>
+                                <input name="post_Email" class="form-control" type="email" id="input-signup-email" >
+                                <input name="post_Password" class="form-control" type="password" id="input-signup-password" placeholder="password" >
+                                <input name="post_PasswordAgain" class="form-control" type="password" id="input-signup-password-again" placeholder="Retype your password" >
+                                <div class="row">
+                                    <button  class="push-4 col-md-4 btn btn-info" type="button" onclick="normalSignUp()">Sign up</button>
+                                </div>
+                            </div>
+
+
+                            <div id="div_SectionResetPassword" style="display: none">
+                                <h3>Reset Password</h3>
+                                <p>Please write yout email address in the box below</p>
+                                <input class=" form-control" type="email" id="input-reset-email" placeholder="Email" >
+                                <br>
+                                <div class="row">
+                                    <button class="push-4 col-md-4 btn btn-primary" type="button" onclick="postGeneratePasswordResetEmail()">Send Email</button>
+                                </div>
+                            </div>
+                            <div id="div_SectionResetPasswordResponse" style="display: none">
+                                <h3>Reset Password</h3>
+                                <br>
+                                <p>An email containing the instructions to reset your password has been sent to your email address
+                                    Please check your email inbox</p>
+                                <br>
+                                <div class="row">
+                                    <button class="push-4 col-md-4 btn btn-primary" type="button" onclick="returnToSignIn()">Return to Sign In</button>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--These br tags are added so that when we click on some other page, the scroll up animation works correctly -->
+            <!-- Try Removing these br tags and then go from home page to about page and you will see -->
+            <br><br><br><br><br><br><br><br><br><br>
+
+        </section>
+    </div>
+    {{>cart_new}}
+
+    {{>panel_mobile}}
+
+    <!-- Body Overlay : used to darken the rest of layout when cart is opened -->
+    <div id="body-overlay"></div>
+
+</div>
+
+
+<!-- JS Plugins -->
+<script src="/plugins/jquery/dist/jquery.min.js"></script>
+<script src="/plugins/tether/dist/js/tether.min.js"></script>
+<script src="/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/plugins/slick-carousel/slick/slick.min.js"></script>
+<script src="/plugins/jquery.appear/jquery.appear.js"></script>
+<script src="/plugins/jquery.scrollto/jquery.scrollTo.min.js"></script>
+<script src="/plugins/jquery.localscroll/jquery.localScroll.min.js"></script>
+<script src="/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="/plugins/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.min.js"></script>
+<script src="/plugins/twitter-fetcher/js/twitterFetcher_min.js"></script>
+<script src="/plugins/skrollr/dist/skrollr.min.js"></script>
+<script src="/plugins/animsition/dist/js/animsition.min.js"></script>
+<script src="/plugins/toastr/toastr.min.js" ></script>
+
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
+<!-- JS Core -->
+<script src="/js/core.js"></script>
+
+<!-- Changes in javascript made by me-->
+<script src="/js/myPersonal.js"></script>
+<script src="/js/cart.js"></script>
+
+<script>
+
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '126236152092833',
+            status : false,  // stops auto login
+            cookie     : true,
+            xfbml      : true,
+            version    : 'v6.0'
+        });
+    };
+
+
+    function normalSignIn(){
+        // function for normal sign in (not google or facebook)
+        fetch('/login', {
+            method : 'POST',
+            body : new URLSearchParams({
+                post_Email : $('#input-login-email').val(),
+                post_Password : $('#input-login-password').val(),
+                _csrf : "{{_csrfToken}}",
+            })
+        })
+        .then((response)=>response.json()) // have to do this for some goddamn reason otherwise the return data is just http status codes
+        .then((data)=>{
+            console.log(data) ;
+          if(data.status == true){
+              redirectBack('/') ;
+          }else{
+            //TODO good looking error msg
+            makeToast('error', "Error in loggin in") ;
+          }
+        }).catch((err)=>{
+          // error in making post request
+
+        }) ;
+    }
+
+    function googleSignOut() {
+        try{
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+                return true ;
+            }) ;
+        }catch(err) {
+            console.log("Error") ;
+            console.log(err) ;
+            return false ;
+        }
+    }
+
+
+
+
+
+
+    function onGoogleSignIn(googleUser) {
+        console.log("signed in google") ;
+        var id_token = googleUser.getAuthResponse().id_token;
+        $.ajax({
+            url : '/signup/google',
+            method : "POST",
+            data : {
+              "post_idToken" : id_token,
+              "_csrf" : "{{_csrfToken}}"
+            },
+            success : (result)=>{
+                if(result.status ==true){
+                  googleSignOut() ;
+                  redirectBack('/') ;
+                }else{
+                  console.log(result) ;
+                }
+            },
+            error : (err)=> {
+              //TODO show error msg
+                makeToast('error', "Error in logging in") ;
+                console.log("error");
+                console.log(err);
+            }
+        }) ;
+
+    }
+
+
+  function facebookSignIn(){
+    // This function is called after clicking the login button
+    FB.login(function (response){
+      // this inside function is called after we have gotten the result of facebook login
+        // If the user gave permission, our status will be connected, else we show an error
+        if (response.status === 'connected') {
+            // Logged into your webpage and Facebook.
+            // we need to make another request to get the email and name,
+            // as faceboook only sends the id after login success
+            FB.api('/me', {fields: 'id,first_name, last_name, email'}, function(profileInfo) {
+                if(profileInfo.error){
+                    // Error in getting profile info
+                    showError(profileInfo.error, "Error in getting FB Profile Info") ;
+                    FB.logout(function(response) {
+                        console.log("Lgging out from FB bad") ;
+                    });
+                }else {
+                    console.log(response.authResponse.accessToken) ;
+                    console.log(profileInfo) ;
+                    // sending the post request
+                    $.ajax({
+                        url : '/signup/facebook',
+                        method : "POST",
+                        data : {
+                            "post_idToken" : response.authResponse.accessToken,
+                            "post_Email" : profileInfo.email,
+                            "post_Firstname" : profileInfo.first_name,
+                            "post_Lastname" : profileInfo.last_name,
+                            "post_Id" : profileInfo.id,
+                            "_csrf" : "{{_csrfToken}}"
+                        },
+                        success : (result)=>{
+                          $('#Btn_FacebookLogin').text("Logged In") ;
+                            if(result.status ==true){
+                                console.log(result) ;
+                                //sign out the facebook user
+                                console.log("calling this code ") ;
+                                FB.logout(function(resp) {
+                                    console.log(resp) ;
+                                    console.log("Lgging out from FB good") ;
+                                    redirectBack('/') ;
+                                });
+                            }
+                        },
+                        error : (err)=> {
+                            showError(err, "Error in Sending Post Request") ;
+                            FB.logout(function(response) {
+                                console.log("Lgging out from FB bad") ;
+                            });
+                        }
+                    }) ;
+                }
+            });
+        } else {
+            // Not logged into your webpage or we are unable to tell.
+            showError(response, "Error in logging in") ;
+        }
+    })
+  }
+
+
+
+
+    function normalSignUp(){
+        // function for normal sign in (not google or facebook)
+        fetch('/signup', {
+            method : 'POST',
+            body : new URLSearchParams({
+                post_Firstname : $('#input-signup-firstname').val(),
+                post_Lastname : $('#input-signup-lastname').val(),
+                post_Email : $('#input-signup-email').val(),
+                post_Password : $('#input-signup-password').val(),
+                post_PasswordAgain : $('#input-signup-password-again').val(),
+                _csrf : "{{_csrfToken}}",
+            })
+        })
+        .then((response)=>response.json())
+        .then((data)=>{
+            console.log(data) ;
+            if(data.status == true){
+                redirectBack('/') ;
+            }else{
+                //TODO good looking error msg
+                makeToast('error', "Error in loggin in, check console output") ;
+            }
+        }).catch((err)=>{
+            makeToast('error', "Error in loggin in") ;
+            console.log(err) ;
+        }) ;
+    }
+
+
+
+    function postGeneratePasswordResetEmail(){
+        $.ajax({
+            url : '/generateResetPasswordEmail',
+            method : "POST",
+            data : {
+                "post_Email" : $('#input-reset-email').val(),
+                "_csrf" : "{{_csrfToken}}"
+            },
+            success : (result)=>{
+                if(result.status ==true && result.success =="MAIL_SENT"){
+                    console.log(result) ;
+                    $('#div_SectionResetPasswordResponse').show() ;
+                    $('#div_SectionResetPassword').hide() ;
+
+                }else{
+                    showError(result, "Some kind of error in the mail sending") ;
+                    console.log(result) ;
+                }
+            },
+            error : (err)=> {
+                showError(err, "Error in making the post request") ;
+            }
+        }) ;
+    }
+
+    function returnToSignIn(){
+        $('#div_SectionSignIn').show() ;
+        $('#div_SectionResetPasswordResponse').hide() ;
+    }
+
+    function showSection_ResetPassword_FromSignIn(){
+        $('#div_SectionResetPassword').show() ;
+        $('#div_SectionSignIn').hide() ;
+    }
+
+    function showSection_SignUp_FromSignIn(){
+        $('#div_SectionSignUp').show() ;
+        $('#div_SectionSignIn').hide() ;
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+
+
+</html>
