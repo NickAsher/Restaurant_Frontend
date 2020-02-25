@@ -32,7 +32,7 @@
     <!-- CSS Theme -->
     <link id="theme" rel="stylesheet" href="/css/themes/theme-beige.css" />
     <link id="theme" rel="stylesheet" href="/css/themes/my-personal.css" />
-    <link id="theme" rel="stylesheet" href="/css/login2.css" />
+    <link id="theme" rel="stylesheet" href="/css/login.css" />
 
 
 </head>
@@ -67,7 +67,7 @@
                             <div id="div_SectionSignIn" class="panel-login">
                                 <div class="text-center text-lg ">
                                     <b>Login to your account</b><br>
-                                    Don't have an account? <a class="lnk-toggler allows-goto" data-gofrom="div_SectionSignIn" data-goto="div_SectionSignUp" data-panel=".panel-signup" href="#">Sign Up Free!</a>
+                                    Don't have an account? <a class="lnk-toggler allows-goto" data-gofrom="div_SectionSignIn" data-goto="div_SectionSignUp" data-panel=".panel-signup" href="#">Sign Up here</a>
                                 </div>
                                 <br><br>
                                 <div class="row text-white">
@@ -99,7 +99,7 @@
                                 <div class="row remember-row">
                                     <div class=" offset-xs-6 offset-sm-6 col-xs-6 col-sm-6">
                                         <p class="forgotPwd">
-                                            <a class="lnk-toggler allows-goto" data-gofrom="div_SectionSignIn" data-goto="div_SectionResetPassword" href="#">Forgot password?</a>
+                                            <a class="lnk-toggler allows-goto" data-gofrom="div_SectionSignIn" data-goto="div_SectionForgotPassword" href="#">Forgot password?</a>
                                         </p>
                                     </div>
                                 </div>
@@ -152,7 +152,7 @@
                             </div>
 
 
-                            <div id="div_SectionResetPassword" class="panel-forgot">
+                            <div id="div_SectionForgotPassword" class="panel-forgot">
                                 <div class="text-center text-lg ">
                                     <b>Reset Your Password</b><br>
                                 </div>
@@ -166,14 +166,14 @@
                                 <button class="btn btn-lg btn-primary btn-block" type="button" onclick="postGeneratePasswordResetEmail()">Send Email</button>
                                 <br>
                                 <div class="text-center  ">
-                                    <a class="allows-goto" data-gofrom="div_SectionResetPassword" data-goto="div_SectionSignIn" href="#">Already have an account?</a>
+                                    <a class="allows-goto" data-gofrom="div_SectionForgotPassword" data-goto="div_SectionSignIn" href="#">Already have an account?</a>
                                     <br>
-                                    <a class="allows-goto" data-gofrom="div_SectionResetPassword" data-goto="div_SectionSignUp" href="#">Don't have an account?</a>
+                                    <a class="allows-goto" data-gofrom="div_SectionForgotPassword" data-goto="div_SectionSignUp" href="#">Don't have an account?</a>
                                 </div>
                             </div>
 
 
-                            <div id="div_SectionResetPasswordResponse" >
+                            <div id="div_SectionForgotPasswordResponse" >
                                 <div class="text-center text-lg ">
                                     <b>Reset Password</b><br>
                                 </div>
@@ -181,17 +181,7 @@
                                 <p>An email containing the instructions to reset your password has been sent to your email address
                                     Please check your email inbox</p>
                                 <br>
-                                <button class="btn btn-primary btn-lg btn-block allows-goto" data-gofrom="div_SectionResetPasswordResponse" data-goto="div_SectionSignIn" type="button">Return to Sign In</button>
                             </div>
-
-
-
-
-
-
-
-
-
 
                         </div>
                     </div>
@@ -236,8 +226,6 @@
 <!-- Changes in javascript made by me-->
 <script src="/js/myPersonal.js"></script>
 <script src="/js/cart.js"></script>
-<script src="/js/login.js"></script>
-
 
 <script>
 
@@ -420,7 +408,7 @@
 
     function postGeneratePasswordResetEmail(){
         $.ajax({
-            url : '/generateResetPasswordEmail',
+            url : '/forgotPassword',
             method : "POST",
             data : {
                 "post_Email" : $('#input-reset-email').val(),
@@ -429,8 +417,8 @@
             success : (result)=>{
                 if(result.status ==true && result.success =="MAIL_SENT"){
                     console.log(result) ;
-                    $('#div_SectionResetPasswordResponse').show() ;
-                    $('#div_SectionResetPassword').hide() ;
+                    $('#div_SectionForgotPasswordResponse').show() ;
+                    $('#div_SectionForgotPassword').hide() ;
 
                 }else{
                     showError(result, "Some kind of error in the mail sending") ;
@@ -454,6 +442,32 @@
         })
     }
     initGotoPanel() ;
+
+
+    function setupPwdToggle(){
+    /* so basically pwd looks like this
+    <div class="pwdMask">
+        <input id="input-login-password" name="post_Password" type="password" class="form-control password"  placeholder="Password">
+        <span class="focus-input"></span>
+        <span class="fa fa-eye-slash pwd-toggle"></span>
+    </div>
+
+     * So the show password button is basically a span element with fa-eye-slash class
+     * on clicking it, we change the class to fa-eye and vice versa
+     * so then we check if it fa-eye or fa-eye-slash
+     * if it is fa-eye, we then change the our input type from password to text, thus making it visible.
+     */
+      $('.pwd-toggle').click(function(event){
+        event.preventDefault() ;
+        $(this).toggleClass('fa-eye-slash fa-eye') ;
+        if($(this).hasClass("fa-eye")){
+            $('.pwdMask > .form-control').attr("type","text")
+        }else{
+            $('.pwdMask > .form-control').attr("type","password")
+        }
+      }) ;
+    }
+    setupPwdToggle() ;
 
 
 

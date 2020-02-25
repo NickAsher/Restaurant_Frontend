@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1620cee4-64a5-406e-9fc4-7b203dfbc357" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/public/css/login2.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/themes/login.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/login.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/login2.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/login2.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/themes/my-personal.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/themes/my-personal.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/login.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/login.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/reset_password.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/reset_password.hbs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,17 +25,26 @@
       <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="137" column="58" selection-start-line="137" selection-start-column="58" selection-end-line="137" selection-end-column="58" />
+            <state relative-caret-position="432">
+              <caret line="143" column="25" selection-start-line="143" selection-start-column="11" selection-end-line="143" selection-end-column="25" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login2.hbs" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/views/login2.hbs">
+      <file leaf-file-name="auth.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/auth.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9812">
-              <caret line="457" column="2" selection-start-line="457" selection-start-column="2" selection-end-line="457" selection-end-column="2" />
+            <state relative-caret-position="6984">
+              <caret line="291" column="7" lean-forward="true" selection-start-line="291" selection-start-column="7" selection-end-line="291" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.hbs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/login.hbs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1536">
+              <caret line="471" lean-forward="true" selection-start-line="471" selection-end-line="471" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#section#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#button#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#section#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -43,41 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="authofy_login8_try2.html" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Desktop/val Images/authofy_login8_try2.html">
+      <file leaf-file-name="reset_password.hbs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/reset_password.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1366">
-              <caret line="155" column="20" lean-forward="true" selection-start-line="155" selection-start-column="20" selection-end-line="158" selection-end-column="26" />
-              <folding>
-                <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/css/themes/login.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="155" column="62" selection-start-line="155" selection-start-column="56" selection-end-line="155" selection-end-column="62" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login2.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/css/login2.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/login.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="13" lean-forward="true" selection-start-column="13" selection-end-column="13" />
+            <state relative-caret-position="439">
+              <caret line="153" column="13" selection-start-line="153" selection-start-column="13" selection-end-line="153" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -86,7 +66,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>myItem</find>
       <find>custom-control</find>
       <find>custom-control-input</find>
       <find>pag</find>
@@ -116,6 +95,7 @@
       <find>allows-goto</find>
       <find>ed</find>
       <find>form</find>
+      <find>div_ResetPassword</find>
     </findStrings>
     <replaceStrings>
       <replace>+</replace>
@@ -132,8 +112,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/utils/database.js" />
-        <option value="$PROJECT_DIR$/public2/assets/plugins/bootstrap/dist/css/bootstrap.min.css" />
         <option value="$PROJECT_DIR$/public/lib/bootstrap4/bootstrap.min.css" />
         <option value="$PROJECT_DIR$/secret/secrets.json" />
         <option value="$PROJECT_DIR$/secret/keys.json" />
@@ -168,7 +146,6 @@
         <option value="$PROJECT_DIR$/views/includes/header_light.hbs" />
         <option value="$PROJECT_DIR$/views/includes/panel_mobile.hbs" />
         <option value="$PROJECT_DIR$/views/gallery.hbs" />
-        <option value="$PROJECT_DIR$/views/login.hbs" />
         <option value="$PROJECT_DIR$/views/offers.hbs" />
         <option value="$PROJECT_DIR$/views/menu.hbs" />
         <option value="$PROJECT_DIR$/views/checkout.hbs" />
@@ -176,13 +153,16 @@
         <option value="$PROJECT_DIR$/views/blogs_all.hbs" />
         <option value="$PROJECT_DIR$/views/about.hbs" />
         <option value="$PROJECT_DIR$/views/contact.hbs" />
-        <option value="$PROJECT_DIR$/server.js" />
         <option value="$USER_HOME$/Desktop/val Images/authofy_login8_try2.html" />
-        <option value="$PROJECT_DIR$/controllers/auth.js" />
         <option value="$PROJECT_DIR$/public/css/themes/login.css" />
-        <option value="$PROJECT_DIR$/public/js/login.js" />
-        <option value="$PROJECT_DIR$/public/css/login2.css" />
         <option value="$PROJECT_DIR$/views/login2.hbs" />
+        <option value="$PROJECT_DIR$/controllers/auth.js" />
+        <option value="$PROJECT_DIR$/server.js" />
+        <option value="$PROJECT_DIR$/public/css/login2.css" />
+        <option value="$PROJECT_DIR$/public/css/themes/my-personal.css" />
+        <option value="$PROJECT_DIR$/public/js/login.js" />
+        <option value="$PROJECT_DIR$/views/login.hbs" />
+        <option value="$PROJECT_DIR$/views/reset_password.hbs" />
       </list>
     </option>
   </component>
@@ -309,11 +289,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Javascript\RestaurantProject\2_RestaurantFrontend\public\js" />
       <recent name="D:\Javascript\RestaurantProject\2_RestaurantFrontend\public\css\themes" />
       <recent name="D:\Javascript\RestaurantProject\2_RestaurantFrontend\public\img\photos" />
       <recent name="D:\Javascript\RestaurantProject\2_RestaurantFrontend\public\plugins\bootstrap" />
       <recent name="D:\Javascript\RestaurantProject\2_RestaurantFrontend\public2\views" />
-      <recent name="C:\Work\Web\Restaurant_Frontend\public2\views" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Javascript\RestaurantProject\2_RestaurantFrontend\public2" />
@@ -407,12 +387,12 @@
       <workItem from="1582517137613" duration="1195000" />
       <workItem from="1582525751416" duration="599000" />
       <workItem from="1582551215062" duration="3128000" />
-      <workItem from="1582632596094" duration="10986000" />
+      <workItem from="1582632596094" duration="13984000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="418867000" />
+    <option name="totallyTimeSpent" value="421865000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -425,7 +405,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19989423" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32942554" />
@@ -433,9 +412,9 @@
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3270809" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.19314642" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.13247362" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.26963657" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.21688159" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.21453694" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -542,13 +521,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2241">
           <caret line="147" column="5" lean-forward="true" selection-start-line="124" selection-start-column="4" selection-end-line="147" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/reset_password.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
-          <caret line="133" column="18" selection-start-line="133" selection-start-column="18" selection-end-line="133" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -691,13 +663,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/auth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/themes/login2.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -708,41 +673,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="137" column="58" selection-start-line="137" selection-start-column="58" selection-end-line="137" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="13" lean-forward="true" selection-start-column="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/checkout.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-6540">
           <caret line="57" column="14" selection-start-line="57" selection-start-column="14" selection-end-line="57" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/themes/my-personal.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="42" column="19" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/val Images/authofy_login8_try2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1366">
-          <caret line="155" column="20" lean-forward="true" selection-start-line="155" selection-start-column="20" selection-end-line="158" selection-end-column="26" />
-          <folding>
-            <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -753,17 +687,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/login2.css">
+    <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
+          <caret line="143" column="25" selection-start-line="143" selection-start-column="11" selection-end-line="143" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6984">
+          <caret line="291" column="7" lean-forward="true" selection-start-line="291" selection-start-column="7" selection-end-line="291" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/themes/my-personal.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="461">
+          <caret line="49" column="7" selection-start-line="49" selection-start-column="1" selection-end-line="49" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/login.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2040">
           <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/login2.hbs">
+    <entry file="file://$USER_HOME$/Desktop/val Images/authofy_login8_try2.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9812">
-          <caret line="457" column="2" selection-start-line="457" selection-start-column="2" selection-end-line="457" selection-end-column="2" />
+        <state relative-caret-position="660">
+          <caret line="134" column="26" lean-forward="true" selection-start-line="128" selection-start-column="20" selection-end-line="134" selection-end-column="26" />
+          <folding>
+            <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="3" column="37" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/reset_password.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="439">
+          <caret line="153" column="13" selection-start-line="153" selection-start-column="13" selection-end-line="153" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/login.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1536">
+          <caret line="471" lean-forward="true" selection-start-line="471" selection-end-line="471" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#section#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#section#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />

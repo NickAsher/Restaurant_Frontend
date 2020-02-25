@@ -288,7 +288,7 @@ exports.signOut = async(req, res)=>{
 
 
 
-exports.postGeneratePasswordResetEmail = async (req, res)=>{
+exports.postForgotPassword = async (req, res)=>{
   try {
     let email = req.body.post_Email;
     let dbReturnData = await dbRepository.getUser_ByEmail(email);

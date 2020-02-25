@@ -43,7 +43,14 @@ input:checked~span.myForm-input{
     color : #ddae71; !important;
 }
 
+.myLink{
+    color: #ddae71;
+}
 
+.myLink:hover{
+    text-decoration: underline;
+    color: #bb6e31;
+}
 
 .pagination > li > a
 {
