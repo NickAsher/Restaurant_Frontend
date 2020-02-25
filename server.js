@@ -9,6 +9,7 @@ const fs = require('fs') ;
 const bcrypt = require('bcrypt') ;
 const session = require('express-session') ;
 const csrf = require('csurf') ;
+const {body, validationResult} = require('express-validator') ;
 
 const controllerBlogs = require('./controllers/blogs') ;
 const controllerGallery = require('./controllers/gallery') ;
@@ -131,6 +132,8 @@ app.get('/gallery', controllerGallery.getAllGalleryItems) ;
 app.get('/contact', controllerInfo.getContactUsData) ;
 app.get('/about', controllerInfo.getAboutUsData) ;
 app.get('/specials', controllerInfo.getOfferSpecialsData) ;
+
+
 
 app.get('/login', authRedirectHome, controllerAuth.getLoginPage) ;
 app.post('/login',  controllerAuth.postLoginPage) ;
