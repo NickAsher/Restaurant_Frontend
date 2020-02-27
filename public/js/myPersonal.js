@@ -77,8 +77,27 @@ function makeToast(toastStyle, toastMessage) {
     "showMethod": "fadeIn",
     "hideMethod": "fadeOut"
   } ;
-
   toastr[toastStyle](toastMessage) ;
+}
+
+function makeErrorToast(msg){
+  toastr.options = {
+    "closeButton": false,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": false,
+    "positionClass": "toast-top-right",
+    "preventDuplicates": true,
+    "onclick": null,
+    "showDuration": "500",
+    "hideDuration": "1000",
+    "timeOut": "2000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+  } ;
 }
 
 refreshNoOfItemsInCart() ;

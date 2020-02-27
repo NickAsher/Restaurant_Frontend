@@ -1,0 +1,136 @@
+@charset "US-ASCII";
+
+.itemDetail:hover{
+    cursor: pointer;
+}
+
+#footer{
+    padding: 40px 0;
+
+    div {
+        background-color: inherit;
+        color: #ffffff;
+        text-align: center;
+        font-size: 16px;
+    }
+}
+
+
+.fullscreen-bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -100;
+}
+
+.bg-video-mine{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    height: auto;
+    min-width: 100%;
+    min-height: 100%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+/* applies the beige colour to checked form input in menu*/
+input:checked~span.myForm-input{
+    color : #ddae71 !important;
+}
+
+.myLink{
+    color: #ddae71;
+
+    &:hover{
+        text-decoration: underline;
+        color: #bb6e31;
+    }
+}
+
+.pagination{
+    li {
+        a {
+            background-color: white;
+            color: #ddae71;
+
+            &:focus,
+            &:hover {
+                color: #ccae71;
+                background-color: #eee;
+                border-color: #ddd;
+            }
+        }
+        span{
+            &:focus,
+            &:hover{
+                color: #ccae71;
+                background-color: #eee;
+                border-color: #ddd;
+            }
+        }
+    }
+
+    .active {
+        a, a:hover{
+            color: white;
+            background-color: #ddae71 !Important;
+            border: solid 1px #ddae71 !Important;
+        }
+    }
+}
+
+
+
+
+
+#toast-container {
+
+    .toast-error {
+        background-image: none !important; /*removes the default icon of the toastr colour*/
+        background: #ff6655 !important; /*removes the default icon of the toastr colour*/
+        color: #000; /* Changes the colour of text inside toastr */
+    }
+
+    .toast-warn,
+    .toast-success,
+    .toast-info {
+        background-image: none !important; /*removes the default icon of the toastr colour*/
+        background: #F5F5DC !important; /*removes the default icon of the toastr colour*/
+        color: #000; /* Changes the colour of text inside toastr */
+    }
+
+    .toast:before { /* Changes the toastr icon to a font awesome icon*/
+        position: relative;
+        font-family: FontAwesome;
+        font-size: 24px;
+        line-height: 18px;
+        float: left;
+        margin-left: -1em;
+        color: #000; /* Colour of the font-awesome icon */
+        padding-right: 0.5em;
+        margin-right: 0.5em;
+    }
+
+
+    .toast-warning:before {
+        content: "\f03a";
+    }
+    .toast-error:before {
+        content: "\f06a"; // don't worry about how the icon looks in the css file
+    }
+    .toast-info:before {
+        content: "\f0aa";
+    }
+    .toast-success:before {
+        content: "\f07a";
+    }
+
+}
+

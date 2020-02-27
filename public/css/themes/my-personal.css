@@ -1,104 +1,117 @@
-.itemDetail:hover{
-    cursor: pointer;
+@charset "UTF-8";
+.itemDetail:hover {
+  cursor: pointer;
 }
 
-#footer{
-    padding: 40px 0;
+#footer {
+  padding: 40px 0;
 }
-
-#footer  div{
-    background-color: inherit;
-    color: #ffffff;
-    text-align: center;
-    font-size: 16px ;
+#footer div {
+  background-color: inherit;
+  color: #ffffff;
+  text-align: center;
+  font-size: 16px;
 }
-
 
 .fullscreen-bg {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    overflow: hidden;
-    z-index: -100;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: -100;
 }
 
-.bg-video-mine{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: auto;
-    height: auto;
-    min-width: 100%;
-    min-height: 100%;
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+.bg-video-mine {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: auto;
+  min-width: 100%;
+  min-height: 100%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 /* applies the beige colour to checked form input in menu*/
-input:checked~span.myForm-input{
-    color : #ddae71; !important;
+input:checked ~ span.myForm-input {
+  color: #ddae71 !important;
 }
 
-.myLink{
-    color: #ddae71;
+.myLink {
+  color: #ddae71;
+}
+.myLink:hover {
+  text-decoration: underline;
+  color: #bb6e31;
 }
 
-.myLink:hover{
-    text-decoration: underline;
-    color: #bb6e31;
+.pagination li a {
+  background-color: white;
+  color: #ddae71;
+}
+.pagination li a:focus, .pagination li a:hover {
+  color: #ccae71;
+  background-color: #eee;
+  border-color: #ddd;
+}
+.pagination li span:focus, .pagination li span:hover {
+  color: #ccae71;
+  background-color: #eee;
+  border-color: #ddd;
+}
+.pagination .active a, .pagination .active a:hover {
+  color: white;
+  background-color: #ddae71 !important;
+  border: solid 1px #ddae71 !important;
 }
 
-.pagination > li > a
-{
-    background-color: white;
-    color: #ddae71;
+#toast-container .toast-error {
+  background-image: none !important;
+  /*removes the default icon of the toastr colour*/
+  background: #ff6655 !important;
+  /*removes the default icon of the toastr colour*/
+  color: #000;
+  /* Changes the colour of text inside toastr */
+}
+#toast-container .toast-warn,
+#toast-container .toast-success,
+#toast-container .toast-info {
+  background-image: none !important;
+  /*removes the default icon of the toastr colour*/
+  background: #F5F5DC !important;
+  /*removes the default icon of the toastr colour*/
+  color: #000;
+  /* Changes the colour of text inside toastr */
+}
+#toast-container .toast:before {
+  /* Changes the toastr icon to a font awesome icon*/
+  position: relative;
+  font-family: FontAwesome;
+  font-size: 24px;
+  line-height: 18px;
+  float: left;
+  margin-left: -1em;
+  color: #000;
+  /* Colour of the font-awesome icon */
+  padding-right: 0.5em;
+  margin-right: 0.5em;
+}
+#toast-container .toast-warning:before {
+  content: "";
+}
+#toast-container .toast-error:before {
+  content: "";
+}
+#toast-container .toast-info:before {
+  content: "";
+}
+#toast-container .toast-success:before {
+  content: "";
 }
 
-.pagination > li > a:focus,
-.pagination > li > a:hover,
-.pagination > li > span:focus,
-.pagination > li > span:hover
-{
-    color: #ccae71;
-    background-color: #eee;
-    border-color: #ddd;
-}
-
-.pagination > .active > a
-{
-    color: white;
-    background-color: #ddae71 !Important;
-    border: solid 1px #ddae71 !Important;
-}
-
-.pagination > .active > a:hover
-{
-    background-color: #ddae71 !Important;
-    border: solid 1px #ddae71;
-}
-
-#toast-container > .toast {
-    background-image: none !important;  /*removes the default icon of the toastr colour*/
-    background: #F5F5DC !important;     /*removes the default icon of the toastr colour*/
-    color: #000;                        /* Changes the colour of text inside toastr */
-}
-
-#toast-container > .toast:before {       /* Changes the toastr icon to a font awesome icon*/
-    position: relative;
-    font-family: FontAwesome;
-    font-size: 24px;
-    line-height: 18px;
-    float: left;
-    margin-left: -1em;
-    color: #000;                         /* Colour of the font-awesome icon */
-    padding-right: 0.5em;
-    margin-right: 0.5em;
-    content: "\f07a";                   /* This is the unicode id of shopping-cart icon in font-awesome*/
-}
-
-
-
+/*# sourceMappingURL=my-personal.css.map */
