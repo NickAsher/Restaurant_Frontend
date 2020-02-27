@@ -458,8 +458,8 @@ var Core = {
 
             if($googleMap1.length) {
 
-                var yourLatitude1 = 40.758895,
-                    yourLongitude1 = -73.985131,
+                var yourLatitude1 = $('#google-map-1').attr('data-latitude'),
+                    yourLongitude1 = $('#google-map-1').attr('data-longitude'),
                     yourLatLng1 = new google.maps.LatLng(yourLatitude1,yourLongitude1);
                 
                 map1 = new google.maps.Map(document.getElementById('google-map-1'), mapOptions);
