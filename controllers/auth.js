@@ -30,8 +30,6 @@ exports.postLoginPage = async (req, res)=>{
     let password = req.body.post_Password;
 
 
-
-
     let dbReturnData = await dbRepository.getUser_ByEmail(email);
     if (dbReturnData.status == false) {throw dbReturnData.data;}
     if (dbReturnData.data.length == 0) {throw `No such user in the database`;}
@@ -49,6 +47,7 @@ exports.postLoginPage = async (req, res)=>{
     }) ;
   }catch (e) {
     res.send({
+      status:false,
       e,
       e_message : e.message,
       e_toString : e.toString(),
@@ -181,6 +180,7 @@ exports.postSignUp_Google = async (req, res)=>{
   }catch (e) {
     console.log(e) ;
     res.send({
+      status:false,
       e,
       e_message : e.message,
       e_toString : e.toString(),
@@ -260,6 +260,7 @@ exports.postSignUp_Facebook = async (req, res)=>{
   }catch (e) {
     console.log(e) ;
     res.send({
+      status:false,
       e,
       e_message : e.message,
       e_toString : e.toString(),
@@ -274,9 +275,12 @@ exports.signOut = async(req, res)=>{
 
     req.session.destroy() ;
     res.clearCookie('my_session_id') ;
-    res.redirect('/') ;
+    res.send({
+      status : true
+    }) ;
   }catch (e) {
     res.send({
+      status:false,
       e,
       e_message : e.message,
       e_toString : e.toString(),
@@ -326,6 +330,7 @@ exports.postForgotPassword = async (req, res)=>{
 
   }catch (e) {
     res.send({
+      status:false,
       e,
       e_message : e.message,
       e_toString : e.toString(),
@@ -363,6 +368,7 @@ exports.getResetPasswordTokenPage = async (req, res)=>{
 
   }catch (e) {
     res.send({
+      status:false,
       e,
       e_message : e.message,
       e_toString : e.toString(),
@@ -377,8 +383,6 @@ exports.postResetPasswordToken = async (req, res)=>{
     let resetToken = req.body.post_resetToken ;
     let newPassword = req.body.post_newPassword ;
     let newPasswordAgain = req.body.post_newPasswordAgain ;
-
-    if(newPassword != newPasswordAgain){throw "two passwords do not match" ;}
 
     let dbReturnData = await dbRepository.getUser_ByResetToken(resetToken) ;
     if (dbReturnData.status == false) {throw dbReturnData.data;}
@@ -410,6 +414,7 @@ exports.postResetPasswordToken = async (req, res)=>{
 
   }catch (e) {
     res.send({
+      status:false,
       e,
       e_message : e.message,
       e_toString : e.toString(),

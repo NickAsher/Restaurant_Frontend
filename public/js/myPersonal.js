@@ -1,3 +1,25 @@
+$('#btn-SignOut').click(()=>{
+  fetch('/signout', {
+    method : 'POST',
+    body : new URLSearchParams({
+      _csrf : $('#btn-SignOut').attr('data-csrf'),
+    })
+  })
+  .then((response)=>response.json()) // have to do this for some goddamn reason otherwise the return data is just http status codes
+  .then((data)=>{
+    if(data.status == true){
+      window.location.href = '/' ;
+    }else{
+      console.log(data) ;
+      throw "error in signing out" ;
+    }
+  })
+  .catch((err)=>{
+    console.log(err) ;
+    makeToast('error', "error in signing out") ;
+  }) ;
+}) ;
+
 function formatCurrency() {
     const formatter = new Intl.NumberFormat('en-IN',{
         style: 'currency',

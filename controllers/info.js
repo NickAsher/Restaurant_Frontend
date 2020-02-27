@@ -3,6 +3,34 @@ const Constants = require('../utils/Constants') ;
 const dbRepository = require('../utils/DbRepository') ;
 
 
+exports.getHomePage = async (req, res)=>{
+  try{
+    res.render('index-video.hbs', {
+    }) ;
+  }catch (e) {
+    res.send({
+      e : e.toString(),
+      msg : "Beta ji koi to error hai"
+    }) ;
+  }
+} ;
+
+
+exports.getAboutUsData = async (req, res)=>{
+  try {
+    let aboutData = await dbRepository.getAboutData();
+    if(aboutData.status == false){throw aboutData ;}
+
+    res.render('about.hbs', {
+      aboutData: aboutData['data'],
+    });
+  }catch (e) {
+    res.send({
+      e : e.toString(),
+      msg : "Beta ji koi to error hai"
+    }) ;
+  }
+} ;
 
 
 exports.getContactUsData = async (req, res)=>{
@@ -20,22 +48,7 @@ exports.getContactUsData = async (req, res)=>{
   }
 } ;
 
-exports.getAboutUsData = async (req, res)=>{
-  try {
-    let aboutData = await dbRepository.getAboutData();
-    if(aboutData.status == false){throw aboutData ;}
 
-
-    res.render('about.hbs', {
-      aboutData: aboutData['data'],
-    });
-  }catch (e) {
-    res.send({
-      e : e.toString(),
-      msg : "Beta ji koi to error hai"
-    }) ;
-  }
-} ;
 
 exports.getOfferSpecialsData = async (req, res)=>{
   try {
@@ -52,5 +65,23 @@ exports.getOfferSpecialsData = async (req, res)=>{
     }) ;
   }
 } ;
+
+
+exports.getAllGalleryItems = async (req, res)=>{
+  try{
+    let galleryData = await dbRepository.getAllGalleryItems() ;
+    if(galleryData['status'] == false){throw galleryData ;}
+
+    res.render('gallery.hbs', {
+      galleryData: galleryData['data'],
+    }) ;
+  }catch (e) {
+    res.send({
+      e : e.toString(),
+    }) ;
+  }
+} ;
+
+
 
 

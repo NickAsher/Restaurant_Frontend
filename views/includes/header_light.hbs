@@ -28,9 +28,9 @@
                 <div class="module" >
                     {{#if signedIn}}
                         <!--Show sign out-->
-                        <a href="/signout" class="btn btn-outline-secondary">
+                        <button id="btn-SignOut" class="btn btn-outline-secondary" data-csrf ="{{_csrfToken}}">
                             <span>Sign Out</span>
-                        </a>
+                        </button>
                     {{else}}
                         <a href="/login" class="btn btn-outline-secondary"><span>Sign In</span></a>
                     {{/if}}

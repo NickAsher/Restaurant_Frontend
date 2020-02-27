@@ -9,12 +9,9 @@ const fs = require('fs') ;
 const bcrypt = require('bcrypt') ;
 const session = require('express-session') ;
 const csrf = require('csurf') ;
-const {body, validationResult} = require('express-validator') ;
 
 const controllerBlogs = require('./controllers/blogs') ;
-const controllerGallery = require('./controllers/gallery') ;
 const controllerInfo = require('./controllers/info') ;
-const controllerHome = require('./controllers/home') ;
 const controllerMenu = require('./controllers/menu') ;
 const controllerAuth = require('./controllers/auth') ;
 const dbRepository = require('./utils/DbRepository') ;
@@ -84,14 +81,7 @@ app.get('/clear', (req, res)=>{
   `);
 }) ;
 
-const authRedirectHome = (req, res, next)=>{
-  if(req.session.isLoggedIn == true){
-    res.redirect('/') ;
-    //TODO show message that you are already logged in
-  }else{
-    next() ;
-  }
-} ;
+
 const isAuthenticated = (redirectBack)=>{
   /* Middleware to authenticate user on pages which need authentication
    * @param {string} redirectBack - The page where we should come back to after authentication
@@ -115,7 +105,7 @@ const isAuthenticated = (redirectBack)=>{
 
 
 
-app.get('/', controllerHome.getHomePage) ;
+app.get('/', controllerInfo.getHomePage) ;
 
 app.get('/menu', controllerMenu.getMenu) ;
 app.get('/item/:categoryId/:itemId', controllerMenu.getItem_ModalProduct) ;
@@ -126,26 +116,15 @@ app.get('/checkout', isAuthenticated('checkout'), async (req, res)=>{
   }) ;
 }) ;
 
+
+app.get('/about', controllerInfo.getAboutUsData) ;
+app.get('/contact', controllerInfo.getContactUsData) ;
+app.get('/gallery', controllerInfo.getAllGalleryItems) ;
+app.get('/specials', controllerInfo.getOfferSpecialsData) ;
 app.get('/blogs', controllerBlogs.getAllBlogs_Paginated) ;
 app.get('/blog/:blogId', controllerBlogs.getSingleBlog) ;
-app.get('/gallery', controllerGallery.getAllGalleryItems) ;
-app.get('/contact', controllerInfo.getContactUsData) ;
-app.get('/about', controllerInfo.getAboutUsData) ;
-app.get('/specials', controllerInfo.getOfferSpecialsData) ;
 
-
-
-app.get('/login', authRedirectHome, controllerAuth.getLoginPage) ;
-app.post('/login',  controllerAuth.postLoginPage) ;
-app.post('/signup', controllerAuth.postSignUpPage) ;
-app.get('/signout', controllerAuth.signOut) ;
-app.post('/signup/google', controllerAuth.postSignUp_Google) ;
-app.post('/signup/facebook', controllerAuth.postSignUp_Facebook) ;
-app.post('/forgotPassword', controllerAuth.postForgotPassword) ;
-app.get('/resetPassword/:resetToken', controllerAuth.getResetPasswordTokenPage) ;
-app.post('/resetPassword', controllerAuth.postResetPasswordToken) ;
-
-
+app.use(require('./routes/auth')) ;
 
 
 app.listen(3000, ()=>{
