@@ -49,10 +49,11 @@ router.post('/signup',
       body('post_Email').not().isEmpty().isEmail()
       .withMessage("Valid email not provied").normalizeEmail(),
       body('post_Password', "Password must be 8 characters long and must contain atleast number and 1 special character")
-      .isLength({min:8}),
+      .isLength({min:4}),
       body('post_PasswordAgain', "Passwords do not match")
-          .isLength({min:8}).custom((value, {req})=>{
-            value == req.body.post_Password ;
+          .isLength({min:4})
+        .custom((value, {req})=>{
+            return value == req.body.post_Password ;
       }),
 
     ],
@@ -82,7 +83,7 @@ router.post('/resetPassword',
       .isLength({min:8}),
       body('post_newPasswordAgain', "Passwords do not match")
       .isLength({min:8}).custom((value, {req})=>{
-        value == req.body.post_Password ;
+        return value == req.body.post_Password ;
       }),
     ],
     showValidationError,

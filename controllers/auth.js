@@ -70,12 +70,6 @@ exports.postSignUpPage = async (req,res)=>{
     let email = req.body.post_Email;
     let password = req.body.post_Password;
     let passwordAgain = req.body.post_PasswordAgain ;
-    // TODO backend form validation here
-
-
-    if(password != passwordAgain){
-      throw "Two passwords are not equal" ;
-    }
 
     let countData = await dbRepository.getCount_EmailId(email) ;
     if(countData.status == false){throw countData ;}

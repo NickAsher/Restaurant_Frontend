@@ -85,25 +85,26 @@
                                         <span class="spanOr">or</span>
                                     </div>
                                 </div>
-                                <div class="form-group wrap-input">
-                                    <input id="input-login-email" name="post_Email" type="email" class="form-control email" placeholder="Email address">
-                                    <span class="focus-input"></span>
-                                </div>
-                                <div class="form-group wrap-input">
-                                    <div class="pwdMask">
+
+                                <form id="form-Login" >
+                                    <div class="form-group wrap-input">
+                                        <input id="input-login-email" name="post_Email" type="email" class="form-control email" placeholder="Email address">
+                                        <span id="input-login-email-line" class="focus-input"></span>
+                                    </div>
+                                    <div class="form-group wrap-input pwdMask">
                                         <input id="input-login-password" name="post_Password" type="password" class="form-control password"  placeholder="Password">
                                         <span class="focus-input"></span>
                                         <span class="fa fa-eye-slash pwd-toggle"></span>
                                     </div>
-                                </div>
-                                <div class="row remember-row">
-                                    <div class=" offset-xs-6 offset-sm-6 col-xs-6 col-sm-6">
-                                        <p class="forgotPwd">
-                                            <a class="lnk-toggler allows-goto" data-gofrom="div_SectionSignIn" data-goto="div_SectionForgotPassword" href="#">Forgot password?</a>
-                                        </p>
+                                    <div class="row remember-row">
+                                        <div class=" offset-xs-6 offset-sm-6 col-xs-6 col-sm-6">
+                                            <p class="forgotPwd">
+                                                <a class="lnk-toggler allows-goto" data-gofrom="div_SectionSignIn" data-goto="div_SectionForgotPassword" href="#">Forgot password?</a>
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                                <button class="btn btn-lg btn-primary btn-block" type="button" onclick="normalSignIn();">Login</button>
+                                    <button class="btn btn-lg btn-primary btn-block" type="button" onclick="normalSignIn();">Login</button>
+                                </form>
                             </div>
 
 
@@ -112,40 +113,38 @@
                                     <b>Sign up for Free!</b><br>
                                 </div>
                                 <br>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="form-group wrap-input">
-                                            <input id="input-signup-firstname" name="post_Firstname" class="form-control" type="text"  placeholder="Firstname">
-                                            <span class="focus-input"></span>
+                                <form id="form-SignUp">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group wrap-input">
+                                                <input id="input-signup-firstname" name="post_Firstname" class="form-control" type="text"  placeholder="Firstname">
+                                                <span class="focus-input"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group wrap-input">
+                                                <input id="input-signup-lastname" name="post_Lastname" class="form-control" type="text"  placeholder="Lastname" >
+                                                <span class="focus-input"></span>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-6">
-                                        <div class="form-group wrap-input">
-                                            <input id="input-signup-lastname" name="post_Lastname" class="form-control" type="text"  placeholder="Lastname" >
-                                            <span class="focus-input"></span>
-                                        </div>
+                                    <div class="form-group wrap-input">
+                                        <input id="input-signup-email" name="post_Email" class="form-control" type="email" placeholder="Email address" >
+                                        <span class="focus-input"></span>
                                     </div>
-                                </div>
-                                <div class="form-group wrap-input">
-                                    <input id="input-signup-email" name="post_Email" class="form-control" type="email" placeholder="Email address" >
-                                    <span class="focus-input"></span>
-                                </div>
-                                <div class="form-group wrap-input">
-                                    <div class="pwdMask">
+                                    <div class="form-group wrap-input pwdMask">
                                         <input id="input-signup-password" name="post_Password" class="form-control" type="password"  placeholder="Password" >
                                         <span class="focus-input"></span>
                                         <span class="fa fa-eye-slash pwd-toggle"></span>
                                     </div>
-                                </div>
-                                <div class="form-group wrap-input">
-                                    <div class="pwdMask">
+                                    <div class="form-group wrap-input pwdMask">
                                         <input id="input-signup-password-again" name="post_PasswordAgain" class="form-control" type="password" placeholder="Retype your password" >
                                         <span class="focus-input"></span>
                                     </div>
-                                </div>
-                                <br>
-                                <button class="btn btn-lg btn-primary btn-block" type="button" onclick="normalSignUp();">Sign up</button>
-                                <br>
+                                    <br>
+                                    <button class="btn btn-lg btn-primary btn-block" type="button" onclick="normalSignUp();">Sign up</button>
+                                    <br>
+                                </form>
                                 <div class="text-center">
                                     <a class="allows-goto" data-gofrom="div_SectionSignUp" data-goto="div_SectionSignIn" href="#">Already have an account?</a>
                                 </div>
@@ -158,13 +157,15 @@
                                 </div>
                                 <br>
                                 <p>Fill in your e-mail address below and we will send you an email with further instructions.</p>
-                                <div class="form-group wrap-input">
-                                    <input id="input-reset-email" type="email" class="form-control" placeholder="Email address">
-                                    <span class="focus-input"></span>
-                                </div>
-                                <br>
-                                <button class="btn btn-lg btn-primary btn-block" type="button" onclick="postGeneratePasswordResetEmail()">Send Email</button>
-                                <br>
+                                <form id="form-forgotPassword">
+                                    <div class="form-group wrap-input">
+                                        <input id="input-forgot-email" name="post_Email" type="email" class="form-control" placeholder="Email address">
+                                        <span class="focus-input"></span>
+                                    </div>
+                                    <br>
+                                    <button class="btn btn-lg btn-primary btn-block" type="button" onclick="postGeneratePasswordResetEmail()">Send Email</button>
+                                </form>
+                                    <br>
                                 <div class="text-center  ">
                                     <a class="allows-goto" data-gofrom="div_SectionForgotPassword" data-goto="div_SectionSignIn" href="#">Already have an account?</a>
                                     <br>
@@ -212,6 +213,7 @@
 <script src="/plugins/jquery.scrollto/jquery.scrollTo.min.js"></script>
 <script src="/plugins/jquery.localscroll/jquery.localScroll.min.js"></script>
 <script src="/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="/plugins/jquery-validation/dist/jquery-validate-additional-methods.min.js"></script>
 <script src="/plugins/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.min.js"></script>
 <script src="/plugins/twitter-fetcher/js/twitterFetcher_min.js"></script>
 <script src="/plugins/skrollr/dist/skrollr.min.js"></script>
@@ -240,30 +242,7 @@
     };
 
 
-    function normalSignIn(){
-        // function for normal sign in (not google or facebook)
-        fetch('/login', {
-            method : 'POST',
-            body : new URLSearchParams({
-                post_Email : $('#input-login-email').val(),
-                post_Password : $('#input-login-password').val(),
-                _csrf : "{{_csrfToken}}",
-            })
-        })
-        .then((response)=>response.json()) // have to do this for some goddamn reason otherwise the return data is just http status codes
-                .then((data)=>{
-                    console.log(data) ;
-                    if(data.status == true){
-                        redirectBack('/') ;
-                    }else{
-                        //TODO good looking error msg
-                        makeToast('error', "Error in loggin in") ;
-                    }
-                }).catch((err)=>{
-            // error in making post request
 
-        }) ;
-    }
 
     function googleSignOut() {
         try{
@@ -278,10 +257,6 @@
             return false ;
         }
     }
-
-
-
-
 
 
     function onGoogleSignIn(googleUser) {
@@ -303,9 +278,7 @@
                 }
             },
             error : (err)=> {
-                //TODO show error msg
-                makeToast('error', "Error in logging in") ;
-                console.log("error");
+                makeErrorToast( "Error in logging in") ;
                 console.log(err);
             }
         }) ;
@@ -376,64 +349,253 @@
 
 
 
+    function normalSignIn(){
+        // function for normal sign in (not google or facebook)
+        $('#form-Login').validate({
+            errorPlacement : (error, element)=>{
+                //insert the label element after the parent div
+                error.insertAfter(element.parent()) ;
+            },
+            highlight: function(element) {
+                // function is invoked on any input element when error occurs for that particular input
+                $(element).parent().children('span').addClass('error') ;
+                $(element).parent().children('span').removeClass('success') ;
+
+            },
+            unhighlight: function(element) {
+                // function is invoked for any input element when its error is removed,
+                $(element).parent().children('span').removeClass('error') ;
+            },
+            success : (label, element)=>{
+                $(element).parent().children('span').addClass("success") ;
+            },
+            rules : {
+                post_Email : {
+                    required : true,
+                    email : true
+                },
+                post_Password : {
+                    required : true,
+                    minlength : 4
+                }
+            },
+            messages : {
+                post_Email : {
+                    required : "Please provide an email address",
+                    email : "This email address is not valid"
+                },
+                post_Password : {
+                    required : "Please type a password",
+                    minlength: "Password must be atleast 8 letters"
+                }
+
+            },
+
+
+            submitHandler : ()=>{
+                fetch('/login', {
+                    method : 'POST',
+                    body : new URLSearchParams({
+                        post_Email : $('#input-login-email').val(),
+                        post_Password : $('#input-login-password').val(),
+                        _csrf : "{{_csrfToken}}",
+                    })
+                })
+                        .then((response)=>response.json()) //response is just http status codes, this is needed to get data
+                        .then((data)=>{
+                            if(data.status == true){
+                                redirectBack('/') ;
+                            }else{
+                                console.log(data);
+                                throw "Error in logging in" ;
+                            }
+                            // return false ;
+                        })
+                        .catch((err)=>{
+                            console.log(err) ;
+                            makeToast('error', "Error in logging in") ;
+                            // return false ;
+                        }) ;
+            }
+
+        }) ;
+
+        $('#form-Login').submit() ;
+    }
+
+
+
     function normalSignUp(){
         // function for normal sign in (not google or facebook)
-        fetch('/signup', {
-            method : 'POST',
-            body : new URLSearchParams({
-                post_Firstname : $('#input-signup-firstname').val(),
-                post_Lastname : $('#input-signup-lastname').val(),
-                post_Email : $('#input-signup-email').val(),
-                post_Password : $('#input-signup-password').val(),
-                post_PasswordAgain : $('#input-signup-password-again').val(),
-                _csrf : "{{_csrfToken}}",
-            })
-        })
-        .then((response)=>response.json())
-        .then((data)=>{
-            console.log(data) ;
-            if(data.status == true){
-                redirectBack('/') ;
-            }else{
-                //TODO good looking error msg
-                makeToast('error', "Error in loggin in, check console output") ;
+        $('#form-SignUp').validate({
+            errorPlacement : (error, element)=>{
+                //insert the label element after the parent div
+                error.insertAfter(element.parent()) ;
+            },
+            highlight: function(element) {
+                // function is invoked on any input element when error occurs for that particular input
+                $(element).parent().children('span').addClass('error') ;
+                $(element).parent().children('span').removeClass('success') ;
+
+            },
+            unhighlight: function(element) {
+                // function is invoked for any input element when its error is removed,
+                $(element).parent().children('span').removeClass('error') ;
+            },
+            success : (label, element)=>{
+                $(element).parent().children('span').addClass("success") ;
+            },
+            rules : {
+                post_Firstname : {
+                  required : true
+                },
+                post_Lastname : {
+                  required : true
+                },
+                post_Email : {
+                    required : true,
+                    email : true
+                },
+                post_Password : {
+                    required : true,
+                    minlength : 4
+                },
+                post_PasswordAgain:{
+                  required: true,
+                  equalTo:'#input-signup-password'
+                }
+            },
+            messages : {
+                post_Firstname : {
+                    required : "Please provide your firstname"
+                },
+                post_Lastname : {
+                    required : "Please provide your lastname"
+                },
+                post_Email : {
+                    required : "Please provide an email address",
+                    email : "This email address is not valid"
+                },
+                post_Password : {
+                    required : "Please type a password",
+                    minlength: "Password must be atleast 8 letters"
+                },
+                post_PasswordAgain:{
+                  required:"Please retype your password",
+                    equalTo: "Your two passwords do not match"
+                }
+
+            },
+
+
+            submitHandler : ()=>{
+                fetch('/signup', {
+                    method : 'POST',
+                    body : new URLSearchParams({
+                        post_Firstname : $('#input-signup-firstname').val(),
+                        post_Lastname : $('#input-signup-lastname').val(),
+                        post_Email : $('#input-signup-email').val(),
+                        post_Password : $('#input-signup-password').val(),
+                        post_PasswordAgain : $('#input-signup-password-again').val(),
+                        _csrf : "{{_csrfToken}}",
+                    })
+                })
+                .then((response)=>response.json())
+                .then((data)=>{
+                    if(data.status == true){
+                        redirectBack('/') ;
+                    }else{
+                        console.log(data) ;
+                        throw "error in signinup" ;
+                    }
+                }).catch((err)=>{
+                    makeErrorToast("Error in loggin in") ;
+                    console.log(err) ;
+                }) ;
             }
-        }).catch((err)=>{
-            makeToast('error', "Error in loggin in") ;
-            console.log(err) ;
+
         }) ;
+
+        $('#form-SignUp').submit() ;
+
+
+
+
     }
 
 
 
     function postGeneratePasswordResetEmail(){
-        $.ajax({
-            url : '/forgotPassword',
-            method : "POST",
-            data : {
-                "post_Email" : $('#input-reset-email').val(),
-                "_csrf" : "{{_csrfToken}}"
-            },
-            success : (result)=>{
-                if(result.status ==true && result.success =="MAIL_SENT"){
-                    console.log(result) ;
-                    $('#div_SectionForgotPasswordResponse').show() ;
-                    $('#div_SectionForgotPassword').hide() ;
 
-                }else{
-                    showError(result, "Some kind of error in the mail sending") ;
-                    console.log(result) ;
+        $('#form-forgotPassword').validate({
+            errorPlacement : (error, element)=>{
+                //insert the label element after the parent div
+                error.insertAfter(element.parent()) ;
+            },
+            highlight: function(element) {
+                // function is invoked on any input element when error occurs for that particular input
+                $(element).parent().children('span').addClass('error') ;
+                $(element).parent().children('span').removeClass('success') ;
+
+            },
+            unhighlight: function(element) {
+                // function is invoked for any input element when its error is removed,
+                $(element).parent().children('span').removeClass('error') ;
+            },
+            success : (label, element)=>{
+                $(element).parent().children('span').addClass("success") ;
+            },
+            rules : {
+                post_Email : {
+                    required : true,
+                    email : true
+                }
+
+            },
+            messages : {
+                post_Email : {
+                    required : "Please provide an email address",
+                    email : "This email address is not valid"
                 }
             },
-            error : (err)=> {
-                showError(err, "Error in making the post request") ;
+
+
+            submitHandler : ()=>{
+                fetch('/forgotPassword', {
+                    method : 'POST',
+                    body : new URLSearchParams({
+                        post_Email : $('#input-forgot-email').val(),
+                        _csrf : "{{_csrfToken}}",
+                    })
+                })
+                .then((response)=>response.json()) //response is just http status codes, this is needed to get data
+                .then((data)=>{
+                    if(data.status == true && data.success =="MAIL_SENT"){
+                        console.log(data) ;
+                        $('#div_SectionForgotPasswordResponse').show() ;
+                        $('#div_SectionForgotPassword').hide() ;
+                    }else{
+                        console.log(data);
+                        throw "Error sending mail" ;
+                    }
+                })
+                .catch((err)=>{
+                    console.log(err) ;
+                    makeToast('error', "Error in sending mail") ;
+                }) ;
             }
+
         }) ;
+
+        $('#form-forgotPassword').submit() ;
+
+
     }
 
     function initGotoPanel(){
-      // hides a div and show another div
+        // hides a div and show another div
         // the location of div to be shown in is data-goto
+        // location of current div is in data-grofrom
         $('.allows-goto').click(function(event){
           event.preventDefault() ;
             $('#'+$(this).attr('data-goto')).show() ;
@@ -468,6 +630,8 @@
       }) ;
     }
     setupPwdToggle() ;
+
+
 
 
 
