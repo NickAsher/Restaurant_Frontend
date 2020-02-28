@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1620cee4-64a5-406e-9fc4-7b203dfbc357" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/themes/my-personal.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/themes/my-personal.scss" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -31,11 +29,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="my-personal.scss" pinned="false" current-in-tab="true">
+      <file leaf-file-name="my-personal.scss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/themes/my-personal.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
+            <state relative-caret-position="393">
               <caret line="133" column="30" selection-start-line="133" selection-start-column="30" selection-end-line="133" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="9" selection-start-column="9" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -196,39 +203,6 @@
             </path>
             <path>
               <item name="Restaurant_Frontend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Restaurant_Frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Restaurant_Frontend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Restaurant_Frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Restaurant_Frontend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Restaurant_Frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Restaurant_Frontend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Restaurant_Frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-              <item name="themes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Restaurant_Frontend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Restaurant_Frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Restaurant_Frontend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Restaurant_Frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Restaurant_Frontend" type="b2602c69:ProjectViewProjectNode" />
               <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
             </path>
             <path>
@@ -250,6 +224,11 @@
             <path>
               <item name="Root" type="cbb8eebc:String" user="Root" />
               <item name="Restaurant_Frontend" type="cbb8eebc:String" user="Restaurant_Frontend" />
+              <item name=".idea" type="cbb8eebc:String" user=".idea" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="Restaurant_Frontend" type="cbb8eebc:String" user="Restaurant_Frontend" />
               <item name="public" type="cbb8eebc:String" user="public" />
             </path>
             <path>
@@ -257,13 +236,6 @@
               <item name="Restaurant_Frontend" type="cbb8eebc:String" user="Restaurant_Frontend" />
               <item name="public" type="cbb8eebc:String" user="public" />
               <item name="css" type="cbb8eebc:String" user="css" />
-            </path>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="Restaurant_Frontend" type="cbb8eebc:String" user="Restaurant_Frontend" />
-              <item name="public" type="cbb8eebc:String" user="public" />
-              <item name="css" type="cbb8eebc:String" user="css" />
-              <item name="themes" type="cbb8eebc:String" user="themes" />
             </path>
           </expand>
           <select />
@@ -395,12 +367,12 @@
       <workItem from="1582794773053" duration="5335000" />
       <workItem from="1582802088131" duration="5569000" />
       <workItem from="1582822695384" duration="9918000" />
-      <workItem from="1582903917714" duration="6659000" />
+      <workItem from="1582903917714" duration="6931000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="460566000" />
+    <option name="totallyTimeSpent" value="460838000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -412,18 +384,17 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1431" height="772" extended-state="7" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1431" height="772" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25591397" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25591397" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32942554" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3270809" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.19314642" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.41121495" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.41121495" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.21339564" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.21339564" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -701,17 +672,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/public/css/themes/my-personal.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        <state relative-caret-position="393">
+          <caret line="133" column="30" selection-start-line="133" selection-start-column="30" selection-end-line="133" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/themes/my-personal.scss">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="133" column="30" selection-start-line="133" selection-start-column="30" selection-end-line="133" selection-end-column="30" />
+        <state>
+          <caret column="9" selection-start-column="9" selection-end-column="9" />
         </state>
       </provider>
     </entry>
