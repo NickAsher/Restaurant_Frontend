@@ -119,17 +119,19 @@ input:checked~span.myForm-input{
     }
 
 
+    $fa-cart-icon : "\f07a" ;
+    $fa-error-icon : "\f06a" ;
     .toast-warning:before {
-        content: "\f03a";
+        content: $fa-error-icon ;
     }
     .toast-error:before {
-        content: "\f06a"; // don't worry about how the icon looks in the css file
+        content: $fa-error-icon;
     }
     .toast-info:before {
-        content: "\f0aa";
+        content: $fa-cart-icon;
     }
     .toast-success:before {
-        content: "\f07a";
+        content: $fa-cart-icon;
     }
 
 }
