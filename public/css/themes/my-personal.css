@@ -102,13 +102,13 @@ input:checked ~ span.myForm-input {
   margin-right: 0.5em;
 }
 #toast-container .toast-warning:before {
-  content: "";
+  content: "";
 }
 #toast-container .toast-error:before {
   content: "";
 }
 #toast-container .toast-info:before {
-  content: "";
+  content: "";
 }
 #toast-container .toast-success:before {
   content: "";

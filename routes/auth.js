@@ -83,7 +83,7 @@ router.post('/resetPassword',
       .isLength({min:8}),
       body('post_newPasswordAgain', "Passwords do not match")
       .isLength({min:8}).custom((value, {req})=>{
-        return value == req.body.post_Password ;
+        return value == req.body.post_newPassword ;
       }),
     ],
     showValidationError,

@@ -401,21 +401,21 @@
                         _csrf : "{{_csrfToken}}",
                     })
                 })
-                        .then((response)=>response.json()) //response is just http status codes, this is needed to get data
-                        .then((data)=>{
-                            if(data.status == true){
-                                redirectBack('/') ;
-                            }else{
-                                console.log(data);
-                                throw "Error in logging in" ;
-                            }
-                            // return false ;
-                        })
-                        .catch((err)=>{
-                            console.log(err) ;
-                            makeToast('error', "Error in logging in") ;
-                            // return false ;
-                        }) ;
+                .then((response)=>response.json()) //response is just http status codes, this is needed to get data
+                .then((data)=>{
+                    if(data.status == true){
+                        redirectBack('/') ;
+                    }else{
+                        console.log(data);
+                        throw "Error in logging in" ;
+                    }
+                    // return false ;
+                })
+                .catch((err)=>{
+                    console.log(err) ;
+                    makeToast('error', "Error in logging in") ;
+                    // return false ;
+                }) ;
             }
 
         }) ;
