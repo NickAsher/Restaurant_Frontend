@@ -157,11 +157,29 @@ exports.getOfferSpecialData = async ()=>{
 
 
 // --------------------------------------------------------- User Data
-exports.getUser_ByEmail = async(userEmailId)=>{
+exports.getUser_ByEmail = async(email)=>{
   try{
     let dbData = await dbConnection.execute(`
     SELECT * FROM users_table_new WHERE email = :userEmailId `, {
-      userEmailId
+      userEmailId : email
+    }) ;
+    return {
+      status : true,
+      data : dbData['0']
+    } ;
+  }catch (e) {
+    return {
+      status : false,
+      data : e.toString()
+    } ;
+  }
+} ;
+
+exports.getUser_ById = async(id)=>{
+  try{
+    let dbData = await dbConnection.execute(`
+    SELECT * FROM users_table_new WHERE id = :id `, {
+      id
     }) ;
     return {
       status : true,

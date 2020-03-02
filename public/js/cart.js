@@ -91,4 +91,47 @@ $('#Button_OpenCart').click(function () {
 
 
 
+function parseCartForBackend(){
+  /* This function takes the cart from the local-storage, and parses it for sending it to the backend order
+   *
+   * Terminology used : frontendCart : the cart taken from localStorage
+   *  backendCart : the cart to send back
+   */
+
+  let frontendCart = JSON.parse(localStorage.getItem('cart')) ;
+  let backendCart = [] ;
+
+  frontendCart.forEach((element, index)=>{
+    // just need to parse the item_addonData
+    let parsedItemAddonData = [] ;
+
+    element.addonData.forEach((addonGroupElement, index2)=>{
+
+      let addonItemsArray = addonGroupElement.addon_items_array.map((addonItem)=>{
+        return addonItem.id ;
+      }) ;
+
+      parsedItemAddonData.push({
+        addon_group_id : addonGroupElement.addonGroupId,
+        addon_items_array : addonItemsArray
+      }) ;
+    }) ;
+
+    backendCart.push({
+      item_id : element.itemId,
+      item_size_id : element.itemSizeData.id,
+      item_quantity : 1,
+      item_addon : parsedItemAddonData
+    }) ;
+  }) ;
+  console.log(backendCart) ;
+  return backendCart ;
+
+
+
+
+}
+
+
+
 

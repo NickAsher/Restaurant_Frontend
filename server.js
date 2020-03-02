@@ -9,11 +9,14 @@ const fs = require('fs') ;
 const bcrypt = require('bcrypt') ;
 const session = require('express-session') ;
 const csrf = require('csurf') ;
+const crypto = require('crypto') ;
 
 const controllerBlogs = require('./controllers/blogs') ;
 const controllerInfo = require('./controllers/info') ;
 const controllerMenu = require('./controllers/menu') ;
 const controllerAuth = require('./controllers/auth') ;
+const controllerCheckout = require('./controllers/checkout') ;
+
 const dbRepository = require('./utils/DbRepository') ;
 const parseUtils = require('./utils/parse') ;
 
@@ -50,6 +53,8 @@ app.use((req, res, next)=>{
   console.log(`[${req.method} ${req.originalUrl} ], [user  : ${req.session.userId} ]`) ;
   next() ;
 }) ;
+
+app.post('/pay', controllerCheckout.makePayment) ;
 
 app.use((req, res, next)=>{
   res.locals.IMAGE_FRONTEND_LINK_PATH = Constants.IMAGE_FRONTEND_LINK_PATH ;
@@ -92,7 +97,7 @@ const isAuthenticated = (redirectBack)=>{
    *
    */
   return (req, res, next)=>{
-    if(req.session.isLoggedIn != true){
+    if(req.session.isLoggedIn != true){   // checks for both false and undefined this way
       res.redirect(`/login?redirect=${redirectBack}`);
       //TODO show message that you need to be logged in
     }else{
@@ -105,27 +110,50 @@ const isAuthenticated = (redirectBack)=>{
 
 
 
-app.get('/', controllerInfo.getHomePage) ;
+app.use(require('./routes/info')) ;
+app.use(require('./routes/blogs')) ;
+app.use(require('./routes/menu')) ;
+app.use(require('./routes/auth')) ;
 
-app.get('/menu', controllerMenu.getMenu) ;
-app.get('/item/:categoryId/:itemId', controllerMenu.getItem_ModalProduct) ;
-app.get('/itemy/:categoryId/:itemId', controllerMenu.getItemDetail_DataOnly) ;
 
-app.get('/checkout', isAuthenticated('checkout'), async (req, res)=>{
-  res.render('checkout.hbs', {
-  }) ;
+
+
+app.get('/checkout', isAuthenticated('checkout'), controllerCheckout.getCheckoutPage) ;
+
+
+app.post('/sendOrder', isAuthenticated('checkout'), async (req, res)=>{
+  try{
+    let userId = req.session.userId ;
+
+    let orderId = crypto.createHash('md5').update(`${userId}-${Date.now()}`).digest('hex') ;
+     res.send({
+       userId,
+       orderId,
+       cart : req.body.backendCart,
+       address : req.body.address,
+       userDetails : req.body.userDetails
+
+     }) ;
+
+
+  }catch (e) {
+    res.send({
+      status:false,
+      e,
+      e_message : e.message,
+      e_toString : e.toString(),
+      e_toString2 : e.toString,
+      yo : "Beta ji koi error hai"
+    }) ;
+  }
+
 }) ;
 
 
-app.get('/about', controllerInfo.getAboutUsData) ;
-app.get('/contact', controllerInfo.getContactUsData) ;
-app.get('/gallery', controllerInfo.getAllGalleryItems) ;
-app.get('/specials', controllerInfo.getOfferSpecialsData) ;
-app.get('/blogs', controllerBlogs.getAllBlogs_Paginated) ;
-app.get('/blog/:blogId', controllerBlogs.getSingleBlog) ;
 
-app.use(require('./routes/auth')) ;
-
+app.get('*', (req, res)=>{
+  res.render('404.hbs') ;
+});
 
 app.listen(3000, ()=>{
     console.log("The server is listening on port 3000") ;
