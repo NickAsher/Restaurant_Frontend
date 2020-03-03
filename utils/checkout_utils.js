@@ -42,7 +42,6 @@ let calculateItemPrice = async (backendCartItem)=>{
   }
 
   let addonIds = addonItems.join(',') ;
-  console.log(addonIds) ;
   let dbAddonData = await dbConnection.execute(`
     SELECT * FROM  menu_meta_rel_size_addons_table
     WHERE size_id = :itemSize AND addon_id IN (${addonItems.join(',')}) `,{
@@ -69,8 +68,10 @@ let calculateItemPrice = async (backendCartItem)=>{
 exports.calculateCartPrice = async (backendCart)=>{
   let totalPrice =  0 ;
 
-  backendCart.forEach((element, index)=>{
-    totalPrice += calculateItemPrice(element) ;
-  }) ;
+  for(let i=0;i<backendCart.length; i++){
+    totalPrice += await calculateItemPrice(backendCart[i]) ;
+  }
+
+  console.log("total price is", totalPrice) ;
   return totalPrice ;
 } ;

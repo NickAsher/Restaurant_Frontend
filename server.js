@@ -45,16 +45,22 @@ app.use(session({
     secure :false // use it when using https
   }
 })) ;
-// using the default values for the csrf token.
-// can use options like csrf({ option1:val1, option2:val2 })
-app.use(csrf()) ;
 
 app.use((req, res, next)=>{
   console.log(`[${req.method} ${req.originalUrl} ], [user  : ${req.session.userId} ]`) ;
   next() ;
 }) ;
 
+//TODO check if you can send csurf token with pay requests of stripe
+// this is above the csrf middleware
 app.post('/pay', controllerCheckout.makePayment) ;
+
+// using the default values for the csrf token.
+// can use options like csrf({ option1:val1, option2:val2 })
+app.use(csrf()) ;
+
+
+
 
 app.use((req, res, next)=>{
   res.locals.IMAGE_FRONTEND_LINK_PATH = Constants.IMAGE_FRONTEND_LINK_PATH ;
@@ -87,24 +93,7 @@ app.get('/clear', (req, res)=>{
 }) ;
 
 
-const isAuthenticated = (redirectBack)=>{
-  /* Middleware to authenticate user on pages which need authentication
-   * @param {string} redirectBack - The page where we should come back to after authentication
-   *
-   *  this function checks if the user is authenticated using session.isLoggedIn
-   *    If they are, they simply go to their page
-   *    If not, they are redirected to login page and query ?redirect=backPage is set
-   *
-   */
-  return (req, res, next)=>{
-    if(req.session.isLoggedIn != true){   // checks for both false and undefined this way
-      res.redirect(`/login?redirect=${redirectBack}`);
-      //TODO show message that you need to be logged in
-    }else{
-      next();
-    }
-  } ;
-} ;
+
 
 
 
@@ -114,40 +103,7 @@ app.use(require('./routes/info')) ;
 app.use(require('./routes/blogs')) ;
 app.use(require('./routes/menu')) ;
 app.use(require('./routes/auth')) ;
-
-
-
-
-app.get('/checkout', isAuthenticated('checkout'), controllerCheckout.getCheckoutPage) ;
-
-
-app.post('/sendOrder', isAuthenticated('checkout'), async (req, res)=>{
-  try{
-    let userId = req.session.userId ;
-
-    let orderId = crypto.createHash('md5').update(`${userId}-${Date.now()}`).digest('hex') ;
-     res.send({
-       userId,
-       orderId,
-       cart : req.body.backendCart,
-       address : req.body.address,
-       userDetails : req.body.userDetails
-
-     }) ;
-
-
-  }catch (e) {
-    res.send({
-      status:false,
-      e,
-      e_message : e.message,
-      e_toString : e.toString(),
-      e_toString2 : e.toString,
-      yo : "Beta ji koi error hai"
-    }) ;
-  }
-
-}) ;
+app.use(require('./routes/checkout')) ;
 
 
 

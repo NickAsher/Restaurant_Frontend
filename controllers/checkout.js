@@ -1,5 +1,7 @@
 const Constants = require('../utils/Constants') ;
 const dbRepository = require('../utils/DbRepository') ;
+const crypto = require('crypto') ;
+const checkoutUtils = require('../utils/checkout_utils') ;
 
 const stripeSecret = 'sk_test_UyPRsL22aBZm7kClAIlz1NS500pYp4tBwn' ;
 const stripePublic = 'pk_test_FPbfGF5aEyQqsBfsPytI46qw002ouxr0PP' ;
@@ -15,6 +17,53 @@ exports.getCheckoutPage = async (req, res)=>{
     res.render('checkout.hbs', {
       userData
     }) ;
+  }catch (e) {
+    res.send({
+      status : false,
+      e,
+      e_message : e.message,
+      e_toString : e.toString(),
+      e_toString2 : e.toString,
+      yo : "Beta ji koi error hai"
+    }) ;
+  }
+} ;
+
+
+exports.postCheckoutPage = async (req, res)=>{
+  try {
+    let userId = req.session.userId;
+    let orderId = crypto.createHash('md5').update(`${userId}-${Date.now()}`).digest('hex');
+    let cart = req.body.backendCart;
+    let price = await checkoutUtils.calculateCartPrice(cart);
+
+
+    let order = {
+      orderId,
+      userId,
+      userDetails:{
+        firstname : req.body.firstname,
+        lastname : req.body.lastname,
+        email : req.body.email,
+        phone : req.body.phone
+      },
+      address: {
+        addressLine1 : req.body.addressLine1,
+        addressLine2 : req.body.addressLine2,
+        addressLine3 : req.body.addressLine3
+      },
+      cart,
+      price: {
+        netPrice: price,
+        totalPrice: price
+      },
+      payment: "some paymentId"
+
+    };
+    res.send({
+      status: true,
+      order
+    });
   }catch (e) {
     res.send({
       status : false,

@@ -416,7 +416,7 @@
 
 
     function sendOrder(){
-        fetch('/sendOrder', {
+        fetch('/checkout', {
             method : 'POST',
             headers : {
                 'Accept': 'application/json',
@@ -425,18 +425,13 @@
             body : JSON.stringify({
                 _csrf : "{{_csrfToken}}",
                 backendCart : parseCartForBackend(),
-                address : {
-                    address_line1 : $('#input-checkout-address-line1').val(),
-                    address_line2 : $('#input-checkout-address-line2').val(),
-                    address_line3 : $('#input-checkout-address-line3').val(),
-                },
-                userDetails : {
-                    firstname : $('#input-checkout-firstname').val(),
-                    lastname : $('#input-checkout-lastname').val(),
-                    email : $('#input-checkout-email').val(),
-                    phone: $('#input-checkout-phone').val(),
-
-                }
+                addressLine1 : $('#input-checkout-address-line1').val(),
+                addressLine2 : $('#input-checkout-address-line2').val(),
+                addressLine3 : $('#input-checkout-address-line3').val(),
+                firstname : $('#input-checkout-firstname').val(),
+                lastname : $('#input-checkout-lastname').val(),
+                email : $('#input-checkout-email').val(),
+                phone: $('#input-checkout-phone').val(),
             })
         })
         .then((response)=>response.json()) //response is just http status codes, this is needed to get data
@@ -453,7 +448,7 @@
         })
         .catch((err)=>{
             console.log(err) ;
-            makeToast('error', "Error in sending mail") ;
+            makeToast('error', "Error in ordering") ;
         }) ;
     }
 
