@@ -2,10 +2,10 @@ const Constants = require('../utils/Constants') ;
 const dbRepository = require('../utils/DbRepository') ;
 const crypto = require('crypto') ;
 const checkoutUtils = require('../utils/checkout_utils') ;
+require('dotenv').config() ;
 
-const stripeSecret = 'sk_test_UyPRsL22aBZm7kClAIlz1NS500pYp4tBwn' ;
 const stripePublic = 'pk_test_FPbfGF5aEyQqsBfsPytI46qw002ouxr0PP' ;
-const stripe = require('stripe')(stripeSecret);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 exports.getCheckoutPage = async (req, res)=>{
   try{

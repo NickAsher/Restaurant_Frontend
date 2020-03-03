@@ -1,3 +1,4 @@
+.env
 .idea/
 secret/
 node_modules/
