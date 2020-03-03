@@ -413,6 +413,8 @@
         } else {
             // Show success message
             console.log("Transaction is successfull, order is ", response.order) ;
+            window.location.href=`/order/${response.order.orderId}` ;
+
         }
     }
 
@@ -555,6 +557,7 @@
                 .then((data)=>{
                     console.log(data) ;
                     if(data.status == true){
+                      window.location.href=`/order/${data.order.orderId}` ;
                         console.log(data.order) ;
                     }else{
                         console.log(data);

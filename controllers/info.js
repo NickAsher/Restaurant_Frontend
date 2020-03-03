@@ -84,7 +84,12 @@ exports.getAllGalleryItems = async (req, res)=>{
 
 exports.getOrderInfoPage = async (req, res)=>{
   try{
-    res.send("Order info will be shown here") ;
+    let orderId = req.params.orderId ;
+    res.render('order_success.hbs', {
+      orderData : {
+        orderId
+      }
+    }) ;
   }catch (e) {
     res.send({
       e : e.toString(),
