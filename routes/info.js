@@ -7,5 +7,6 @@ router.get('/about', controllerInfo.getAboutUsData) ;
 router.get('/contact', controllerInfo.getContactUsData) ;
 router.get('/gallery', controllerInfo.getAllGalleryItems) ;
 router.get('/specials', controllerInfo.getOfferSpecialsData) ;
+router.get('/order', controllerInfo.getOrderInfoPage) ;
 
 module.exports = router ;

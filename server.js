@@ -53,7 +53,10 @@ app.use((req, res, next)=>{
 
 //TODO check if you can send csurf token with pay requests of stripe
 // this is above the csrf middleware
-app.post('/pay', controllerCheckout.makePayment) ;
+
+
+app.use(require('./routes/checkout')) ;
+
 
 // using the default values for the csrf token.
 // can use options like csrf({ option1:val1, option2:val2 })
@@ -103,7 +106,6 @@ app.use(require('./routes/info')) ;
 app.use(require('./routes/blogs')) ;
 app.use(require('./routes/menu')) ;
 app.use(require('./routes/auth')) ;
-app.use(require('./routes/checkout')) ;
 
 
 

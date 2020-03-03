@@ -30,36 +30,11 @@ exports.getCheckoutPage = async (req, res)=>{
 } ;
 
 
-exports.postCheckoutPage = async (req, res)=>{
+exports.postDevelopmentCheckoutPage = async (req, res)=>{
   try {
-    let userId = req.session.userId;
-    let orderId = crypto.createHash('md5').update(`${userId}-${Date.now()}`).digest('hex');
-    let cart = req.body.backendCart;
-    let price = await checkoutUtils.calculateCartPrice(cart);
+    let order = await makeOrderObject(req) ;
+    order.paymentId = "Development" ;
 
-
-    let order = {
-      orderId,
-      userId,
-      userDetails:{
-        firstname : req.body.firstname,
-        lastname : req.body.lastname,
-        email : req.body.email,
-        phone : req.body.phone
-      },
-      address: {
-        addressLine1 : req.body.addressLine1,
-        addressLine2 : req.body.addressLine2,
-        addressLine3 : req.body.addressLine3
-      },
-      cart,
-      price: {
-        netPrice: price,
-        totalPrice: price
-      },
-      payment: "some paymentId"
-
-    };
     res.send({
       status: true,
       order
@@ -76,73 +51,97 @@ exports.postCheckoutPage = async (req, res)=>{
   }
 } ;
 
+ async function makeOrderObject(req){
+   let userId = req.session.userId;
+   let orderId = crypto.createHash('md5').update(`${userId}-${Date.now()}`).digest('hex');
+   let cart = req.body.backendCart;
+   let price = await checkoutUtils.calculateCartPrice(cart);
 
-exports.makePayment = async (req, res)=>{
-  try{
 
-    const { paymentMethodId, paymentIntentId, items, currency, useStripeSdk } = req.body;
-    let orderAmount = 1 ;// TODO will be calculated from the cart though ;
-    console.log(paymentMethodId, paymentIntentId, items, currency, useStripeSdk) ;
+   let order = {
+     orderId,
+     userId,
+     userDetails:{
+       firstname : req.body.firstname,
+       lastname : req.body.lastname,
+       email : req.body.email,
+       phone : req.body.phone
+     },
+     address: {
+       addressLine1 : req.body.addressLine1,
+       addressLine2 : req.body.addressLine2,
+       addressLine3 : req.body.addressLine3
+     },
+     cart,
+     price: {
+       netPrice: price,
+       totalPrice: price
+     },
+   };
+   return order ;
+}
 
-    let paymentIntent ;
-    if(paymentMethodId){
+
+
+exports.postCheckoutPage = async (req, res)=>{
+  try {
+    let order = await makeOrderObject(req) ;
+
+
+    let paymentIntent;
+    if (req.body.payment_method_id) {
+      // Create the PaymentIntent
       paymentIntent = await stripe.paymentIntents.create({
-        amount: orderAmount,
+        payment_method: req.body.payment_method_id,
+        amount: order.price.totalPrice * 100,  // money is in paisa
         currency: 'inr',
-        payment_method: paymentMethodId,
-        confirmation_method: "manual",
-        confirm: true,
-        // If a mobile client passes `useStripeSdk`, set `use_stripe_sdk=true`
-        // to take advantage of new authentication features in mobile SDKs
-        use_stripe_sdk: useStripeSdk,
+        confirmation_method: 'manual',
+        confirm: true
       });
-
-    }else{
-      // Confirm the PaymentIntent to finalize payment after handling a required action
-      // on the client.
-      paymentIntent = await stripe.paymentIntents.confirm(paymentIntentId);
-      // After confirm, if the PaymentIntent's status is succeeded, fulfill the order.
+    } else if (req.body.payment_intent_id) {
+      paymentIntent = await stripe.paymentIntents.confirm(
+        req.body.payment_intent_id
+      );
     }
-
-    res.send(generateResponse(paymentIntent)) ;
-
-  }catch (e) {
-    res.send({
-      status : false,
-      e,
-      e_message : e.message,
-      e_toString : e.toString(),
-      e_toString2 : e.toString,
-      yo : "Beta ji koi error hai"
-    }) ;
+    // Send the response to the client
+    res.send(generateResponse(paymentIntent, order));
+  } catch (e) {
+    // Display error on client
+    return res.send({ error: e.message });
   }
-
-
 } ;
 
 
 
-const generateResponse = intent => {
-  // Generate a response based on the intent's status
-  switch (intent.status) {
-    case "requires_action":
-    case "requires_source_action":
-      // Card requires authentication
-      return {
-        requiresAction: true,
-        clientSecret: intent.client_secret
-      };
-    case "requires_payment_method":
-    case "requires_source":
-      // Card was not properly authenticated, suggest a new payment method
-      return {
-        error: "Your card was denied, please provide a new payment method"
-      };
-    case "succeeded":
-      // Payment is complete, authentication not required
-      // To cancel the payment after capture you will need to issue a Refund (https://stripe.com/docs/api/refunds)
-      console.log("💰 Payment received!");
-      return { clientSecret: intent.client_secret };
+
+
+
+const generateResponse = (paymentIntent, order) => {
+  // Note that if your API version is before 2019-02-11, 'requires_action'
+  // appears as 'requires_source_action'.
+  if (paymentIntent.status === 'requires_action' && paymentIntent.next_action.type === 'use_stripe_sdk') {
+    // Tell the client to handle the action
+    return {
+      requires_action: true,
+      payment_intent_client_secret: paymentIntent.client_secret
+    };
+  } else if (paymentIntent.status === 'succeeded') {
+    // The payment didn’t need any additional actions and completed!
+    // Handle post-payment fulfillment
+    //TODO add the order to db here and send the order id here
+    order.paymentId = paymentIntent.id ;
+    return {
+      status : true,
+      success: true,
+      order
+    };
+  } else {
+    // Invalid status
+    return {
+      status : false,
+      error: 'Invalid PaymentIntent status'
+    } ;
   }
+
 };
 

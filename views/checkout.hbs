@@ -106,69 +106,74 @@
 
 
                     <div class="order-last order-lg-first col-lg-7 col-xl-8  ">
-                        <div class="bg-white p-4 p-md-5 mb-4">
-                            <h4 class="border-bottom pb-4"><i class="ti ti-user mr-3 text-primary"></i>Basic information</h4>
-                            <div class="row mb-5">
-                                <div class="form-group col-sm-6">
-                                    <label>Firstname:</label>
-                                    <input id="input-checkout-firstname" value="{{userData.firstname}}" type="text" class="form-control">
+                        <form id="form-checkout">
+                            <div class="bg-white p-4 p-md-5 mb-4">
+                                <h4 class="border-bottom pb-4"><i class="ti ti-user mr-3 text-primary"></i>Basic information</h4>
+                                <div class="row mb-5">
+                                    <div class="form-group col-sm-6">
+                                        <label>Firstname:</label>
+                                        <input id="input-checkout-firstname" name="firstname" value="{{userData.firstname}}" type="text" class="form-control">
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>Lastname:</label>
+                                        <input id="input-checkout-lastname" name="lastname" value="{{userData.lastname}}"type="text" class="form-control">
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>Phone number:</label>
+                                        <input id="input-checkout-phone" name="phone" type="tel" class="form-control">
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>E-mail address:</label>
+                                        <input id="input-checkout-email" name="email" value="{{userData.email}}"type="email" class="form-control">
+                                    </div>
                                 </div>
-                                <div class="form-group col-sm-6">
-                                    <label>Lastname:</label>
-                                    <input id="input-checkout-lastname" value="{{userData.lastname}}"type="text" class="form-control">
+
+                                <h4 class="border-bottom pb-4"><i class="ti ti-package mr-3 text-primary"></i>Delivery</h4>
+                                <div class="row mb-5">
+                                    <div class="form-group col-sm-12">
+                                        <label>House/Flat/Block No</label>
+                                        <input id="input-checkout-address-line1" name="addressLine1" type="text" class="form-control">
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>Landmark</label>
+                                        <input id="input-checkout-address-line2" name="addressLine2" type="text" class="form-control">
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>City</label>
+                                        <input id="input-checkout-address-line3" name="addressLine3" type="text" class="form-control" value="Delhi-NCR" disabled>
+                                    </div>
                                 </div>
-                                <div class="form-group col-sm-6">
-                                    <label>Phone number:</label>
-                                    <input id="input-checkout-phone" type="tel" class="form-control" pattern="[0-9]{4}-[0-9]{3}-[0-9]{3}">
+
+
+                                <h4 class="border-bottom pb-4"><i class="ti ti-wallet mr-3 text-primary"></i>Payment</h4>
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label>Card Number</label>
+                                        <div id="card-element-number" class="field form-control"></div>
+                                    </div>
+                                    <div class="form-group col-sm-3">
+                                        <label>Expiry Date</label>
+                                        <div id="card-element-expiry" class="field form-control"></div>
+                                    </div>
+
+                                    <div class="form-group col-sm-3">
+                                        <label>CVC</label>
+                                        <div id="card-element-cvc" class="field form-control"></div>
+                                    </div>
                                 </div>
-                                <div class="form-group col-sm-6">
-                                    <label>E-mail address:</label>
-                                    <input id="input-checkout-email" value="{{userData.email}}"type="email" class="form-control">
-                                </div>
+                                <div id="card-errors-number" role="alert" class="text-center" style="color: red;"><br></div>
+                                <div id="card-errors-expiry" role="alert" class="text-center" style="color: red;"><br></div>
+
+                                <!--<button id="submit" type="button" class="btn btn-outline-primary col-8 offset-2  col-md-4 offset-md-4">Pay</button>-->
+
+                            </div>
+                            <div class="text-center">
+                                <button id="directOrder" type="button" class="btn btn-primary btn-lg" onclick="skipPayment();">Skip Payment</button>
+                                <button id="realOrder" type="button" class="btn btn-primary btn-lg" onclick="sendOrder();">Order now!</button>
+
                             </div>
 
-                            <h4 class="border-bottom pb-4"><i class="ti ti-package mr-3 text-primary"></i>Delivery</h4>
-                            <div class="row mb-5">
-                                <div class="form-group col-sm-12">
-                                    <label>House/Flat/Block No</label>
-                                    <input id="input-checkout-address-line1" type="text" class="form-control">
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label>Landmark</label>
-                                    <input id="input-checkout-address-line2" type="text" class="form-control">
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label>City</label>
-                                    <input id="input-checkout-address-line3" type="text" class="form-control" value="Delhi-NCR" disabled>
-                                </div>
-                            </div>
-
-
-                            <h4 class="border-bottom pb-4"><i class="ti ti-wallet mr-3 text-primary"></i>Payment</h4>
-                            <div class="row">
-                                <div class="form-group col-sm-6">
-                                    <label>Card Number</label>
-                                    <div id="card-element-number" class="field form-control"></div>
-                                </div>
-                                <div class="form-group col-sm-3">
-                                    <label>Expiry Date</label>
-                                    <div id="card-element-expiry" class="field form-control"></div>
-                                </div>
-
-                                <div class="form-group col-sm-3">
-                                    <label>CVC</label>
-                                    <div id="card-element-cvc" class="field form-control"></div>
-                                </div>
-                            </div>
-                            <div id="card-errors-number" role="alert" class="text-center" style="color: red;"><br></div>
-                            <div id="card-errors-expiry" role="alert" class="text-center" style="color: red;"><br></div>
-
-                            <!--<button id="submit" type="button" class="btn btn-outline-primary col-8 offset-2  col-md-4 offset-md-4">Pay</button>-->
-
-                        </div>
-                        <div class="text-center">
-                            <button id="mySuperBtn" class="btn btn-primary btn-lg" onclick="sendOrder();"><span>Order now!</span></button>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -181,7 +186,6 @@
     </div>
     <!-- Content / End -->
 
-    {{>cart_new}}
 
     {{>panel_mobile}}
 
@@ -200,6 +204,7 @@
 <script src="/plugins/jquery.scrollto/jquery.scrollTo.min.js"></script>
 <script src="/plugins/jquery.localscroll/jquery.localScroll.min.js"></script>
 <script src="/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="/plugins/jquery-validation/dist/jquery-validate-additional-methods.min.js"></script>
 <script src="/plugins/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.min.js"></script>
 <script src="/plugins/twitter-fetcher/js/twitterFetcher_min.js"></script>
 <script src="/plugins/skrollr/dist/skrollr.min.js"></script>
@@ -211,41 +216,50 @@
 
 <!-- Changes in javascript made by me-->
 <script src="/js/myPersonal.js"></script>
-<!--<script src="/js/cart.js"></script>-->
+<script src="/js/cart.js"></script>
 
 <script >
 
 
+
+
+    renderCart() ;
+    setupDeleteCartButton(false) ;
+
+
+
+
+
+
     const stripe = Stripe('pk_test_FPbfGF5aEyQqsBfsPytI46qw002ouxr0PP');
     var elements = stripe.elements();
-
-
+    let cardNumberElement, cardExpiryElement, cardCvcElement;
     function setupStripeCardElements() {
         /* This function sets up the card divs and their validation using stripe libraary
         */
 
-        let cardNumberElement = elements.create('cardNumber', {
+        cardNumberElement = elements.create('cardNumber', {
             placeholder: '16 Digit number here',
         });
         cardNumberElement.mount('#card-element-number');
 
-        let cardExpiryElement = elements.create('cardExpiry', {
+        cardExpiryElement = elements.create('cardExpiry', {
             placeholder: 'MM/YY',
         });
         cardExpiryElement.mount('#card-element-expiry');
 
-        let cardCvcElement = elements.create('cardCvc', {
+        cardCvcElement = elements.create('cardCvc', {
             placeholder: 'CVC',
         });
         cardCvcElement.mount('#card-element-cvc');
 
         // setting errors to show
         cardNumberElement.on('change', (result)=>{
-          if(result.error){
-              $('#card-errors-number').text(result.error.message) ;
-          }else{
-              $('#card-errors-number').html('<br>') ; //removes the error when text is changed
-          }
+            if(result.error){
+                $('#card-errors-number').text(result.error.message) ;
+            }else{
+                $('#card-errors-number').html('<br>') ; //removes the error when text is changed
+            }
         }) ;
 
         cardExpiryElement.on('change', (result)=>{
@@ -260,162 +274,104 @@
     }
     setupStripeCardElements() ;
 
-    function getParsedCartItem(cartItem) {
-      /* This function parses a single cart item from an object
-       * like { id, name , size:{sizeId, sizePrice}, addonitems : {....} }
-       * to   name, price, descriptionString
-      */
-        try{
-            let sizeId = cartItem.itemSizeData.id ;
-            let descriptionString = `Size : ${cartItem.itemSizeData.name} <br> ` ;
-
-            cartItem.addonData.forEach((addonGroupData)=>{
-                descriptionString += `${addonGroupData.addonGroupName} : ` ;
-                addonGroupData.addon_items_array.forEach((addonItem)=>{
-                    descriptionString += `${addonItem.name}, ` ;
-                }) ;
-                descriptionString = descriptionString.slice(0, -2);
-                descriptionString += " <br> " ;
-            }) ;
-            descriptionString = descriptionString.slice(0, -5);
-
-            return {
-                name : cartItem.itemName,
-                itemPrice : cartItem.itemPrice,
-                descriptionString
-            } ;
-
-        }catch (e) {
-            return {
-                name : "error",
-                descriptionString : e,
-            } ;
-        }
-    }
-
-
-
-    let renderCart = ()=>{
-      /* This functions get data from local_storage and renders the html cart table
-       *
-       */
-        let cartItems = JSON.parse(localStorage.getItem('cart')) ;
-        $('#cartTable').html("") ;
-        cartItems.forEach(function(element, index){
-            let parsedElement = getParsedCartItem(element, index) ;
-
-
-            $('#cartTable').append(`
-
-            <tr>
-                <td class="title">
-                    <span class="name"><a href="#productModal" data-toggle="modal">${parsedElement.name}</a></span>
-                    <span class="caption text-muted">${parsedElement.descriptionString}</span>
-                </td>
-                <td class="price"><span class="money-currency">${parsedElement.itemPrice}</span> </td>
-                <td class="actions">
-                    <i data-index="${index}" class="cartItemDelete ti ti-trash" style="color: darkred; cursor: pointer"></i>
-                </td>
-            </tr>
-
-          `) ;
-        }) ;
-
-        let totalItemsPrice_BeforeExtraCharges = parseFloat(localStorage.getItem('total_items_price')) ;
-        $('#totalItemsPrice_BeforeExtraCharges').addClass('money-currency') ;
-        $('#totalItemsPrice_BeforeExtraCharges').html(totalItemsPrice_BeforeExtraCharges) ;
-
-        let taxPercentage = $('#totalTax').attr('data-tax-percentage') ;
-        let taxMonetaryValue = totalItemsPrice_BeforeExtraCharges * (parseFloat(taxPercentage)/100) ;
-        $('#totalTax').html(taxMonetaryValue) ;
-        $('#totalTax').addClass('money-currency') ;
-
-        let totalItemsPrice_AfterExtraCharges = totalItemsPrice_BeforeExtraCharges + taxMonetaryValue ;
-        $('#totalItemsPrice_AfterExtraCharges').html(totalItemsPrice_AfterExtraCharges) ;
-        $('#totalItemsPrice_AfterExtraCharges').addClass('money-currency') ;
-
-
-        formatCurrency() ;
-    } ;
-
-    renderCart() ;
-
-
-
-
-    $(".cartItemDelete").click(function (){
-        // this function deletes the cart item from the local storage
-        let itemIndex = $(this).attr('data-index') ;
-        let cartItems = JSON.parse(localStorage.getItem('cart')) ;
-        let removedItem = cartItems.splice(itemIndex, 1) ; // splice(positiontoRemoveAt, noOfItemsToRemove)   returns an array of removed objects
-        localStorage.setItem('cart', JSON.stringify(cartItems)) ;
-        localStorage.setItem('total_items', parseInt(localStorage.total_items) -1) ;
-        localStorage.setItem('total_items_price', "" + (parseFloat(localStorage.getItem('total_items_price')) - parseFloat(removedItem[0].itemPrice)) ) ;
-
-        $('#totalCartItems').html(localStorage.total_items) ;
-        renderCart() ;
-        // $('#Button_OpenCart').trigger('click') ; // this is to close the cart dialog
-        makeToast('info', "Item removed from cart") ;
-    }) ;
-
-
-    function parseCartForBackend(){
-        /* This function takes the cart from the local-storage, and parses it for sending it to the backend order
-         *
-         * Terminology used : frontendCart : the cart taken from localStorage
-         *  backendCart : the cart to send back
-         */
-
-        let frontendCart = JSON.parse(localStorage.getItem('cart')) ;
-        let backendCart = [] ;
-
-        frontendCart.forEach((element, index)=>{
-            // just need to parse the item_addonData
-            let parsedItemAddonData = [] ;
-
-            element.addonData.forEach((addonGroupElement, index2)=>{
-
-                let addonItemsArray = addonGroupElement.addon_items_array.map((addonItem)=>{
-                    return addonItem.id ;
-                }) ;
-                parsedItemAddonData.push({
-                    addon_group_id : addonGroupElement.addonGroupId,
-                    addon_items_array : addonItemsArray
-                }) ;
-            }) ;
-
-            backendCart.push({
-                item_id : element.itemId,
-                item_size_id : element.itemSizeData.id,
-                item_quantity : 1,
-                item_addon : parsedItemAddonData
-            }) ;
-        }) ;
-        return backendCart ;
-    }
-
-
-    function makeOrderObject(){
-        let backendCart = parseCartForBackend() ;
-        let address = {
-            address_line1 : $('#input-checkout-address-line1').val(),
-            address_line2 : $('#input-checkout-address-line2').val(),
-            address_line3 : $('#input-checkout-address-line3').val(),
-        } ;
-        let userDetails = {
-            firstname : $('#input-checkout-firstname').val(),
-            lastname : $('#input-checkout-lastname').val(),
-            email : $('#input-checkout-email').val(),
-            phone: $('#input-checkout-phone').val(),
-
-        } ;
-
-    }
-
-
-
 
     function sendOrder(){
+        $('#form-checkout').validate({
+            errorPlacement : (error, element)=>{
+                //insert the label element after the parent div
+                error.insertAfter(element) ;
+                $(error).addClass('invalid-feedback') ;
+
+            },
+            highlight: function(element) {
+                // function is invoked on any input element when error occurs for that particular input
+                $(element).addClass('is-invalid') ;
+
+            },
+            unhighlight: function(element) {
+                $(element).removeClass('is-invalid') ;
+
+            },
+            success : (label, element)=>{
+                $(element).addClass("is-valid") ;
+            },
+            rules : {
+                firstname : {
+                    required : true,
+                },
+                lastname : {
+                    required : true
+                },
+                email : {
+                    required : true,
+                    email : true,
+                },
+                phone : {
+                    required : true,
+                    number : true,
+                    minlength : 6,
+                    maxlength : 12
+                },
+                addressLine1: {
+                    required : true,
+                    minlength:5
+                },
+                addressLine2 : {
+                    required : true,
+                    minlength : 3
+                }
+
+            },
+            messages : {
+                firstname : {
+                    required : "Please provide a valid Firstname",
+                },
+                lastname : {
+                    required : "Please provide a valid Lastname"
+                },
+                email : {
+                    required : "Please provide a valid Email address",
+                    email : "This email address is not valid",
+                },
+                phone : {
+                    required : "Please provide a valid phone number",
+                    number : "Phone number can only contain numbers",
+                    minLength : "Please provide a valid phone number",
+                    maxLength :  "Please provide a valid phone number"
+                },
+                addressLine1: "Please provide a valid Address",
+                addressLine2 : "Please provide a valid Landmark for your address"
+            },
+
+
+            submitHandler : ()=>{
+                stripe.createPaymentMethod({
+                    type: 'card',
+                    card: cardNumberElement, // it automatically collects the card expiry info, you can see that in the paymentData object
+                    billing_details: {
+                    },
+                })
+                .then((paymentData)=>{
+                    console.log("Payment data is ", paymentData) ;
+                    sendOrderToBackend(paymentData) ;
+                })
+                .catch((err2)=>{
+                    console.log(err2) ;
+                    console.log("error in create payment method of stripe") ;
+                }) ;
+                console.log("Form is now valid") ;
+            }
+
+        }) ;
+
+        $('#form-checkout').submit() ;
+
+
+
+
+    }
+
+    function sendOrderToBackend(paymentData){
         fetch('/checkout', {
             method : 'POST',
             headers : {
@@ -423,7 +379,7 @@
                 'Content-Type': 'application/json'
             },
             body : JSON.stringify({
-                _csrf : "{{_csrfToken}}",
+                payment_method_id: paymentData.paymentMethod.id,
                 backendCart : parseCartForBackend(),
                 addressLine1 : $('#input-checkout-address-line1').val(),
                 addressLine2 : $('#input-checkout-address-line2').val(),
@@ -436,20 +392,185 @@
         })
         .then((response)=>response.json()) //response is just http status codes, this is needed to get data
         .then((data)=>{
-          console.log(data) ;
-            // if(data.status == true && data.success =="ORDER_SENT"){
-            //     console.log(data) ;
-            //
-            //     //TODO show the success-order page
-            // }else{
-            //     console.log(data);
-            //     throw "Error sending mail" ;
-            // }
+            console.log("Made the first request to pay, and the response is ", data) ;
+            handleServerResponse(data);
         })
         .catch((err)=>{
             console.log(err) ;
             makeToast('error', "Error in ordering") ;
         }) ;
+    }
+
+
+
+    function handleServerResponse(response) {
+        if (response.error) {
+            // Show error from server on payment form
+        } else if (response.requires_action) {
+            // Use Stripe.js to handle required card action
+            stripe.handleCardAction(response.payment_intent_client_secret)
+                    .then(handleStripeJsResult);
+        } else {
+            // Show success message
+            console.log("Transaction is successfull, order is ", response.order) ;
+        }
+    }
+
+    function handleStripeJsResult(result) {
+        if (result.error) {
+            // Show error in payment form
+        } else {
+            // The card action has been handled
+            // The PaymentIntent can be confirmed again on the server
+            console.log("Making another request to /pay inside the method handleStripeJsResult") ;
+            fetch('/checkout', {
+                // send the whole cart and user data again
+                // also right now we do not have access to csrf token
+                // as it was changed in the last request and we don't have it
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    payment_intent_id: result.paymentIntent.id,
+                    backendCart : parseCartForBackend(),
+                    addressLine1 : $('#input-checkout-address-line1').val(),
+                    addressLine2 : $('#input-checkout-address-line2').val(),
+                    addressLine3 : $('#input-checkout-address-line3').val(),
+                    firstname : $('#input-checkout-firstname').val(),
+                    lastname : $('#input-checkout-lastname').val(),
+                    email : $('#input-checkout-email').val(),
+                    phone: $('#input-checkout-phone').val(),
+                })
+            })
+            .then((confirmResult)=> confirmResult.json())
+            .then(handleServerResponse)
+            .catch((err)=>{
+                console.log(err) ;
+                makeToast('error', 'There seems to be an error regarding the payment. Please try again later') ;
+                console.log("Inside the error handler for confirming the transaction") ;
+            }) ;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+    function skipPayment(){
+        $('#form-checkout').validate({
+            errorPlacement : (error, element)=>{
+                //insert the label element after the parent div
+                error.insertAfter(element) ;
+                $(error).addClass('invalid-feedback') ;
+
+            },
+            highlight: function(element) {
+                // function is invoked on any input element when error occurs for that particular input
+                $(element).addClass('is-invalid') ;
+
+            },
+            unhighlight: function(element) {
+                $(element).removeClass('is-invalid') ;
+
+            },
+            success : (label, element)=>{
+                $(element).addClass("is-valid") ;
+            },
+            rules : {
+                firstname : {
+                    required : true,
+                },
+                lastname : {
+                    required : true
+                },
+                email : {
+                    required : true,
+                    email : true,
+                },
+                phone : {
+                    required : true,
+                    number : true,
+                    minlength : 6,
+                    maxlength : 12
+                },
+                addressLine1: {
+                    required : true,
+                    minlength:5
+                },
+                addressLine2 : {
+                    required : true,
+                    minlength : 3
+                }
+
+            },
+            messages : {
+                firstname : {
+                    required : "Please provide a valid Firstname",
+                },
+                lastname : {
+                    required : "Please provide a valid Lastname"
+                },
+                email : {
+                    required : "Please provide a valid Email address",
+                    email : "This email address is not valid",
+                },
+                phone : {
+                    required : "Please provide a valid phone number",
+                    number : "Phone number can only contain numbers",
+                    minLength : "Please provide a valid phone number",
+                    maxLength :  "Please provide a valid phone number"
+                },
+                addressLine1: "Please provide a valid Address",
+                addressLine2 : "Please provide a valid Landmark for your address"
+            },
+
+
+            submitHandler : ()=>{
+                fetch('/checkout-development', {
+                    method : 'POST',
+                    headers : {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body : JSON.stringify({
+                        backendCart : parseCartForBackend(),
+                        addressLine1 : $('#input-checkout-address-line1').val(),
+                        addressLine2 : $('#input-checkout-address-line2').val(),
+                        addressLine3 : $('#input-checkout-address-line3').val(),
+                        firstname : $('#input-checkout-firstname').val(),
+                        lastname : $('#input-checkout-lastname').val(),
+                        email : $('#input-checkout-email').val(),
+                        phone: $('#input-checkout-phone').val(),
+                    })
+                })
+                .then((response)=>response.json())
+                .then((data)=>{
+                    console.log(data) ;
+                    if(data.status == true){
+                        console.log(data.order) ;
+                    }else{
+                        console.log(data);
+                        throw "Error in completing checkout process" ;
+                    }
+                })
+                .catch((err)=>{
+                    console.log(err) ;
+                    makeToast('error', "Error in ordering") ;
+                }) ;
+            }
+
+        }) ;
+
+        $('#form-checkout').submit() ;
+
     }
 
 

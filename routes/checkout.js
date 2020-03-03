@@ -75,30 +75,20 @@ router.post('/checkout', isAuthenticatedPost(), [
 ], showValidationError,  controllerCheckout.postCheckoutPage) ;
 
 
-router.post('/sendOrder', isAuthenticated('checkout'), async (req, res)=>{
-  try{
-    let userId = req.session.userId ;
+router.post('/checkout-development', isAuthenticatedPost(), [
 
-    let orderId = crypto.createHash('md5').update(`${userId}-${Date.now()}`).digest('hex') ;
-    res.send({
-      userId,
-      orderId,
-      cart : req.body.backendCart,
-      address : req.body.address,
-      userDetails : req.body.userDetails
-    }) ;
+  body('backendCart', "Invalid Cart").custom((item, {req})=>{
+    return Array.isArray(item) && item.length > 0 ;
+  }),
+  body('firstname', "Invalid Firstname").exists().not().isEmpty().trim().escape(),
+  body('lastname', "Invalid Lastname").exists().not().isEmpty().trim().escape(),
+  body('email', 'Invalid Email').not().isEmpty().isEmail().normalizeEmail(),
+  body('phone', 'Invalid phone').not().isEmpty().isNumeric().isLength({min:6, max:12}),
+  body('addressLine1', "Invalid Address Line 1").exists().not().isEmpty().trim().escape(),
+  body('addressLine2', "Invalid Address Line 2").exists().not().isEmpty().trim().escape(),
+  body('addressLine3', "Invalid Address Line 3").exists().not().isEmpty().trim().escape(),
 
-  }catch (e) {
-    res.send({
-      status:false,
-      e,
-      e_message : e.message,
-      e_toString : e.toString(),
-      e_toString2 : e.toString,
-      yo : "Beta ji koi error hai"
-    }) ;
-  }
+], showValidationError,  controllerCheckout.postDevelopmentCheckoutPage) ;
 
-}) ;
 
 module.exports = router ;

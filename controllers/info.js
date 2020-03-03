@@ -82,6 +82,17 @@ exports.getAllGalleryItems = async (req, res)=>{
   }
 } ;
 
+exports.getOrderInfoPage = async (req, res)=>{
+  try{
+    res.send("Order info will be shown here") ;
+  }catch (e) {
+    res.send({
+      e : e.toString(),
+      msg : "Beta ji koi to error hai"
+    }) ;
+  }
+} ;
+
 
 
 

@@ -70,11 +70,9 @@ let renderCart = ()=>{
 } ;
 
 
-$('#Button_OpenCart').click(function () {
-  renderCart() ;
-
+function setupDeleteCartButton(boolean_openCart = true){
   $(".cartItemDelete").click(function (){
-    // this function deleted the cart item from the local storage
+    // this function deletes the single cart item from the local storage
     let itemIndex = $(this).attr('data-index') ;
     let cartItems = JSON.parse(localStorage.getItem('cart')) ;
     let removedItem = cartItems.splice(itemIndex, 1) ; // this is an array of 1 removed object
@@ -83,11 +81,29 @@ $('#Button_OpenCart').click(function () {
     localStorage.setItem('total_items_price', ""+parseFloat(localStorage.getItem('total_items_price')) - parseFloat(removedItem[0].itemPrice) ) ;
 
     $('#totalCartItems').html(localStorage.total_items) ;
-    // renderCart() ;
-    $('#Button_OpenCart').trigger('click') ; // this is to close the cart dialog
+
+    if(boolean_openCart){
+      $('#Button_OpenCart').trigger('click') ; // this is to close the cart dialog
+    }else{
+      renderCart() ;
+    }
     makeToast('info', "Item removed from cart") ;
   }) ;
+}
+
+$('#Button_OpenCart').click(function () {
+  renderCart() ;
+
+  // the reason this cartItemDelete is inside the #Button_OpenCart onClick is because
+  // the cart is not rendered when we put the following code outside
+  // meaning there is no cart, no delete buttons, so the code won't work
+  setupDeleteCartButton(true) ;
 }) ;
+
+
+
+
+
 
 
 
@@ -124,7 +140,6 @@ function parseCartForBackend(){
       item_addon : parsedItemAddonData
     }) ;
   }) ;
-  console.log(backendCart) ;
   return backendCart ;
 
 
