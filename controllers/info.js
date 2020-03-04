@@ -84,11 +84,17 @@ exports.getAllGalleryItems = async (req, res)=>{
 
 exports.getOrderInfoPage = async (req, res)=>{
   try{
+    if(!req.session.isLoggedIn){
+      res.redirect('/login?redirect=order') ;
+    }
+    //now the user is loggedIn
     let orderId = req.params.orderId ;
+    let dbReturnData = await dbRepository.getOrderById(orderId, req.session.userId);
+    if(dbReturnData.status == false){throw "Error in getting order info" ;}
+
+    let orderData = dbReturnData.data ;
     res.render('order_success.hbs', {
-      orderData : {
-        orderId
-      }
+      orderData
     }) ;
   }catch (e) {
     res.send({

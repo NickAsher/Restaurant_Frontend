@@ -375,7 +375,6 @@
         })
         .then((response)=>response.json()) //response is just http status codes, this is needed to get data
         .then((data)=>{
-            console.log("Made the first request to pay, and the response is ", data) ;
             handleServerResponse(data);
         })
         .catch((err)=>{
@@ -395,8 +394,8 @@
                     .then(handleStripeJsResult);
         } else {
             // Show success message
-            console.log("Transaction is successfull, order is ", response.order) ;
-            window.location.href=`/order/${response.order.orderId}` ;
+            console.log(response) ;
+            window.location.href=`/order/${response.orderId}` ;
 
         }
     }
@@ -540,8 +539,9 @@
                 .then((data)=>{
                     console.log(data) ;
                     if(data.status == true){
-                      window.location.href=`/order/${data.order.orderId}` ;
-                        console.log(data.order) ;
+                        console.log(data) ;
+                        window.location.href=`/order/${data.orderId}` ;
+
                     }else{
                         console.log(data);
                         throw "Error in completing checkout process" ;

@@ -54,24 +54,13 @@ let calculateItemPrice = async (backendCartItem)=>{
   }) ;
   return itemPrice ;
 } ;
-// calculateItemPrice({
-//   "item_id":41002,
-//   "item_size_id":2,
-//   "item_quantity":1,
-//   "item_addon":[
-//     {"addon_group_id":1,"addon_items_array":[48005, 48007]},
-//     {"addon_group_id":2,"addon_items_array":[]}
-//   ]
-// }) ;
+
 
 
 exports.calculateCartPrice = async (backendCart)=>{
   let totalPrice =  0 ;
-
   for(let i=0;i<backendCart.length; i++){
     totalPrice += await calculateItemPrice(backendCart[i]) ;
   }
-
-  console.log("total price is", totalPrice) ;
   return totalPrice ;
 } ;

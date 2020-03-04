@@ -267,6 +267,63 @@ exports.resetPasswordToken = async (id, resetToken)=>{
   }
 } ;
 
+/* ************************** Order *******************************/
+
+
+exports.insertOrder = async (orderData)=>{
+  try{
+    let dbData = await dbConnection.execute(
+      `INSERT INTO order_table2 (userId, userDetails, address, cart, totalPrice, paymentData)
+       VALUES (:userId, :userDetails, :address, :cart, :totalPrice, :paymentData )`, {
+        userId : orderData.userId,
+        userDetails : orderData.userDetails,
+        address : orderData.address,
+        cart : orderData.cart,
+        totalPrice : orderData.totalPrice,
+        paymentData : orderData.paymentData
+      }) ;
+    return {
+      status : true,
+      data : dbData['0']
+    } ;
+  }catch (e) {
+    return {
+      status : false,
+      data : e.toString()
+    } ;
+  }
+} ;
+
+exports.getOrderById = async (orderId, userId)=>{
+  try{
+    let dbData = await dbConnection.execute(
+      `SELECT * FROM order_table2 WHERE id = :orderId AND userId = :userId`, {
+        orderId,
+        userId
+      });
+
+    return {
+      status : true,
+      data : dbData['0']['0']
+    } ;
+
+  }catch (e) {
+    return {
+      status : false,
+      data : e.toString()
+    } ;
+  }
+} ;
+
+
+
+
+
+
+
+
+/* ************************** Menu *******************************/
+
 exports.getAllMenuCategories = async ()=>{
   try{
     let dbData = await dbConnection.execute(
