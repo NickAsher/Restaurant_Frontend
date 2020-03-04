@@ -52,18 +52,9 @@ let renderCart = ()=>{
           `) ;
   }) ;
 
-  let totalItemsPrice_BeforeExtraCharges = parseFloat(localStorage.getItem('total_items_price')) ;
-  $('#totalItemsPrice_BeforeExtraCharges').addClass('money-currency') ;
-  $('#totalItemsPrice_BeforeExtraCharges').html(totalItemsPrice_BeforeExtraCharges) ;
-
-  let taxPercentage = $('#totalTax').attr('data-tax-percentage') ;
-  let taxMonetaryValue = totalItemsPrice_BeforeExtraCharges * (parseFloat(taxPercentage)/100) ;
-  $('#totalTax').html(taxMonetaryValue) ;
-  $('#totalTax').addClass('money-currency') ;
-
-  let totalItemsPrice_AfterExtraCharges = totalItemsPrice_BeforeExtraCharges + taxMonetaryValue ;
-  $('#totalItemsPrice_AfterExtraCharges').html(totalItemsPrice_AfterExtraCharges) ;
-  $('#totalItemsPrice_AfterExtraCharges').addClass('money-currency') ;
+  let totalItemsPrice = parseFloat(localStorage.getItem('total_items_price')) ;
+  $('#totalItemsPrice').html(totalItemsPrice) ;
+  $('#totalItemsPrice').addClass('money-currency') ;
 
 
   formatCurrency() ;

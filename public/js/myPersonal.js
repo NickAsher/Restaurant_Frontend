@@ -48,6 +48,7 @@ function initLocalStorageItems(){
   if(!localStorage.cart){
     localStorage.setItem('cart', '[]') ;
   }
+
 }
 
 initLocalStorageItems() ;
