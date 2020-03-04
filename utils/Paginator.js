@@ -10,10 +10,10 @@ class Paginator {
     } else {
       if(this.totalNoOfItems%this.itemsPerPage == 0){
         // 20%10 = 0   so two pages (20/10)
-        this.maxPageNo = this.totalNoOfItems/this.itemsPerPage ;
+        this.maxPageNo = parseInt(this.totalNoOfItems/this.itemsPerPage) ;
       }else{
         // 21/10 = 1  so three pages (21/10 + 1)
-        this.totalNoOfItems = parseInt(this.totalNoOfItems/this.itemsPerPage)+1 ;
+        this.maxPageNo = parseInt(this.totalNoOfItems/this.itemsPerPage)+1 ;
       }
     }
 

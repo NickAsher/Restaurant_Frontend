@@ -8,11 +8,8 @@ const Paginator = require('../utils/Paginator') ;
 
 exports.getAllBlogs_Paginated = async (req, res)=>{
   try{
-
-    let dbHelper = JSON.parse(fs.readFileSync(__dirname + '/../utils/dbHelper.json')) ;
-
-    let totalNoOfItems = dbHelper.total_blog_items ;
-    let itemsPerPage  = 10 ;
+    let totalNoOfItems = parseInt((await dbRepository.getBlogCount()).data);
+    let itemsPerPage  = 7;
     let myPaginator = new Paginator(totalNoOfItems, itemsPerPage, req.query.page) ;
     let parsedPaginatorHtml = myPaginator.getPaginatedHTML("") ;
 

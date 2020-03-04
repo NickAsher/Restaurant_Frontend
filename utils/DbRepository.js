@@ -21,6 +21,23 @@ exports.getAllBlogs = async ()=>{
   }
 } ;
 
+exports.getBlogCount = async() =>{
+  try{
+    let dbData = await dbConnection.execute(
+      "SELECT COUNT(blog_id) AS cnt FROM blogs_table "
+    ) ;
+    return {
+      status : true,
+      data : dbData['0']['0']['cnt']
+    } ;
+  }catch (e) {
+    return {
+      status : false,
+      data : e,
+    } ;
+  }
+} ;
+
 exports.getBlogs_Paginated = async (pageNo, totalItemsPerPage)=>{
   try{
     let limit = totalItemsPerPage ;
