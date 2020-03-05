@@ -55,7 +55,6 @@ app.use((req, res, next)=>{
 // this is above the csrf middleware
 
 
-app.use(require('./routes/checkout')) ;
 
 
 // using the default values for the csrf token.
@@ -100,6 +99,7 @@ app.get('/clear', (req, res)=>{
 
 
 
+app.use(require('./routes/checkout')) ;
 
 
 app.use(require('./routes/info')) ;

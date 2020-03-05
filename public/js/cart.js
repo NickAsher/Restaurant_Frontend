@@ -61,8 +61,10 @@ let renderCart = ()=>{
 } ;
 
 
-function setupDeleteCartButton(boolean_openCart = true){
+function setupDeleteCartButton(usedBy){
+
   $(".cartItemDelete").click(function (){
+    console.log("called delete on item by ", usedBy) ;
     // this function deletes the single cart item from the local storage
     let itemIndex = $(this).attr('data-index') ;
     let cartItems = JSON.parse(localStorage.getItem('cart')) ;
@@ -71,26 +73,39 @@ function setupDeleteCartButton(boolean_openCart = true){
     localStorage.setItem('total_items', parseInt(localStorage.total_items) -1) ;
     localStorage.setItem('total_items_price', ""+parseFloat(localStorage.getItem('total_items_price')) - parseFloat(removedItem[0].itemPrice) ) ;
 
-    $('#totalCartItems, #totalCartItems_Mobile').html(localStorage.total_items) ;
-
-    if(boolean_openCart){
-      $('#Button_OpenCart').trigger('click') ; // this is to close the cart dialog
-      $('#Button_OpenCart_Mobile').trigger('click') ;
-
-    }else{
-      renderCart() ;
+    switch (usedBy){
+      case "cart_normal" :
+        $('#totalCartItems').html(localStorage.total_items) ;
+        $('#Button_OpenCart').trigger('click') ;
+        break;
+      case "cart_mobile" :
+        $('#totalCartItems_Mobile').html(localStorage.total_items) ;
+        $('#Button_OpenCart_Mobile').trigger('click') ;
+        break ;
+      case "checkout" :
+        renderCart() ;
+        //need to set the delete listener again because,
+        // once the cart is rendered again, we delete the whole cartTable and render it again
+        // This means that the click listener is gone, so we need to set it again
+        setupDeleteCartButton("checkout") ;
     }
+
     makeToast('info', "Item removed from cart") ;
   }) ;
 }
 
-$('#Button_OpenCart, #Button_OpenCart_Mobile').click(function () {
+$('#Button_OpenCart').click(function () {
   renderCart() ;
-
   // the reason this cartItemDelete is inside the #Button_OpenCart onClick is because
   // the cart is not rendered when we put the following code outside
-  // meaning there is no cart, no delete buttons, so the code won't work
-  setupDeleteCartButton(true) ;
+  // meaning there is no cart, no delete buttons, so the code won't work,
+  // also every time the cart is rendered again, the click listener for delete is gone.
+  setupDeleteCartButton("cart_normal") ;
+}) ;
+
+$('#Button_OpenCart_Mobile').click(function () {
+  renderCart() ;
+  setupDeleteCartButton("cart_mobile") ;
 }) ;
 
 

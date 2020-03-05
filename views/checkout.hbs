@@ -41,7 +41,7 @@
 <!-- Body Wrapper -->
 <div id="body-wrapper" class="animsition">
 
-    {{>header_light}}
+    {{>header_light_checkout}}
 
     <!-- Content -->
     <div id="content">
@@ -206,8 +206,24 @@
 
 
 
+
     renderCart() ;
-    setupDeleteCartButton(false) ;
+    function setupCustomDeleteCartButton(){
+        $(".cartItemDelete").click(function (){
+            console.log("called delete on item by ") ;
+            // this function deletes the single cart item from the local storage
+            let itemIndex = $(this).attr('data-index') ;
+            let cartItems = JSON.parse(localStorage.getItem('cart')) ;
+            let removedItem = cartItems.splice(itemIndex, 1) ; // this is an array of 1 removed object
+            localStorage.setItem('cart', JSON.stringify(cartItems)) ;
+            localStorage.setItem('total_items', parseInt(localStorage.total_items) -1) ;
+            localStorage.setItem('total_items_price', ""+parseFloat(localStorage.getItem('total_items_price')) - parseFloat(removedItem[0].itemPrice) ) ;
+            renderCart() ;
+            setupCustomDeleteCartButton() ; //need this because, once the cart is rendered again, the click listener is gone
+            makeToast('info', "Item removed from cart") ;
+        }) ;
+    }
+    setupDeleteCartButton("checkout") ;
 
 
 
