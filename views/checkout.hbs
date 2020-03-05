@@ -395,6 +395,7 @@
         } else {
             // Show success message
             console.log(response) ;
+            resetLocalStorage() ;
             window.location.href=`/order/${response.orderId}` ;
 
         }
@@ -540,6 +541,7 @@
                     console.log(data) ;
                     if(data.status == true){
                         console.log(data) ;
+                        resetLocalStorage() ;
                         window.location.href=`/order/${data.orderId}` ;
 
                     }else{

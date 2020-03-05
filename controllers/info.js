@@ -86,6 +86,7 @@ exports.getOrderInfoPage = async (req, res)=>{
   try{
     if(!req.session.isLoggedIn){
       res.redirect('/login?redirect=order') ;
+      return ;
     }
     //now the user is loggedIn
     let orderId = req.params.orderId ;

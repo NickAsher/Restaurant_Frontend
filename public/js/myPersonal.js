@@ -53,10 +53,16 @@ function initLocalStorageItems(){
 
 initLocalStorageItems() ;
 
+function resetLocalStorage(){
+  localStorage.setItem('total_items', '0') ;
+  localStorage.setItem('total_items_price', '0') ;
+  localStorage.setItem('cart', '[]') ;
+}
+
 
 let refreshNoOfItemsInCart = ()=>{
   /* This function refreshes the icon in the top that shows the items in the cart */
-  $('#totalCartItems').html(localStorage.getItem('total_items')) ;
+  $('#totalCartItems, #totalCartItems_Mobile').html(localStorage.getItem('total_items')) ;
 } ;
 
 

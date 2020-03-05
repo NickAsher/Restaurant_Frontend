@@ -71,10 +71,12 @@ function setupDeleteCartButton(boolean_openCart = true){
     localStorage.setItem('total_items', parseInt(localStorage.total_items) -1) ;
     localStorage.setItem('total_items_price', ""+parseFloat(localStorage.getItem('total_items_price')) - parseFloat(removedItem[0].itemPrice) ) ;
 
-    $('#totalCartItems').html(localStorage.total_items) ;
+    $('#totalCartItems, #totalCartItems_Mobile').html(localStorage.total_items) ;
 
     if(boolean_openCart){
       $('#Button_OpenCart').trigger('click') ; // this is to close the cart dialog
+      $('#Button_OpenCart_Mobile').trigger('click') ;
+
     }else{
       renderCart() ;
     }
@@ -82,7 +84,7 @@ function setupDeleteCartButton(boolean_openCart = true){
   }) ;
 }
 
-$('#Button_OpenCart').click(function () {
+$('#Button_OpenCart, #Button_OpenCart_Mobile').click(function () {
   renderCart() ;
 
   // the reason this cartItemDelete is inside the #Button_OpenCart onClick is because
