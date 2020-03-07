@@ -4,24 +4,7 @@ const {body, validationResult} = require('express-validator') ;
 
 const router = express.Router() ;
 
-const isAuthenticated = (redirectBack)=>{
-  /* Middleware to authenticate user on pages which need authentication
-   * @param {string} redirectBack - The page where we should come back to after authentication
-   *
-   *  this function checks if the user is authenticated using session.isLoggedIn
-   *    If they are, they simply go to their page
-   *    If not, they are redirected to login page and query ?redirect=backPage is set
-   *
-   */
-  return (req, res, next)=>{
-    if(req.session.isLoggedIn != true){   // checks for both false and undefined this way
-      res.redirect(`/login?redirect=${redirectBack}`);
-      //TODO show message that you need to be logged in
-    }else{
-      next();
-    }
-  } ;
-} ;
+
 
 const isAuthenticatedPost =  ()=>{
   /* Middleware to check if post request comes from authenticated user
@@ -55,8 +38,6 @@ const showValidationError = (req, res, next)=>{
   }
 } ;
 
-
-router.get('/checkout', isAuthenticated('checkout'), controllerCheckout.getCheckoutPage) ;
 
 
 router.post('/checkout', isAuthenticatedPost(), [

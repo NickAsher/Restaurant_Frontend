@@ -110,8 +110,10 @@ function makeErrorToast(msg){
 refreshNoOfItemsInCart() ;
 
 function redirectBack(defaultRedirection){
-  let searchParams = new URLSearchParams(window.location.search) ;
   // check if there is query paramter called redirect like      https://www.rest.com?redirect=checkout
+  // if there is , then go there, else go to argument given function parameter
+
+  let searchParams = new URLSearchParams(window.location.search) ;
   if(searchParams.has('redirect')){
     window.location.href = "/" + searchParams.get('redirect') ;
   }else{

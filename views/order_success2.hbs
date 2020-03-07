@@ -49,10 +49,10 @@
         <!-- Page Title -->
         <div class="page-title bg-dark dark">
             <!-- BG Image -->
-            <div class="bg-image bg-parallax"><img src="/img/photos/bg-croissant.jpg" alt=""></div>
             <div class="container">
                 <div class="row justify-content-center">
-                    <h1 class="mb-0">Checkout</h1>
+                    <h1 class="mb-0"><i class="fa fa-lg fa-times-circle"></i></h1>
+                    <h1 class="mb-0">Order Successfull</h1>
                 </div>
             </div>
         </div>
@@ -64,7 +64,7 @@
                 <div class="row">
                     <!--On small screen, the cart table will appear first (order-first)
                      and on large screen it will appear after checkout form (order-lg-last)-->
-                    <div class="order-first order-lg-last col-lg-5 col-xl-4 ">
+                    <div class="order-first order-lg-first col-lg-5 col-xl-4 ">
                         <div class="shadow bg-white stick-to-content mb-4">
                             <div class="bg-dark dark p-4"><h5 class="mb-0">You order</h5></div>
 
@@ -88,7 +88,7 @@
 
 
 
-                    <div class="order-last order-lg-first col-lg-7 col-xl-8  ">
+                    <div class="order-last order-lg-last col-lg-7 col-xl-8  ">
                         <form id="form-checkout">
                             <div class="bg-white p-4 p-md-5 mb-4">
                                 <h4 class="border-bottom pb-4"><i class="ti ti-user mr-3 text-primary"></i>Basic information</h4>
@@ -205,6 +205,9 @@
 
 
 
+    function renderBackendCart(){
+
+    }
     renderCart() ;
     setupDeleteCartButton("checkout") ;
 

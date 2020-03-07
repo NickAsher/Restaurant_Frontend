@@ -75,8 +75,8 @@
                                         <button id="Btn_FacebookLogin" type="button" class="btn " onclick="facebookSignIn();" style="background-color: #3b5998;color: white">Facebook Login</button>
                                     </div>
                                     <div class="col-6 col-sm-6 text-center">
-                                        <!--<button id="Btn_FacebookLogin" type="button" class="btn " onclick="facebookSignIn();" style="background-color:#c32f10 ;color: white">Google Login</button>-->
-                                        <div class="g-signin2"  data-longtitle="true" data-onsuccess="onGoogleSignIn"></div>
+                                        <button id="Btn_GoogleLogin" type="button" class="btn " style="background-color:#c32f10 ;color: white">Google Login</button>
+                                        <!--<div class="g-signin2"  data-longtitle="true" data-onsuccess="onGoogleSignIn"></div>-->
                                     </div>
                                 </div>
                                 <div class="row loginOr">
@@ -220,7 +220,7 @@
 <script src="/plugins/animsition/dist/js/animsition.min.js"></script>
 <script src="/plugins/toastr/toastr.min.js" ></script>
 
-<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="https://apis.google.com/js/platform.js?onload=googleSigninInit" async defer></script>
 <script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
 <!-- JS Core -->
 <script src="/js/core.js"></script>
@@ -242,6 +242,26 @@
     };
 
 
+    var googleSigninInit = function(){
+        gapi.load('auth2', function(){
+            // Retrieve the singleton for the GoogleAuth library and set up the client.
+            auth2 = gapi.auth2.init({
+                client_id: '730014109642-7rldv9agg9qp0avagkapdv9l4kocjt5e.apps.googleusercontent.com',
+                cookiepolicy: 'single_host_origin',
+                // Request scopes in addition to 'profile' and 'email'
+                //scope: 'additional_scope'
+            });
+
+            auth2.attachClickHandler(document.getElementById('Btn_GoogleLogin'), {},
+                    function(googleUser) {
+                        onGoogleSignIn(googleUser) ;
+                    }, function(error) {
+                        makeToast('error',`Error in logging in `) ;
+                        console.log(error);
+                    }
+            );
+        });
+    } ;
 
 
     function googleSignOut() {
@@ -282,7 +302,6 @@
                 console.log(err);
             }
         }) ;
-
     }
 
 

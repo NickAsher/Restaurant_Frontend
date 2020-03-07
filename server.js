@@ -46,20 +46,11 @@ app.use(session({
   }
 })) ;
 
+
 app.use((req, res, next)=>{
   console.log(`[${req.method} ${req.originalUrl} ], [user  : ${req.session.userId} ]`) ;
   next() ;
 }) ;
-
-//TODO check if you can send csurf token with pay requests of stripe
-// this is above the csrf middleware
-
-
-
-
-// using the default values for the csrf token.
-// can use options like csrf({ option1:val1, option2:val2 })
-app.use(csrf()) ;
 
 
 
@@ -69,10 +60,40 @@ app.use((req, res, next)=>{
   res.locals.IMAGE_BACKENDFRONT_LINK_PATH = Constants.IMAGE_BACKENDFRONT_LINK_PATH ;
   res.locals.VIDEO_FRONTEND_LINK_PATH = Constants.VIDEO_FRONTEND_LINK_PATH ;
   res.locals.signedIn = req.session.isLoggedIn ;
-  res.locals._csrfToken = req.csrfToken() ; // this method will create a new csrf token and set that token in user session
   next() ;
 }) ;
 
+app.use(require('./routes/checkout')) ;
+
+// using the default values for the csrf token.
+// can use config like csrf({ option1:val1, option2:val2 })
+app.use(csrf()) ;
+app.use((req, res, next)=>{
+  res.locals._csrfToken = req.csrfToken() ; // this method will create a new csrf token
+  next() ;
+}) ;
+
+
+const isAuthenticated = (redirectBack)=>{
+  /* Middleware to authenticate user on pages which need authentication
+   * @param {string} redirectBack - The page where we should come back to after authentication
+   *
+   *  this function checks if the user is authenticated using session.isLoggedIn
+   *    If they are, they simply go to their page
+   *    If not, they are redirected to login page and query ?redirect=backPage is set
+   *
+   */
+  return (req, res, next)=>{
+    if(req.session.isLoggedIn != true){   // checks for both false and undefined this way
+      res.redirect(`/login?redirect=${redirectBack}`);
+      //TODO show message that you need to be logged in
+    }else{
+      next();
+    }
+  } ;
+} ;
+
+app.get('/checkout', isAuthenticated('checkout'), controllerCheckout.getCheckoutPage) ;
 
 
 
@@ -99,9 +120,21 @@ app.get('/clear', (req, res)=>{
 
 
 
-app.use(require('./routes/checkout')) ;
 
-
+app.get('/order', async (req, res)=>{
+  try{
+    res.render('order_success2.hbs') ;
+  }catch (e) {
+    res.send({
+      status : false,
+      e,
+      e_message : e.message,
+      e_toString : e.toString(),
+      e_toString2 : e.toString,
+      yo : "Beta ji koi error hai"
+    }) ;
+  }
+}) ;
 app.use(require('./routes/info')) ;
 app.use(require('./routes/blogs')) ;
 app.use(require('./routes/menu')) ;
