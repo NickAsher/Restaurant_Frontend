@@ -589,6 +589,7 @@ $(document).on('click', function (e){
     }
     if(e.target.id == 'body-overlay') {
         hidePanelCart();
+        hidePanelMobile() ;
     }
 });
 
