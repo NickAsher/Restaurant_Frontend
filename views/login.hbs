@@ -72,10 +72,10 @@
                                 <br><br>
                                 <div class="row text-white">
                                     <div class="col-6 col-sm-6 text-center">
-                                        <button id="Btn_FacebookLogin" type="button" class="btn " onclick="facebookSignIn();" style="background-color: #3b5998;color: white">Facebook Login</button>
+                                        <button id="Btn_FacebookLogin" type="button" class="btn " onclick="facebookSignIn();" style="background-color: #3b5998;"><span class="text-white">Facebook Login</span></button>
                                     </div>
                                     <div class="col-6 col-sm-6 text-center">
-                                        <button id="Btn_GoogleLogin" type="button" class="btn " style="background-color:#c32f10 ;color: white">Google Login</button>
+                                        <button id="Btn_GoogleLogin" type="button" class="btn " style="background-color:#c32f10 ;"><span class="text-white">Google Login</span></button>
                                         <!--<div class="g-signin2"  data-longtitle="true" data-onsuccess="onGoogleSignIn"></div>-->
                                     </div>
                                 </div>
@@ -103,7 +103,7 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <button class="btn btn-lg btn-primary btn-block" type="button" onclick="normalSignIn();">Login</button>
+                                    <button id="Btn_Login" class="btn btn-lg btn-outline-primary btn-block btn-bg-dark" type="button" onclick="normalSignIn();"><span class="text-white">Login</span></button>
                                 </form>
                             </div>
 
@@ -142,7 +142,7 @@
                                         <span class="focus-input"></span>
                                     </div>
                                     <br>
-                                    <button class="btn btn-lg btn-primary btn-block" type="button" onclick="normalSignUp();">Sign up</button>
+                                    <button id="Btn_SignUp" class="btn btn-lg btn-primary btn-block btn-bg-dark" type="button" onclick="normalSignUp();"><span class="text-white">Sign up</span></button>
                                     <br>
                                 </form>
                                 <div class="text-center">
@@ -163,7 +163,7 @@
                                         <span class="focus-input"></span>
                                     </div>
                                     <br>
-                                    <button class="btn btn-lg btn-primary btn-block" type="button" onclick="postGeneratePasswordResetEmail()">Send Email</button>
+                                    <button id="Btn_ForgetPassword" class="btn btn-lg btn-primary btn-block btn-bg-dark" type="button" onclick="postGeneratePasswordResetEmail()"><span class="text-white">Send Email</span></button>
                                 </form>
                                     <br>
                                 <div class="text-center  ">
@@ -254,8 +254,10 @@
 
             auth2.attachClickHandler(document.getElementById('Btn_GoogleLogin'), {},
                     function(googleUser) {
+                        showSpinner($('#Btn_GoogleLogin')) ;
                         onGoogleSignIn(googleUser) ;
                     }, function(error) {
+                        hideSpinner($('#Btn_GoogleLogin')) ;
                         makeToast('error',`Error in logging in `) ;
                         console.log(error);
                     }
@@ -268,10 +270,12 @@
         try{
             var auth2 = gapi.auth2.getAuthInstance();
             auth2.signOut().then(function () {
+                hideSpinner($('#Btn_GoogleLogin')) ;
                 console.log('User signed out.');
                 return true ;
             }) ;
         }catch(err) {
+            hideSpinner($('#Btn_GoogleLogin')) ;
             console.log("Error") ;
             console.log(err) ;
             return false ;
@@ -294,10 +298,12 @@
                     googleSignOut() ;
                     redirectBack('/') ;
                 }else{
+                    hideSpinner($('#Btn_GoogleLogin')) ;
                     console.log(result) ;
                 }
             },
             error : (err)=> {
+                hideSpinner($('#Btn_GoogleLogin')) ;
                 makeErrorToast( "Error in logging in") ;
                 console.log(err);
             }
@@ -306,6 +312,7 @@
 
 
     function facebookSignIn(){
+        showSpinner($('#Btn_FacebookLogin')) ;
         // This function is called after clicking the login button
         FB.login(function (response){
             // this inside function is called after we have gotten the result of facebook login
@@ -317,6 +324,7 @@
                 FB.api('/me', {fields: 'id,first_name, last_name, email'}, function(profileInfo) {
                     if(profileInfo.error){
                         // Error in getting profile info
+                        hideSpinner($('#Btn_FacebookLogin')) ;
                         showError(profileInfo.error, "Error in getting FB Profile Info") ;
                         FB.logout(function(response) {
                             console.log("Lgging out from FB bad") ;
@@ -350,6 +358,7 @@
                                 }
                             },
                             error : (err)=> {
+                                hideSpinner($('#Btn_FacebookLogin')) ;
                                 showError(err, "Error in Sending Post Request") ;
                                 FB.logout(function(response) {
                                     console.log("Lgging out from FB bad") ;
@@ -360,6 +369,7 @@
                 });
             } else {
                 // Not logged into your webpage or we are unable to tell.
+                hideSpinner($('#Btn_FacebookLogin')) ;
                 showError(response, "Error in logging in") ;
             }
         })
@@ -412,6 +422,7 @@
 
 
             submitHandler : ()=>{
+                showSpinner($('#Btn_Login')) ;
                 fetch('/login', {
                     method : 'POST',
                     body : new URLSearchParams({
@@ -422,6 +433,7 @@
                 })
                 .then((response)=>response.json()) //response is just http status codes, this is needed to get data
                 .then((data)=>{
+                    hideSpinner($('#Btn_Login')) ;
                     if(data.status == true){
                         redirectBack('/') ;
                     }else{
@@ -431,6 +443,7 @@
                     // return false ;
                 })
                 .catch((err)=>{
+                    hideSpinner($('#Btn_Login')) ;
                     console.log(err) ;
                     makeToast('error', "Error in logging in") ;
                     // return false ;
@@ -508,6 +521,7 @@
 
 
             submitHandler : ()=>{
+                showSpinner($('#Btn_SignUp')) ;
                 fetch('/signup', {
                     method : 'POST',
                     body : new URLSearchParams({
@@ -521,6 +535,7 @@
                 })
                 .then((response)=>response.json())
                 .then((data)=>{
+                    hideSpinner($('#Btn_SignUp')) ;
                     if(data.status == true){
                         redirectBack('/') ;
                     }else{
@@ -528,6 +543,7 @@
                         throw "error in signinup" ;
                     }
                 }).catch((err)=>{
+                    hideSpinner($('#Btn_SignUp')) ;
                     makeErrorToast("Error in loggin in") ;
                     console.log(err) ;
                 }) ;
@@ -580,6 +596,7 @@
 
 
             submitHandler : ()=>{
+                showSpinner($('#Btn_ForgetPassword')) ;
                 fetch('/forgotPassword', {
                     method : 'POST',
                     body : new URLSearchParams({
@@ -589,6 +606,7 @@
                 })
                 .then((response)=>response.json()) //response is just http status codes, this is needed to get data
                 .then((data)=>{
+                    hideSpinner($('#Btn_ForgetPassword')) ;
                     if(data.status == true && data.success =="MAIL_SENT"){
                         console.log(data) ;
                         $('#div_SectionForgotPasswordResponse').show() ;
@@ -599,6 +617,7 @@
                     }
                 })
                 .catch((err)=>{
+                    hideSpinner($('#Btn_ForgetPassword')) ;
                     console.log(err) ;
                     makeToast('error', "Error in sending mail") ;
                 }) ;

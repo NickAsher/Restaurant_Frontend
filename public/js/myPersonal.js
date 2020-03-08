@@ -127,5 +127,25 @@ function showError(errorInfo, myMmg){
   console.log(errorInfo);
 }
 
+function showSpinner(element){
+  element.children('span').hide() ;
+  element.children('div').remove() ;
+  element.prepend(`
+      <div class="spinner">
+          <div class="rect1"></div>
+          <div class="rect2"></div>
+          <div class="rect3"></div>
+          <div class="rect4"></div>
+          <div class="rect5"></div>
+      </div>
+  `) ;
+}
+
+
+function hideSpinner(element){
+  element.children('span').show() ;
+  element.children('div').hide() ;
+}
+
 
 

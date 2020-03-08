@@ -94,7 +94,7 @@ a.allows-goto:hover{
 }
 
 .focus-input:before {
-    background-color: #4f77ff;
+    background-color: #ddae71;
     content: "";
     width: 0;
     height: 2px;
@@ -161,12 +161,12 @@ label.error{
 
 .panel-login .pwdMask .pwd-toggle {
     top: 20px;
-    right: 15px;
+    right: 30px;
 }
 
 .panel-signup .pwdMask .pwd-toggle {
     top: 20px;
-    right: 15px;
+    right: 30px;
 }
 
 .pwdMask .pwd-toggle:hover,
@@ -177,7 +177,7 @@ label.error{
 .pwdMask .pwd-toggle:hover,
 .pwdMask .pwd-toggle:focus,
 .pwdMask .pwd-toggle.fa-eye {
-    color: #4f77ff;
+    color: #ddae71;
 }
 
 .panel-signup .term-policy a {

@@ -151,8 +151,12 @@
 
                             </div>
                             <div class="text-center">
-                                <button id="directOrder" type="button" class="btn btn-primary btn-lg" onclick="skipPayment();">Skip Payment</button>
-                                <button id="realOrder" type="button" class="btn btn-primary btn-lg" onclick="sendOrder();">Order now!</button>
+                                <button id="btn_MakeDevOrder" type="button" class="btn btn-outline-primary btn-lg btn-bg-dark" onclick="skipPayment();">
+                                    <span class="text-white">Skip Payment</span>
+                                </button>
+                                <button id="btn_MakeRealOrder" type="button" class="btn btn-outline-primary btn-lg btn-bg-dark" onclick="sendOrder();">
+                                    <span class="text-white">Order now!</span>
+                                </button>
 
                             </div>
 
@@ -327,6 +331,7 @@
 
 
             submitHandler : ()=>{
+                showSpinner($('#btn_MakeRealOrder')) ;
                 stripe.createPaymentMethod({
                     type: 'card',
                     card: cardNumberElement, // it automatically collects the card expiry info, you can see that in the paymentData object
@@ -387,12 +392,16 @@
     function handleServerResponse(response) {
         if (response.error) {
             // Show error from server on payment form
+            hideSpinner($('#btn_MakeRealOrder')) ;
+            console.log(response.error) ;
+             makeToast('error', "Error in payment") ;
         } else if (response.requires_action) {
             // Use Stripe.js to handle required card action
             stripe.handleCardAction(response.payment_intent_client_secret)
                     .then(handleStripeJsResult);
         } else {
-            // Show success message
+            // show Success Message
+            hideSpinner($('#btn_MakeRealOrder')) ;
             console.log(response) ;
             resetLocalStorage() ;
             window.location.href=`/order/${response.orderId}` ;
@@ -403,6 +412,9 @@
     function handleStripeJsResult(result) {
         if (result.error) {
             // Show error in payment form
+            hideSpinner($('#btn_MakeRealOrder')) ;
+            console.log(result.error) ;
+            makeToast('error', "Error in payment") ;
         } else {
             // The card action has been handled
             // The PaymentIntent can be confirmed again on the server
@@ -431,8 +443,9 @@
             .then((confirmResult)=> confirmResult.json())
             .then(handleServerResponse)
             .catch((err)=>{
+                hideSpinner($('#btn_MakeRealOrder')) ;
+                makeToast('error', "Error in payment") ;
                 console.log(err) ;
-                makeToast('error', 'There seems to be an error regarding the payment. Please try again later') ;
                 console.log("Inside the error handler for confirming the transaction") ;
             }) ;
         }
@@ -518,6 +531,7 @@
 
 
             submitHandler : ()=>{
+                showSpinner($('#btn_MakeDevOrder')) ;
                 fetch('/checkout-development', {
                     method : 'POST',
                     headers : {
@@ -537,18 +551,17 @@
                 })
                 .then((response)=>response.json())
                 .then((data)=>{
-                    console.log(data) ;
+                    hideSpinner($('#btn_MakeDevOrder')) ;
                     if(data.status == true){
-                        console.log(data) ;
                         resetLocalStorage() ;
                         window.location.href=`/order/${data.orderId}` ;
-
                     }else{
                         console.log(data);
                         throw "Error in completing checkout process" ;
                     }
                 })
                 .catch((err)=>{
+                    hideSpinner($('#btn_MakeDevOrder')) ;
                     console.log(err) ;
                     makeToast('error', "Error in ordering") ;
                 }) ;
