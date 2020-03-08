@@ -1,3 +1,26 @@
+function checkLocalStorage(){
+  if (typeof localStorage !== 'undefined') {
+    try {
+      localStorage.setItem('feature_test', 'yes');
+      if (localStorage.getItem('feature_test') === 'yes') {
+        localStorage.removeItem('feature_test');
+        // localStorage is enabled
+      } else {
+        alert("Local storage is disabled, please used a modern browser") ;
+        // localStorage is disabled
+      }
+    } catch(e) {
+      alert("Local storage is disabled, please used a modern browser") ;
+      // localStorage is disabled
+    }
+  } else {
+    alert("Local storage is disabled, please used a modern browser") ;
+    // localStorage is not available
+  }
+}
+checkLocalStorage() ;
+
+
 $('#btn-SignOut').click(()=>{
   fetch('/signout', {
     method : 'POST',
