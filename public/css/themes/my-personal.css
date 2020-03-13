@@ -74,6 +74,7 @@ input:checked ~ span.myForm-input {
   border: solid 1px #ddae71 !important;
 }
 
+/******************************* Toast ************************/
 #toast-container .toast-error {
   background-image: none !important;
   /*removes the default icon of the toastr colour*/

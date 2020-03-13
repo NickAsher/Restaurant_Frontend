@@ -27,9 +27,9 @@ exports.getItem_ModalProduct = async (req, res)=>{
     let categoryId = req.params.categoryId;
     let itemId = req.params.itemId;
 
-    let itemData = await dbRepository.getSingleMenuItem(categoryId, itemId);
+    let itemData = await dbRepository.getSingleMenuItem(itemId);
     if(itemData['status'] == false) {throw itemData ;}
-    let sizeData = await dbRepository.getSingleMenuItem_PriceData(categoryId, itemId);
+    let sizeData = await dbRepository.getSingleMenuItem_PriceData(itemId);
     if(sizeData['status'] == false) {throw sizeData ;}
     let addonData = await dbRepository.getAddonDataInCategory(categoryId);
     if(addonData['status'] == false) {throw addonData ;}
@@ -56,8 +56,8 @@ exports.getItemDetail_DataOnly = async(req, res)=>{
     let categoryId = req.params.categoryId || '1' ;
     let itemId = req.params.itemId || '41001' ;
 
-    let itemData = await dbRepository.getSingleMenuItem(categoryId, itemId) ;
-    let sizeData = await dbRepository.getSingleMenuItem_PriceData(categoryId, itemId) ;
+    let itemData = await dbRepository.getSingleMenuItem(itemId) ;
+    let sizeData = await dbRepository.getSingleMenuItem_PriceData(itemId) ;
     let addonData = await dbRepository.getAddonDataInCategory(categoryId) ;
 
     res.send({

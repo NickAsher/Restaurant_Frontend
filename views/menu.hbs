@@ -373,7 +373,8 @@
       var categoryId = $(this).attr("data-category-id") ;
         console.log("making request on item2/" + categoryId + "/" + itemId);
 
-        fetch('/item/' + categoryId + '/' + itemId).then(function(response) {
+        fetch('/item/' + categoryId + '/' + itemId)
+                .then(function(response) {
             response.text().then(function(text) {
               $("#productModal").html(text) ;
               formatCurrency() ;

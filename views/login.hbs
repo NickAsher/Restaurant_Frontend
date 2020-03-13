@@ -542,7 +542,8 @@
                         console.log(data) ;
                         throw "error in signinup" ;
                     }
-                }).catch((err)=>{
+                })
+                .catch((err)=>{
                     hideSpinner($('#Btn_SignUp')) ;
                     makeErrorToast("Error in loggin in") ;
                     console.log(err) ;

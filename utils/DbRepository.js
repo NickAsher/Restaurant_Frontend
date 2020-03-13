@@ -443,7 +443,7 @@ exports.getAllAddonItemsInAddonGroup = async (addonGroupRelId)=>{
     let dbData = await dbConnection.execute(
         "SELECT * FROM `menu_meta_rel_size_addons_table`, `menu_addons_table` " +
         "WHERE `menu_meta_rel_size_addons_table`.`addon_id` = `menu_addons_table`.`item_id`  " +
-        "AND `addon_size_active` = 'yes' AND `item_is_active` = 'yes' " +
+        "AND `addon_size_active` = 'yes' AND `item_is_active` = '1' " +
         "AND `menu_addons_table`.`item_addon_group_rel_id` = '" + addonGroupRelId  +
         "' ORDER BY `item_sr_no` ASC " );
 
@@ -540,6 +540,22 @@ exports.getAllSizesInCategory = async (categoryId)=>{
 
 
 
+exports.getAllMenuItems = async()=>{
+  try{
+    let dbData = await dbConnection.execute(
+      `SELECT * FROM menu_items_table ORDER BY item_category_id ASC, item_sr_no ASC `) ;
+    return {
+      status : true,
+      data : dbData['0'],
+    } ;
+
+  }catch (e) {
+    return {
+      status : false,
+      data : e,
+    } ;
+  }
+} ;
 
 exports.getAllMenuItemsInCategory = async (categoryId)=>{
   try{
@@ -577,11 +593,12 @@ exports.getAllMenuItemsInSubCategory = async (subcategoryId)=>{
 
 } ;
 
-exports.getSingleMenuItem = async (categoryId, itemId)=>{
+exports.getSingleMenuItem = async (itemId)=>{
   try{
     let dbData = await dbConnection.execute(
         `SELECT * FROM menu_items_table, menu_meta_category_table 
-         WHERE menu_items_table.item_id = '${itemId}' AND menu_meta_category_table.category_id = ${categoryId} `
+         WHERE menu_items_table.item_id = '${itemId}'
+         AND menu_meta_category_table.category_id = menu_items_table.item_category_id`
     ) ;
     return {
       status : true,
@@ -597,13 +614,13 @@ exports.getSingleMenuItem = async (categoryId, itemId)=>{
 
 } ;
 
-exports.getSingleMenuItem_PriceData = async (categoryId, itemId)=>{
+exports.getSingleMenuItem_PriceData = async (itemId)=>{
   try{
     let dbData = await dbConnection.execute(
         `SELECT * FROM menu_meta_rel_size_items_table, menu_meta_size_table 
          WHERE menu_meta_rel_size_items_table.item_id = '${itemId}'
          AND menu_meta_rel_size_items_table.size_id = menu_meta_size_table.size_id
-         AND item_size_active = 'yes' `
+         AND menu_meta_size_table.size_is_active = '1' AND menu_meta_rel_size_items_table.item_size_active = '1' `
     ) ;
     return {
       status : true,
@@ -618,47 +635,29 @@ exports.getSingleMenuItem_PriceData = async (categoryId, itemId)=>{
   }
 } ;
 
-exports.getAllMenuItems_SeperatedByCategory2 = async (itemId)=>{
-  try{
-    let dbData = await dbConnection.execute(`SELECT * FROM menu_items_table`) ;
-    dbData = dbData['0'] ;
-
-
-    return {
-      status : true,
-      data : dbData['0'],
-    } ;
-
-  }catch (e) {
-    return {
-      status : false,
-      data : e,
-    } ;
-  }
-
-} ;
-
-
 exports.getAllMenuItems_SeperatedByCategory = async ()=>{
   try{
-    let categoryArray = await this.getAllMenuCategories() ;
-    if(!categoryArray['status']){
-      throw categoryArray['data'] ;
-    }
-    categoryArray = categoryArray['data'] ;
-    for(let i=0;i<categoryArray.length; i++){
-      let menuItemsInCategoryArray = await this.getAllMenuItemsInCategory(categoryArray[i]['category_id']) ;
-      categoryArray[i]['items'] = menuItemsInCategoryArray['data'] ;
-    }
+    let dbCategoryData = await this.getAllMenuCategories() ;
+    if(dbCategoryData.status != true){throw dbCategoryData.data ;}
 
+    let dbMenuData = await this.getAllMenuItems() ;
+    if(dbMenuData.status != true ){throw dbMenuData.data ;}
+
+    let categoryData = dbCategoryData.data ;
+    let menuData = dbMenuData.data ;
+
+    categoryData.forEach((categoryElement)=>{
+      categoryElement.items = menuData.filter((menuItem)=>{
+        return categoryElement.category_id == menuItem.item_category_id ;
+      }) ;
+    }) ;
 
     return {
       status : true,
-      data : categoryArray,
+      data : categoryData
     } ;
 
   }catch (e) {
-    console.log(e) ;
     return {
       status : false,
       data : e,
@@ -666,5 +665,6 @@ exports.getAllMenuItems_SeperatedByCategory = async ()=>{
   }
 
 } ;
+
 
 
