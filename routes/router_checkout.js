@@ -26,6 +26,7 @@ router.post('/checkout', isAuthenticatedPost(), [
   body('addressLine1', "Invalid Address Line 1").exists().not().isEmpty().trim().escape(),
   body('addressLine2', "Invalid Address Line 2").exists().not().isEmpty().trim().escape(),
   body('addressLine3', "Invalid Address Line 3").exists().not().isEmpty().trim().escape(),
+  body('comments', "Invalid Comments").exists().trim().escape(),
 
 ], showValidationError,  controllerCheckout.postCheckoutPage) ;
 
@@ -42,6 +43,7 @@ router.post('/checkout-development', isAuthenticatedPost(), [
   body('addressLine1', "Invalid Address Line 1").exists().not().isEmpty().trim().escape(),
   body('addressLine2', "Invalid Address Line 2").exists().not().isEmpty().trim().escape(),
   body('addressLine3', "Invalid Address Line 3").exists().not().isEmpty().trim().escape(),
+  body('comments', "Invalid Comments").exists().trim().escape(),
 
 ], showValidationError,  controllerCheckout.postDevelopmentCheckoutPage) ;
 

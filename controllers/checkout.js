@@ -51,6 +51,7 @@ async function makeOrderObject(req){
     },
     cart,
     totalPrice : price,
+    comments : req.body.comments
   };
   return order ;
 }

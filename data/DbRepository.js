@@ -243,13 +243,14 @@ exports.resetPasswordToken = async (id, resetToken)=>{
 exports.insertOrder = async (orderData)=>{
   try{
     let dbData = await dbConnection.execute(
-      `INSERT INTO order_table2 (userId, userDetails, address, cart, totalPrice, paymentData)
-       VALUES (:userId, :userDetails, :address, :cart, :totalPrice, :paymentData )`, {
+      `INSERT INTO order_table2 (userId, userDetails, address, cart, totalPrice, comments, paymentData)
+       VALUES (:userId, :userDetails, :address, :cart, :totalPrice, :comments, :paymentData )`, {
         userId : orderData.userId,
         userDetails : orderData.userDetails,
         address : orderData.address,
         cart : orderData.cart,
         totalPrice : orderData.totalPrice,
+        comments : orderData.comments,
         paymentData : orderData.paymentData
       }) ;
     return {

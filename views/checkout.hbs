@@ -81,7 +81,6 @@
                                         </strong>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -108,6 +107,10 @@
                                     <div class="form-group col-sm-6">
                                         <label>E-mail address:</label>
                                         <input id="input-checkout-email" name="email" value="{{userData.email}}"type="email" class="form-control">
+                                    </div>
+                                    <div class="form-group col-sm-12">
+                                        <label>Comments</label>
+                                        <input id="input-checkout-comments" name="comments" type="text" class="form-control" placeholder="Any instruction on how to prepare the food" >
                                     </div>
                                 </div>
 
@@ -147,7 +150,6 @@
                                 <div id="card-errors-number" role="alert" class="text-center" style="color: red;"><br></div>
                                 <div id="card-errors-expiry" role="alert" class="text-center" style="color: red;"><br></div>
 
-                                <!--<button id="submit" type="button" class="btn btn-outline-primary col-8 offset-2  col-md-4 offset-md-4">Pay</button>-->
 
                             </div>
                             <div class="text-center">
@@ -375,6 +377,7 @@
                 lastname : $('#input-checkout-lastname').val(),
                 email : $('#input-checkout-email').val(),
                 phone: $('#input-checkout-phone').val(),
+                comments : $('#input-checkout-comments').val()
             })
         })
         .then((response)=>response.json()) //response is just http status codes, this is needed to get data
@@ -438,6 +441,7 @@
                     lastname : $('#input-checkout-lastname').val(),
                     email : $('#input-checkout-email').val(),
                     phone: $('#input-checkout-phone').val(),
+                    comments : $('#input-checkout-comments').val()
                 })
             })
             .then((confirmResult)=> confirmResult.json())
@@ -547,6 +551,7 @@
                         lastname : $('#input-checkout-lastname').val(),
                         email : $('#input-checkout-email').val(),
                         phone: $('#input-checkout-phone').val(),
+                        comments : $('#input-checkout-comments').val()
                     })
                 })
                 .then((response)=>response.json())

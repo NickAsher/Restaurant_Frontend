@@ -8,8 +8,6 @@ const cookieParser = require("cookie-parser") ;
 const session = require('express-session') ;
 const csrf = require('csurf') ;
 const logger = require('./middleware/logging') ;
-const authenticationMiddleware = require('./middleware/authentication') ;
-const controllerCheckout = require('./controllers/checkout') ;
 
 
 
