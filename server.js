@@ -5,16 +5,12 @@ const dbConnection = require('./utils/database') ;
 const Constants = require('./utils/Constants') ;
 const bodyParser = require('body-parser');
 const cookieParser = require("cookie-parser") ;
-const fs = require('fs') ;
-const bcrypt = require('bcrypt') ;
 const session = require('express-session') ;
 const csrf = require('csurf') ;
-const crypto = require('crypto') ;
-
+const logger = require('./middleware/logging') ;
+const authenticationMiddleware = require('./middleware/authentication') ;
 const controllerCheckout = require('./controllers/checkout') ;
 
-const dbRepository = require('./data/DbRepository') ;
-const parseUtils = require('./utils/parse') ;
 
 
 const app = express() ;
@@ -44,9 +40,10 @@ app.use(session({
 
 
 app.use((req, res, next)=>{
-  console.log(`[${req.method} ${req.originalUrl} ], [user  : ${req.session.userId} ]`) ;
+  logger.info(`{'method' : '${req.method}','url':'${req.originalUrl}'}`) ;
   next() ;
 }) ;
+
 
 
 
@@ -59,7 +56,10 @@ app.use((req, res, next)=>{
   next() ;
 }) ;
 
+// since checkout has the stripe page, we are unable to use csrf authentication
+// so it is added before the csrf middleware
 app.use(require('./routes/router_checkout')) ;
+
 
 // using the default values for the csrf token.
 // can use config like csrf({ option1:val1, option2:val2 })
@@ -70,36 +70,8 @@ app.use((req, res, next)=>{
 }) ;
 
 
-const isAuthenticated = (redirectBack)=>{
-  /* Middleware to authenticate user on pages which need authentication
-   * @param {string} redirectBack - The page where we should come back to after authentication
-   *
-   *  this function checks if the user is authenticated using session.isLoggedIn
-   *    If they are, they simply go to their page
-   *    If not, they are redirected to login page and query ?redirect=backPage is set
-   *
-   */
-  return (req, res, next)=>{
-    if(req.session.isLoggedIn != true){   // checks for both false and undefined this way
-      res.redirect(`/login?redirect=${redirectBack}`);
-      //TODO show message that you need to be logged in
-    }else{
-      next();
-    }
-  } ;
-} ;
-
-app.get('/checkout', isAuthenticated('checkout'), controllerCheckout.getCheckoutPage) ;
-
-
-
-
 app.get('/clear', (req, res)=>{
-  res.cookie('logged_in', true, {httpOnly : true, maxAge : 60*60*24*7 }) ;
-  res.cookie('cart', '[]', {httpOnly : true, maxAge : 60*60*24*7 }) ;
-  res.cookie('total_items', 0, {httpOnly : true, maxAge : 60*60*24*7 }) ;
-  res.cookie('total_price', 0, {httpOnly : true, maxAge : 60*60*24*7 }) ;
-
+  //TODO remove the session id cookie
   res.send(`
     <script>
         localStorage.removeItem('cart') ;
@@ -110,11 +82,6 @@ app.get('/clear', (req, res)=>{
     </script>
   `);
 }) ;
-
-
-
-
-
 
 
 app.get('/order', async (req, res)=>{
@@ -131,16 +98,18 @@ app.get('/order', async (req, res)=>{
     }) ;
   }
 }) ;
+
+
 app.use(require('./routes/router_info')) ;
 app.use(require('./routes/router_blogs')) ;
 app.use(require('./routes/router_menu')) ;
 app.use(require('./routes/router_auth')) ;
 
 
-
 app.get('*', (req, res)=>{
   res.render('404.hbs') ;
 });
+
 
 app.listen(3000, ()=>{
     console.log("The server is listening on port 3000") ;

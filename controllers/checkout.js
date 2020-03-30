@@ -4,6 +4,7 @@ const crypto = require('crypto') ;
 const checkoutUtils = require('../utils/checkout_utils') ;
 require('dotenv').config() ;
 const fs = require('fs') ;
+const logger = require('../middleware/logging') ;
 
 const stripePublic = 'pk_test_FPbfGF5aEyQqsBfsPytI46qw002ouxr0PP' ;
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
@@ -11,13 +12,14 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 exports.getCheckoutPage = async (req, res)=>{
   try{
     let dbReturnData = await dbRepository.getUser_ById(req.session.userId) ;
-    if (dbReturnData.status == false) {throw dbReturnData.data;}
+    if (dbReturnData.status == false) {throw dbReturnData;}
     let userData = dbReturnData.data ;
 
     res.render('checkout.hbs', {
       userData
     }) ;
   }catch (e) {
+    logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
     res.send({
       status : false,
       e,
@@ -33,7 +35,6 @@ async function makeOrderObject(req){
   let userId = req.session.userId;
   let cart = req.body.backendCart;
   let price = await checkoutUtils.calculateCartPrice(cart);
-
 
   let order = {
     userId,
@@ -70,6 +71,7 @@ exports.postDevelopmentCheckoutPage = async (req, res)=>{
       orderId : dbReturnData.data.insertId
     });
   }catch (e) {
+    logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
     res.send({
       status : false,
       e,
@@ -89,7 +91,6 @@ exports.postCheckoutPage = async (req, res)=>{
   try {
     let order = await makeOrderObject(req) ;
 
-
     let paymentIntent;
     if (req.body.payment_method_id) {
       // Create the PaymentIntent
@@ -108,7 +109,7 @@ exports.postCheckoutPage = async (req, res)=>{
     // Send the response to the client
     res.send(await generateResponse(paymentIntent, order));
   } catch (e) {
-    // Display error on client
+    logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
     return res.send({ error: e.message });
   }
 } ;
@@ -130,7 +131,6 @@ const generateResponse = async (paymentIntent, order) => {
   } else if (paymentIntent.status === 'succeeded') {
     // The payment didn’t need any additional actions and completed!
     // Handle post-payment fulfillment
-    //TODO clear the cart here
     let cardData = paymentIntent.charges.data['0'].payment_method_details.card ;
 
     order.paymentData = {
@@ -139,6 +139,7 @@ const generateResponse = async (paymentIntent, order) => {
       last4: cardData.last4
     };
     let dbReturnData = await dbRepository.insertOrder(order) ;
+    if(dbReturnData.status != true){throw dbReturnData;}
 
     return {
       status : true,
@@ -147,6 +148,8 @@ const generateResponse = async (paymentIntent, order) => {
     };
   } else {
     // Invalid status
+
+    logger.error(`{'error' : 'Payment error', 'paymentIntent':'${JSON.stringify(paymentIntent)}'}`) ;
     return {
       status : false,
       error: 'Invalid PaymentIntent status'

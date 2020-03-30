@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt') ;
 const crypto =  require('crypto') ;
 const {OAuth2Client} = require('google-auth-library');
 const jwt = require('jsonwebtoken') ;
+const logger = require('../middleware/logging') ;
 
 const CLIENT_ID = "730014109642-7rldv9agg9qp0avagkapdv9l4kocjt5e.apps.googleusercontent.com" ;
 const client = new OAuth2Client(CLIENT_ID);
@@ -16,6 +17,7 @@ exports.getLoginPage = async(req, res)=>{
     res.render('login.hbs', {
     }) ;
   }catch (e) {
+    logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
     res.send({
       e,
       yolo : "Beta ji koi to error hai"
@@ -31,7 +33,7 @@ exports.postLoginPage = async (req, res)=>{
 
 
     let dbReturnData = await dbRepository.getUser_ByEmail(email);
-    if (dbReturnData.status == false) {throw dbReturnData.data;}
+    if (dbReturnData.status == false) {throw dbReturnData;}
     if (dbReturnData.data.length == 0) {throw `No such user in the database`;}
 
     let userData = dbReturnData.data['0']; // due the data structure
@@ -46,6 +48,7 @@ exports.postLoginPage = async (req, res)=>{
       success : "USER_LOGGEDIN"
     }) ;
   }catch (e) {
+    logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
     res.send({
       status:false,
       e,
@@ -72,9 +75,7 @@ exports.postSignUpPage = async (req,res)=>{
     //check whether a user with this email id already exists or not
     let dbExisitingUserData = await dbRepository.getUser_ByEmail(email) ;
     if(dbExisitingUserData.status == false){throw dbExisitingUserData ;}
-    if(dbExisitingUserData.data.length != 0){
-      throw "A user with this email address already exists" ;
-    }
+    if(dbExisitingUserData.data.length != 0){throw "A user with this email address already exists" ;}
 
 
     let password_hash = await bcrypt.hash(password, 8);
@@ -96,6 +97,7 @@ exports.postSignUpPage = async (req,res)=>{
     });
 
   }catch (e) {
+    logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
     res.send({
       status : false,
       e,
@@ -127,9 +129,7 @@ exports.postSignUp_Google = async (req, res)=>{
 
 
     let dbReturnData = await dbRepository.getUser_ByEmail(email);
-    if (dbReturnData.status == false) {
-      throw dbReturnData.data;
-    }
+    if (dbReturnData.status == false) { throw dbReturnData; }
     if (dbReturnData.data.length == 0) {
       // new user, so add him
 
@@ -157,9 +157,7 @@ exports.postSignUp_Google = async (req, res)=>{
     } else {
     // user already exists
       let userData = dbReturnData.data['0']; // due the data structure
-      if(userData.oauth_provider != 'google'){
-        throw "not a google account" ;
-      }
+      if(userData.oauth_provider != 'google'){throw "not a google account" ;}
       req.session.isLoggedIn = true ;
       req.session.userId = userData.id ;
       console.log("User already exists logging in") ;
@@ -171,8 +169,7 @@ exports.postSignUp_Google = async (req, res)=>{
 
 
   }catch (e) {
-    console.log(e) ;
-    res.send({
+    logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;    res.send({
       status:false,
       e,
       e_message : e.message,
@@ -206,9 +203,7 @@ exports.postSignUp_Facebook = async (req, res)=>{
 
 
     let dbReturnData = await dbRepository.getUser_ByEmail(email);
-    if (dbReturnData.status == false) {
-      throw dbReturnData.data;
-    }
+    if (dbReturnData.status == false) {throw dbReturnData;}
     if (dbReturnData.data.length == 0) {
       // new user, so add him
 
@@ -237,9 +232,7 @@ exports.postSignUp_Facebook = async (req, res)=>{
     } else {
       // user already exists
       let userData = dbReturnData.data['0']; // due the data structure
-      if(userData.oauth_provider != "facebook"){
-        throw "Not a facebook account" ;
-      }
+      if(userData.oauth_provider != "facebook"){throw "Not a facebook account" ;}
       req.session.isLoggedIn = true ;
       req.session.userId = userData.id ;
       console.log("User already exists logging in") ;
@@ -251,7 +244,7 @@ exports.postSignUp_Facebook = async (req, res)=>{
 
 
   }catch (e) {
-    console.log(e) ;
+    logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
     res.send({
       status:false,
       e,
@@ -265,13 +258,13 @@ exports.postSignUp_Facebook = async (req, res)=>{
 
 exports.signOut = async(req, res)=>{
   try{
-
     req.session.destroy() ;
     res.clearCookie('my_session_id') ;
     res.send({
       status : true
     }) ;
   }catch (e) {
+    logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
     res.send({
       status:false,
       e,
@@ -286,12 +279,11 @@ exports.signOut = async(req, res)=>{
 
 
 exports.postForgotPassword = async (req, res)=>{
+  //TODO check the working of this method, where we send status=true for no user found
   try {
     let email = req.body.post_Email;
     let dbReturnData = await dbRepository.getUser_ByEmail(email);
-    if (dbReturnData.status == false) {
-      throw dbReturnData.data;
-    }
+    if (dbReturnData.status == false) {throw dbReturnData;}
     if (dbReturnData.data.length == 0) {
       // user does not exists. show error msg
       // here status is true, because we are simply indicating that the request went through
@@ -312,7 +304,7 @@ exports.postForgotPassword = async (req, res)=>{
 
     let dbData = await dbRepository.resetPasswordToken(userData.id, resetToken);
     if (dbData.status == false) {
-      throw dbData.data;
+      throw dbData;
     }
 
     // TODO send the mail here
@@ -323,6 +315,7 @@ exports.postForgotPassword = async (req, res)=>{
     });
 
   }catch (e) {
+    logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
     res.send({
       status:false,
       e,
@@ -340,16 +333,14 @@ exports.getResetPasswordTokenPage = async (req, res)=>{
   try{
     let resetToken = req.params.resetToken ;
     let dbReturnData = await dbRepository.getUser_ByResetToken(resetToken) ;
-    if (dbReturnData.status == false) {throw dbReturnData.data;}
+    if (dbReturnData.status == false) {throw dbReturnData;}
 
     let userData = dbReturnData.data ;
 
     // will throw an error if token is not signed by password_hash
     // or if token has expired
     let decoded = jwt.verify(resetToken, userData.password_hash) ;
-    if(decoded.email != userData.email){
-      throw "invalid token : email is not same in token" ;
-    }
+    if(decoded.email != userData.email){throw "invalid token : email is not same in token" ;}
 
     //our token is verified now, render the page
     res.render('reset_password.hbs', {
@@ -358,6 +349,7 @@ exports.getResetPasswordTokenPage = async (req, res)=>{
     }) ;
 
   }catch (e) {
+    logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
     res.send({
       status:false,
       e,
@@ -376,14 +368,12 @@ exports.postResetPasswordToken = async (req, res)=>{
     let newPasswordAgain = req.body.post_newPasswordAgain ;
 
     let dbReturnData = await dbRepository.getUser_ByResetToken(resetToken) ;
-    if (dbReturnData.status == false) {throw dbReturnData.data;}
+    if (dbReturnData.status == false) {throw dbReturnData;}
 
     let userData = dbReturnData.data ;
 
     let decoded = jwt.verify(resetToken, userData.password_hash) ;
-    if(decoded.email != userData.email){
-      throw "invalid token : email is not same in token" ;
-    }
+    if(decoded.email != userData.email){throw "invalid token : email is not same in token" ;}
 
     let new_password_hash = await bcrypt.hash(newPassword, 8);
     let dbData = await dbConnection.execute(
@@ -401,6 +391,7 @@ exports.postResetPasswordToken = async (req, res)=>{
     }) ;
 
   }catch (e) {
+    logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
     res.send({
       status:false,
       e,

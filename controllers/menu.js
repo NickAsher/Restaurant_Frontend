@@ -1,18 +1,20 @@
 const request = require('request-promise') ;
 const Constants = require('../utils/Constants') ;
 const dbRepository = require('../data/DbRepository') ;
+const logger = require('../middleware/logging') ;
 
 
 exports.getMenu = async (req, res)=>{
   try{
     let menuData = await dbRepository.getAllMenuItems_SeperatedByCategory() ;
-    if(menuData.status == false){throw menuData.data ;}
+    if(menuData.status == false){throw menuData ;}
 
     res.render('menu.hbs', {
       menuData : menuData['data'],
     }) ;
 
   }catch (e) {
+    logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
     res.send({
       e : e.message,
       msg : "Beta ji koi to error hai"
@@ -41,6 +43,7 @@ exports.getItem_ModalProduct = async (req, res)=>{
       addonData: addonData['data'],
     });
   }catch (e) {
+    logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
     res.send({
       e : e.message,
       msg : "Beta ji koi to error hai"
@@ -67,6 +70,7 @@ exports.getItemDetail_DataOnly = async(req, res)=>{
       addonData : addonData['data'],
     }) ;
   } catch (e) {
+    logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
     res.send({
       e : e.toString(),
       msg : "Beta ji koi to error hai"

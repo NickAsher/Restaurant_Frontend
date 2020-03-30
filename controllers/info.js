@@ -1,6 +1,7 @@
 const request = require('request-promise') ;
 const Constants = require('../utils/Constants') ;
 const dbRepository = require('../data/DbRepository') ;
+const logger = require('../middleware/logging') ;
 
 
 exports.getHomePage = async (req, res)=>{
@@ -8,6 +9,7 @@ exports.getHomePage = async (req, res)=>{
     res.render('index-video.hbs', {
     }) ;
   }catch (e) {
+    logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
     res.send({
       e : e.toString(),
       msg : "Beta ji koi to error hai"
@@ -25,6 +27,7 @@ exports.getAboutUsData = async (req, res)=>{
       aboutData: aboutData['data'],
     });
   }catch (e) {
+    logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
     res.send({
       e : e.toString(),
       msg : "Beta ji koi to error hai"
@@ -44,6 +47,7 @@ exports.getContactUsData = async (req, res)=>{
     }) ;
 
   }catch (e) {
+    logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
     res.send(e) ;
   }
 } ;
@@ -59,6 +63,7 @@ exports.getOfferSpecialsData = async (req, res)=>{
       offersData: offersData['data'],
     });
   }catch (e) {
+    logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
     res.send({
       e : e.toString(),
       msg : "Beta ji koi to error hai"
@@ -76,6 +81,7 @@ exports.getAllGalleryItems = async (req, res)=>{
       galleryData: galleryData['data'],
     }) ;
   }catch (e) {
+    logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
     res.send({
       e : e.toString(),
     }) ;
@@ -98,6 +104,7 @@ exports.getOrderInfoPage = async (req, res)=>{
       orderData
     }) ;
   }catch (e) {
+    logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
     res.send({
       e : e.toString(),
       msg : "Beta ji koi to error hai"

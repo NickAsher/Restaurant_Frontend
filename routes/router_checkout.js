@@ -1,44 +1,18 @@
 const express = require('express') ;
 const controllerCheckout = require('../controllers/checkout') ;
 const {body, validationResult} = require('express-validator') ;
+const authenticationMiddleware = require('../middleware/authentication') ;
+const validationMiddleware = require('../middleware/validation') ;
 
 const router = express.Router() ;
 
+const showValidationError = validationMiddleware.showValidationError ;
+const isAuthenticated = authenticationMiddleware.isAuthenticated ;
+const isAuthenticatedPost = authenticationMiddleware.isAuthenticatedPostRequest ;
 
 
-const isAuthenticatedPost =  ()=>{
-  /* Middleware to check if post request comes from authenticated user
-   *
-   *  this function checks if the user is authenticated using session.isLoggedIn
-   *    If they are, the post requests does what it's supposed to do
-   *    If not, it sends a status:false with error message
-   */
-  return (req, res, next)=>{
-    if(req.session.isLoggedIn != true){   // checks for both false and undefined this way
-      res.send({
-        status : false,
-        e : "User is not authenticated"
-      }) ;
-    }else{
-      next();
-    }
-  } ;
-} ;
 
-const showValidationError = (req, res, next)=>{
-  const errors = validationResult(req) ;
-
-  if (!errors.isEmpty()) {
-    return res.status(422).send({
-      status:false,
-      error : errors.array()
-    });
-  } else {
-    next() ;
-  }
-} ;
-
-
+router.get('/checkout', isAuthenticated('checkout'), controllerCheckout.getCheckoutPage) ;
 
 router.post('/checkout', isAuthenticatedPost(), [
 

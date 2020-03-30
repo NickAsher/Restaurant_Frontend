@@ -1,33 +1,17 @@
 const express = require('express') ;
 const {body, validationResult} = require('express-validator') ;
-
+const logger = require('../middleware/logging') ;
+const validationMiddleware = require('../middleware/validation') ;
+const authenticationMiddleware = require('../middleware/authentication') ;
 const controllerAuth = require('../controllers/auth') ;
 
 const router = express.Router() ;
 
 
-const authRedirectHome = (req, res, next)=>{
-  if(req.session.isLoggedIn == true){
-    res.redirect('/') ;
-    //TODO show message that you are already logged in
-  }else{
-    next() ;
-  }
-} ;
 
-const showValidationError = (req, res, next)=>{
-  const errors = validationResult(req) ;
 
-  if (!errors.isEmpty()) {
-    return res.status(422).send({
-      status:false,
-      error : errors.array()
-    });
-  } else {
-    next() ;
-  }
-} ;
-
+const showValidationError = validationMiddleware.showValidationError ;
+const authRedirectHome = authenticationMiddleware.authRedirectHome ;
 
 
 router.get('/login', authRedirectHome, controllerAuth.getLoginPage) ;

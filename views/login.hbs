@@ -539,13 +539,14 @@
                     if(data.status == true){
                         redirectBack('/') ;
                     }else{
+                        makeErrorToast("Error in signing up") ;
                         console.log(data) ;
                         throw "error in signinup" ;
                     }
                 })
                 .catch((err)=>{
                     hideSpinner($('#Btn_SignUp')) ;
-                    makeErrorToast("Error in loggin in") ;
+                    makeErrorToast("Error in Signing Up") ;
                     console.log(err) ;
                 }) ;
             }

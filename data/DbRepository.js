@@ -17,7 +17,7 @@ exports.getBlogCount = async() =>{
   }catch (e) {
     return {
       status : false,
-      data : e,
+      error : e,
     } ;
   }
 } ;
@@ -38,7 +38,7 @@ exports.getBlogs_Paginated = async (pageNo, totalItemsPerPage)=>{
   }catch (e) {
     return {
       status : false,
-      data : e,
+      error : e,
     } ;
   }
 } ;
@@ -49,9 +49,8 @@ exports.getSingleBlog = async (blogId)=>{
     let dbData = await dbConnection.execute(
         `SELECT * FROM  blogs_table WHERE blog_id =  ${blogId} `
     ) ;
-    if(dbData[0].length != 1){
-      throw "Blog Not found" ;
-    }
+    if(dbData[0].length != 1){throw "Blog Not found" ;}
+
     return {
       status : true,
       // the first 0 is for the because database data is sent in an array and is the 0th item,
@@ -62,7 +61,7 @@ exports.getSingleBlog = async (blogId)=>{
   }catch (e) {
     return {
       status : false,
-      data : e,
+      error : e,
     } ;
   }
 } ;
@@ -80,7 +79,7 @@ exports.getAllGalleryItems = async ()=>{
   }catch (e) {
     return {
       status : false,
-      data : e,
+      error : e,
     } ;
   }
 } ;
@@ -98,7 +97,7 @@ exports.getContactData = async ()=>{
   }catch (e) {
     return {
       status : false,
-      data : e,
+      error : e,
     } ;
   }
 } ;
@@ -115,7 +114,7 @@ exports.getSocialData = async ()=>{
   }catch (e) {
     return {
       status : false,
-      data : e,
+      error : e,
     } ;
   }
 } ;
@@ -132,7 +131,7 @@ exports.getAboutData = async ()=>{
   }catch (e) {
     return {
       status : false,
-      data : e,
+      error : e,
     } ;
   }
 } ;
@@ -151,13 +150,13 @@ exports.getOfferSpecialData = async ()=>{
   }catch (e) {
     return {
       status : false,
-      data : e,
+      error : e,
     } ;
   }
 } ;
 
 
-// --------------------------------------------------------- User Data
+/* ***************************************** User Data ************************************* */
 exports.getUser_ByEmail = async(email)=>{
   try{
     let dbData = await dbConnection.execute(`
@@ -171,7 +170,7 @@ exports.getUser_ByEmail = async(email)=>{
   }catch (e) {
     return {
       status : false,
-      data : e.toString()
+      error : e.toString()
     } ;
   }
 } ;
@@ -182,9 +181,8 @@ exports.getUser_ById = async(id)=>{
     SELECT * FROM users_table_new WHERE id = :id `, {
       id
     }) ;
-    if(dbData[0].length != 1){
-      throw "No such user in the database" ;
-    }
+    if(dbData[0].length != 1){throw "No such user in the database" ;}
+
     return {
       status : true,
       data : dbData[0][0]
@@ -192,7 +190,7 @@ exports.getUser_ById = async(id)=>{
   }catch (e) {
     return {
       status : false,
-      data : e.toString()
+      error : e.toString()
     } ;
   }
 } ;
@@ -215,7 +213,7 @@ exports.getUser_ByResetToken = async(resetToken)=>{
   }catch (e) {
     return {
       status : false,
-      data : e.toString()
+      error : e.toString()
     } ;
   }
 } ;
@@ -234,7 +232,7 @@ exports.resetPasswordToken = async (id, resetToken)=>{
   }catch (e) {
     return {
       status : false,
-      data : e.toString()
+      error : e.toString()
     } ;
   }
 } ;
@@ -261,7 +259,7 @@ exports.insertOrder = async (orderData)=>{
   }catch (e) {
     return {
       status : false,
-      data : e.toString()
+      error : e.toString()
     } ;
   }
 } ;
@@ -283,7 +281,7 @@ exports.getOrderById = async (orderId, userId)=>{
   }catch (e) {
     return {
       status : false,
-      data : e.toString()
+      error : e.toString()
     } ;
   }
 } ;
@@ -297,10 +295,10 @@ exports.getOrderById = async (orderId, userId)=>{
 
 /* ************************** Menu *******************************/
 
-exports.getAllMenuCategories = async ()=>{
+exports.getAllCategories = async ()=>{
   try{
     let dbData = await dbConnection.execute(
-        "SELECT * FROM `menu_meta_category_table` ORDER BY `category_id` ASC") ;
+        "SELECT * FROM `menu_meta_category_table` ORDER BY `category_sr_no` ASC") ;
     return {
       status : true,
       data : dbData[0],
@@ -309,7 +307,104 @@ exports.getAllMenuCategories = async ()=>{
   }catch (e) {
     return {
       status : false,
-      data : e,
+      error : e,
+    } ;
+  }
+} ;
+
+
+exports.getAllMenuItems = async()=>{
+  try{
+    let dbData = await dbConnection.execute(
+      `SELECT * FROM menu_items_table
+       WHERE item_is_active = '1'
+       ORDER BY item_category_id ASC, item_sr_no ASC `
+    ) ;
+    return {
+      status : true,
+      data : dbData['0'],
+    } ;
+
+  }catch (e) {
+    return {
+      status : false,
+      error : e,
+    } ;
+  }
+} ;
+
+
+exports.getSingleMenuItem = async (itemId)=>{
+  try{
+    let dbData = await dbConnection.execute(
+      `SELECT * FROM menu_items_table, menu_meta_category_table 
+         WHERE menu_items_table.item_id = '${itemId}'
+         AND menu_meta_category_table.category_id = menu_items_table.item_category_id`
+    ) ;
+    return {
+      status : true,
+      data : dbData[0],
+    } ;
+
+  }catch (e) {
+    return {
+      status : false,
+      error : e,
+    } ;
+  }
+
+} ;
+
+
+exports.getSingleMenuItem_PriceData = async (itemId)=>{
+  try{
+    let dbData = await dbConnection.execute(
+      `SELECT * FROM menu_meta_rel_size_items_table, menu_meta_size_table 
+         WHERE menu_meta_rel_size_items_table.item_id = '${itemId}'
+         AND menu_meta_rel_size_items_table.size_id = menu_meta_size_table.size_id
+         AND menu_meta_size_table.size_is_active = '1' AND menu_meta_rel_size_items_table.item_size_active = '1'
+         ORDER BY menu_meta_size_table.size_sr_no`
+    ) ;
+    return {
+      status : true,
+      data : dbData[0],
+    } ;
+
+  }catch (e) {
+    return {
+      status : false,
+      error : e,
+    } ;
+  }
+} ;
+
+
+exports.getAllMenuItems_SeperatedByCategory = async ()=>{
+  try{
+    let dbCategoryData = await this.getAllCategories() ;
+    if(dbCategoryData.status != true){throw dbCategoryData ;}
+
+    let dbMenuData = await this.getAllMenuItems() ;
+    if(dbMenuData.status != true ){throw dbMenuData ;}
+
+    let categoryData = dbCategoryData.data ;
+    let menuData = dbMenuData.data ;
+
+    categoryData.forEach((categoryElement)=>{
+      categoryElement.items = menuData.filter((menuItem)=>{
+        return categoryElement.category_id == menuItem.item_category_id ;
+      }) ;
+    }) ;
+
+    return {
+      status : true,
+      data : categoryData
+    } ;
+
+  }catch (e) {
+    return {
+      status : false,
+      error : e,
     } ;
   }
 } ;
@@ -330,12 +425,10 @@ exports.getAllAddonGroupsInCategory = async (categoryId)=>{
   }catch (e) {
     return {
       status : false,
-      data : e,
+      error : e,
     } ;
   }
-
 } ;
-
 
 
 exports.getAllAddonItemsInAddonGroup = async (addonGroupId)=>{
@@ -355,10 +448,11 @@ exports.getAllAddonItemsInAddonGroup = async (addonGroupId)=>{
   }catch (e) {
     return {
       status : false,
-      data : e,
+      error : e,
     } ;
   }
 } ;
+
 
 exports.getAddonDataInCategory = async (categoryId)=>{
   //TODO make a single request to get all addonItems in a cateogory.
@@ -390,106 +484,11 @@ exports.getAddonDataInCategory = async (categoryId)=>{
   }catch (e) {
     return {
       status : false,
-      data : e,
+      error : e,
     } ;
   }
 } ;
 
-
-
-exports.getAllMenuItems = async()=>{
-  try{
-    let dbData = await dbConnection.execute(
-      `SELECT * FROM menu_items_table
-       WHERE item_is_active = '1'
-       ORDER BY item_category_id ASC, item_sr_no ASC `
-    ) ;
-    return {
-      status : true,
-      data : dbData['0'],
-    } ;
-
-  }catch (e) {
-    return {
-      status : false,
-      data : e,
-    } ;
-  }
-} ;
-
-
-exports.getSingleMenuItem = async (itemId)=>{
-  try{
-    let dbData = await dbConnection.execute(
-        `SELECT * FROM menu_items_table, menu_meta_category_table 
-         WHERE menu_items_table.item_id = '${itemId}'
-         AND menu_meta_category_table.category_id = menu_items_table.item_category_id`
-    ) ;
-    return {
-      status : true,
-      data : dbData[0],
-    } ;
-
-  }catch (e) {
-    return {
-      status : false,
-      data : e,
-    } ;
-  }
-
-} ;
-
-exports.getSingleMenuItem_PriceData = async (itemId)=>{
-  try{
-    let dbData = await dbConnection.execute(
-        `SELECT * FROM menu_meta_rel_size_items_table, menu_meta_size_table 
-         WHERE menu_meta_rel_size_items_table.item_id = '${itemId}'
-         AND menu_meta_rel_size_items_table.size_id = menu_meta_size_table.size_id
-         AND menu_meta_size_table.size_is_active = '1' AND menu_meta_rel_size_items_table.item_size_active = '1' `
-    ) ;
-    return {
-      status : true,
-      data : dbData[0],
-    } ;
-
-  }catch (e) {
-    return {
-      status : false,
-      data : e,
-    } ;
-  }
-} ;
-
-exports.getAllMenuItems_SeperatedByCategory = async ()=>{
-  try{
-    let dbCategoryData = await this.getAllMenuCategories() ;
-    if(dbCategoryData.status != true){throw dbCategoryData.data ;}
-
-    let dbMenuData = await this.getAllMenuItems() ;
-    if(dbMenuData.status != true ){throw dbMenuData.data ;}
-
-    let categoryData = dbCategoryData.data ;
-    let menuData = dbMenuData.data ;
-
-    categoryData.forEach((categoryElement)=>{
-      categoryElement.items = menuData.filter((menuItem)=>{
-        return categoryElement.category_id == menuItem.item_category_id ;
-      }) ;
-    }) ;
-
-    return {
-      status : true,
-      data : categoryData
-    } ;
-
-  }catch (e) {
-    return {
-      status : false,
-      data : e,
-    } ;
-  }
-
-} ;
 
 
 
