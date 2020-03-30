@@ -1,7 +1,7 @@
 const fs = require('fs') ;
 const Constants = require('../utils/Constants') ;
 const dbConnection = require('../utils/database') ;
-const dbRepository = require('../utils/DbRepository') ;
+const dbRepository = require('../data/DbRepository') ;
 const bcrypt = require('bcrypt') ;
 const crypto =  require('crypto') ;
 const {OAuth2Client} = require('google-auth-library');
@@ -62,34 +62,33 @@ exports.postLoginPage = async (req, res)=>{
 
 
 
-
 exports.postSignUpPage = async (req,res)=>{
   try {
     let firstname = req.body.post_Firstname;
     let lastname = req.body.post_Lastname;
     let email = req.body.post_Email;
     let password = req.body.post_Password;
-    let passwordAgain = req.body.post_PasswordAgain ;
 
-    let countData = await dbRepository.getCount_EmailId(email) ;
-    if(countData.status == false){throw countData ;}
-    if(countData.data.total != 0){
-      throw "There already exists a user with email id, data is " + countData.data.total ;
+    //check whether a user with this email id already exists or not
+    let dbExisitingUserData = await dbRepository.getUser_ByEmail(email) ;
+    if(dbExisitingUserData.status == false){throw dbExisitingUserData ;}
+    if(dbExisitingUserData.data.length != 0){
+      throw "A user with this email address already exists" ;
     }
+
 
     let password_hash = await bcrypt.hash(password, 8);
     let dbData = await dbConnection.execute(`
-    INSERT INTO users_table_new (email, password_hash, password_dev, firstname, lastname) VALUES (:email, :password_hash, :password, :firstname, :lastname) `, {
+    INSERT INTO users_table_new (email, password_hash, firstname, lastname) VALUES (:email, :password_hash, :firstname, :lastname) `, {
       email,
       password_hash,
-      password,
       firstname,
       lastname
     }) ;
 
     //Initiate user session
     req.session.isLoggedIn = true ;
-    req.session.userId = dbData['0'].insertId ;
+    req.session.userId = dbData[0].insertId ;
 
     res.send({
       status : true,
@@ -295,6 +294,7 @@ exports.postForgotPassword = async (req, res)=>{
     }
     if (dbReturnData.data.length == 0) {
       // user does not exists. show error msg
+      // here status is true, because we are simply indicating that the request went through
       res.send({
         status: true,
         success: "NO_USER"
@@ -341,11 +341,8 @@ exports.getResetPasswordTokenPage = async (req, res)=>{
     let resetToken = req.params.resetToken ;
     let dbReturnData = await dbRepository.getUser_ByResetToken(resetToken) ;
     if (dbReturnData.status == false) {throw dbReturnData.data;}
-    if (dbReturnData.data.length == 0) {
-      // token does not exist in db, invalid token
-      throw "invalid token" ;
-    }
-    let userData = dbReturnData.data['0'] ;// due the data structure
+
+    let userData = dbReturnData.data ;
 
     // will throw an error if token is not signed by password_hash
     // or if token has expired
@@ -380,11 +377,8 @@ exports.postResetPasswordToken = async (req, res)=>{
 
     let dbReturnData = await dbRepository.getUser_ByResetToken(resetToken) ;
     if (dbReturnData.status == false) {throw dbReturnData.data;}
-    if (dbReturnData.data.length == 0) {
-      // token does not exist in db, invalid token
-      throw "invalid token" ;
-    }
-    let userData = dbReturnData.data['0'] ;// due the data structure
+
+    let userData = dbReturnData.data ;
 
     let decoded = jwt.verify(resetToken, userData.password_hash) ;
     if(decoded.email != userData.email){

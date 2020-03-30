@@ -34,7 +34,7 @@
                                 <div class="form-group">
                                     <label class="custom-control custom-radio">
                                         <!--Remember in a JSON object string, there must double quotes inside not single quotes -->
-                                        <input name="post_SizeData" class="form-check-input" data-size-id="{{size_id}}" data-multiple-sizes="true" type="radio" value='{"id":"{{size_id}}","name":"{{size_name}}", "price":"{{item_price}}" }' {{#ifEquals size_is_default "true"}}checked="checked"{{/ifEquals}}>
+                                        <input name="post_SizeData" class="form-check-input" data-size-id="{{size_id}}" data-multiple-sizes="true" type="radio" value='{"id":"{{size_id}}","name":"{{size_name}}", "price":"{{item_price}}" }' {{#ifEquals size_is_default "1"}}checked="checked"{{/ifEquals}}>
                                         <span class="myForm-input" >{{size_name}}&nbsp;
                                             <span class="money-currency">{{item_price}}</span>
                                         </span>
@@ -61,7 +61,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label class="custom-control">
-                                            <input type="{{../addon_group_type}}" class="form-check-input addonGroupData" data-addongroup-id="{{../rel_id}}" data-addongroup-name="{{../addon_group_display_name}}" name='addonData_{{../rel_id}}'  data-addonitem-name="{{0.item_name}}" data-addonitem-id="{{0.item_id}}" value='[ {{#each this}} {"sizeId" : "{{size_id}}", "price": "{{addon_price}}" } {{#if @last}} {{else}}, {{/if}}  {{/each}} ]' {{#ifEquals 0.item_is_default "true"}}checked="checked"{{/ifEquals}}>
+                                            <input type="{{../addon_group_type}}" class="form-check-input addonGroupData" data-addongroup-id="{{../rel_id}}" data-addongroup-name="{{../addon_group_display_name}}" name='addonData_{{../rel_id}}'  data-addonitem-name="{{0.item_name}}" data-addonitem-id="{{0.item_id}}" value='[ {{#each this}} {"sizeId" : "{{size_id}}", "price": "{{addon_price}}" } {{#if @last}} {{else}}, {{/if}}  {{/each}} ]' {{#ifEquals 0.item_is_default "1"}}checked="checked"{{/ifEquals}}>
                                             <span class="myForm-input">
                                                 {{0.item_name}}&nbsp;
                                             </span>

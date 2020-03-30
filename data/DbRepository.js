@@ -1,25 +1,9 @@
 const express = require('express') ;
-const dbConnection  = require('./database') ;
+const dbConnection  = require('../utils/database') ;
 const _ = require('lodash') ;
 
 
 
-exports.getAllBlogs = async ()=>{
-  try{
-    let dbData = await dbConnection.execute(
-        "SELECT `blog_id`, `blog_creation_date`, `blog_title`, `blog_display_image` FROM  `blogs_table`  ORDER BY `blog_creation_date` DESC"
-    ) ;
-    return {
-      status : true,
-      data : dbData['0']
-    } ;
-  }catch (e) {
-    return {
-      status : false,
-      data : e,
-    } ;
-  }
-} ;
 
 exports.getBlogCount = async() =>{
   try{
@@ -28,7 +12,7 @@ exports.getBlogCount = async() =>{
     ) ;
     return {
       status : true,
-      data : dbData['0']['0']['cnt']
+      data : dbData[0][0]['cnt']
     } ;
   }catch (e) {
     return {
@@ -49,7 +33,7 @@ exports.getBlogs_Paginated = async (pageNo, totalItemsPerPage)=>{
     ) ;
     return {
       status : true,
-      data : dbData['0']
+      data : dbData[0]
     } ;
   }catch (e) {
     return {
@@ -65,9 +49,15 @@ exports.getSingleBlog = async (blogId)=>{
     let dbData = await dbConnection.execute(
         `SELECT * FROM  blogs_table WHERE blog_id =  ${blogId} `
     ) ;
+    if(dbData[0].length != 1){
+      throw "Blog Not found" ;
+    }
     return {
       status : true,
-      data : dbData['0']
+      // the first 0 is for the because database data is sent in an array and is the 0th item,
+      // the second is because even if we are getting one row, its still sent in an array form.
+      // Its weird i know
+      data : dbData[0][0]
     } ;
   }catch (e) {
     return {
@@ -85,7 +75,7 @@ exports.getAllGalleryItems = async ()=>{
     ) ;
     return {
       status : true,
-      data : dbData['0']
+      data : dbData[0]
     } ;
   }catch (e) {
     return {
@@ -103,10 +93,7 @@ exports.getContactData = async ()=>{
     ) ;
     return {
       status : true,
-      // the first 0 is for the because database data is sent in an array and is the 0th item,
-      // the second is because even if we are getting one row, its still sent in an array form.
-      // Its weird i know
-      data : dbData['0']['0']
+      data : dbData[0][0]
     } ;
   }catch (e) {
     return {
@@ -123,10 +110,7 @@ exports.getSocialData = async ()=>{
     ) ;
     return {
       status : true,
-      // the first 0 is for the because database data is sent in an array and is the 0th item,
-      // the second is because even if we are getting one row, its still sent in an array form.
-      // Its weird i know
-      data : dbData['0']['0']
+      data : dbData[0][0]
     } ;
   }catch (e) {
     return {
@@ -143,7 +127,7 @@ exports.getAboutData = async ()=>{
     ) ;
     return {
       status : true,
-      data : dbData['0']['0']
+      data : dbData[0][0]
     } ;
   }catch (e) {
     return {
@@ -162,7 +146,7 @@ exports.getOfferSpecialData = async ()=>{
     ) ;
     return {
       status : true,
-      data : dbData['0']
+      data : dbData[0]
     } ;
   }catch (e) {
     return {
@@ -182,7 +166,7 @@ exports.getUser_ByEmail = async(email)=>{
     }) ;
     return {
       status : true,
-      data : dbData['0']
+      data : dbData[0]
     } ;
   }catch (e) {
     return {
@@ -198,9 +182,12 @@ exports.getUser_ById = async(id)=>{
     SELECT * FROM users_table_new WHERE id = :id `, {
       id
     }) ;
+    if(dbData[0].length != 1){
+      throw "No such user in the database" ;
+    }
     return {
       status : true,
-      data : dbData['0']
+      data : dbData[0][0]
     } ;
   }catch (e) {
     return {
@@ -216,30 +203,15 @@ exports.getUser_ByResetToken = async(resetToken)=>{
       `SELECT * FROM users_table_new WHERE reset_password_token = :resetToken `, {
       resetToken
     }) ;
-    return {
-      status : true,
-      data : dbData['0']
-    } ;
-  }catch (e) {
-    return {
-      status : false,
-      data : e.toString()
-    } ;
-  }
-} ;
-
-exports.getCount_EmailId = async(userEmailId)=>{
-  try{
-    let dbData = await dbConnection.execute(
-      `SELECT COUNT(*) AS total FROM  users_table_new WHERE email = :email`, {
-         email : userEmailId
-      });
+    if(dbData[0].length != 1){
+      // token does not exist in db, invalid token
+      throw "Invalid Token" ;
+    }
 
     return {
       status : true,
-      data : dbData['0']['0']
+      data : dbData[0][0]
     } ;
-
   }catch (e) {
     return {
       status : false,
@@ -284,7 +256,7 @@ exports.insertOrder = async (orderData)=>{
       }) ;
     return {
       status : true,
-      data : dbData['0']
+      data : dbData[0]
     } ;
   }catch (e) {
     return {
@@ -295,6 +267,7 @@ exports.insertOrder = async (orderData)=>{
 } ;
 
 exports.getOrderById = async (orderId, userId)=>{
+  //although order can be retreived only by order id, we don't other users to see data of other user orders.
   try{
     let dbData = await dbConnection.execute(
       `SELECT * FROM order_table2 WHERE id = :orderId AND userId = :userId`, {
@@ -304,7 +277,7 @@ exports.getOrderById = async (orderId, userId)=>{
 
     return {
       status : true,
-      data : dbData['0']['0']
+      data : dbData[0][0]
     } ;
 
   }catch (e) {
@@ -330,7 +303,7 @@ exports.getAllMenuCategories = async ()=>{
         "SELECT * FROM `menu_meta_category_table` ORDER BY `category_id` ASC") ;
     return {
       status : true,
-      data : dbData['0'],
+      data : dbData[0],
     } ;
 
   }catch (e) {
@@ -339,74 +312,19 @@ exports.getAllMenuCategories = async ()=>{
       data : e,
     } ;
   }
-
-} ;
-
-
-
-exports.getSingleMenuCategory = async (categoryId)=>{
-  try{
-    let dbData = await dbConnection.execute(
-        `SELECT * FROM menu_meta_category_table WHERE category_id = ${categoryId} `) ;
-    return {
-      status : true,
-      data : dbData['0'],
-    } ;
-
-  }catch (e) {
-    return {
-      status : false,
-      data : e,
-    } ;
-  }
-
-} ;
-
-exports.getAllSubCategoryInCategory = async (categoryId)=>{
-  try{
-    let dbData = await dbConnection.execute(
-        `SELECT * FROM menu_meta_subcategory_table WHERE category_id = '${categoryId}' ORDER BY subcategory_sr_no ASC `) ;
-    return {
-      status : true,
-      data : dbData['0'],
-    } ;
-
-  }catch (e) {
-    return {
-      status : false,
-      data : e,
-    } ;
-  }
-
-} ;
-
-
-exports.getSingleSubCategory = async (subcategoryId)=>{
-  try{
-    let dbData = await dbConnection.execute(
-        `SELECT * FROM menu_meta_subcategory_table WHERE rel_id = '${subcategoryId}' `) ;
-    return {
-      status : true,
-      data : dbData['0'],
-    } ;
-
-  }catch (e) {
-    return {
-      status : false,
-      data : e,
-    } ;
-  }
-
 } ;
 
 
 exports.getAllAddonGroupsInCategory = async (categoryId)=>{
   try{
     let dbData = await dbConnection.execute(
-        `SELECT * FROM menu_meta_addongroups_table WHERE category_id = '${categoryId}' ORDER BY addon_group_sr_no ASC `) ;
+        `SELECT * FROM menu_meta_addongroups_table
+         WHERE category_id = '${categoryId}' AND addon_group_is_active = '1'
+         ORDER BY addon_group_sr_no ASC `
+    ) ;
     return {
       status : true,
-      data : dbData['0'],
+      data : dbData[0],
     } ;
 
   }catch (e) {
@@ -419,33 +337,15 @@ exports.getAllAddonGroupsInCategory = async (categoryId)=>{
 } ;
 
 
-exports.getSingleAddonGroup = async (addonGroupRelId)=>{
+
+exports.getAllAddonItemsInAddonGroup = async (addonGroupId)=>{
   try{
     let dbData = await dbConnection.execute(
-        `SELECT * FROM menu_meta_addongroups_table WHERE rel_id = '${addonGroupRelId}' `) ;
-    return {
-      status : true,
-      data : dbData['0'],
-    } ;
-
-  }catch (e) {
-    return {
-      status : false,
-      data : e,
-    } ;
-  }
-
-} ;
-
-
-exports.getAllAddonItemsInAddonGroup = async (addonGroupRelId)=>{
-  try{
-    let dbData = await dbConnection.execute(
-        "SELECT * FROM `menu_meta_rel_size_addons_table`, `menu_addons_table` " +
-        "WHERE `menu_meta_rel_size_addons_table`.`addon_id` = `menu_addons_table`.`item_id`  " +
-        "AND `addon_size_active` = 'yes' AND `item_is_active` = '1' " +
-        "AND `menu_addons_table`.`item_addon_group_rel_id` = '" + addonGroupRelId  +
-        "' ORDER BY `item_sr_no` ASC " );
+        `SELECT * FROM menu_meta_rel_size_addons_table, menu_addons_table 
+        WHERE menu_addons_table.item_addon_group_rel_id =  ${addonGroupId}
+        AND menu_meta_rel_size_addons_table.addon_id = menu_addons_table.item_id  
+        AND addon_size_active = '1' AND item_is_active = '1' 
+        ORDER BY item_sr_no ASC ` );
 
     return {
       status : true,
@@ -458,14 +358,13 @@ exports.getAllAddonItemsInAddonGroup = async (addonGroupRelId)=>{
       data : e,
     } ;
   }
-
 } ;
 
 exports.getAddonDataInCategory = async (categoryId)=>{
+  //TODO make a single request to get all addonItems in a cateogory.
   try{
-    let categoryAddonGroupData = await dbConnection.execute(
-        `SELECT * FROM menu_meta_addongroups_table WHERE category_id = '${categoryId}' ORDER BY addon_group_sr_no ASC `) ;
-    categoryAddonGroupData = categoryAddonGroupData['0'] ;
+    let categoryAddonGroupData = await this.getAllAddonGroupsInCategory(categoryId) ;
+    categoryAddonGroupData = categoryAddonGroupData.data ;
 
 
     for(let i=0;i<categoryAddonGroupData.length; i++){
@@ -498,52 +397,13 @@ exports.getAddonDataInCategory = async (categoryId)=>{
 
 
 
-
-
-exports.getSingleAddonItem = async (categoryId, addonItemId)=>{
-  try{
-    let dbData = await dbConnection.execute(
-        `SELECT * FROM menu_addons_table WHERE item_category_id = '${categoryId}' AND rel_id = '${addonItemId}' `) ;
-    return {
-      status : true,
-      data : dbData['0'],
-    } ;
-
-  }catch (e) {
-    return {
-      status : false,
-      data : e,
-    } ;
-  }
-
-} ;
-
-
-
-exports.getAllSizesInCategory = async (categoryId)=>{
-  try{
-    let dbData = await dbConnection.execute(
-        `SELECT * FROM menu_meta_size_table WHERE size_category_id = '${categoryId}' AND size_is_active = 'yes' ORDER BY size_sr_no ASC `) ;
-    return {
-      status : true,
-      data : dbData['0'],
-    } ;
-
-  }catch (e) {
-    return {
-      status : false,
-      data : e,
-    } ;
-  }
-
-} ;
-
-
-
 exports.getAllMenuItems = async()=>{
   try{
     let dbData = await dbConnection.execute(
-      `SELECT * FROM menu_items_table ORDER BY item_category_id ASC, item_sr_no ASC `) ;
+      `SELECT * FROM menu_items_table
+       WHERE item_is_active = '1'
+       ORDER BY item_category_id ASC, item_sr_no ASC `
+    ) ;
     return {
       status : true,
       data : dbData['0'],
@@ -557,41 +417,6 @@ exports.getAllMenuItems = async()=>{
   }
 } ;
 
-exports.getAllMenuItemsInCategory = async (categoryId)=>{
-  try{
-    let dbData = await dbConnection.execute(
-        `SELECT * FROM menu_items_table WHERE item_category_id = '${categoryId}' ORDER BY item_id ASC `) ;
-    return {
-      status : true,
-      data : dbData['0'],
-    } ;
-
-  }catch (e) {
-    return {
-      status : false,
-      data : e,
-    } ;
-  }
-
-} ;
-
-exports.getAllMenuItemsInSubCategory = async (subcategoryId)=>{
-  try{
-    let dbData = await dbConnection.execute(
-        `SELECT * FROM menu_items_table WHERE item_subcategory_rel_id = '${subcategoryId}' ORDER BY item_sr_no ASC `) ;
-    return {
-      status : true,
-      data : dbData['0'],
-    } ;
-
-  }catch (e) {
-    return {
-      status : false,
-      data : e,
-    } ;
-  }
-
-} ;
 
 exports.getSingleMenuItem = async (itemId)=>{
   try{
@@ -602,7 +427,7 @@ exports.getSingleMenuItem = async (itemId)=>{
     ) ;
     return {
       status : true,
-      data : dbData['0'],
+      data : dbData[0],
     } ;
 
   }catch (e) {
@@ -624,7 +449,7 @@ exports.getSingleMenuItem_PriceData = async (itemId)=>{
     ) ;
     return {
       status : true,
-      data : dbData['0'],
+      data : dbData[0],
     } ;
 
   }catch (e) {

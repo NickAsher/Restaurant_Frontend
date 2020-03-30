@@ -1,5 +1,5 @@
 const Constants = require('../utils/Constants') ;
-const dbRepository = require('../utils/DbRepository') ;
+const dbRepository = require('../data/DbRepository') ;
 const crypto = require('crypto') ;
 const checkoutUtils = require('../utils/checkout_utils') ;
 require('dotenv').config() ;
@@ -12,8 +12,7 @@ exports.getCheckoutPage = async (req, res)=>{
   try{
     let dbReturnData = await dbRepository.getUser_ById(req.session.userId) ;
     if (dbReturnData.status == false) {throw dbReturnData.data;}
-    if (dbReturnData.data.length == 0) {throw `No such user in the database`;}
-    let userData = dbReturnData.data['0'] ;
+    let userData = dbReturnData.data ;
 
     res.render('checkout.hbs', {
       userData

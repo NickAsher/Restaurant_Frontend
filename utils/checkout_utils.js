@@ -1,4 +1,4 @@
-const dbRepository = require('./DbRepository') ;
+const dbRepository = require('../data/DbRepository') ;
 let dbConnection = require('./database') ;
 
 let calculateItemPrice = async (backendCartItem)=>{

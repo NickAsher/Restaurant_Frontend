@@ -11,13 +11,9 @@ const session = require('express-session') ;
 const csrf = require('csurf') ;
 const crypto = require('crypto') ;
 
-const controllerBlogs = require('./controllers/blogs') ;
-const controllerInfo = require('./controllers/info') ;
-const controllerMenu = require('./controllers/menu') ;
-const controllerAuth = require('./controllers/auth') ;
 const controllerCheckout = require('./controllers/checkout') ;
 
-const dbRepository = require('./utils/DbRepository') ;
+const dbRepository = require('./data/DbRepository') ;
 const parseUtils = require('./utils/parse') ;
 
 
@@ -63,7 +59,7 @@ app.use((req, res, next)=>{
   next() ;
 }) ;
 
-app.use(require('./routes/checkout')) ;
+app.use(require('./routes/router_checkout')) ;
 
 // using the default values for the csrf token.
 // can use config like csrf({ option1:val1, option2:val2 })
@@ -135,10 +131,10 @@ app.get('/order', async (req, res)=>{
     }) ;
   }
 }) ;
-app.use(require('./routes/info')) ;
-app.use(require('./routes/blogs')) ;
-app.use(require('./routes/menu')) ;
-app.use(require('./routes/auth')) ;
+app.use(require('./routes/router_info')) ;
+app.use(require('./routes/router_blogs')) ;
+app.use(require('./routes/router_menu')) ;
+app.use(require('./routes/router_auth')) ;
 
 
 

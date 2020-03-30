@@ -1,6 +1,6 @@
 const request = require('request-promise') ;
 const Constants = require('../utils/Constants') ;
-const dbRepository = require('../utils/DbRepository') ;
+const dbRepository = require('../data/DbRepository') ;
 
 
 exports.getHomePage = async (req, res)=>{

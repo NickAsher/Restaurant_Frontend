@@ -1,7 +1,7 @@
 const request = require('request-promise') ;
 const fs = require('fs') ;
 const Constants = require('../utils/Constants') ;
-const dbRepository = require('../utils/DbRepository') ;
+const dbRepository = require('../data/DbRepository') ;
 const Paginator = require('../utils/Paginator') ;
 
 
@@ -36,7 +36,7 @@ exports.getSingleBlog = async (req, res)=>{
     if(blogData['status'] === false){throw blogData ;}
 
     res.render('blog_single.hbs', {
-      blogData : blogData['data']['0'],
+      blogData : blogData['data'],
     }) ;
   }catch (e) {
     res.send(e) ;
