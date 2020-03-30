@@ -45,9 +45,6 @@ app.use((req, res, next)=>{
 }) ;
 
 
-
-
-
 app.use((req, res, next)=>{
   res.locals.IMAGE_FRONTEND_LINK_PATH = Constants.IMAGE_FRONTEND_LINK_PATH ;
   res.locals.IMAGE_BACKENDFRONT_LINK_PATH = Constants.IMAGE_BACKENDFRONT_LINK_PATH ;
@@ -82,23 +79,6 @@ app.get('/clear', (req, res)=>{
     </script>
   `);
 }) ;
-
-
-app.get('/order', async (req, res)=>{
-  try{
-    res.render('order_success2.hbs') ;
-  }catch (e) {
-    res.send({
-      status : false,
-      e,
-      e_message : e.message,
-      e_toString : e.toString(),
-      e_toString2 : e.toString,
-      yo : "Beta ji koi error hai"
-    }) ;
-  }
-}) ;
-
 
 app.use(require('./routes/router_info')) ;
 app.use(require('./routes/router_blogs')) ;
