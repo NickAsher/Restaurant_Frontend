@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="/plugins/animate.css/animate.min.css" />
     <link rel="stylesheet" href="/plugins/animsition/dist/css/animsition.min.css" />
     <link rel="stylesheet" href="/plugins/toastr/toastr.min.css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/hybrid.min.css">
 
     <!-- CSS Icons -->
     <link rel="stylesheet" href="/css/themify-icons.css" />
@@ -44,20 +45,34 @@
 
     <!-- Content -->
     <div id="content">
-        <!-- Section -->
-        <section class="section bg-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 offset-md-4">
-                        <span class="icon icon-xl icon-success"><i class="ti ti-check-box"></i></span>
-                        <h1 class="mb-2">Thank you for your order!</h1>
-                        <h4 class="text-muted mb-5">You will recieve it in 30 minutes.</h4>
-                        <a href="menu-list-navigation.html" class="btn btn-outline-secondary"><span>Go back to menu</span></a>
-                    </div>
+
+
+
+
+        <div class="bg-grey" style="background-image:url('/img/error.jpg');background-position:center;
+               background-repeat:no-repeat;
+                background-size:cover;
+                width: 100%;height: 100%">
+
+            <br><br><br><br><br><br><br><br><br><br><br><br>
+            <div class="text-center">
+                    <a href="{{backLink}}" class="btn btn-danger">Go Back</a>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+            <pre>
+                <code class="json">
+                    {{error}}
+                </code>
+            </pre>
                 </div>
             </div>
-        </section>
-        <br><br>
+            <br><br><br><br><br><br><br><br><br><br>
+
+        </div>
+
+
         {{>footer}}
 
     </div>
@@ -93,12 +108,13 @@
 <!-- JS Core -->
 <script src="/js/core.js"></script>
 
-<!-- JS Google Map -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOt5KmGHnyjT3QwpXk9z0QTkT06FpjWHY"></script>
-
 <!-- Changes in javascript made by me-->
 <script src="/js/myPersonal.js"></script>
-<script src="/js/cart.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
 
+<script>
+    hljs.initHighlightingOnLoad();
+
+</script>
 </body>
 </html>

@@ -88,6 +88,22 @@ exports.getAllGalleryItems = async (req, res)=>{
   }
 } ;
 
+exports.getOrderPage = async (req, res)=>{
+  try{
+    res.render('order_success.hbs') ;
+  }catch (e) {
+    res.send({
+      status : false,
+      e,
+      e_message : e.message,
+      e_toString : e.toString(),
+      e_toString2 : e.toString,
+      yo : "Beta ji koi error hai"
+    }) ;
+  }
+} ;
+
+
 exports.getOrderInfoPage = async (req, res)=>{
   try{
     if(!req.session.isLoggedIn){

@@ -83,7 +83,9 @@ app.use(require('./routes/router_blogs')) ;
 app.use(require('./routes/router_menu')) ;
 app.use(require('./routes/router_auth')) ;
 
-
+app.get('/error', (req, res)=>{
+  res.render('error2.hbs') ;
+}) ;
 app.get('*', (req, res)=>{
   res.render('404.hbs') ;
 });
