@@ -6,19 +6,52 @@ function checkLocalStorage(){
         localStorage.removeItem('feature_test');
         // localStorage is enabled
       } else {
-        alert("Local storage is disabled, please used a modern browser") ;
+        alert("Local storage is disabled, please use a modern browser") ;
         // localStorage is disabled
       }
     } catch(e) {
-      alert("Local storage is disabled, please used a modern browser") ;
+      alert("Local storage is disabled, please use a modern browser") ;
       // localStorage is disabled
     }
   } else {
-    alert("Local storage is disabled, please used a modern browser") ;
+    alert("Local storage is disabled, please use a modern browser") ;
     // localStorage is not available
   }
 }
 checkLocalStorage() ;
+
+function initLocalStorageItems(){
+  if(!localStorage.total_items){
+    localStorage.setItem('total_items', '0') ;
+  }
+
+  if(!localStorage.total_items_price){
+    localStorage.setItem('total_items_price', '0') ;
+  }
+
+  if(!localStorage.cart){
+    localStorage.setItem('cart', '[]') ;
+  }
+
+  if(!localStorage.today){
+    localStorage.setItem('today', new Date().toLocaleDateString()) ;
+  }
+
+}
+
+initLocalStorageItems() ;
+
+function resetLocalStorage(){
+  localStorage.setItem('total_items', '0') ;
+  localStorage.setItem('total_items_price', '0') ;
+  localStorage.setItem('cart', '[]') ;
+  localStorage.setItem('today', new Date().toLocaleDateString()) ;
+
+}
+
+if(localStorage.getItem('today') != new Date().toLocaleDateString()){
+  resetLocalStorage() ;
+}
 
 
 $('#btn-SignOut').click(()=>{
@@ -59,28 +92,7 @@ function formatCurrency() {
 
 formatCurrency() ;
 
-function initLocalStorageItems(){
-  if(!localStorage.total_items){
-    localStorage.setItem('total_items', '0') ;
-  }
 
-  if(!localStorage.total_items_price){
-    localStorage.setItem('total_items_price', '0') ;
-  }
-
-  if(!localStorage.cart){
-    localStorage.setItem('cart', '[]') ;
-  }
-
-}
-
-initLocalStorageItems() ;
-
-function resetLocalStorage(){
-  localStorage.setItem('total_items', '0') ;
-  localStorage.setItem('total_items_price', '0') ;
-  localStorage.setItem('cart', '[]') ;
-}
 
 
 let refreshNoOfItemsInCart = ()=>{
