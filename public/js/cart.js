@@ -69,6 +69,7 @@ function setupDeleteCartButton(usedBy){
     let itemIndex = $(this).attr('data-index') ;
     let cartItems = JSON.parse(localStorage.getItem('cart')) ;
     let removedItem = cartItems.splice(itemIndex, 1) ; // this is an array of 1 removed object
+    ga_RemoveFromCart(removedItem[0]) ;
     localStorage.setItem('cart', JSON.stringify(cartItems)) ;
     localStorage.setItem('total_items', parseInt(localStorage.total_items) -1) ;
     localStorage.setItem('total_items_price', ""+parseFloat(localStorage.getItem('total_items_price')) - parseFloat(removedItem[0].itemPrice) ) ;

@@ -16,7 +16,7 @@ exports.getMenu = async (req, res)=>{
   }catch (e) {
     logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
     res.send({
-      e : e.message,
+      e ,
       msg : "Beta ji koi to error hai"
     }) ;
   }
