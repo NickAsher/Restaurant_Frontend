@@ -421,7 +421,12 @@
             ga_CompleteTransaction(response.orderId, localStorage.getItem('total_price'), JSON.parse(localStorage.getItem('cart')))
             console.log(response) ;
             resetLocalStorage() ;
-            window.location.href=`/order` ;
+            makeToast('info', "Payment Successfull. Redirecting you") ;
+            setTimeout(function () {
+                // this is needed because, if we immediately redirect the user,
+                // then send transaction event is not sent to google analytics tag manager
+                window.location.href=`/order` ;
+            }, 500) ;
 
         }
     }
@@ -572,9 +577,14 @@
                 .then((data)=>{
                     hideSpinner($('#btn_MakeDevOrder')) ;
                     if(data.status == true){
-                        ga_CompleteTransaction(data.orderId, localStorage.getItem('total_price'), JSON.parse(localStorage.getItem('cart')))
+                        ga_CompleteTransaction(data.orderId, localStorage.getItem('total_price'), JSON.parse(localStorage.getItem('cart'))) ;
                         resetLocalStorage() ;
-                        window.location.href=`/order` ;
+                        makeToast('info', "Payment Successfull. Redirecting you") ;
+                        setTimeout(function () {
+                            // this is needed because, if we immediately redirect the user,
+                            // then send transaction event is not sent to google analytics tag manager
+                            window.location.href=`/order` ;
+                        }, 500)
                     }else{
                         console.log(data);
                         throw "Error in completing checkout process" ;

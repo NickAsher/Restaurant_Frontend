@@ -378,7 +378,7 @@ exports.postResetPasswordToken = async (req, res)=>{
     let new_password_hash = await bcrypt.hash(newPassword, 8);
     let dbData = await dbConnection.execute(
         `UPDATE users_table_new SET password_hash = :new_password_hash,
-         password_dev = :newPassword, reset_password_token = '' WHERE id = :id `, {
+        reset_password_token = '' WHERE id = :id `, {
           new_password_hash,
           newPassword,
           id : userData.id

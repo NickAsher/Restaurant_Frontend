@@ -1,16 +1,17 @@
 function ga_CompleteTransaction(orderId, totalPrice, cartItemsList_FromFrontend){
-
+  console.log("Called ga_CompleteTransaction") ;
   let items = [] ;
 
-  cartItemsList_FromFrontend.forEach((cartItem)=>{
-    items.push({
-      id : cartItem.itemId,
-      name : cartItem.itemName,
-      category : cartItem.categoryName, //get the categoryName also stored in the localhost storage
-      variant : cartItem.itemSizeData.name,
-      quantity : 1,
-      price : cartItem.itemPrice // or the size price  cartItem.sizeData.price
-    }) ;
+  // cartItemsList_FromFrontend.forEach((cartItem)=>{
+  //   items.push({
+  //     id : cartItem.itemId,
+  //     name : cartItem.itemName,
+  //     category : cartItem.categoryName, //get the categoryName also stored in the localhost storage
+  //     variant : cartItem.itemSizeData.name,
+  //     quantity : 1,
+  //     price : cartItem.itemPrice // or the size price  cartItem.sizeData.price
+  //   }) ;
+
 
     // // also inserting the addon items
     // cartItem.addonData.forEach((addonGroup)=>{
@@ -27,8 +28,19 @@ function ga_CompleteTransaction(orderId, totalPrice, cartItemsList_FromFrontend)
     //   }) ;
     // }) ;
 
-  }) ;
+  // }) ;
 
+  for(let i=0;i<cartItemsList_FromFrontend.length;i++){
+    let cartItem = cartItemsList_FromFrontend[i] ;
+    items.push({
+      id : cartItem.itemId,
+      name : cartItem.itemName,
+      category : cartItem.categoryName, //get the categoryName also stored in the localhost storage
+      variant : cartItem.itemSizeData.name,
+      quantity : 1,
+      price : cartItem.itemPrice // or the size price  cartItem.sizeData.price
+    }) ;
+  }
   gtag('event', 'purchase', {
     "transaction_id": orderId,
     "affiliation": "Gagneja's Restaurant",
@@ -38,6 +50,7 @@ function ga_CompleteTransaction(orderId, totalPrice, cartItemsList_FromFrontend)
     "shipping": 0,
     "items": items
   });
+  console.log("sent gtag event", items) ;
 }
 
 function ga_ViewMenuItem(itemId, itemName, categoryName){
