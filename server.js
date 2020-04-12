@@ -19,6 +19,9 @@ hbs.registerPartials(path.join(__dirname, "./views/includes/")) ;
 hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
   return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
 });
+hbs.registerHelper('toJSON', function(obj) {
+  return JSON.stringify(obj, null, 4);
+});
 
 app.use(express.static("public"));
 app.use(bodyParser.json()); // support json encoded bodies
@@ -65,26 +68,24 @@ app.use((req, res, next)=>{
 }) ;
 
 
-app.get('/clear', (req, res)=>{
-  //TODO remove the session id cookie
-  res.send(`
-    <script>
-        localStorage.removeItem('cart') ;
-        localStorage.removeItem('total_items') ;
-        localStorage.removeItem('total_items_price') ;
-        
-        window.location.href= '/menu' ;
-    </script>
-  `);
-}) ;
-
 app.use(require('./routes/router_info')) ;
 app.use(require('./routes/router_blogs')) ;
 app.use(require('./routes/router_menu')) ;
 app.use(require('./routes/router_auth')) ;
 
+app.get('/privacy_policy', (req, res)=>{
+  res.render('privacy_policy.hbs') ;
+}) ;
 app.get('/error', (req, res)=>{
-  res.render('error2.hbs') ;
+  res.render('error.hbs', {
+    showBackLink : true,
+    backLink : "/",
+    error : {
+      status : false,
+      e_message : "This is some message",
+      e_toString : "This error : This is some message",
+    }
+  }) ;
 }) ;
 app.get('*', (req, res)=>{
   res.render('404.hbs') ;
