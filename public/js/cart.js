@@ -116,6 +116,13 @@ $('#Button_OpenCart_Mobile').click(function () {
   setupDeleteCartButton("cart_mobile") ;
 }) ;
 
+$('#Button_LinkGoToCheckout').click(function () {
+  if(localStorage.getItem('total_items_price') == '0'){
+    makeToast('error', 'Empty Cart') ;
+  }else{
+    window.location.href = '/checkout' ;
+  }
+}) ;
 
 
 

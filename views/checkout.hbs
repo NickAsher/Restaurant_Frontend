@@ -277,6 +277,10 @@
 
 
     function sendOrder(){
+      if(localStorage.getItem('total_items_price') == '0'){
+        makeToast('error', "Your cart is empty") ;
+        return ;
+      }
         $('#form-checkout').validate({
             errorPlacement : (error, element)=>{
                 //insert the label element after the parent div
@@ -485,6 +489,10 @@
 
 
     function skipPayment(){
+        if(localStorage.getItem('total_items_price') == '0'){
+            makeToast('error', "Your cart is empty") ;
+            return ;
+        }
         $('#form-checkout').validate({
             errorPlacement : (error, element)=>{
                 //insert the label element after the parent div
