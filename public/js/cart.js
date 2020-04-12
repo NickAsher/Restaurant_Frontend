@@ -31,7 +31,14 @@ let getParsedCartItem = (cartItem)=>{
 
 let renderCart = ()=>{
   let cartItems = JSON.parse(localStorage.getItem('cart')) ;
-  $('#cartTable').html("") ;
+  if(cartItems.length == 0){
+    $('#cartTable').html("<img src='/img/empty-cart.png' class='img-fluid' >") ;
+    $('#div_CartSummary').hide() ;
+  }else{
+    $('#cartTable').html("") ;
+    $('#div_CartSummary').show() ;
+
+  }
   cartItems.forEach(function(element, index){
     let parsedElement = getParsedCartItem(element, index) ;
 
