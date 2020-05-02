@@ -243,7 +243,7 @@ exports.resetPasswordToken = async (id, resetToken)=>{
 exports.insertOrder = async (orderData)=>{
   try{
     let dbData = await dbConnection.execute(
-      `INSERT INTO order_table2 (userId, userDetails, address, cart, totalPrice, comments, paymentData)
+      `INSERT INTO order_table (userId, userDetails, address, cart, totalPrice, comments, paymentData)
        VALUES (:userId, :userDetails, :address, :cart, :totalPrice, :comments, :paymentData )`, {
         userId : orderData.userId,
         userDetails : orderData.userDetails,
@@ -269,7 +269,7 @@ exports.getOrderById = async (orderId, userId)=>{
   //although order can be retreived only by order id, we don't other users to see data of other user orders.
   try{
     let dbData = await dbConnection.execute(
-      `SELECT * FROM order_table2 WHERE id = :orderId AND userId = :userId`, {
+      `SELECT * FROM order_table WHERE id = :orderId AND userId = :userId`, {
         orderId,
         userId
       });
@@ -299,7 +299,7 @@ exports.getOrderById = async (orderId, userId)=>{
 exports.getAllCategories = async ()=>{
   try{
     let dbData = await dbConnection.execute(
-        "SELECT * FROM `menu_meta_category_table` ORDER BY `category_sr_no` ASC") ;
+        "SELECT * FROM `menu_category_table` ORDER BY `category_sr_no` ASC") ;
     return {
       status : true,
       data : dbData[0],
@@ -338,9 +338,9 @@ exports.getAllMenuItems = async()=>{
 exports.getSingleMenuItem = async (itemId)=>{
   try{
     let dbData = await dbConnection.execute(
-      `SELECT * FROM menu_items_table, menu_meta_category_table 
+      `SELECT * FROM menu_items_table, menu_category_table 
          WHERE menu_items_table.item_id = '${itemId}'
-         AND menu_meta_category_table.category_id = menu_items_table.item_category_id`
+         AND menu_category_table.category_id = menu_items_table.item_category_id`
     ) ;
     return {
       status : true,
@@ -360,11 +360,11 @@ exports.getSingleMenuItem = async (itemId)=>{
 exports.getSingleMenuItem_PriceData = async (itemId)=>{
   try{
     let dbData = await dbConnection.execute(
-      `SELECT * FROM menu_meta_rel_size_items_table, menu_meta_size_table 
+      `SELECT * FROM menu_meta_rel_size_items_table, menu_size_table 
          WHERE menu_meta_rel_size_items_table.item_id = '${itemId}'
-         AND menu_meta_rel_size_items_table.size_id = menu_meta_size_table.size_id
-         AND menu_meta_size_table.size_is_active = '1' AND menu_meta_rel_size_items_table.item_size_active = '1'
-         ORDER BY menu_meta_size_table.size_sr_no`
+         AND menu_meta_rel_size_items_table.size_id = menu_size_table.size_id
+         AND menu_size_table.size_is_active = '1' AND menu_meta_rel_size_items_table.item_size_active = '1'
+         ORDER BY menu_size_table.size_sr_no`
     ) ;
     return {
       status : true,
@@ -414,7 +414,7 @@ exports.getAllMenuItems_SeperatedByCategory = async ()=>{
 exports.getAllAddonGroupsInCategory = async (categoryId)=>{
   try{
     let dbData = await dbConnection.execute(
-        `SELECT * FROM menu_meta_addongroups_table
+        `SELECT * FROM menu_addongroups_table
          WHERE category_id = '${categoryId}' AND addon_group_is_active = '1'
          ORDER BY addon_group_sr_no ASC `
     ) ;
