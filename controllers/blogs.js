@@ -4,6 +4,7 @@ const Constants = require('../utils/Constants') ;
 const dbRepository = require('../data/DbRepository') ;
 const Paginator = require('../utils/Paginator') ;
 const logger = require('../middleware/logging') ;
+const moment = require('moment') ;
 
 
 
@@ -14,11 +15,16 @@ exports.getAllBlogs_Paginated = async (req, res)=>{
     let myPaginator = new Paginator(totalNoOfItems, itemsPerPage, req.query.page) ;
     let parsedPaginatorHtml = myPaginator.getPaginatedHTML("") ;
 
-    let blogsData = await dbRepository.getBlogs_Paginated(myPaginator.getPageNo(), itemsPerPage) ;
-    if(blogsData['status'] == false){throw blogsData ;}
+    let dbBlogsData = await dbRepository.getBlogs_Paginated(myPaginator.getPageNo(), itemsPerPage) ;
+    if(dbBlogsData['status'] == false){throw dbBlogsData ;}
+
+    let blogsData = dbBlogsData['data'] ;
+    blogsData.forEach((blog)=>{
+      blog.blog_creation_date = moment(blog.blog_creation_date).format('Do MMM, YYYY') ;
+    }) ;
 
     res.render('blogs_all.hbs', {
-      blogsData : blogsData['data'],
+      blogsData,
       parsedPaginatorHtml,
     }) ;
   }catch (e) {
@@ -34,11 +40,13 @@ exports.getAllBlogs_Paginated = async (req, res)=>{
 
 exports.getSingleBlog = async (req, res)=>{
   try{
-    let blogData = await dbRepository.getSingleBlog(req.params.blogId) ;
-    if(blogData['status'] == false){throw blogData ;}
+    let dbBlogData = await dbRepository.getSingleBlog(req.params.blogId) ;
+    if(dbBlogData['status'] == false){throw dbBlogData ;}
 
+    let blogData = dbBlogData['data'] ;
+    blogData.blog_creation_date = moment(blogData.blog_creation_date).format('Do MMM, YYYY') ;
     res.render('blog_single.hbs', {
-      blogData : blogData['data'],
+      blogData ,
     }) ;
   }catch (e) {
     logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
