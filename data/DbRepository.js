@@ -28,7 +28,7 @@ exports.getBlogs_Paginated = async (pageNo, totalItemsPerPage)=>{
     let offset = (pageNo-1)*totalItemsPerPage ;
 
     let dbData = await dbConnection.execute(
-      `SELECT blog_id, blog_creation_date, blog_title, blog_display_image 
+      `SELECT blog_id, blog_creation_date, blog_title, blog_display_image, blog_author 
         FROM  blogs_table ORDER BY blog_creation_date DESC LIMIT ${limit} OFFSET ${offset} `
     ) ;
     return {

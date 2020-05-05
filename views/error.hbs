@@ -1,61 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <!-- Meta -->
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!-- Title -->
-    <title>Gagneja's</title>
-
-    <!-- Favicons -->
-    <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="apple-touch-icon" href="/img/favicon_60x60.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon_76x76.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/img/favicon_120x120.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/img/favicon_152x152.png">
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162363580-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-162363580-1');
-    </script>
-
-
-
-    <!-- CSS Plugins -->
-    <link rel="stylesheet" href="/plugins/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/plugins/slick-carousel/slick/slick.css" />
-    <link rel="stylesheet" href="/plugins/animate.css/animate.min.css" />
-    <link rel="stylesheet" href="/plugins/animsition/dist/css/animsition.min.css" />
-    <link rel="stylesheet" href="/plugins/toastr/toastr.min.css" />
+{{#*inline "partial_head"}}
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/hybrid.min.css">
 
-    <!-- CSS Icons -->
-    <link rel="stylesheet" href="/css/themify-icons.css" />
-    <link rel="stylesheet" href="/plugins/font-awesome/css/font-awesome.min.css" />
+{{/inline}}
 
-    <!-- CSS Theme -->
-    <link id="theme" rel="stylesheet" href="/css/themes/theme-beige.css" />
-    <link id="theme" rel="stylesheet" href="/css/themes/my-personal.css" />
-
-</head>
-
-<body>
-
-<!-- Body Wrapper -->
-<div id="body-wrapper" class="animsition">
-
-    {{>header}}
-
-    <!-- Content -->
-    <div id="content">
+{{#> template_base}}
 
         <!-- Page Title -->
         <div class="page-title bg-light ">
@@ -97,55 +45,13 @@
 
             </div>
         </section>
-        <br><br>
-        {{>footer}}
-
-    </div>
-
-    <div></div>
-
-    {{>cart}}
-
-    {{>panel_mobile}}
-
-    <!-- Body Overlay : used to darken the rest of layout when cart is opened -->
-    <div id="body-overlay"></div>
-
-</div>
+{{/template_base}}
 
 
+{{#*inline "partial_body"}}
 
-<!-- JS Plugins -->
-<script src="/plugins/jquery/dist/jquery.min.js"></script>
-<script src="/plugins/tether/dist/js/tether.min.js"></script>
-<script src="/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="/plugins/slick-carousel/slick/slick.min.js"></script>
-<script src="/plugins/jquery.appear/jquery.appear.js"></script>
-<script src="/plugins/jquery.scrollto/jquery.scrollTo.min.js"></script>
-<script src="/plugins/jquery.localscroll/jquery.localScroll.min.js"></script>
-<script src="/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
-<script src="/plugins/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.min.js"></script>
-<script src="/plugins/twitter-fetcher/js/twitterFetcher_min.js"></script>
-<script src="/plugins/skrollr/dist/skrollr.min.js"></script>
-<script src="/plugins/animsition/dist/js/animsition.min.js"></script>
-<script src="/plugins/toastr/toastr.min.js" ></script>
-
-<!-- JS Core -->
-<script src="/js/core.js"></script>
-
-<!-- Error Code -->
 <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
-
-
-<!-- Changes in javascript made by me-->
-<script src="/js/myPersonal.js"></script>
-<script src="/js/analytics_utils.js"></script>
-<script src="/js/cart.js"></script>
-
 <script>
-    hljs.initHighlightingOnLoad();
-
+    hljs.initHighlightingOnLoad(); // initializing the highlight js library
 </script>
-
-</body>
-</html>
+{{/inline}}
