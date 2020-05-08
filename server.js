@@ -8,6 +8,15 @@ const cookieParser = require("cookie-parser") ;
 const session = require('express-session') ;
 const csrf = require('csurf') ;
 const logger = require('./middleware/logging') ;
+const redis = require('redis') ;
+
+let redisStore = require('connect-redis')(session) ;
+let redisClient = redis.createClient({
+  host : '127.0.0.1',
+  port : 6379
+}) ;
+
+
 
 
 
@@ -31,18 +40,33 @@ app.use(session({
   secret : "this is my secret", //key use to sign session data(only sign, not encrypt)
   resave : false, // don't resave session if it isn't changed
   saveUninitialized : false, //don't save an empty session
-  name : 'my_session_id', //name for the cookie that stores session id
-  cookie : {
-    maxAge: 1000 * 60 * 60 * 2,
-    sameSite :true,
-    secure :false // use it when using https
-  }
+  store: new redisStore({
+    client: redisClient,
+    prefix:'fsess',
+    ttl : 86400 // one day, this is also the default value of ttl
+  }),
 })) ;
 
 
 app.use((req, res, next)=>{
   logger.info(`{'method' : '${req.method}','url':'${req.originalUrl}'}`) ;
   next() ;
+}) ;
+
+redisClient.on('error', (err)=>{
+  logger.error(` 'redisError' : '${err}`) ;
+}) ;
+
+
+app.use((req, res, next)=>{
+  if (!req.session) {
+    logger.error(` 'redisError' : 'Looks like req.session is not defined`) ;
+    return res.status(422).render('error.hbs', {
+      status:false,
+      error : "Looks like something is wrong with redis session server. req.session is undefined"
+    });
+  }
+  next() ; // otherwise continue
 }) ;
 
 
