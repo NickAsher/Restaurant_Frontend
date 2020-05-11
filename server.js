@@ -9,13 +9,7 @@ const session = require('express-session') ;
 const csrf = require('csurf') ;
 const logger = require('./middleware/logging') ;
 const redis = require('redis') ;
-
 let redisStore = require('connect-redis')(session) ;
-let redisClient = redis.createClient({
-  host : '127.0.0.1',
-  port : 6379
-}) ;
-
 
 
 
@@ -36,14 +30,27 @@ app.use(express.static("public"));
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.use(cookieParser()) ;
+
+let redisClient = redis.createClient({
+  host : '127.0.0.1',
+  port : 6379
+}) ;
+
 app.use(session({
   secret : "this is my secret", //key use to sign session data(only sign, not encrypt)
   resave : false, // don't resave session if it isn't changed
   saveUninitialized : false, //don't save an empty session
+  name : 'my_session_id', //name for the cookie that stores session id
+  cookie : {
+    maxAge: 1000 * 60 * 60 * 24,
+    sameSite :true,
+    secure :false // use it when using https
+  },
   store: new redisStore({
     client: redisClient,
-    prefix:'fsess',
-    ttl : 86400 // one day, this is also the default value of ttl
+    prefix:'fsess:',
+    ttl : 86400, // one day, this is also the default value of ttl
+    disableTouch : true // disables resetting the ttl value when a session is accessed again. Meaning the key will expire after 1 day
   }),
 })) ;
 
@@ -56,7 +63,6 @@ app.use((req, res, next)=>{
 redisClient.on('error', (err)=>{
   logger.error(` 'redisError' : '${err}`) ;
 }) ;
-
 
 app.use((req, res, next)=>{
   if (!req.session) {

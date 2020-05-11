@@ -7,6 +7,7 @@ const crypto =  require('crypto') ;
 const {OAuth2Client} = require('google-auth-library');
 const jwt = require('jsonwebtoken') ;
 const logger = require('../middleware/logging') ;
+const emailUtils = require('../utils/email') ;
 
 const CLIENT_ID = "730014109642-7rldv9agg9qp0avagkapdv9l4kocjt5e.apps.googleusercontent.com" ;
 const client = new OAuth2Client(CLIENT_ID);
@@ -308,6 +309,10 @@ exports.postForgotPassword = async (req, res)=>{
     }
 
     // TODO send the mail here
+    let passwordResetMailLink = `http://localhost:3000/resetPassword/${resetToken}` ;
+
+    emailUtils.sendResetPasswordMail(passwordResetMailLink) ;
+
     res.send({
       status: true,
       success: "MAIL_SENT",
