@@ -20,13 +20,10 @@ exports.getCheckoutPage = async (req, res)=>{
     }) ;
   }catch (e) {
     logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
-    res.send({
-      status : false,
-      e,
-      e_message : e.message,
-      e_toString : e.toString(),
-      e_toString2 : e.toString,
-      yo : "Beta ji koi error hai"
+    res.status(500).render('error.hbs', {
+      showBackLink : true,
+      backLink : "/",
+      error : e
     }) ;
   }
 } ;

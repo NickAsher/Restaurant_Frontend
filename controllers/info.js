@@ -10,9 +10,9 @@ exports.getHomePage = async (req, res)=>{
     }) ;
   }catch (e) {
     logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
-    res.send({
-      e : e.toString(),
-      msg : "Beta ji koi to error hai"
+    res.status(500).render('error.hbs', {
+      showBackLink : false,
+      error : e
     }) ;
   }
 } ;
@@ -28,9 +28,10 @@ exports.getAboutUsData = async (req, res)=>{
     });
   }catch (e) {
     logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
-    res.send({
-      e : e.toString(),
-      msg : "Beta ji koi to error hai"
+    res.status(500).render('error.hbs', {
+      showBackLink : true,
+      backLink : "/",
+      error : e
     }) ;
   }
 } ;
@@ -48,7 +49,11 @@ exports.getContactUsData = async (req, res)=>{
 
   }catch (e) {
     logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
-    res.send(e) ;
+    res.status(500).render('error.hbs', {
+      showBackLink : true,
+      backLink : "/",
+      error : e
+    }) ;
   }
 } ;
 
@@ -64,9 +69,10 @@ exports.getOfferSpecialsData = async (req, res)=>{
     });
   }catch (e) {
     logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
-    res.send({
-      e : e.toString(),
-      msg : "Beta ji koi to error hai"
+    res.status(500).render('error.hbs', {
+      showBackLink : true,
+      backLink : "/",
+      error : e
     }) ;
   }
 } ;
@@ -82,8 +88,10 @@ exports.getAllGalleryItems = async (req, res)=>{
     }) ;
   }catch (e) {
     logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
-    res.send({
-      e : e.toString(),
+    res.status(500).render('error.hbs', {
+      showBackLink : true,
+      backLink : "/",
+      error : e
     }) ;
   }
 } ;
@@ -92,41 +100,16 @@ exports.getOrderPage = async (req, res)=>{
   try{
     res.render('order_success.hbs') ;
   }catch (e) {
-    res.send({
-      status : false,
-      e,
-      e_message : e.message,
-      e_toString : e.toString(),
-      e_toString2 : e.toString,
-      yo : "Beta ji koi error hai"
-    }) ;
-  }
-} ;
-
-
-exports.getOrderInfoPage = async (req, res)=>{
-  try{
-    if(!req.session.isLoggedIn){
-      res.redirect('/login?redirect=order') ;
-      return ;
-    }
-    //now the user is loggedIn
-    let orderId = req.params.orderId ;
-    let dbReturnData = await dbRepository.getOrderById(orderId, req.session.userId);
-    if(dbReturnData.status == false){throw "Error in getting order info" ;}
-
-    let orderData = dbReturnData.data ;
-    res.render('order_success.hbs', {
-      orderData
-    }) ;
-  }catch (e) {
     logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
-    res.send({
-      e : e.toString(),
-      msg : "Beta ji koi to error hai"
+    res.status(500).render('error.hbs', {
+      showBackLink : true,
+      backLink : "/",
+      error : e
     }) ;
   }
 } ;
+
+
 
 
 

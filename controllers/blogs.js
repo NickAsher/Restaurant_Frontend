@@ -29,8 +29,10 @@ exports.getAllBlogs_Paginated = async (req, res)=>{
     }) ;
   }catch (e) {
     logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
-    res.send({
-      e : e.message
+    res.status(500).render('error.hbs', {
+      showBackLink : true,
+      backLink : "/",
+      error : e
     }) ;
   }
 } ;
@@ -50,7 +52,11 @@ exports.getSingleBlog = async (req, res)=>{
     }) ;
   }catch (e) {
     logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
-    res.send(e) ;
+    res.status(500).render('error.hbs', {
+      showBackLink : true,
+      backLink : "/",
+      error : e
+    }) ;
   }
 } ;
 

@@ -308,7 +308,6 @@ exports.postForgotPassword = async (req, res)=>{
       throw dbData;
     }
 
-    // TODO send the mail here
     let passwordResetMailLink = `http://localhost:3000/resetPassword/${resetToken}` ;
 
     emailUtils.sendResetPasswordMail(passwordResetMailLink) ;
@@ -316,7 +315,6 @@ exports.postForgotPassword = async (req, res)=>{
     res.send({
       status: true,
       success: "MAIL_SENT",
-      link: `http://localhost:3000/resetPassword/${resetToken}`
     });
 
   }catch (e) {
@@ -355,13 +353,10 @@ exports.getResetPasswordTokenPage = async (req, res)=>{
 
   }catch (e) {
     logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
-    res.send({
-      status:false,
-      e,
-      e_message : e.message,
-      e_toString : e.toString(),
-      e_toString2 : e.toString,
-      yo : "Beta ji koi error hai"
+    res.status(500).render('error.hbs', {
+      showBackLink : true,
+      backLink : "/",
+      error : e
     }) ;
   }
 } ;

@@ -15,9 +15,10 @@ exports.getMenu = async (req, res)=>{
 
   }catch (e) {
     logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
-    res.send({
-      e ,
-      msg : "Beta ji koi to error hai"
+    res.status(500).render('error.hbs', {
+      showBackLink : true,
+      backLink : "/",
+      error : e
     }) ;
   }
 };
