@@ -81,7 +81,7 @@ exports.postSignUpPage = async (req,res)=>{
 
     let password_hash = await bcrypt.hash(password, 8);
     let dbData = await dbConnection.execute(`
-    INSERT INTO users_table_new (email, password_hash, firstname, lastname) VALUES (:email, :password_hash, :firstname, :lastname) `, {
+    INSERT INTO users_table (email, password_hash, firstname, lastname) VALUES (:email, :password_hash, :firstname, :lastname) `, {
       email,
       password_hash,
       firstname,
@@ -138,7 +138,7 @@ exports.postSignUp_Google = async (req, res)=>{
       // needed for creating password reset jwt, as we use password hash to sign jwt. So password hash cannot be empty
       let fakePasswordHash = crypto.createHash('md5').update(`${googleId}-${email}`).digest('hex') ;
       let dbData = await dbConnection.execute(`
-    INSERT INTO users_table_new (email, password_hash, firstname, lastname, oauth_provider, oauth_id) VALUES (:email, :password_hash, :firstname, :lastname, :oauth_provider, :oauth_id) `, {
+    INSERT INTO users_table (email, password_hash, firstname, lastname, oauth_provider, oauth_id) VALUES (:email, :password_hash, :firstname, :lastname, :oauth_provider, :oauth_id) `, {
         email,
         password_hash : fakePasswordHash,
         firstname,
@@ -213,7 +213,7 @@ exports.postSignUp_Facebook = async (req, res)=>{
       let fakePasswordHash = crypto.createHash('md5').update(`${facebookId}-${email}`).digest('hex')  ;
 
       let dbData = await dbConnection.execute(`
-      INSERT INTO users_table_new (email, password_hash, firstname, lastname, oauth_provider, oauth_id) VALUES (:email, :password_hash, :firstname, :lastname, :oauth_provider, :oauth_id) `, {
+      INSERT INTO users_table (email, password_hash, firstname, lastname, oauth_provider, oauth_id) VALUES (:email, :password_hash, :firstname, :lastname, :oauth_provider, :oauth_id) `, {
         email,
         password_hash : fakePasswordHash,
         firstname,
@@ -377,7 +377,7 @@ exports.postResetPasswordToken = async (req, res)=>{
 
     let new_password_hash = await bcrypt.hash(newPassword, 8);
     let dbData = await dbConnection.execute(
-        `UPDATE users_table_new SET password_hash = :new_password_hash,
+        `UPDATE users_table SET password_hash = :new_password_hash,
         reset_password_token = '' WHERE id = :id `, {
           new_password_hash,
           newPassword,

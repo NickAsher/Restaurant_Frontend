@@ -160,7 +160,7 @@ exports.getOfferSpecialData = async ()=>{
 exports.getUser_ByEmail = async(email)=>{
   try{
     let dbData = await dbConnection.execute(`
-    SELECT * FROM users_table_new WHERE email = :userEmailId `, {
+    SELECT * FROM users_table WHERE email = :userEmailId `, {
       userEmailId : email
     }) ;
     return {
@@ -178,7 +178,7 @@ exports.getUser_ByEmail = async(email)=>{
 exports.getUser_ById = async(id)=>{
   try{
     let dbData = await dbConnection.execute(`
-    SELECT * FROM users_table_new WHERE id = :id `, {
+    SELECT * FROM users_table WHERE id = :id `, {
       id
     }) ;
     if(dbData[0].length != 1){throw "No such user in the database" ;}
@@ -198,7 +198,7 @@ exports.getUser_ById = async(id)=>{
 exports.getUser_ByResetToken = async(resetToken)=>{
   try{
     let dbData = await dbConnection.execute(
-      `SELECT * FROM users_table_new WHERE reset_password_token = :resetToken `, {
+      `SELECT * FROM users_table WHERE reset_password_token = :resetToken `, {
       resetToken
     }) ;
     if(dbData[0].length != 1){
@@ -222,7 +222,7 @@ exports.getUser_ByResetToken = async(resetToken)=>{
 exports.resetPasswordToken = async (id, resetToken)=>{
   try{
     let dbData = await dbConnection.execute(
-        `UPDATE users_table_new SET reset_password_token = :resetToken WHERE id = :id `, {
+        `UPDATE users_table SET reset_password_token = :resetToken WHERE id = :id `, {
           id,
           resetToken
         }) ;

@@ -37,12 +37,15 @@ exports.getItem_ModalProduct = async (req, res)=>{
     let addonData = await dbRepository.getAddonDataInCategory(categoryId);
     if(addonData['status'] == false) {throw addonData ;}
 
-    res.render('./includes/modal_product.hbs', {
-      itemData: itemData['data']['0'],
-      sizeData: sizeData['data'],
-      multipleSizes: sizeData['data'].length > 1,
-      addonData: addonData['data'],
-    });
+
+      res.render('./includes/modal_product.hbs', {
+        itemData: itemData['data']['0'],
+        sizeData: sizeData['data'],
+        multipleSizes: sizeData['data'].length > 1,
+        addonData: addonData['data'],
+      });
+
+
   }catch (e) {
     logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
     res.send({

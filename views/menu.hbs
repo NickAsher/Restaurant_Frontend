@@ -55,7 +55,11 @@
 <body>
 
 
+<div class="modal fade" id="productModal" role="dialog">
+    <div id="productModalDialog" class="modal-dialog" role="document">
 
+    </div>
+</div>
 
 <!-- Body Wrapper -->
 <div id="body-wrapper" class="animsition">
@@ -128,7 +132,7 @@
                     {{#each items}}
                         <div class="col-lg-4 col-6">
                             <!-- Menu Item -->
-                            <div class="menu-item menu-grid-item itemDetail" data-target="#productModal" data-toggle="modal" data-category-id="{{../category_id}}" data-item-id="{{item_id}}">
+                            <div class="menu-item menu-grid-item itemDetail"  data-category-id="{{../category_id}}" data-item-id="{{item_id}}">
                                 <img href="/item/{{../category_id}}/{{item_id}}" class="mb-4" src="{{@root.IMAGE_BACKENDFRONT_LINK_PATH}}{{item_image_name}}" alt="">
                                 <h6 class="mb-0">{{item_name}}</h6>
                                 <span class="text-muted text-sm">{{item_description}}</span>
@@ -162,11 +166,7 @@
 
 </div>
 
-<div class="modal fade" id="productModal" role="dialog">
-    <div id="productModalDialog" class="modal-dialog" role="document">
 
-    </div>
-</div>
 
 <!-- JS Plugins -->
 <script src="/plugins/jquery/dist/jquery.min.js"></script>
@@ -372,6 +372,8 @@
 
 
     $(".itemDetail").click(function(){
+        $("#productModal").modal('show') ;
+        $("#productModal").html('<div id="productModalDialog" class="modal-dialog" role="document"></div>') ;
         let itemId = $(this).attr("data-item-id") ;
         let categoryId = $(this).attr("data-category-id") ;
         console.log("making request on item/" + categoryId + "/" + itemId);
