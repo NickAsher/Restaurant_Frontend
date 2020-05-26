@@ -12,7 +12,11 @@ exports.isAuthenticated = (redirectBack)=>{
       res.redirect(`/login?redirect=${redirectBack}`);
       //TODO show message that you need to be logged in
     }else{
-      next();
+      if(req.session.isEmailVerified != true){
+        res.redirect('/emailUnverified') ;
+      }else {
+        next();
+      }
     }
   } ;
 } ;
@@ -26,7 +30,7 @@ exports.isAuthenticatedPostRequest =  ()=>{
    *    If not, it sends a status:false with error message
    */
   return (req, res, next)=>{
-    if(req.session.isLoggedIn != true){   // checks for both false and undefined this way
+    if(req.session.isLoggedIn != true || req.session.isEmailVerified != true){   // checks for both false and undefined this way
       res.send({
         status : false,
         e : "User is not authenticated"

@@ -450,7 +450,11 @@
                 .then((data)=>{
                     hideSpinner($('#Btn_Login')) ;
                     if(data.status == true){
-                        redirectBack('/') ;
+                      if(data.responseCode == 'USER_LOGGEDIN'){
+                          redirectBack('/') ;
+                      }else if(data.responseCode == 'USER_EMAIL_NOT_VERIFIED'){
+                        window.location.href = '/emailUnverified' ;
+                      }
                     }else{
                         console.log(data);
                         throw "Error in logging in" ;
@@ -553,7 +557,7 @@
                 .then((data)=>{
                     hideSpinner($('#Btn_SignUp')) ;
                     if(data.status == true){
-                        redirectBack('/') ;
+                        window.location.href = '/emailUnverified' ;
                     }else{
                         makeErrorToast("Error in signing up") ;
                         console.log(data) ;

@@ -44,10 +44,20 @@ exports.postLoginPage = async (req, res)=>{
 
     req.session.isLoggedIn = true ;
     req.session.userId = userData.id ;
-    res.send({
-      status : true,
-      success : "USER_LOGGEDIN"
-    }) ;
+    req.session.isEmailVerified = userData.is_email_verified == '1' ? true : false ;
+
+    if(userData.is_email_verified){
+      res.send({
+        status : true,
+        responseCode : "USER_LOGGEDIN"
+      }) ;
+    }else{
+      res.send({
+        status : true,
+        responseCode : "USER_EMAIL_NOT_VERIFIED"
+      }) ;
+    }
+
   }catch (e) {
     logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
     res.send({
@@ -80,17 +90,32 @@ exports.postSignUpPage = async (req,res)=>{
 
 
     let password_hash = await bcrypt.hash(password, 8);
+
+    let randomString = crypto.randomBytes(32).toString('hex');
+    let emailVerificationToken = jwt.sign({
+        email: email,
+        random: randomString,
+        verify : 'WrittenJustForFun'
+      }, password_hash, {expiresIn:'24h'}
+    );
+
+
     let dbData = await dbConnection.execute(`
-    INSERT INTO users_table (email, password_hash, firstname, lastname) VALUES (:email, :password_hash, :firstname, :lastname) `, {
+    INSERT INTO users_table (email, password_hash, firstname, lastname, email_verification_token) VALUES (:email, :password_hash, :firstname, :lastname, :emailVerificationToken) `, {
       email,
       password_hash,
       firstname,
-      lastname
+      lastname,
+      emailVerificationToken
     }) ;
+
+    let emailVerificationLink = `http://localhost:3000/verifyEmail/${emailVerificationToken}` ;
+    emailUtils.sendAccountVerificationLink(email, emailVerificationToken) ;
 
     //Initiate user session
     req.session.isLoggedIn = true ;
     req.session.userId = dbData[0].insertId ;
+    req.session.isEmailVerified = false ;
 
     res.send({
       status : true,
@@ -138,7 +163,7 @@ exports.postSignUp_Google = async (req, res)=>{
       // needed for creating password reset jwt, as we use password hash to sign jwt. So password hash cannot be empty
       let fakePasswordHash = crypto.createHash('md5').update(`${googleId}-${email}`).digest('hex') ;
       let dbData = await dbConnection.execute(`
-    INSERT INTO users_table (email, password_hash, firstname, lastname, oauth_provider, oauth_id) VALUES (:email, :password_hash, :firstname, :lastname, :oauth_provider, :oauth_id) `, {
+    INSERT INTO users_table (email, password_hash, firstname, lastname, oauth_provider, oauth_id, is_email_verified) VALUES (:email, :password_hash, :firstname, :lastname, :oauth_provider, :oauth_id, 1) `, {
         email,
         password_hash : fakePasswordHash,
         firstname,
@@ -213,7 +238,7 @@ exports.postSignUp_Facebook = async (req, res)=>{
       let fakePasswordHash = crypto.createHash('md5').update(`${facebookId}-${email}`).digest('hex')  ;
 
       let dbData = await dbConnection.execute(`
-      INSERT INTO users_table (email, password_hash, firstname, lastname, oauth_provider, oauth_id) VALUES (:email, :password_hash, :firstname, :lastname, :oauth_provider, :oauth_id) `, {
+      INSERT INTO users_table (email, password_hash, firstname, lastname, oauth_provider, oauth_id, is_email_verified) VALUES (:email, :password_hash, :firstname, :lastname, :oauth_provider, :oauth_id, 1) `, {
         email,
         password_hash : fakePasswordHash,
         firstname,
@@ -310,7 +335,7 @@ exports.postForgotPassword = async (req, res)=>{
 
     let passwordResetMailLink = `http://localhost:3000/resetPassword/${resetToken}` ;
 
-    emailUtils.sendResetPasswordMail(passwordResetMailLink) ;
+    emailUtils.sendResetPasswordMail(email, passwordResetMailLink) ;
 
     res.send({
       status: true,
@@ -401,4 +426,11 @@ exports.postResetPasswordToken = async (req, res)=>{
       yo : "Beta ji koi error hai"
     }) ;
   }
+} ;
+
+exports.getEmailVerificationPage = ()=>{
+  //user is signed in
+  //user has not verified the account
+
+
 } ;

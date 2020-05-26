@@ -590,7 +590,7 @@
                         makeToast('info', "Payment Successfull. Redirecting you") ;
                         setTimeout(function () {
                             // this is needed because, if we immediately redirect the user,
-                            // then send transaction event is not sent to google analytics tag manager
+                            // then "send-transaction" event is not sent to google analytics tag manager
                             window.location.href=`/order` ;
                         }, 500)
                     }else{
