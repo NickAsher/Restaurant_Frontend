@@ -110,7 +110,7 @@ exports.postSignUpPage = async (req,res)=>{
     }) ;
 
     let emailVerificationLink = `http://localhost:3000/verifyEmail/${emailVerificationToken}` ;
-    emailUtils.sendAccountVerificationLink(email, emailVerificationToken) ;
+    emailUtils.sendAccountVerificationLink(email, emailVerificationLink) ;
 
     //Initiate user session
     req.session.isLoggedIn = true ;
@@ -175,6 +175,7 @@ exports.postSignUp_Google = async (req, res)=>{
       //Initiate user session
       req.session.isLoggedIn = true;
       req.session.userId = dbData['0'].insertId;
+      req.session.isEmailVerified = true ;
       console.log("New user, signing up") ;
       res.send({
         status: true,
@@ -186,6 +187,7 @@ exports.postSignUp_Google = async (req, res)=>{
       if(userData.oauth_provider != 'google'){throw "not a google account" ;}
       req.session.isLoggedIn = true ;
       req.session.userId = userData.id ;
+      req.session.isEmailVerified = true ;
       console.log("User already exists logging in") ;
       res.send({
         status: true,
@@ -250,6 +252,7 @@ exports.postSignUp_Facebook = async (req, res)=>{
       //Initiate user session
       req.session.isLoggedIn = true;
       req.session.userId = dbData['0'].insertId;
+      req.session.isEmailVerified = true ;
       console.log("New user, signing up") ;
       res.send({
         status: true,
@@ -261,6 +264,7 @@ exports.postSignUp_Facebook = async (req, res)=>{
       if(userData.oauth_provider != "facebook"){throw "Not a facebook account" ;}
       req.session.isLoggedIn = true ;
       req.session.userId = userData.id ;
+      req.session.isEmailVerified = true ;
       console.log("User already exists logging in") ;
       res.send({
         status: true,
@@ -428,9 +432,46 @@ exports.postResetPasswordToken = async (req, res)=>{
   }
 } ;
 
-exports.getEmailVerificationPage = ()=>{
-  //user is signed in
-  //user has not verified the account
+exports.getEmailVerificationPage = async (req, res)=>{
+
+  try {
+    let verificationToken = req.params.emailVerificationToken;
+    //user has not verified the account
+    let dbReturnData = await dbRepository.getUser_ByEmailVerificationToken(verificationToken);
+    if (dbReturnData.status == false) {
+      throw dbReturnData;
+    }
+
+    let userData = dbReturnData.data;
+
+    // will throw an error if token is not signed by password_hash
+    // or if token has expired
+    let decoded = jwt.verify(verificationToken, userData.password_hash);
+    if (decoded.email != userData.email) {
+      throw "invalid token : email is not same in token";
+    }
+
+    let dbUpdateData = await dbConnection.execute(
+      `UPDATE users_table SET is_email_verified = '1', email_verification_token='' WHERE id = :id`, {
+        id: userData.id
+      });
+    req.session.isEmailVerified = true ;
+
+
+    res.send({
+      status: true,
+      message: "Your email is now verified"
+    });
+  }catch (e) {
+    logger.error(`{'warn' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;
+
+    res.send({
+      status:false,
+      e,
+      result : "This link is not valid"
+    }) ;
+  }
+
 
 
 } ;

@@ -62,6 +62,8 @@ router.post('/resetPassword', [
 ], showValidationError, controllerAuth.postResetPasswordToken) ;
 
 
+router.get('/verifyEmail/:emailVerificationToken',  controllerAuth.getEmailVerificationPage) ;
+
 
 
 module.exports = router ;

@@ -372,7 +372,7 @@
 
 
     $(".itemDetail").click(function(){
-        $("#productModal").modal('show') ;
+        $("#productModal").modal('show') ; //doing this via javascript instead of html removes a bug which causes modal to freeze
         $("#productModal").html('<div id="productModalDialog" class="modal-dialog" role="document"></div>') ;
         let itemId = $(this).attr("data-item-id") ;
         let categoryId = $(this).attr("data-category-id") ;

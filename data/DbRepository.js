@@ -218,6 +218,29 @@ exports.getUser_ByResetToken = async(resetToken)=>{
   }
 } ;
 
+exports.getUser_ByEmailVerificationToken = async(emailVerificationToken)=>{
+  try{
+    let dbData = await dbConnection.execute(
+      `SELECT * FROM users_table WHERE email_verification_token = :emailVerificationToken `, {
+        emailVerificationToken
+      }) ;
+    if(dbData[0].length != 1){
+      // token does not exist in db, invalid token
+      throw "Invalid Token" ;
+    }
+
+    return {
+      status : true,
+      data : dbData[0][0]
+    } ;
+  }catch (e) {
+    return {
+      status : false,
+      error : e.toString()
+    } ;
+  }
+} ;
+
 
 exports.resetPasswordToken = async (id, resetToken)=>{
   try{

@@ -43,7 +43,7 @@ app.use(session({
   name : 'my_session_id', //name for the cookie that stores session id
   cookie : {
     maxAge: 1000 * 60 * 60 * 24,
-    sameSite :true,
+    sameSite :'lax', //very important, otherwise third party redirect will create new sessions
     secure :false // use it when using https
   },
   store: new redisStore({
@@ -117,6 +117,11 @@ app.get('/error', (req, res)=>{
     }
   }) ;
 }) ;
+
+app.get('/emailUnverified', (req, res)=>{
+  res.render('emailUnverified.hbs') ;
+}) ;
+
 app.get('*', (req, res)=>{
   res.render('404.hbs') ;
 });
