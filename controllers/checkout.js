@@ -148,7 +148,11 @@ const generateResponse = async (paymentIntent, order) => {
     let dbReturnData = await dbRepository.insertOrder(order) ;
     if(dbReturnData.status != true){throw dbReturnData;}
 
-    //TODO send order confirmation email
+    // sending the order successful email.
+    let menuNameData = await orderParseUtils.getMenuNameData() ;
+    let cartDescription = await orderParseUtils.parseCartFromBackendToAdminOrder(menuNameData, order.cart) ; // this is an array
+    emailUtils.sendOrderSuccessMail(order.userDetails.email, dbReturnData.data.insertId, cartDescription) ;
+
     return {
       status : true,
       orderId : dbReturnData.data.insertId,
