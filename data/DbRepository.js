@@ -516,3 +516,74 @@ exports.getAddonDataInCategory = async (categoryId)=>{
 
 
 
+exports.getAllSizes_NamesOnly = async()=>{
+  try{
+    let dbData = await dbConnection.execute(
+      `SELECT size_id, size_name FROM menu_size_table `) ;
+    return {
+      status : true,
+      data : dbData['0'],
+    } ;
+
+  }catch (e) {
+    return {
+      status : false,
+      error : e,
+    } ;
+  }
+} ;
+
+exports.getAllAddonItems_NamesOnly = async()=>{
+  try{
+    let dbData = await dbConnection.execute(
+      `SELECT item_id, item_name FROM menu_addons_table `) ;
+    return {
+      status : true,
+      data : dbData['0'],
+    } ;
+
+  }catch (e) {
+    return {
+      status : false,
+      error : e,
+    } ;
+  }
+} ;
+
+exports.getAllAddonGroups_NamesOnly = async()=>{
+  try{
+    let dbData = await dbConnection.execute(
+      `SELECT rel_id, addon_group_display_name FROM menu_addongroups_table `) ;
+    return {
+      status : true,
+      data : dbData['0'],
+    } ;
+
+  }catch (e) {
+    return {
+      status : false,
+      error : e,
+    } ;
+  }
+} ;
+
+exports.getAllMenuItems_NameOnly = async()=>{
+  try{
+    let dbData = await dbConnection.execute(
+      `SELECT item_id, item_name FROM menu_items_table `) ;
+    return {
+      status : true,
+      data : dbData['0'],
+    } ;
+
+  }catch (e) {
+    return {
+      status : false,
+      error : e,
+    } ;
+  }
+} ;
+
+
+
+

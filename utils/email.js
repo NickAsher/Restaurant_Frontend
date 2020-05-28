@@ -26,7 +26,7 @@ module.exports.sendResetPasswordMail = (userEmailAddress, passwordResetLink)=>{
         Data: "Reset your Gagneja's password"
       }
     },
-    Source: 'pluzumk@gmail.com', /* required */
+    Source: 'noreply.rafique.in@gmail.com', /* required */
     ReplyToAddresses: [
       /* more items */
     ],
@@ -66,7 +66,45 @@ module.exports.sendAccountVerificationLink = (userEmailAddress, accountVerificat
         Data: "Activate your Gagneja's Account"
       }
     },
-    Source: 'pluzumk@gmail.com', /* required */
+    Source: 'noreply.rafique.in@gmail.com', /* required */
+    ReplyToAddresses: [
+      /* more items */
+    ],
+  };
+
+
+  new AWS.SES({apiVersion: '2010-12-01'}).sendEmail(params).promise()
+    .then(
+      function(data) {
+        console.log("Mail is sent to SES serivce and message id is ", data.MessageId);
+      }).catch(
+    function(err) {
+      console.error(err, err.stack);
+    });
+} ;
+
+
+
+module.exports.sendOrderSuccessMail = (userEmailAddress, orderId, cart)=>{
+  let params = {
+    Destination: {
+      ToAddresses: [
+        userEmailAddress,
+      ]
+    },
+    Message: {
+      Body: {
+        Html: {
+          Charset: "UTF-8",
+          Data: `Thank you for ordering at Gagneja's. Your order id is ${orderId} <br><br> ${cart}`
+        },
+      },
+      Subject: {
+        Charset: 'UTF-8',
+        Data: "Gagneja's : Order Successfull "
+      }
+    },
+    Source: 'noreply.rafique.in@gmail.com', /* required */
     ReplyToAddresses: [
       /* more items */
     ],

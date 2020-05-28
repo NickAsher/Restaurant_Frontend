@@ -5,6 +5,9 @@ const checkoutUtils = require('../utils/checkout_utils') ;
 require('dotenv').config() ;
 const fs = require('fs') ;
 const logger = require('../middleware/logging') ;
+const orderParseUtils = require('../utils/order_parse_utils') ;
+const emailUtils = require('../utils/email') ;
+
 
 const stripePublic = 'pk_test_FPbfGF5aEyQqsBfsPytI46qw002ouxr0PP' ;
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
@@ -64,6 +67,12 @@ exports.postDevelopmentCheckoutPage = async (req, res)=>{
     }  ;
 
     let dbReturnData = await dbRepository.insertOrder(order) ;
+
+    // sending the order successful email.
+    let menuNameData = await orderParseUtils.getMenuNameData() ;
+    let cartDescription = await orderParseUtils.parseCartFromBackendToAdminOrder(menuNameData, order.cart) ; // this is an array
+    emailUtils.sendOrderSuccessMail(order.userDetails.email, dbReturnData.data.insertId, cartDescription) ;
+
     res.send({
       status: true,
       orderId : dbReturnData.data.insertId
@@ -139,6 +148,7 @@ const generateResponse = async (paymentIntent, order) => {
     let dbReturnData = await dbRepository.insertOrder(order) ;
     if(dbReturnData.status != true){throw dbReturnData;}
 
+    //TODO send order confirmation email
     return {
       status : true,
       orderId : dbReturnData.data.insertId,
