@@ -30,6 +30,20 @@
 
 
 
+{{#if isEnvironmentProduction}}
+        <!-- CSS Plugins -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animsition/4.0.2/css/animsition.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" />
+
+        <!-- CSS Icons -->
+        <link rel="stylesheet" href="/css/themify-icons.css" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+
+{{else}}
     <!-- CSS Plugins -->
     <link rel="stylesheet" href="/plugins/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/plugins/slick-carousel/slick/slick.css" />
@@ -41,6 +55,7 @@
     <link rel="stylesheet" href="/css/themify-icons.css" />
     <link rel="stylesheet" href="/plugins/font-awesome/css/font-awesome.min.css" />
 
+{{/if}}
     <!-- CSS Theme -->
     <link id="theme" rel="stylesheet" href="/css/themes/theme-beige.css" />
     <link id="theme" rel="stylesheet" href="/css/themes/my-personal.css" />
@@ -195,22 +210,37 @@
 
 </div>
 
+{{#if isEnvironmentProduction}}
 
-<!-- JS Plugins -->
-<script src="/plugins/jquery/dist/jquery.min.js"></script>
-<script src="/plugins/tether/dist/js/tether.min.js"></script>
-<script src="/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="/plugins/slick-carousel/slick/slick.min.js"></script>
-<script src="/plugins/jquery.appear/jquery.appear.js"></script>
-<script src="/plugins/jquery.scrollto/jquery.scrollTo.min.js"></script>
-<script src="/plugins/jquery.localscroll/jquery.localScroll.min.js"></script>
-<script src="/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
-<script src="/plugins/jquery-validation/dist/jquery-validate-additional-methods.min.js"></script>
-<script src="/plugins/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.min.js"></script>
-<script src="/plugins/twitter-fetcher/js/twitterFetcher_min.js"></script>
-<script src="/plugins/skrollr/dist/skrollr.min.js"></script>
-<script src="/plugins/animsition/dist/js/animsition.min.js"></script>
-<script src="/plugins/toastr/toastr.min.js" ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-appear/0.1/jquery.appear.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.2/jquery.scrollTo.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-localScroll/1.4.0/jquery.localScroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.26/skrollr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animsition/4.0.2/js/animsition.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js" ></script>
+
+{{else}}
+    <!-- JS Plugins -->
+    <script src="/plugins/jquery/dist/jquery.min.js"></script>
+    <script src="/plugins/tether/dist/js/tether.min.js"></script>
+    <script src="/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/plugins/slick-carousel/slick/slick.min.js"></script>
+    <script src="/plugins/jquery.appear/jquery.appear.js"></script>
+    <script src="/plugins/jquery.scrollto/jquery.scrollTo.min.js"></script>
+    <script src="/plugins/jquery.localscroll/jquery.localScroll.min.js"></script>
+    <script src="/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="/plugins/jquery-validation/dist/jquery-validate-additional-methods.min.js"></script>
+    <script src="/plugins/skrollr/dist/skrollr.min.js"></script>
+    <script src="/plugins/animsition/dist/js/animsition.min.js"></script>
+    <script src="/plugins/toastr/toastr.min.js" ></script>
+{{/if}}
+
 <!-- JS Core -->
 <script src="/js/core.js"></script>
 

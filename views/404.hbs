@@ -28,10 +28,14 @@
         gtag('config', 'UA-162363580-1');
     </script>
 
+{{#if isEnvironmentProduction}}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+
+{{else}}
 
     <!-- CSS Plugins -->
     <link rel="stylesheet" href="/plugins/bootstrap/dist/css/bootstrap.min.css" />
-
+{{/if}}
 
     <!-- CSS Theme -->
     <link id="theme" rel="stylesheet" href="/css/themes/theme-beige.css" />
@@ -72,11 +76,16 @@
 
 </div>
 
+{{#if isEnvironmentProduction}}
 
-<!-- JS Plugins -->
-<script src="/plugins/jquery/dist/jquery.min.js"></script>
-<script src="/plugins/tether/dist/js/tether.min.js"></script>
-<script src="/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+{{else}}
+    <script src="/plugins/jquery/dist/jquery.min.js"></script>
+    <script src="/plugins/tether/dist/js/tether.min.js"></script>
+    <script src="/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+{{/if}}
 
 <!-- JS Core -->
 <script src="/js/core.js"></script>
