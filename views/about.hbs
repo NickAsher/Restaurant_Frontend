@@ -1,12 +1,8 @@
-{{#*inline "partial_head"}}
-
-{{/inline}}
-
 {{#> template_base}}
 
     <!-- Page Title -->
     <div class="page-title bg-dark dark">
-        <div class="bg-image bg-parallax"><img src="/img/photos/aboutus_header.jpg" alt=""></div>
+        <div class="bg-image bg-parallax"><img src="{{publicDirectoryLocation}}/img/photos/aboutus_header.jpg" alt=""></div>
 
         <div class="container">
             <div class="row justify-content-center">
@@ -19,7 +15,7 @@
     <section class="section section-bg-edge">
 
             <div class="image left bottom col-md-7">
-                <div class="bg-image"><img src="../img/photos/bg-chef.jpg" alt=""></div>
+                <div class="bg-image"><img src="{{publicDirectoryLocation}}/img/photos/bg-chef.jpg" alt=""></div>
             </div>
 
             <div class="container">
@@ -28,7 +24,7 @@
                     <h2>The best food in Delhi!</h2>
                     {{{aboutData.about_us1}}}
                     <h6>Pawan Kumar, Chef</h6>
-                    <img src="../img/svg/sign.svg" alt="" class="mb-5">
+                    <img src="{{publicDirectoryLocation}}/img/svg/sign.svg" alt="" class="mb-5">
 
                 </div>
             </div>

@@ -12,11 +12,11 @@
     <title>Gagneja's</title>
 
     <!-- Favicons -->
-    <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="apple-touch-icon" href="/img/favicon_60x60.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon_76x76.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/img/favicon_120x120.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/img/favicon_152x152.png">
+    <link rel="shortcut icon" href="{{publicDirectoryLocation}}/img/favicon.png">
+    <link rel="apple-touch-icon" href="{{publicDirectoryLocation}}/img/favicon_60x60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{publicDirectoryLocation}}/img/favicon_76x76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{publicDirectoryLocation}}/img/favicon_120x120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{publicDirectoryLocation}}/img/favicon_152x152.png">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162363580-1"></script>
@@ -24,13 +24,13 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', 'UA-162363580-1');
     </script>
 
 
 
 {{#if isEnvironmentProduction}}
+
     <!-- CSS Plugins -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
@@ -41,7 +41,6 @@
     <!-- CSS Icons -->
     <link rel="stylesheet" href="/css/themify-icons.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-
 
 {{else}}
 
@@ -55,11 +54,11 @@
     <!-- CSS Icons -->
     <link rel="stylesheet" href="/css/themify-icons.css" />
     <link rel="stylesheet" href="/plugins/font-awesome/css/font-awesome.min.css" />
-
 {{/if}}
+
     <!-- CSS Theme -->
-    <link id="theme" rel="stylesheet" href="/css/themes/theme-beige.css" />
-    <link id="theme" rel="stylesheet" href="/css/themes/my-personal.css" />
+    <link id="theme" rel="stylesheet" href="{{publicDirectoryLocation}}/css/themes/theme-beige.css" />
+    <link id="theme" rel="stylesheet" href="{{publicDirectoryLocation}}/css/themes/my-personal.css" />
 
     {{#> partial_head}}
         <!--There was no partial for the head-->
@@ -112,28 +111,28 @@
 
 {{else}}
 
-<!-- JS Plugins -->
-<script src="/plugins/jquery/dist/jquery.min.js"></script>
-<script src="/plugins/tether/dist/js/tether.min.js"></script>
-<script src="/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="/plugins/slick-carousel/slick/slick.min.js"></script>
-<script src="/plugins/jquery.appear/jquery.appear.js"></script>
-<script src="/plugins/jquery.scrollto/jquery.scrollTo.min.js"></script>
-<script src="/plugins/jquery.localscroll/jquery.localScroll.min.js"></script>
-<script src="/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
-<script src="/plugins/skrollr/dist/skrollr.min.js"></script>
-<script src="/plugins/animsition/dist/js/animsition.min.js"></script>
-<script src="/plugins/toastr/toastr.min.js" ></script>
+    <!-- JS Plugins -->
+    <script src="/plugins/jquery/dist/jquery.min.js"></script>
+    <script src="/plugins/tether/dist/js/tether.min.js"></script>
+    <script src="/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/plugins/slick-carousel/slick/slick.min.js"></script>
+    <script src="/plugins/jquery.appear/jquery.appear.js"></script>
+    <script src="/plugins/jquery.scrollto/jquery.scrollTo.min.js"></script>
+    <script src="/plugins/jquery.localscroll/jquery.localScroll.min.js"></script>
+    <script src="/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="/plugins/skrollr/dist/skrollr.min.js"></script>
+    <script src="/plugins/animsition/dist/js/animsition.min.js"></script>
+    <script src="/plugins/toastr/toastr.min.js" ></script>
 
 {{/if}}
 
 <!-- JS Core -->
-<script src="/js/core.js"></script>
+<script src="{{publicDirectoryLocation}}/js/core.js"></script>
 
 <!-- Changes in javascript made by me-->
-<script src="/js/myPersonal.js"></script>
-<script src="/js/analytics_utils.js"></script>
-<script src="/js/cart.js"></script>
+<script src="{{publicDirectoryLocation}}/js/myPersonal.js"></script>
+<script src="{{publicDirectoryLocation}}/js/analytics_utils.js"></script>
+<script src="{{publicDirectoryLocation}}/js/cart.js"></script>
 
 {{#> partial_body}}
     <!--There was no partial for the body script-->

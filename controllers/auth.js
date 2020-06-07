@@ -109,7 +109,7 @@ exports.postSignUpPage = async (req,res)=>{
       emailVerificationToken
     }) ;
 
-    let emailVerificationLink = `http://localhost:3000/verifyEmail/${emailVerificationToken}` ;
+    let emailVerificationLink = `${Constants.SERVER_LOCATION}/verifyEmail/${emailVerificationToken}` ;
     emailUtils.sendAccountVerificationLink(email, emailVerificationLink) ;
 
     //Initiate user session
@@ -337,7 +337,7 @@ exports.postForgotPassword = async (req, res)=>{
       throw dbData;
     }
 
-    let passwordResetMailLink = `http://localhost:3000/resetPassword/${resetToken}` ;
+    let passwordResetMailLink = `${Constants.SERVER_LOCATION}/resetPassword/${resetToken}` ;
 
     emailUtils.sendResetPasswordMail(email, passwordResetMailLink) ;
 

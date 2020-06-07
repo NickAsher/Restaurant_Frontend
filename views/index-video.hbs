@@ -12,11 +12,11 @@
 <title>Gagneja's</title>
 
     <!-- Favicons -->
-    <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="apple-touch-icon" href="/img/favicon_60x60.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon_76x76.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/img/favicon_120x120.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/img/favicon_152x152.png">
+    <link rel="shortcut icon" href="{{publicDirectoryLocation}}/img/favicon.png">
+    <link rel="apple-touch-icon" href="{{publicDirectoryLocation}}/img/favicon_60x60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{publicDirectoryLocation}}/img/favicon_76x76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{publicDirectoryLocation}}/img/favicon_120x120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{publicDirectoryLocation}}/img/favicon_152x152.png">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162363580-1"></script>
@@ -57,8 +57,8 @@
 
     {{/if}}
     <!-- CSS Theme -->
-    <link id="theme" rel="stylesheet" href="/css/themes/theme-beige.css" />
-    <link id="theme" rel="stylesheet" href="/css/themes/my-personal.css" />
+    <link id="theme" rel="stylesheet" href="{{publicDirectoryLocation}}/css/themes/theme-beige.css" />
+    <link id="theme" rel="stylesheet" href="{{publicDirectoryLocation}}/css/themes/my-personal.css" />
 
 
 </head>
@@ -75,7 +75,7 @@
 
             <div class="fullscreen-bg bg-dark dark">
                 <video loop muted autoplay  class="bg-video-mine" style="opacity: 0.3">
-                    <source src='/videos/home.mp4'  type="video/mp4">
+                    <source src='{{publicDirectoryLocation}}/videos/home.mp4'  type="video/mp4">
                 </video>
             </div>
 
@@ -83,7 +83,7 @@
             <br><br><br><br>
 
             <div class="text-center">
-                <img src="../img/logo-light.png" alt="" width="200" class="mb-5">
+                <img src="{{publicDirectoryLocation}}/img/logo-light.png" alt="" width="200" class="mb-5">
                 <h1 class="display-2 mb-2 text-white">Great Italian Food</h1>
                 <h4 class="text-muted mb-5">and use it with your next order!</h4>
                 <a href="/menu" class="btn btn-outline-primary btn-lg"><span class="text-white">Order online!</span></a>
@@ -134,12 +134,12 @@
     <script src="/plugins/toastr/toastr.min.js" ></script>
 {{/if}}
 <!-- JS Core -->
-<script src="/js/core.js"></script>
+<script src="{{publicDirectoryLocation}}/js/core.js"></script>
 
 <!-- Changes in javascript made by me-->
-<script src="/js/myPersonal.js"></script>
-<script src="/js/analytics_utils.js"></script>
-<script src="/js/cart.js"></script>
+<script src="{{publicDirectoryLocation}}/js/myPersonal.js"></script>
+<script src="{{publicDirectoryLocation}}/js/analytics_utils.js"></script>
+<script src="{{publicDirectoryLocation}}/js/cart.js"></script>
 
 
 </body>
