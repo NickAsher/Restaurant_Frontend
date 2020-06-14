@@ -91,7 +91,7 @@ var Core = {
             }
             if($(window).width() < 1200 && $bgVideo) {
                 $bgVideo.prev('.bg-video-placeholder').show();
-                $bgVideo.remove()
+                $bgVideo.remove();
             }
         },
         pageTransition: function() {
@@ -505,21 +505,21 @@ var Core = {
                     $this = $(this);
                 setTimeout(function() {
                     $this.modal('show');
-                }, timeout)
+                }, timeout) ;
             });
 
             $('[data-toggle="video-modal"]').on('click', function() {
                 var modal = $(this).data('target'),
-                    video = $(this).data('video')
+                    video = $(this).data('video') ;
 
                 $(modal + ' iframe').attr('src', video + '?autoplay=1');
                 $(modal).modal('show');
 
                 $(modal).on('hidden.bs.modal', function () {
-                    var $modalContent = $(modal + ' .modal-content')
+                    var $modalContent = $(modal + ' .modal-content') ;
                     $(modal + ' iframe').remove();
                     $modalContent.html('<iframe height="500"></iframe>');
-                })
+                }) ;
 
                 return false;
             });
