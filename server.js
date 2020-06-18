@@ -78,9 +78,7 @@ app.use((req, res, next)=>{
 
 
 app.use((req, res, next)=>{
-  res.locals.IMAGE_FRONTEND_LINK_PATH = Constants.IMAGE_FRONTEND_LINK_PATH ;
   res.locals.IMAGE_BACKENDFRONT_LINK_PATH = Constants.IMAGE_BACKENDFRONT_LINK_PATH ;
-  res.locals.VIDEO_FRONTEND_LINK_PATH = Constants.VIDEO_FRONTEND_LINK_PATH ;
   res.locals.signedIn = req.session.isLoggedIn ;
   res.locals.isEnvironmentProduction = process.env.NODE_ENV == 'production' ? true : false ;
   res.locals.publicDirectoryLocation = Constants.PUBLIC_DIRECTORY_LOCATION ;
