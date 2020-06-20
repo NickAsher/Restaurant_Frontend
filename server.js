@@ -10,6 +10,7 @@ const csrf = require('csurf') ;
 const logger = require('./middleware/logging') ;
 const redis = require('redis') ;
 let redisStore = require('connect-redis')(session) ;
+const Mailgen = require('mailgen') ;
 
 require('dotenv').config() ;
 
@@ -122,6 +123,74 @@ app.get('/error', (req, res)=>{
 app.get('/emailUnverified', (req, res)=>{
   res.render('emailUnverified.hbs') ;
 }) ;
+
+app.get('/invoice', (req, res)=>{
+
+  let mailGenerator = new Mailgen({
+    theme: 'salted',
+    product: {
+      // Appears in header & footer of e-mails
+      name: 'Rafique.in',
+      link: 'https://www.gagneja.rafique.in',
+      // Optional product logo
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/157px-Google_%22G%22_Logo.svg.png'
+    }
+  }) ;
+
+  let userName = "John Malkovich" ;
+  let orderId = "e4rjkfdfkg" ;
+
+
+
+  let email = {
+    body: {
+      name: userName,
+      intro: `Thank you for placing your order at Gagneja's. Your Order id is  "${orderId}"`,
+      table: {
+        data: [
+          {
+            item: 'Margherita',
+            description: '(Medium)<br> Crusts : Normal Crust <br> Cheeses : Blue Cheese ',
+            price: '$10.99'
+          },
+          {
+            item: 'Double Cheese',
+            description: '(Medium)<br> Crusts : Normal Crust <br> Cheeses : Blue Cheese ',
+            price: '$1.99'
+          },
+          {
+            item : '<b>TOTAL</b>',
+            description : '',
+            price : '<b>200</b>'
+          }
+        ],
+        columns: {
+          // Optionally, customize the column widths
+          customWidth: {
+            item: '20%',
+            price: '15%'
+          },
+          // Optionally, change column text alignment
+          customAlignment: {
+            price: 'right'
+          }
+        }
+      },
+
+
+
+      outro: 'Thank you for ordering with us. Your order will be delivered shortly'
+    }
+  };
+
+// Generate an HTML email with the provided contents
+  let emailBody = mailGenerator.generate(email);
+
+  res.send(emailBody) ;
+
+
+});
+
 
 app.get('*', (req, res)=>{
   res.render('404.hbs') ;

@@ -13,6 +13,7 @@ const stripePublic = 'pk_test_FPbfGF5aEyQqsBfsPytI46qw002ouxr0PP' ;
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 exports.getCheckoutPage = async (req, res)=>{
+  console.log("this is checkout page") ;
   try{
     let dbReturnData = await dbRepository.getUser_ById(req.session.userId) ;
     if (dbReturnData.status == false) {throw dbReturnData;}
@@ -70,8 +71,15 @@ exports.postDevelopmentCheckoutPage = async (req, res)=>{
 
     // sending the order successful email.
     let menuNameData = await orderParseUtils.getMenuNameData() ;
-    let cartDescription = await orderParseUtils.parseCartFromBackendToAdminOrder(menuNameData, order.cart) ; // this is an array
-    emailUtils.sendOrderSuccessMail(order.userDetails.email, dbReturnData.data.insertId, cartDescription) ;
+    let cartDescription = await orderParseUtils.parseInvoiceFromBackendCart(menuNameData, order.cart) ; // this is an array
+    cartDescription.push({
+      item : '<b>TOTAL</b>',
+      description : '',
+      price : `<b>${order.totalPrice}</b>`
+    }) ;
+
+    emailUtils.sendOrderSuccessMail(order.userDetails.email, dbReturnData.data.insertId,
+      `${order.userDetails.firstname} ${order.userDetails.lastname}`, cartDescription) ;
 
     res.send({
       status: true,
@@ -150,8 +158,16 @@ const generateResponse = async (paymentIntent, order) => {
 
     // sending the order successful email.
     let menuNameData = await orderParseUtils.getMenuNameData() ;
-    let cartDescription = await orderParseUtils.parseCartFromBackendToAdminOrder(menuNameData, order.cart) ; // this is an array
-    emailUtils.sendOrderSuccessMail(order.userDetails.email, dbReturnData.data.insertId, cartDescription) ;
+    let cartDescription = await orderParseUtils.parseInvoiceFromBackendCart(menuNameData, order.cart) ; // this is an array
+    cartDescription.push({
+      item : '<b>TOTAL</b>',
+      description : '',
+      price : `<b>${order.totalPrice}</b>`
+    }) ;
+
+    emailUtils.sendOrderSuccessMail(order.userDetails.email, dbReturnData.data.insertId,
+      `${order.userDetails.firstname} ${order.userDetails.lastname}`, cartDescription) ;
+
 
     return {
       status : true,

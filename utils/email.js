@@ -1,4 +1,5 @@
 const AWS = require('aws-sdk');
+const Mailgen = require('mailgen') ;
 
 // Set the region
 AWS.config.loadFromPath('./secret/aws_credentials.json');
@@ -401,7 +402,48 @@ module.exports.sendAccountVerificationLink = (userEmailAddress, accountVerificat
 
 
 
-module.exports.sendOrderSuccessMail = (userEmailAddress, orderId, cart)=>{
+
+
+
+
+module.exports.sendOrderSuccessMail = (userEmailAddress, orderId, userName, invoiceMailgenTable)=>{
+  let mailGenerator = new Mailgen({
+    theme: 'salted',
+    product: {
+      // Appears in header & footer of e-mails
+      name: 'Rafique.in',
+      link: 'https://www.gagneja.rafique.in',
+      logo: 'https://www.gagneja.rafique.in/img/logo-horizontal-dark.png'
+    }
+  }) ;
+
+
+  let email = {
+    body: {
+      name: userName,
+      intro: `Thank you for placing your order at Gagneja's. Your Order id is  "${orderId}"`,
+      table: {
+        data: invoiceMailgenTable,
+        columns: {
+          // Optionally, customize the column widths
+          customWidth: {
+            item: '20%',
+            price: '15%'
+          },
+          // Optionally, change column text alignment
+          customAlignment: {
+            price: 'right'
+          }
+        }
+      },
+      outro: 'Thank you for ordering with us. Your order will be delivered shortly'
+    }
+  };
+
+// Generate an HTML email with the provided contents
+  let emailBody = mailGenerator.generate(email);
+
+
   let params = {
     Destination: {
       ToAddresses: [
@@ -412,7 +454,7 @@ module.exports.sendOrderSuccessMail = (userEmailAddress, orderId, cart)=>{
       Body: {
         Html: {
           Charset: "UTF-8",
-          Data: `Thank you for ordering at Gagneja's. Your order id is ${orderId} <br><br> ${cart}`
+          Data: emailBody
         },
       },
       Subject: {
@@ -436,4 +478,3 @@ module.exports.sendOrderSuccessMail = (userEmailAddress, orderId, cart)=>{
       console.error(err, err.stack);
     });
 } ;
-

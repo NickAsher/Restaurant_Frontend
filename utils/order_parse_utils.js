@@ -74,7 +74,7 @@ exports.getMenuNameData = async ()=>{
   }
 } ;
 
-exports.parseCartFromBackendToAdminOrder = (menuNameData, cart)=>{
+exports.parseInvoiceFromBackendCart = (menuNameData, cart)=>{
   /* This function parses the cart from the database cart to a descriptive string seen in the orders panel
    *
    * Input => [
@@ -91,27 +91,28 @@ exports.parseCartFromBackendToAdminOrder = (menuNameData, cart)=>{
       {...}
     ]
    *
-   * Output => an array of strings
+   * Output => an array of Objects like this
    *
-   *    ItemName (itemSize)
-   *    addongroup1 : addonItem1, addonItem2
-   *    addonGroup2 : addonItem3, addonItem4
+   *    item : itemName,
+   *    description : itemSize <br> addonGroup1 : addonItem1, addonItem2  <br> addonGroup2 : addonItem3, addonItem4
+   *    quantity : 1
    *
-   *    ItemName (itemSize)
-   *    addongroup1 : addonItem1, addonItem2
-   *    addonGroup2 : addonItem3, addonItem4
+   *    item : itemName,
+   *    description : itemSize <br> addonGroup1 : addonItem1, addonItem2  <br> addonGroup2 : addonItem3, addonItem4
+   *    quantity : 1
    *
-   *    ItemName (itemSize)
-   *    addongroup1 : addonItem1, addonItem2
-   *    addonGroup2 : addonItem3, addonItem4
+   *    item : itemName,
+   *    description : itemSize <br> addonGroup1 : addonItem1, addonItem2  <br> addonGroup2 : addonItem3, addonItem4
+   *    quantity : 1
+   *
    *
    */
   let arrayOfStrings = [] ;
   cart.forEach((element)=>{
+
     let descriptionString = '' ;
-    let itemName = menuNameData.itemNameData[element.item_id] ;
     let sizeName = menuNameData.sizeNameData[element.item_size_id] ;
-    descriptionString += `${itemName} (${sizeName}) <br>` ;
+    descriptionString += `${sizeName} <br>` ;
     element.item_addon.forEach((addonGroupElement)=>{
       if(addonGroupElement.addon_items_array.length == 0){
         return ; // works like how 'continue' is used in a normal for loop. in forEach loop we return, instead on continue
@@ -126,7 +127,11 @@ exports.parseCartFromBackendToAdminOrder = (menuNameData, cart)=>{
       descriptionString += ' <br> ' ;
     }) ;
     descriptionString += ' <br>  ' ;
-    arrayOfStrings.push(descriptionString) ;
+    arrayOfStrings.push({
+      item : menuNameData.itemNameData[element.item_id],
+      description : descriptionString,
+      quantity : 1
+    }) ;
   }) ;
 
   return arrayOfStrings ;
