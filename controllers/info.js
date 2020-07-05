@@ -1,4 +1,3 @@
-const request = require('request-promise') ;
 const Constants = require('../utils/Constants') ;
 const dbRepository = require('../data/DbRepository') ;
 const logger = require('../middleware/logging') ;
