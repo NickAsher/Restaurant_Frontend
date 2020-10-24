@@ -1,6 +1,5 @@
-{{#*inline "partial_head"}}
+{{#*inline "inline_partial_css_imports"}}
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/hybrid.min.css">
-
 {{/inline}}
 
 {{#> template_base}}
@@ -48,10 +47,10 @@
 {{/template_base}}
 
 
-{{#*inline "partial_body"}}
+{{#*inline "inline_partial_js_imports"}}
 
-<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
-<script>
-    hljs.initHighlightingOnLoad(); // initializing the highlight js library
-</script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad(); // initializing the highlight js library
+    </script>
 {{/inline}}

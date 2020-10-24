@@ -5,7 +5,7 @@ const logger = require('../middleware/logging') ;
 
 exports.getHomePage = async (req, res)=>{
   try{
-    res.render('index-video.hbs', {
+    res.render('home.hbs', {
     }) ;
   }catch (e) {
     logger.error(`{'error' : '${JSON.stringify(e)}', 'url':'${req.originalUrl}'}`) ;

@@ -20,18 +20,17 @@
                 <div class="col-lg-10 offset-lg-1">
                     <!-- Post / Item -->
                     {{#each blogsData}}
-                        <article class="post post-wide animated" data-animation="fadeIn">
+                        <a class="post post-wide animated" data-animation="fadeIn" href="/blog/{{blog_id}}">
                             <div class="post-image"><img src="{{@root.IMAGE_BACKENDFRONT_LINK_PATH}}{{blog_display_image}}" alt=""></div>
                             <div class="post-content">
                                 <ul class="post-meta">
                                     <li>{{blog_creation_date}}</li>
                                     <li>by {{blog_author}}</li>
                                 </ul>
-                                <h4><a href="/blog/{{blog_id}}">{{blog_title}}</a></h4>
+                                <h4>{{blog_title}}</h4>
                                 <!--<p>Nulla leo lectus, commodo porttitor lacus a, placerat facilisis ligula.</p>-->
                             </div>
-                        </article>
-
+                        </a>
                     {{/each}}
 
 

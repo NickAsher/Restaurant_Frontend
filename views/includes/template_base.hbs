@@ -60,9 +60,9 @@
     <link id="theme" rel="stylesheet" href="{{publicDirectoryLocation}}/css/themes/theme-beige.css" />
     <link id="theme" rel="stylesheet" href="{{publicDirectoryLocation}}/css/themes/my-personal.css" />
 
-    {{#> partial_head}}
+    {{#> inline_partial_css_imports}}
         <!--There was no partial for the head-->
-    {{/partial_head}}
+    {{/inline_partial_css_imports}}
 
 </head>
 
@@ -136,9 +136,9 @@
 <script src="{{publicDirectoryLocation}}/js/analytics_utils.js"></script>
 <script src="{{publicDirectoryLocation}}/js/cart.js"></script>
 
-{{#> partial_body}}
+{{#> inline_partial_js_imports}}
     <!--There was no partial for the body script-->
-{{/partial_body}}
+{{/inline_partial_js_imports}}
 
 
 </body>
