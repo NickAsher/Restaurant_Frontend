@@ -54,10 +54,23 @@
         <a href="#" id="nav-toggle" data-toggle="panel-mobile"><span></span><span></span><span></span><span></span></a>
     </div>
 
+
+
     <div class="module module-logo">
         <a href="/">
             <img src="{{publicDirectoryLocation}}/img/logo-horizontal-dark.png" alt="">
         </a>
+    </div>
+
+    <div class="module my-module-signin" >
+        {{#if signedIn}}
+            <!--Show sign out-->
+            <button id="btn-SignOut" class="btn btn-outline-secondary" data-csrf ="{{_csrfToken}}">
+                <span>Sign Out</span>
+            </button>
+        {{else}}
+            <a href="/login" class="btn btn-outline-secondary"><span>Sign In</span></a>
+        {{/if}}
     </div>
 
 

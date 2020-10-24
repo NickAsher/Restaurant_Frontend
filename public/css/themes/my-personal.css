@@ -41,6 +41,12 @@
   transform: translate(-50%, -50%);
 }
 
+#header-mobile .my-module-signin {
+  top: 0px;
+  right: 50px;
+  position: absolute;
+}
+
 /* applies the beige colour to checked form input in menu*/
 input:checked ~ span.myForm-input {
   color: #ddae71 !important;

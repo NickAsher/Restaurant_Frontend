@@ -58,6 +58,19 @@
         </a>
     </div>
 
+
+
+    <div class="module my-module-signin" >
+        {{#if signedIn}}
+            <!--Show sign out-->
+            <button id="btn-SignOut" class="btn btn-outline-light" data-csrf ="{{_csrfToken}}">
+                <span>Sign Out</span>
+            </button>
+        {{else}}
+            <a href="/login" class="btn btn-outline-light"><span>Sign In</span></a>
+        {{/if}}
+    </div>
+
     <a id="Button_OpenCart_Mobile" href="#" class="module module-cart" data-toggle="panel-cart">
         <i class="ti ti-shopping-cart"></i>
         <span id="totalCartItems_Mobile" class="notification">2</span>

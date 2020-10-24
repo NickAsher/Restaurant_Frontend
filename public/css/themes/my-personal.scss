@@ -44,6 +44,15 @@
     transform: translate(-50%, -50%);
 }
 
+
+#header-mobile .my-module-signin{
+    // this class puts the sign-in button inside the header , when in mobile view
+    top: 0px;
+    right: 50px;
+    position: absolute;
+}
+
+
 /* applies the beige colour to checked form input in menu*/
 input:checked~span.myForm-input{
     color : #ddae71 !important;
