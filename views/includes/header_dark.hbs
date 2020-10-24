@@ -1,0 +1,100 @@
+<!-- Header -->
+<header id="header" class="absolute transparent">
+    <div class="container">
+        <div class="row" >
+
+            {{#if isLogoShown}}
+            <div class="col-md-3">
+                <!-- Logo -->
+                <div class="module module-logo dark">
+                    <a href="/">
+                        <img src="{{publicDirectoryLocation}}/img/logo-light.png" alt="Logo" width="140">
+                    </a>
+                </div>
+            </div>
+            {{else}}
+                <div class="col-md-3"></div>
+            {{/if}}
+
+
+            <div class="col-md-7">
+                <!-- Navigation -->
+                <nav class="module module-navigation left mr-4">
+                    <ul id="nav-main" class="nav nav-main">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/menu">Menu</a></li>
+                        <li><a href="/gallery">Gallery</a></li>
+                        <li><a href="/blogs">Blog</a></li>
+                        <li><a href="/specials">Specials</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <div class="module" >
+                    {{#if signedIn}}
+                        <!--Show sign out-->
+                        <button id="btn-SignOut" class="btn btn-outline-secondary" data-csrf ="{{_csrfToken}}">
+                            <span>Sign Out</span>
+                        </button>
+                    {{else}}
+                        <a href="/login" class="btn btn-outline-secondary"><span>Sign In</span></a>
+                    {{/if}}
+                </div>
+            </div>
+
+
+            {{#if isCartShown}}
+            <div class="col-md-2">
+                <a id="Button_OpenCart" href="#" class="module module-cart right" data-toggle="panel-cart">
+                    <span class="cart-value2">CART</span>
+                    <span class="cart-icon">
+                            <i class="ti ti-shopping-cart"></i>
+                            <span id="totalCartItems" class="notification"></span>
+                        </span>
+                    <!--<span class="cart-value">$32.98</span>-->
+                </a>
+            </div>
+            {{else}}
+                <div class="col-md-2"></div>
+            {{/if}}
+
+
+        </div>
+    </div>
+</header>
+<!-- Header / End -->
+
+<!-- Header -->
+<header id="header-mobile" class="dark">
+
+    <div class="module module-nav-toggle">
+        <a href="#" id="nav-toggle" data-toggle="panel-mobile"><span></span><span></span><span></span><span></span></a>
+    </div>
+
+    <div class="module module-logo">
+        <a href="/">
+            <img src="{{publicDirectoryLocation}}/img/logo-horizontal-light.png" alt="">
+        </a>
+    </div>
+
+    <div class="module my-module-signin" >
+        {{#if signedIn}}
+            <!--Show sign out-->
+            <button id="btn-SignOut" class="btn btn-outline-light" data-csrf ="{{_csrfToken}}">
+                <span>Sign Out</span>
+            </button>
+        {{else}}
+            <a href="/login" class="btn btn-outline-light"><span>Sign In</span></a>
+        {{/if}}
+    </div>
+
+    {{#if isCartShown}}
+    <a id="Button_OpenCart_Mobile" href="#" class="module module-cart" data-toggle="panel-cart">
+        <i class="ti ti-shopping-cart"></i>
+        <span id="totalCartItems_Mobile" class="notification">2</span>
+    </a>
+    {{/if}}
+
+</header>
+<!-- Header / End -->
