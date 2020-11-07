@@ -34,7 +34,8 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.use(cookieParser()) ;
 
 let redisClient = redis.createClient({
-  host : '127.0.0.1',
+  host : process.env.NODE_ENV == 'production' ? process.env.REDIS_HOST_PRODUCTION : process.env.REDIS_HOST_LOCAL,
+  // host : '127.0.0.1',
   port : 6379
 }) ;
 
