@@ -31,6 +31,7 @@
                     </ul>
                 </nav>
 
+                {{#if showSignInButton}}
                 <div class="module" >
                     {{#if signedIn}}
                         <!--Show sign out-->
@@ -41,6 +42,8 @@
                         <a href="/login" class="btn btn-outline-secondary"><span>Sign In</span></a>
                     {{/if}}
                 </div>
+                {{/if}}
+
             </div>
 
 
@@ -78,16 +81,18 @@
         </a>
     </div>
 
+    {{#if showSignInButton}}
     <div class="module my-module-signin" >
         {{#if signedIn}}
             <!--Show sign out-->
-            <button id="btn-SignOut" class="btn btn-outline-light" data-csrf ="{{_csrfToken}}">
+            <button id="btn-SignOut-mobile" class="btn btn-outline-light" data-csrf ="{{_csrfToken}}">
                 <span>Sign Out</span>
             </button>
         {{else}}
             <a href="/login" class="btn btn-outline-light"><span>Sign In</span></a>
         {{/if}}
     </div>
+    {{/if}}
 
     {{#if isCartShown}}
     <a id="Button_OpenCart_Mobile" href="#" class="module module-cart" data-toggle="panel-cart">

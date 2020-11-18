@@ -54,7 +54,8 @@ if(localStorage.getItem('today') != new Date().toLocaleDateString()){
 }
 
 
-$('#btn-SignOut').click(()=>{
+$('#btn-SignOut, #btn-SignOut-mobile').click(()=>{
+  console.log("clicked signOut button") ;
   fetch('/signout', {
     method : 'POST',
     body : new URLSearchParams({

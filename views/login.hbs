@@ -100,10 +100,14 @@
                                 <br><br>
                                 <div class="row text-white">
                                     <div class="col-6 col-sm-6 text-center">
-                                        <button id="Btn_FacebookLogin" type="button" class="btn " onclick="facebookSignIn();" style="background-color: #3b5998;"><span class="text-white">Facebook Login</span></button>
+                                        <button id="Btn_FacebookLogin" type="button" class="btn " onclick="facebookSignIn();" style="background-color: #3b5998;">
+                                            <span class="text-white">Facebook Login</span>
+                                        </button>
                                     </div>
                                     <div class="col-6 col-sm-6 text-center">
-                                        <button id="Btn_GoogleLogin" type="button" class="btn " style="background-color:#c32f10 ;"><span class="text-white">Google Login</span></button>
+                                        <button id="Btn_GoogleLogin" type="button" class="btn " style="background-color:#c32f10 ;">
+                                        <span class="text-white">Google Login</span>
+                                    </button>
                                         <!--<div class="g-signin2"  data-longtitle="true" data-onsuccess="onGoogleSignIn"></div>-->
                                     </div>
                                 </div>
@@ -293,12 +297,27 @@
             auth2 = gapi.auth2.init({
                 client_id: '730014109642-7rldv9agg9qp0avagkapdv9l4kocjt5e.apps.googleusercontent.com',
                 cookiepolicy: 'single_host_origin',
+                // immediate : false,
                 // Request scopes in addition to 'profile' and 'email'
                 //scope: 'additional_scope'
             });
 
+            // auth2.signIn()
+            //         .then(function(){
+            //             let newprofile = auth2.currentUser.get().getBasicProfile();
+            //             console.log("Inside the signIn method, new profile is ") ;
+            //             console.log(newprofile) ;
+            //         })
+            //         .catch(function (err) {
+            //             console.log("Caught an error inside auth2.signIn() : ") ;
+            //             console.log(err) ;
+            //         }) ;
+
+
             auth2.attachClickHandler(document.getElementById('Btn_GoogleLogin'), {},
                     function(googleUser) {
+                        //TODO console print the google user here. THis is where the mobile error is kind of occuring
+                        console.log("Google user is " + googleUser) ;
                         showSpinner($('#Btn_GoogleLogin')) ;
                         onGoogleSignIn(googleUser) ;
                     }, function(error) {
