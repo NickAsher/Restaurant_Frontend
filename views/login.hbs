@@ -297,7 +297,8 @@
             auth2 = gapi.auth2.init({
                 client_id: '730014109642-7rldv9agg9qp0avagkapdv9l4kocjt5e.apps.googleusercontent.com',
                 cookiepolicy: 'single_host_origin',
-                // immediate : false,
+                immediate : false,
+                redirect_uri : "http://localhost:3000/login"
                 // Request scopes in addition to 'profile' and 'email'
                 //scope: 'additional_scope'
             });
@@ -391,7 +392,7 @@
                         hideSpinner($('#Btn_FacebookLogin')) ;
                         showError(profileInfo.error, "Error in getting FB Profile Info") ;
                         FB.logout(function(response) {
-                            console.log("Lgging out from FB bad") ;
+                            console.log("Logging out from FB bad") ;
                         });
                     }else {
                         console.log(response.authResponse.accessToken) ;
@@ -410,13 +411,13 @@
                             },
                             success : (result)=>{
                                 $('#Btn_FacebookLogin').text("Logged In") ;
+                                console.log(result) ;
                                 if(result.status ==true){
-                                    console.log(result) ;
                                     //sign out the facebook user
-                                    console.log("calling this code ") ;
+                                    console.log("Successfully signed in using facebook") ;
                                     FB.logout(function(resp) {
                                         console.log(resp) ;
-                                        console.log("Lgging out from FB good") ;
+                                        console.log("Logging out from FB now") ;
                                         redirectBack('/') ;
                                     });
                                 }
@@ -424,8 +425,9 @@
                             error : (err)=> {
                                 hideSpinner($('#Btn_FacebookLogin')) ;
                                 showError(err, "Error in Sending Post Request") ;
+                                console.log(err) ;
                                 FB.logout(function(response) {
-                                    console.log("Lgging out from FB bad") ;
+                                    console.log("Logging out from FB") ;
                                 });
                             }
                         }) ;
