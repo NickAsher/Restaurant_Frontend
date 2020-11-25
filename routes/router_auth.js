@@ -43,7 +43,12 @@ router.post('/signup/google', [
 ], showValidationError, controllerAuth.postSignUp_Google) ;
 
 
-router.post('/signup/facebook', controllerAuth.postSignUp_Facebook) ;
+router.post('/signup/facebook', [
+  body('post_Id', "idToken does not exist").exists().not().isEmpty(),
+  body('post_Firstname', "Invalid Firstname").exists().not().isEmpty().trim().escape(),
+  body('post_Lastname', "Invalid Lastname").exists().not().isEmpty().trim().escape(),
+  // email field is not mandatory as facebook emails can be private and are not always accessible to us
+], showValidationError, controllerAuth.postSignUp_Facebook) ;
 
 
 router.post('/forgotPassword', [

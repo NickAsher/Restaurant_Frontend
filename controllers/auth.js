@@ -222,13 +222,18 @@ exports.postSignUp_Facebook = async (req, res)=>{
     // no need to verify the token as it is already verified
     // when we got the additional user info like email, name, by making an api request.
     // So unlike google, we don't have to verify that access token is correct or not
-    let email = req.body.post_Email;
+
     let firstname = req.body.post_Firstname ;
     let lastname = req.body.post_Lastname ;
     let facebookId = req.body.post_Id ;
 
-
-
+    // NOTE : There's no guarantee that you will get a user email, as facebook users can hide their email to "ONLY ME"
+    // in that case you won't get an email
+    let email = req.body.post_Email ;
+    if(email == null){
+      email = `${firstname}_${lastname}@facebook.com` ;
+    }
+    console.log(`facebook data is ${email} - ${firstname} - ${lastname} - ${facebookId}` ) ;
 
     let dbReturnData = await dbRepository.getUser_ByEmail(email);
     if (dbReturnData.status == false) {throw dbReturnData;}

@@ -386,7 +386,7 @@
                 // Logged into your webpage and Facebook.
                 // we need to make another request to get the email and name,
                 // as faceboook only sends the id after login success
-                FB.api('/me', {fields: 'id,first_name, last_name, email'}, function(profileInfo) {
+                FB.api('/me', {fields: 'id, email, first_name, last_name'}, function(profileInfo) {
                     if(profileInfo.error){
                         // Error in getting profile info
                         hideSpinner($('#Btn_FacebookLogin')) ;
