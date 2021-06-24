@@ -185,7 +185,7 @@ module.exports.sendResetPasswordMail = (userEmailAddress, passwordResetLink)=>{
         Data: "Reset your Gagneja's password"
       }
     },
-    Source: 'noreply.rafique.in@gmail.com', /* required */
+    Source: 'noreply.accounts@gagneja.rafique.in', /* required */
     ReplyToAddresses: [
       /* more items */
     ],
@@ -383,7 +383,7 @@ module.exports.sendAccountVerificationLink = (userEmailAddress, accountVerificat
         Data: "Activate your Gagneja's Account"
       }
     },
-    Source: 'noreply.rafique.in@gmail.com', /* required */
+    Source: 'noreply.accounts@gagneja.rafique.in', /* required */
     ReplyToAddresses: [
       /* more items */
     ],
@@ -462,7 +462,7 @@ module.exports.sendOrderSuccessMail = (userEmailAddress, orderId, userName, invo
         Data: "Gagneja's : Order Successfull "
       }
     },
-    Source: 'noreply.rafique.in@gmail.com', /* required */
+    Source: 'noreply.orders@gagneja.rafique.in', /* required */
     ReplyToAddresses: [
       /* more items */
     ],
