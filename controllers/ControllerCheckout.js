@@ -4,7 +4,7 @@ const crypto = require('crypto') ;
 const checkoutUtils = require('../utils/checkout_utils') ;
 require('dotenv').config() ;
 const fs = require('fs') ;
-const logger = require('../middleware/logging') ;
+const logger = require('../middleware/MiddlewareLogging') ;
 const orderParseUtils = require('../utils/order_parse_utils') ;
 const emailUtils = require('../utils/email') ;
 

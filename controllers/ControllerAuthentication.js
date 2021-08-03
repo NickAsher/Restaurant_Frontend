@@ -1,12 +1,12 @@
 const fs = require('fs') ;
 const Constants = require('../utils/Constants') ;
-const dbConnection = require('../utils/database') ;
+const dbConnection = require('../utils/DatabaseConnection') ;
 const dbRepository = require('../data/DbRepository') ;
 const bcrypt = require('bcrypt') ;
 const crypto =  require('crypto') ;
 const {OAuth2Client} = require('google-auth-library');
 const jwt = require('jsonwebtoken') ;
-const logger = require('../middleware/logging') ;
+const logger = require('../middleware/MiddlewareLogging') ;
 const emailUtils = require('../utils/email') ;
 
 const CLIENT_ID = "730014109642-7rldv9agg9qp0avagkapdv9l4kocjt5e.apps.googleusercontent.com" ;

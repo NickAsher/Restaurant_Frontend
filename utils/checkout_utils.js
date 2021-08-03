@@ -1,5 +1,5 @@
 const dbRepository = require('../data/DbRepository') ;
-let dbConnection = require('./database') ;
+let dbConnection = require('./DatabaseConnection') ;
 
 let calculateItemPrice = async (backendCartItem)=>{
   /* an item is like this

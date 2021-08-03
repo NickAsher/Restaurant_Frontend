@@ -2,7 +2,7 @@ const {body, param, validationResult} = require('express-validator') ;
 const path = require('path') ;
 const fs = require('fs') ;
 const Constants = require('../utils/Constants') ;
-const logger = require('./logging') ;
+const logger = require('./MiddlewareLogging') ;
 
 
 

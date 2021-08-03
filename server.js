@@ -1,13 +1,13 @@
 const express = require('express') ;
 const path = require('path') ;
 const hbs = require('hbs') ;
-const dbConnection = require('./utils/database') ;
+const dbConnection = require('./utils/DatabaseConnection') ;
 const Constants = require('./utils/Constants') ;
 const bodyParser = require('body-parser');
 const cookieParser = require("cookie-parser") ;
 const session = require('express-session') ;
 const csrf = require('csurf') ;
-const logger = require('./middleware/logging') ;
+const logger = require('./middleware/MiddlewareLogging') ;
 const redis = require('redis') ;
 let redisStore = require('connect-redis')(session) ;
 const Mailgen = require('mailgen') ;
@@ -89,7 +89,7 @@ app.use((req, res, next)=>{
 
 // since checkout has the stripe page, we are unable to use csrf authentication
 // so it is added before the csrf middleware
-app.use(require('./routes/router_checkout')) ;
+app.use(require('./routes/RouterCheckout')) ;
 
 
 // using the default values for the csrf token.
@@ -101,10 +101,10 @@ app.use((req, res, next)=>{
 }) ;
 
 
-app.use(require('./routes/router_info')) ;
-app.use(require('./routes/router_blogs')) ;
-app.use(require('./routes/router_menu')) ;
-app.use(require('./routes/router_auth')) ;
+app.use(require('./routes/RouterInfo')) ;
+app.use(require('./routes/RouterBlogs')) ;
+app.use(require('./routes/RouterMenu')) ;
+app.use(require('./routes/RouterAuthentication')) ;
 
 app.get('/privacy_policy', (req, res)=>{
   res.render('privacy_policy.hbs') ;

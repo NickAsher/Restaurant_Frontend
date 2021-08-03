@@ -1,6 +1,6 @@
 const Constants = require('../utils/Constants') ;
 const dbRepository = require('../data/DbRepository') ;
-const logger = require('../middleware/logging') ;
+const logger = require('../middleware/MiddlewareLogging') ;
 
 
 exports.getMenu = async (req, res)=>{

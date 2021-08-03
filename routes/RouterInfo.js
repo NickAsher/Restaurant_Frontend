@@ -1,7 +1,7 @@
 const express = require('express') ;
-const controllerInfo = require('../controllers/info') ;
+const controllerInfo = require('../controllers/ControllerInfo') ;
 const {param, validationResult} = require('express-validator') ;
-const validationMiddleware = require('../middleware/validation') ;
+const validationMiddleware = require('../middleware/MiddlewareValidation') ;
 
 const router = express.Router() ;
 const showValidationError = validationMiddleware.showValidationError ;

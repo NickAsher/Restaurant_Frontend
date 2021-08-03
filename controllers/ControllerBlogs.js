@@ -2,7 +2,7 @@ const fs = require('fs') ;
 const Constants = require('../utils/Constants') ;
 const dbRepository = require('../data/DbRepository') ;
 const Paginator = require('../utils/Paginator') ;
-const logger = require('../middleware/logging') ;
+const logger = require('../middleware/MiddlewareLogging') ;
 const moment = require('moment') ;
 
 
